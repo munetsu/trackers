@@ -1,9 +1,7 @@
 <?php
-    session_start();
-
     class VIEW{
         function __construct(){
-            $this->CL = new CONTROLLER;
+           
         }
 
         // ログイン画面
@@ -26,14 +24,5 @@
             echo $view;
         }
 
-        // サインアップ画面
-        public function signUp($user_id){
-            $view = '
-                <div>
-                    
-                </div>
-            
-            
-            ';
-        }
+        
     }

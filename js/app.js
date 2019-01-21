@@ -10,7 +10,9 @@ $(document).on('click','#loginBtn',function(){
         } 
     })
     .done((data) => {
-        $('body').html(data)
+        console.log(data);
+        // $('body').html(data);
+        window.location.href="signUp.php";
     })
     .fail((data) => {
         $('body').html('ログインエラーです')
