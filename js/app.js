@@ -1,5 +1,5 @@
 // ログイン部分
-$('#loginBtn').on('click',function(){
+$(document).on('click','#loginBtn',function(){
     $.ajax({
         url: 'php/ajax.php',
         type: 'POST',
@@ -10,16 +10,18 @@ $('#loginBtn').on('click',function(){
         } 
     })
     .done((data) => {
-        $('#all').html(data)
+        console.log(data);
+        // $('body').html(data);
+        window.location.href="signUp.php";
     })
     .fail((data) => {
-        $('#all').html('ログインエラーです')
+        $('body').html('ログインエラーです')
     })
     }
 )
 
 // サインアップ部分
-$('#registerBtn').on('click',function(){
+$(document).on('click','#registerBtn',function(){
     $.ajax({
         url: 'php/ajax.php',
         type: 'POST',
@@ -31,10 +33,10 @@ $('#registerBtn').on('click',function(){
     })
     .done((data) => {
         console.log(data);
-        $('#all').html(data)
+        $('body').html(data);
     })
     .fail((data) => {
-        $('#all').html('すでに登録されています')
+        $('body').html('すでに登録されています')
     })
     }
 )

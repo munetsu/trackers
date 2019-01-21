@@ -1,4 +1,5 @@
 <?php
+    session_start();
     //クリックジャッキング対策
     header('X-FRAME-OPTIONS: SAMEORIGIN');
 ?>
