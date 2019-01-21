@@ -1,13 +1,13 @@
 <?php
     include('include/funcs.php');
-    include('view.php');
+    include('controller.php');
     class AJAX{
         function __construct(){
             $this->POST = $_POST['action'];
             $this->judge();
         }
 
-        // サインアップ処理
+        // POSTデータの文字列化処理
         private function post(){
             $array = array();
             $array[] = h($_POST['id']);
@@ -20,14 +20,14 @@
             // ログイン
             if($this->POST == 'login'){
                 $array = $this->post();
-                $this->view = new VIEW;
-                return $this->view->tuotor($array);
+                $this->cl = new CONTROLLER;
+                return $this->cl->login($array);
             }
             // サインアップ処理
             if($this->POST == 'register'){
                 $array = $this->post();
-                $this->view = new VIEW;
-                return $this->view->signUp($array);
+                $this->cl = new CONTROLLER;
+                return $this->cl->signUp($array);
             }
                 
         }
