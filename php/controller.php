@@ -9,8 +9,8 @@
 
         // 会員登録操作
         public function signUp($array){
-            $column = 'email'.','.'password';
-            $value = "'".$array[0]."'".','."'".$array[1]."'";
+            $column = 'email'.','.'password'.','.'datetime';
+            $value = "'".$array[0]."'".','."'".$array[1]."'".','."'".date("Y/m/d")."'";
             $table = 'users';
             $this->db->insert($table, $column, $value);
         }
