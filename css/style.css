@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* 全てに適用 */
+* {
+    box-sizing: border-box;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+@media screen and (max-width:640px){
+    /*640px以下で適用する内容*/
+    .all {
+        width: 100%;
+        background-image: url('../img/top_back.jpg');
+    }
+
+    
+
+
+  }
+
+
+
