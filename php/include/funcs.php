@@ -1,25 +1,25 @@
 <?php
 /** 共通で使うものを別ファイルにしておきましょう。*/
 
-//DB接続関数（PDO）
-function db_con(){
-  $dbname='reserve_db';
-  $id='root';
-  $pw='';
-  try {
-    $pdo = new PDO('mysql:dbname='.$dbname.';charset=utf8;host=localhost',$id,$pw);
-  } catch (PDOException $e) {
-    exit('DbConnectError:'.$e->getMessage());
-  }
-  return $pdo;
-}
+// //DB接続関数（PDO）
+// function db_con(){
+//   $dbname='trackers';
+//   $id='root';
+//   $pw='';
+//   try {
+//     $pdo = new PDO('mysql:dbname='.$dbname.';charset=utf8;host=localhost',$id,$pw);
+//   } catch (PDOException $e) {
+//     exit('DbConnectError:'.$e->getMessage());
+//   }
+//   return $pdo;
+// }
 
 //SQL処理エラー
-function queryError($stmt){
-  //SQL実行時にエラーがある場合（エラーオブジェクト取得して表示）
-  $error = $stmt->errorInfo();
-  exit("QueryError:".$error[2]);
-}
+// function queryError($stmt){
+//   //SQL実行時にエラーがある場合（エラーオブジェクト取得して表示）
+//   $error = $stmt->errorInfo();
+//   exit("QueryError:".$error[2]);
+// }
 
 /**
 * XSS
