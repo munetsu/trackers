@@ -1,4 +1,5 @@
 <?php
+    session_start();
     // DATAクラス引き継ぎ
     include('data.php');
     include('view.php');
@@ -24,14 +25,13 @@
             $column = '*';
             $mail = $array[0];
             $pass = $array[1];
-            $conditions = 'WHERE `email` = '."'".$mail."'".'AND `password` = '."'".$pass."'";
+            $conditions = 'WHERE `email` = '."'".$mail."'".' AND `password` = '."'".$pass."'";
             $user = $this->db->select($column,$table,$conditions);
             
             // 初回ログインかどうかを確認
             $flag = $user['flag'];
             if($flag == 0){
-                $user_id = $user['id'];
-                $this->view->signUp($user_id);
+                $_SESSION['id'] = $user['id'];
             }else{
                 // チューターか生徒か判定
                 $status = $user['status'];
