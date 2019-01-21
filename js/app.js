@@ -1,7 +1,7 @@
 // ログイン部分
 $('#loginBtn').on('click',function(){
     $.ajax({
-        url: '../php/ajax.php',
+        url: 'php/ajax.php',
         type: 'POST',
         data:{
             action: 'login',
@@ -21,7 +21,7 @@ $('#loginBtn').on('click',function(){
 // サインアップ部分
 $('#registerBtn').on('click',function(){
     $.ajax({
-        url: '../php/ajax.php',
+        url: 'php/ajax.php',
         type: 'POST',
         data:{
             action: 'register',
@@ -30,6 +30,7 @@ $('#registerBtn').on('click',function(){
         } 
     })
     .done((data) => {
+        console.log(data);
         $('#all').html(data)
     })
     .fail((data) => {
