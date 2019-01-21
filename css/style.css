@@ -1,0 +1,89 @@
+@charset "utf-8";
+/* 全てに適用 */
+* {
+    box-sizing: border-box;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+@media screen and (max-width:640px){
+    /*640px以下で適用する内容*/
+    .all {
+        background-image: url('../img/top_back.jpg');
+        background-size:100% 100%;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+
+    .all:before {
+        z-index:0;
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color:rgba(255,255,255,0.35);
+      }
+
+    .login {
+        height: 50%;
+        padding: 10vw;
+        background-color:rgba(0,0,0,0.25);
+        font-weight: bold;
+        position: relative;
+    }
+
+    .login div {
+        padding-top: 5vw;
+    }
+
+    .register {
+        height: 50%;
+        padding: 10vw;
+        background-color: rgba(0,0,0,0.25);
+        font-weight: bold;
+        position: relative;
+    }
+
+    .register div {
+        padding-top: 5vw;
+    }
+
+    input {
+        width: 80%;
+        height: 30px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    button {
+        width: 80%;
+        height: 10vw;
+        background-color: #696969;
+        color: white;
+        font-weight: bold;
+        margin-top: 10%;
+    }
+
+
+
+
+
+
+  }
+
+
+
