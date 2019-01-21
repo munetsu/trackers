@@ -32,5 +32,19 @@
             }
         }
 
+        // select文
+        public function select($column, $table, $conditions){
+            $sql = "SELECT $column FROM $table $conditions";
+            $stmt = $this->pdo->prepare($sql);
+            $res = $stmt->execute();
+            if($res === false){
+                $this->queryError($stmt);
+            }else {
+                $res = $stmt->fetch(PDO::FETCH_ASSOC);
+                return $res;
+            }
+
+        }
+
 
     }
