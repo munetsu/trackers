@@ -59,6 +59,7 @@
                         firstNameCharacter,
                         familyNameKana,
                         firstNameKana,
+                        img,
                         year,
                         month,
                         day,
@@ -87,10 +88,36 @@
                         "'".$array[13]."'".','.
                         "'".$array[14]."'".','.
                         "'".$array[15]."'".','.
+                        "'".$array[16]."'".','.
                         "'".date("Y/m/d H:i:s")."'";
             $this->db->insert($tables,$column,$value);
             header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/main.php');
             exit();
+        }
+
+        // 写真アップロード処理
+        public function photoUpload($photo,$photourl,$uid){
+            //情報取得
+            $file_name = $photo;         //"1.jpg"ファイル名取得
+            $tmp_path  = $photourl; //"/usr/www/tmp/1.jpg"アップロード先のTempフォルダ
+            $file_dir_path = "../upload/";  //画像ファイル保管先
+    
+            //***File名の変更***
+            $extension = pathinfo($file_name, PATHINFO_EXTENSION); //拡張子取得(jpg, png, gif)
+            $datetime = date("YmdHis");
+            $uniq_name = $uid . $datetime."." . $extension;  //ユニークファイル名作成
+            // $file_name = $file_dir_path.$uniq_name; //ユニークファイル名とパス
+        
+            // FileUpload [--Start--]
+            if ( is_uploaded_file( $tmp_path ) ) {
+                if ( move_uploaded_file( $tmp_path, $file_dir_path.$uniq_name ) ) {
+                    chmod( $file_dir_path.$uniq_name, 0644 );
+                    return 'upload'.$uniq_name;
+                } else {
+                    echo '<script>alert("写真変更ができませんでした");location.href="setting.php;</script>';
+                }
+            }
+        // FileUpload [--End--]
         }
 
 
