@@ -16,15 +16,17 @@
 <body>
     <div>
         <h3>情報の登録をお願いします</h3>
-        <form action="js/ajax.php" method="POST" name="studyForm">
+        <form action="php/ajax.php" method="POST" name="studyForm">
+            <input type="hidden" name="action" value="signUp">
+            <input type="hidden" name="uid" value=<?php echo $uid ?>>
             <!-- 名前 -->
             <div>
-                姓：<input type="text" name="name" placeholder="資格">
-                名：<input type="text" name="name" placeholder="太郎">
+                姓：<input type="text" name="familyNameCharacter" placeholder="資格">
+                名：<input type="text" name="firstNameCharacter" placeholder="太郎">
             </div>
             <div>
-                姓（カナ）：<input type="text" name="name" placeholder="シカク">
-                名（カナ）：<input type="text" name="name" placeholder="タロウ">
+                姓（カナ）：<input type="text" name="familyNameKana" placeholder="シカク">
+                名（カナ）：<input type="text" name="firstNameKana" placeholder="タロウ">
             </div>
             <!-- 年齢 -->
             <div>
@@ -34,6 +36,16 @@
                 <select name="month" id="month"></select>
                 ／日：
                 <select name="day" id="day"></select>
+            </div>
+            <!-- 性別 -->
+            <div>
+                性別：
+                <select name="gender" id="gender">
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                    <option value="3">Other</option>
+                    <option value="4">No Answer</option>
+                </select>
             </div>
             <!-- 学歴 -->
             <div>
@@ -72,18 +84,18 @@
             <div>
                 <div>
                     勉強スタイル：
-                    <label><input type="radio" name="studyStyle">コツコツ型</label>
-                    <label><input type="radio" name="studyStyle">短期集中型</label>
+                    <label><input type="radio" name="studyStyle" value="1">コツコツ型</label>
+                    <label><input type="radio" name="studyStyle" value="2">短期集中型</label>
                 </div>
                 <div>
                     勉強タイプ：
-                    <label><input type="radio" name="studyType">まずは暗記タイプ</label>
-                    <label><input type="radio" name="studyType">いきなり演習タイプ</label>
+                    <label><input type="radio" name="studyType" value="1">まずは暗記タイプ</label>
+                    <label><input type="radio" name="studyType" value="2">いきなり演習タイプ</label>
                 </div>
                 <div>
                     性格：
-                    <label><input type="radio" name="character">理解するまで先に進まない</label>
-                    <label><input type="radio" name="character">不明点があっても、まずは先に進む</label>
+                    <label><input type="radio" name="personality" value="1">理解するまで先に進まない</label>
+                    <label><input type="radio" name="personality" value="2">不明点があっても、まずは先に進む</label>
                 </div>
             </div>
             <button id="signUpBtn">登録する</button>
@@ -111,14 +123,14 @@
         for(let n = 1; n <32; n++){
             let view = '';
             view = '<option value='+n+'>'+n+'</option>'
-            $('#month').append(view);
+            $('#day').append(view);
         }
 
         // 出身地
-        let born = ['都道府県','北海道','青森','岩手','宮城','秋田','山形','福島','茨城','栃木','群馬','埼玉','千葉','東京','神奈川','新潟','富山','石川','福井','山梨','長野','岐阜','静岡','愛知','三重','滋賀','京都','大阪','兵庫','奈良','和歌山','鳥取','島根','岡山','広島','山口','徳島','香川','愛媛','高知','福岡','佐賀','長崎','熊本','大分','宮崎','鹿児島','沖縄'];
+        let born = ['都道府県','北海道','青森','岩手','宮城','秋田','山形','福島','茨城','栃木','群馬','埼玉','千葉','東京','神奈川','新潟','富山','石川','福井','山梨','長野','岐阜','静岡','愛知','三重','滋賀','京都','大阪','兵庫','奈良','和歌山','鳥取','島根','岡山','広島','山口','徳島','香川','愛媛','高知','福岡','佐賀','長崎','熊本','大分','宮崎','鹿児島','沖縄','America','中国','韓国','Thailand','Europe','Others'];
         for(let m = 0; m<born.length; m++){
             let land = born[m];
-            let view = '<option value='+m+'>'+land+'</option>';
+            let view = '<option value='+born[m]+'>'+land+'</option>';
             $('#born').append(view);
         }
     </script>
