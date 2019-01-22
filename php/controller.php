@@ -43,7 +43,7 @@
             }
         }
 
-        // サインアップ操作
+        // 生徒サインアップ操作
         public function register($array){
             // userテーブルの更新
             $uid = $array[0];
@@ -95,6 +95,60 @@
             exit();
         }
 
+        // チューターサインアップ操作
+        public function tuotorRegister($array){
+            // userテーブルの更新
+            $uid = $array[0];
+            $table = 'users';
+            $values = '`flag` = 1 , `status` = 2';
+            $conditions = 'WHERE `id` = '."'".$uid."'";
+            $this->db->update($table, $values, $conditions);
+        
+            // // studentsテーブルの更新
+            $tables = 'tuotors';
+            $column = 'user_id,
+                        familyNameCharacter,
+                        firstNameCharacter,
+                        familyNameKana,
+                        firstNameKana,
+                        img,
+                        year,
+                        month,
+                        day,
+                        gender,
+                        gakureki,
+                        senkou,
+                        born,
+                        lifeStyle,
+                        studyStyle,
+                        studyType,
+                        personality,
+                        datetime';
+            $value = "'".$uid."'".','.
+                        "'".$array[1]."'".','.
+                        "'".$array[2]."'".','.
+                        "'".$array[3]."'".','.
+                        "'".$array[4]."'".','.
+                        "'".$array[5]."'".','.
+                        "'".$array[6]."'".','.
+                        "'".$array[7]."'".','.
+                        "'".$array[8]."'".','.
+                        "'".$array[9]."'".','.
+                        "'".$array[10]."'".','.
+                        "'".$array[11]."'".','.
+                        "'".$array[12]."'".','.
+                        "'".$array[13]."'".','.
+                        "'".$array[14]."'".','.
+                        "'".$array[15]."'".','.
+                        "'".$array[16]."'".','.
+                        "'".date("Y/m/d H:i:s")."'";
+            $this->db->insert($tables,$column,$value);
+            header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/t_main.php');
+            exit();
+        }
+
+        
+
         // 写真アップロード処理
         public function photoUpload($photo,$photourl,$uid){
             //情報取得
@@ -112,7 +166,7 @@
             if ( is_uploaded_file( $tmp_path ) ) {
                 if ( move_uploaded_file( $tmp_path, $file_dir_path.$uniq_name ) ) {
                     chmod( $file_dir_path.$uniq_name, 0644 );
-                    return 'upload'.$uniq_name;
+                    return 'upload/'.$uniq_name;
                 } else {
                     echo '<script>alert("写真変更ができませんでした");location.href="setting.php;</script>';
                 }

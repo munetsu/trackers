@@ -19,6 +19,11 @@
         <form action="php/ajax.php" method="POST" name="studyForm" enctype="multipart/form-data">
             <input type="hidden" name="action" value="signUp">
             <input type="hidden" name="uid" value=<?php echo $uid ?>>
+            <p>どちらの登録を希望されますか？</p>
+            <div>
+                <label><input type="radio" name="status" value="1">チューター</label>
+                <label><input type="radio" name="status" value="2">生徒</label>
+            </div>
             <!-- 名前 -->
             <div>
                 姓：<input type="text" name="familyNameCharacter" placeholder="資格">
@@ -60,6 +65,7 @@
                     <option value="3">専門・短大卒</option>
                     <option value="4">高専卒</option>
                     <option value="5">高卒</option>
+                    <option value="6">それ以外</option>
                 </select>
             </div>
             <!-- 得意学科 -->
