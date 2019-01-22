@@ -10,6 +10,6 @@
     <title>Document</title>
 </head>
 <body>
-    生徒用
+    テスt  
 </body>
 </html>
