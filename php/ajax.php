@@ -17,14 +17,14 @@
 
         // ajaxごとに振り分け
         public function judge(){
-            // ログイン
+            // 生徒ログイン
             if($this->POST == 'login'){
                 $array = $this->post();
                 $this->cl = new CONTROLLER;
                 return $this->cl->login($array);
             }
 
-            // 会員登録処理
+            // 生徒会員登録処理
             if($this->POST == 'register'){
                 $array = $this->post();
                 $this->cl = new CONTROLLER;
@@ -61,9 +61,19 @@
                 $array[] = h($_POST['studyStyle']);
                 $array[] = h($_POST['studyType']);
                 $array[] = h($_POST['personality']);
-                
-                $this->cl->register($array);
+
+                // 登録情報分岐
+                $status = $_POST['status'];
+                if($status == 1){
+                    // チューター登録
+                    $this->cl->tuotorRegister($array);
+                }else{
+                    // 生徒登録
+                    $this->cl->register($array);
+                }
             }
+
+        
         }
     }
 

@@ -10,6 +10,6 @@
     <title>Document</title>
 </head>
 <body>
-    生徒用
+    チューター用 
 </body>
 </html>

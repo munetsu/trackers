@@ -1,4 +1,4 @@
-// ログイン部分
+// 生徒ログイン部分
 $(document).on('click','#loginBtn',function(){
     $.ajax({
         url: 'php/ajax.php',
@@ -20,7 +20,7 @@ $(document).on('click','#loginBtn',function(){
     }
 )
 
-// サインアップ部分
+// 生徒サインアップ部分
 $(document).on('click','#registerBtn',function(){
     $.ajax({
         url: 'php/ajax.php',
@@ -36,7 +36,8 @@ $(document).on('click','#registerBtn',function(){
         $('body').html(data);
     })
     .fail((data) => {
-        $('body').html('すでに登録されています')
+        $('body').html('すみません、もう一度お試しください');
     })
     }
 )
+
