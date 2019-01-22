@@ -25,10 +25,12 @@
         // INSERT文
         public function insert($table, $column, $values){
             $sql = "INSERT INTO $table ($column) VALUES($values)";
+            // var_dump($sql);
+            // exit();
             $stmt = $this->pdo->prepare($sql);
             $res = $stmt->execute();
             if($res === false){
-                $this->queryError($stmt);
+                return $this->queryError($stmt);
             }
         }
 
@@ -43,7 +45,16 @@
                 $res = $stmt->fetch(PDO::FETCH_ASSOC);
                 return $res;
             }
+        }
 
+        // UPDATE文
+        public function update($table, $values, $conditions){
+            $sql = "UPDATE $table SET $values $conditions";
+            $stmt = $this->pdo->prepare($sql);
+            $res = $stmt->execute();
+            if($res === false){
+                return $this->queryError($stmt);
+            }
         }
 
 
