@@ -23,20 +23,33 @@
                 $this->cl = new CONTROLLER;
                 return $this->cl->login($array);
             }
+
             // 会員登録処理
             if($this->POST == 'register'){
                 $array = $this->post();
                 $this->cl = new CONTROLLER;
                 return $this->cl->signUp($array);
             }
+            
             // サインアップ処理
             if($this->POST == 'signUp'){
+                // 写真アップロード処理
+                if (isset($_FILES["upfile"] ) && $_FILES["upfile"]["error"] ==0 ) {
+                    $uid = h($_POST['uid']);
+                    $photo = $_FILES["upfile"]["name"];
+                    $photourl = $_FILES["upfile"]["tmp_name"];
+                    $this->cl = new CONTROLLER;
+                    $photo = $this->cl->photoUpload($photo,$photourl,$uid);
+                }
+
+                // ユーザーデータ更新
                 $array = array();
                 $array[] = h($_POST['uid']);
                 $array[] = h($_POST['familyNameCharacter']);
                 $array[] = h($_POST['firstNameCharacter']);
                 $array[] = h($_POST['familyNameKana']);
                 $array[] = h($_POST['firstNameKana']);
+                $array[] = $photo;
                 $array[] = h($_POST['year']);
                 $array[] = h($_POST['month']);
                 $array[] = h($_POST['day']);
@@ -48,7 +61,7 @@
                 $array[] = h($_POST['studyStyle']);
                 $array[] = h($_POST['studyType']);
                 $array[] = h($_POST['personality']);
-                $this->cl = new CONTROLLER;
+                
                 $this->cl->register($array);
             }
         }

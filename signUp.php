@@ -16,7 +16,7 @@
 <body>
     <div>
         <h3>情報の登録をお願いします</h3>
-        <form action="php/ajax.php" method="POST" name="studyForm">
+        <form action="php/ajax.php" method="POST" name="studyForm" enctype="multipart/form-data">
             <input type="hidden" name="action" value="signUp">
             <input type="hidden" name="uid" value=<?php echo $uid ?>>
             <!-- 名前 -->
@@ -27,6 +27,10 @@
             <div>
                 姓（カナ）：<input type="text" name="familyNameKana" placeholder="シカク">
                 名（カナ）：<input type="text" name="firstNameKana" placeholder="タロウ">
+            </div>
+            <!-- 画像 -->
+            <div class="photo">
+                <input type="file" name="upfile" class="file" id="file">
             </div>
             <!-- 年齢 -->
             <div>
@@ -133,6 +137,37 @@
             let view = '<option value='+born[m]+'>'+land+'</option>';
             $('#born').append(view);
         }
+
+        // 写真選択
+        $(function(){
+            //画像ファイルプレビュー表示のイベント追加 fileを選択時に発火するイベントを登録
+            $('form').on('change', 'input[type="file"]', function(e) {
+                var file = e.target.files[0],
+                    reader = new FileReader(),
+                    $preview = $(".photo");
+                    t = this;
+
+                // 画像ファイル以外の場合は何もしない
+                if(file.type.indexOf("image") < 0){
+                return false;
+                }
+
+                // ファイル読み込みが完了した際のイベント登録
+                reader.onload = (function(file) {
+                return function(e) {
+                    // .prevewの領域の中にロードした画像を表示するimageタグを追加
+                    $preview.append($('<img>').attr({
+                            src: e.target.result,
+                            width: "150px",
+                            class: "preview",
+                            title: file.name
+                        }));
+                };
+                })(file);
+
+                reader.readAsDataURL(file);
+            });
+            });
     </script>
 </body>
 </html>
