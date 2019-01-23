@@ -41,13 +41,12 @@ function tuotorslist(){
 
 // 描画内容
 function view(id,url, age, born){
-    let view = '<div class="oneBlock" id="'+id+'">';
-        view += '<div><img src="'+url+'" style="width:150px;height:150px;"></div>';
+    let view = '<div class="oneBlock">';
+        view += '<div><img src="'+url+'" id="'+id+'" style="width:150px;height:150px;"></div>';
         view += '<div>';
             view += '<p>年齢：'+age+'歳</p>';
             view += '<p>出身地：'+born+'</p>';
         view += '</div>';
-        view += '<button class="btn">詳細を見る</button>';
     view += '</div>';
    return view;
 }
@@ -56,7 +55,7 @@ function view(id,url, age, born){
 function render(tuotor){
     // console.log(tuotor);
     for(let i =0; i<tuotor.length; i++){
-        let id = 'tuotor'+tuotor[i]['id'];
+        let id = tuotor[i]['id'];
         let url = tuotor[i]['img'];
         let age = tuotor[i]['age'];
         let born = tuotor[i]['born'];
@@ -98,8 +97,22 @@ function render(tuotor){
 let tuotor = tuotorslist();
 render(tuotor);
 
-
-
+$(document).on('click','.oneBlock',function(){
+    let target = $(this).find('img').attr('id');
+    // console.log('クリックされてる',target);
+    $.ajax({
+        url: 'php/ajax.php',
+        type: 'POST',
+        data: {
+            action: 'tuotorList',
+            id : target
+        }
+    })
+    .done((data)=>{
+        console.log(data);
+        $('#app').html(data);
+    })
+})
 
 
 
