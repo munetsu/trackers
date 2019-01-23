@@ -42,7 +42,7 @@
             if($res === false){
                 $this->queryError($stmt);
             }else {
-                $res = $stmt->fetch(PDO::FETCH_ASSOC);
+                $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 return $res;
             }
         }
