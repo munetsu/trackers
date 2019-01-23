@@ -6,8 +6,8 @@
     $list = new CONTROLLER;
     $lists = $list->tuotorsList();
     $lists = json_encode($lists);
-
-
+    $year = date("Y");
+    $month = date("m");
 ?>
 
 <!DOCTYPE html>
@@ -18,17 +18,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="css/reset.css">
+    <!-- <link rel="stylesheet" href="main.css"> -->
 </head>
 <body>
+    <div id="app"></div>
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous">
     </script>
     <script>
-        let lists = <?php echo $lists ?>
+        let lists = <?php echo $lists ?>;
+        let year = <?php echo $year ?>;
+        let month = <?php echo $month ?>;
     </script>
-    <script src="js/application.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
 
