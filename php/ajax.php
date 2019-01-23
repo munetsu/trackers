@@ -73,9 +73,12 @@
                 }
             }
 
-            // チューター詳細取得
+            // // チューター詳細取得
             if($this->POST == 'tuotorList'){
                 $uid = $_POST['id'];
+                // var_dump($uid);
+                // exit();
+                $this->cl = new CONTROLLER;
                 $this->cl->getTuotorList($uid);
             }
         }
