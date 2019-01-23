@@ -95,8 +95,7 @@
                         "'".$array[16]."'".','.
                         "'".date("Y/m/d H:i:s")."'";
             $this->db->insert($tables,$column,$value);
-            $lists = $this->tuotorsList();
-            header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/main.php?'.$lists);
+            header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/main.php');
             exit();
         }
 
@@ -109,7 +108,7 @@
             $conditions = 'WHERE `id` = '."'".$uid."'";
             $this->db->update($table, $values, $conditions);
         
-            // // studentsテーブルの更新
+            // // tuotorsテーブルの更新
             $tables = 'tuotors';
             $column = 'user_id,
                         familyNameCharacter,
@@ -148,7 +147,7 @@
                         "'".$array[16]."'".','.
                         "'".date("Y/m/d H:i:s")."'";
             $this->db->insert($tables,$column,$value);
-            header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/main.php');
+            header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/viewer.php');
             exit();
         }
 
