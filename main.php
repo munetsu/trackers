@@ -33,6 +33,7 @@
         let month = <?php echo $month ?>;
     </script>
     <script src="js/main.js"></script>
+    <script src="js/application.js"></script>
     
 </body>
 </html>
