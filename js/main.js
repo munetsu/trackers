@@ -1,6 +1,4 @@
 // チューター情報
-console.log(lists,year);
-
 // 年齢算定
 function ageCulculate(m, y){
     if((month - m) <0){
@@ -42,40 +40,43 @@ function tuotorslist(){
 
 // 描画処理
 function view(url, age, born){
-    let view = '';
-    view += '<div>';
+    let view = '<div class="oneBlock">';
         view += '<div><img src="'+url+'" style="width:150px;height:150px;"></div>';
         view += '<div>';
             view += '<div><p>年齢：'+age+'歳</p>';
             view += '<div><p>出身地：'+born+'</p>';
         view += '</div>';
     view += '</div>';
-    $('#app').append(view);
+   return view;
 }
 
 
 function render(tuotor){
-    let count = 0;
     $.each(tuotor, function(index, value){
         // 2つで折り返す
-        if(count <2){
+        let num = index;
+        if(num % 2 === 0){
             let url = value['img'];
             let age = value['age'];
-            let born = value['born'];        
-            view(url, age, born);
-            count += 1;
-        }else {
+            let born = value['born'];
+            let viewer = '<div class="block">';    
+            viewer += view(url, age, born);
+            $('#app').append(viewer);
+            console.log(num);
+        }else{
             let url = value['img'];
             let age = value['age'];
             let born = value['born'];  
-            view(url, age, born);
-            count += 0;
+            let viewer2 = view(url, age, born);
+            viewer2 += '</div>';
+            $('.block').append(viewer2);
+            console.log(num)
         }
     })
 }
 
-let list = tuotorslist();
-render(list);
+let tuotor = tuotorslist();
+render(tuotor);
 
 
 
