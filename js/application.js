@@ -11,11 +11,10 @@ $(document).on('click','#loginBtn',function(){
     })
     .done((data) => {
         console.log(data);
-        // $('#body').html(data);
         window.location.href=data;
     })
     .fail((data) => {
-        $('body').html('ログインエラーです')
+        $('body').html('ネットワークエラーです')
     })
     }
 )

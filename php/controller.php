@@ -122,5 +122,16 @@
         // FileUpload [--End--]
         }
 
+        // チューター一覧取得
+        public function tuotorsList(){
+            $table = 'tuotors';
+            $column = '*';
+            $conditions = '';
+            $lists = $this->db->select($column, $table, $conditions);
+            var_dump($lists);
+            exit();
+
+        }
+
 
     }
