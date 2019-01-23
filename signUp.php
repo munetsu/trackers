@@ -22,6 +22,12 @@
         <form action="php/ajax.php" method="POST" name="studyForm" enctype="multipart/form-data">
             <input type="hidden" name="action" value="signUp">
             <input type="hidden" name="uid" value=<?php echo $uid ?>>
+            <!-- 選択 -->
+            <div>
+                <p>どちらを選択しますか？</p>
+                <label><input type="radio" name="status" value="1">チューター</label>
+                <label><input type="radio" name="status" value="2">生徒</label>
+            </div>
             <!-- 名前 -->
             <div>
                 姓：<input type="text" name="familyNameCharacter" placeholder="資格">
@@ -162,6 +168,7 @@
                     $preview.append($('<img>').attr({
                             src: e.target.result,
                             width: "150px",
+                            height: "150px",
                             class: "preview",
                             title: file.name
                         }));
