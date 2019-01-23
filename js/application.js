@@ -19,6 +19,3 @@ $(document).on('click','#loginBtn',function(){
     }
 )
 
-$(document).on('click','#tuotor1',function(){
-    console.log('クリックされてる');
-})

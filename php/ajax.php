@@ -72,6 +72,12 @@
                     $this->cl->register($array);
                 }
             }
+
+            // チューター詳細取得
+            if($this->POST == 'tuotorList'){
+                $uid = $_POST['id'];
+                $this->cl->getTuotorList($uid);
+            }
         }
     }
 
