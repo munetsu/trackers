@@ -29,9 +29,11 @@
             $user = $this->db->select($column,$table,$conditions);
             
             // 初回ログインかどうかを確認
-            $flag = $user['flag'];
+            $flag = $user[0]['flag'];
             if($flag == 0){
-                $_SESSION['id'] = $user['id'];
+                $_SESSION['id'] = $user[0]['id'];
+                $url = 'signUp.php';
+                echo $url;
             }else{
                 // チューターか生徒か判定
                 $status = $user['status'];

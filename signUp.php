@@ -1,7 +1,10 @@
 <?php
     session_start();
     $uid = $_SESSION['id'];
+    include('php/include/funcs.php');
+    chkSsid();
     $year = json_encode(date("Y"));
+    // var_dump($uid,$_SESSION["chk_ssid"]);
 ?>
 
 

@@ -21,7 +21,7 @@
             if($this->POST == 'login'){
                 $array = $this->post();
                 $this->cl = new CONTROLLER;
-                return $this->cl->login($array);
+                $this->cl->login($array);
             }
 
             // 会員登録処理

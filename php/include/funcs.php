@@ -21,6 +21,9 @@
 //   exit("QueryError:".$error[2]);
 // }
 
+//クリックジャッキング対策
+header('X-FRAME-OPTIONS: SAMEORIGIN');
+
 /**
 * XSS
 * @Param:  $str(string) 表示する文字列

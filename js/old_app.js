@@ -12,7 +12,7 @@ $(document).on('click','#loginBtn',function(){
     .done((data) => {
         console.log(data);
         // $('body').html(data);
-        window.location.href="signUp.php";
+        // window.location.href="signUp.php";
     })
     .fail((data) => {
         $('body').html('ログインエラーです')
