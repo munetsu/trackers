@@ -185,5 +185,15 @@
             return $lists;
         }
 
+        // // チューター詳細取得
+        // public function getTuotorList($uid){
+        //     $table = 'tuotors';
+        //     $column = '*';
+        //     $conditions = 'WHERE id ='."'".$uid."'";
+        //     $tuotor = $this->db->select($column, $table, $conditions);
+        //     $tuotor = json_encode($tuotor);
+        //     return $tuotor;
+        // }
+
 
     }
