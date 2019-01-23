@@ -62,7 +62,15 @@
                 $array[] = h($_POST['studyType']);
                 $array[] = h($_POST['personality']);
                 
-                $this->cl->register($array);
+                // 登録情報分岐
+                $status = $_POST['status'];
+                if($status == 1){
+                    // チューター登録
+                    $this->cl->tuotorRegister($array);
+                }else{
+                    // 生徒登録
+                    $this->cl->register($array);
+                }
             }
         }
     }
