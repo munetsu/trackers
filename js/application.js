@@ -10,8 +10,8 @@ $(document).on('click','#loginBtn',function(){
         } 
     })
     .done((data) => {
-        console.log(data);
-        window.location.href=data;
+       console.log(data);
+       window.location.href=data;
     })
     .fail((data) => {
         $('body').html('ネットワークエラーです')
