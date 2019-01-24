@@ -213,7 +213,7 @@
             $personality = $this->getTuotorDetail('personalitys', 'personal', $tuotor[0]['personality']);
             $tuotor[0]['personality'] = $personality[0]['personal'];
 
-            $tuotor = json_encode($tuotor, JSON_UNESCAPED_UNICODE);
+            // $tuotor = json_encode($tuotor, JSON_UNESCAPED_UNICODE);
             // var_dump($tuotor);
             // exit();
             // echo $tuotor;
