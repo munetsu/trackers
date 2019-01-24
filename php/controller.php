@@ -186,14 +186,48 @@
         }
 
         // // チューター詳細取得
-        // public function getTuotorList($uid){
-        //     $table = 'tuotors';
-        //     $column = '*';
-        //     $conditions = 'WHERE id ='."'".$uid."'";
-        //     $tuotor = $this->db->select($column, $table, $conditions);
-        //     $tuotor = json_encode($tuotor);
-        //     return $tuotor;
-        // }
+        public function getTuotorList($array){
+            $table = 'tuotors';
+            $column = '*';
+            $uid = $array[0];
+            $age = $array[1];
+            $conditions = 'WHERE `id` = '.$uid;
+            $tuotor = $this->db->select($column,$table,$conditions);
+
+            // 学歴取得
+            $gakureki = $this->getTuotorDetail('gakurekis', 'level', $tuotor[0]['gakureki']);
+            $tuotor[0]['gakureki'] = $gakureki[0]['level'];
+            // 専攻取得
+            $senkou = $this->getTuotorDetail('senkous','major', $tuotor[0]['senkou']);
+            $tuotor[0]['senkou'] = $senkou[0]['major'];
+            // ライフスタイル
+            $lifestyle = $this->getTuotorDetail('lifestyles', 'style', $tuotor[0]['lifeStyle']);
+            $tuotor[0]['lifeStyle'] = $lifestyle[0]['style'];
+            // 勉強スタイル
+            $studystyle = $this->getTuotorDetail('studystyles', 'style', $tuotor[0]['studyStyle']);
+            $tuotor[0]['studyStyle'] = $studystyle[0]['style'];
+            // 勉強タイプ
+            $studytype = $this->getTuotorDetail('studytypes', 'type', $tuotor[0]['studyType']);
+            $tuotor[0]['studyType'] = $studytype[0]['type'];
+            // 性格
+            $personality = $this->getTuotorDetail('personalitys', 'personal', $tuotor[0]['personality']);
+            $tuotor[0]['personality'] = $personality[0]['personal'];
+
+            $tuotor = json_encode($tuotor, JSON_UNESCAPED_UNICODE);
+            // var_dump($tuotor);
+            // exit();
+            // echo $tuotor;
+            $this->view->tuotorRender($tuotor,$age);
+        }
+
+        // チューター各詳細の置き換え
+        public function getTuotorDetail($table, $column, $level){
+            $table= $table;
+            $column = $column;
+            $conditions = 'WHERE `id` = '.$level;
+            $gakureki = $this->db->select($column, $table, $conditions);
+            return $gakureki;
+        }
 
 
     }

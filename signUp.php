@@ -69,6 +69,7 @@
                     <option value="3">専門・短大卒</option>
                     <option value="4">高専卒</option>
                     <option value="5">高卒</option>
+                    <option value="6">その他</option>
                 </select>
             </div>
             <!-- 得意学科 -->

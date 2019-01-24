@@ -75,11 +75,13 @@
 
             // // チューター詳細取得
             if($this->POST == 'tuotorList'){
-                $uid = $_POST['id'];
+                $array = array();
+                $array[] = $_POST['id'];
+                $array[] = $_POST['age'];
                 // var_dump($uid);
                 // exit();
                 $this->cl = new CONTROLLER;
-                $this->cl->getTuotorList($uid);
+                $this->cl->getTuotorList($array);
             }
         }
     }
