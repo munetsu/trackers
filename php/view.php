@@ -18,7 +18,7 @@
                     </div>
                     <div class="top">
                         <div><img src="'.$tuotor['img'].'" style="width:150px; height: 150px;"></div>
-                        <div></div>
+                        <div id="graph"></div>
                     <div>
                     <div class="contents">
                         <table>
@@ -61,6 +61,24 @@
                         </div>
                     </div>
                 </div>
+                <script>
+                    let per = "30";
+                    function graph(per){
+                        $("#graph").circularloader({
+                        progressPercent: per,
+                        backgroundColor: "#ffffff",//background colour of inner circle
+                        fontColor: "#000000",//font color of progress text
+                        fontSize: "40px",//font size of progress text
+                        radius: 80,//radius of circle
+                        progressBarBackground: "#ffffff",//background colour of circular progress Bar
+                        progressBarColor: "#F4A460",//colour of circular progress bar
+                        progressBarWidth: 15,//progress bar width
+                        showText: true,//show progress text or not
+                        title: "マッチ度",//show header title for the progress bar
+                    });
+                    };
+                    $("#graph").append(graph(per));
+                </script>
             ';
 
             echo $view;
