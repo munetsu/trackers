@@ -17,7 +17,7 @@
     <title>会員登録画面</title>
 </head>
 <body>
-    <div>
+    <div id="body">
         <h3>情報の登録をお願いします</h3>
         <form action="php/ajax.php" method="POST" name="studyForm" enctype="multipart/form-data">
             <input type="hidden" name="action" value="signUp">

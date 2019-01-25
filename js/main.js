@@ -71,27 +71,6 @@ function render(tuotor){
             $('.block'+num).append(viewer);
         }
     }
-
-    // tuotor.forEach((index, value)=>{
-    //     // 2つで折り返す
-    //     let num = value;
-    //     let url = index['img'];
-    //     console.log(url);
-    //     let age = index['age'];
-    //     let born = index['born'];
-    //     let viewer = '';
-    //     if(num % 2 == 0){
-    //         viewer = '<div class="block">';    
-    //         viewer += view(url, age, born);
-    //         $('#app').append(viewer);
-    //         console.log(num);
-    //     }else{
-    //         viewer = view(url, age, born);
-    //         viewer += '</div>';
-    //         $('.block').append(viewer);
-    //         console.log(num)
-    //     }
-    // })
 }
 
 let tuotor = tuotorslist();
