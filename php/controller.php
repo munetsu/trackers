@@ -39,8 +39,16 @@
                 $status = $user[0]['status'];
                 if($status == 1){
                     // 生徒
-                    $url = 'main.php';
-                    echo $url;
+                    // 科目選択済みか判定
+                    if($flag == 2){
+                        // 選択済み
+                        $url = 'main.php';
+                        echo $url;    
+                    }else{
+                        // 科目未選択
+                        $url = 'selectSubject.php';
+                        echo $url;
+                    }
                 }else{
                     // チューター
                 }
@@ -227,6 +235,15 @@
             $conditions = 'WHERE `id` = '.$level;
             $gakureki = $this->db->select($column, $table, $conditions);
             return $gakureki;
+        }
+
+        // 科目一覧取得
+        public function subjectSelect(){
+            $table = 'certifications';
+            $column = '*';
+            $conditions = '';
+            $subjectLists = $this->db->select($column, $table, $conditions);
+            return $subjectLists;
         }
 
 

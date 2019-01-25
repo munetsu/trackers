@@ -33,6 +33,7 @@
         let month = <?php echo $month ?>;
     </script>
     <script src="js/main.js"></script>
+    <script src="js/CircularLoader-v1.3.js"></script>
 
     
 </body>
