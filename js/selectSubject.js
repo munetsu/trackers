@@ -1,5 +1,6 @@
-console.log(subjectList);
+// console.log(subjectList);
 
+// 資格情報描画
 function render(){
     let view = '';
     for(let i= 0; i<subjectList.length; i++){

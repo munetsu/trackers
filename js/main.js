@@ -76,6 +76,7 @@ function render(tuotor){
 let tuotor = tuotorslist();
 render(tuotor);
 
+// チューター詳細情報取得
 $(document).on('click','.oneBlock',function(){
     let target = $(this).find('img').attr('id');
     let age = $(this).find('p').attr('id');
