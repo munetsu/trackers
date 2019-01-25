@@ -252,9 +252,24 @@
             $column = 'tuotor_id';
             $conditions = 'WHERE `certification_id` = '.$subId;
             $tuotorsLists = $this->db->select($column, $table, $conditions);
-            var_dump($tuotorsLists);
-            exit();
+            // var_dump($tuotorsLists);
+            // exit();
+            $tuotors = $this->tuotorsList();
+
+            // マッチするチューター取得
+            $allTuotors = array();
+            foreach($tuotorsLists as $tuotorList){
+                foreach($tuotors as $tuotor){
+                    if($tuotorList['tuotor_id'] == $tuotor['id']){
+                        $allTuotors[] = $tuotor;
+                    }
+                }
+            }
+            // var_dump($allTuotors);
+            // exit();
+
         }
+
 
 
     }
