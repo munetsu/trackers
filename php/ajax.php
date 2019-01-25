@@ -83,6 +83,15 @@
                 $this->cl = new CONTROLLER;
                 $this->cl->getTuotorList($array);
             }
+
+            // 対象資格のチューター取得
+            if($this->POST == 'subject'){
+                $subId = $_POST['subject'];
+                // var_dump($subId);
+                // exit();
+                $this->cl = new CONTROLLER;
+                $this->cl->subjectsTuotors($subId);
+            }
         }
     }
 

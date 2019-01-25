@@ -246,5 +246,15 @@
             return $subjectLists;
         }
 
+        // 資格ごとのチューター情報取得
+        public function subjectsTuotors($subId){
+            $table = 'subjectsTuotorLists';
+            $column = 'tuotor_id';
+            $conditions = 'WHERE `certification_id` = '.$subId;
+            $tuotorsLists = $this->db->select($column, $table, $conditions);
+            var_dump($tuotorsLists);
+            exit();
+        }
+
 
     }
