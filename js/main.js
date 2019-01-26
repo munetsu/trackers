@@ -1,3 +1,14 @@
+// 降順ソート
+lists.sort(function(a,b){
+    if(a.index<b.index) return 1;
+    if(a.index>b.index) return -1;
+    return 0;
+})
+
+console.log(lists);
+
+
+
 // チューター情報
 // 年齢算定
 function ageCulculate(m, y){

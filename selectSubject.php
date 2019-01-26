@@ -2,6 +2,9 @@
     include('php/controller.php');
     include('php/include/funcs.php');
     chkSsid();
+    $uid = $_SESSION['id'];
+    // var_dump($uid);
+    // exit();
 
     // 科目一覧取得
     $subjectLists = new CONTROLLER;
@@ -31,6 +34,7 @@
     </script>
     <script>
         let subjectList = <?php echo $subjectLists ?>
+        // let uid = <?php echo $uid ?>
     </script>
     <script src="js/selectSubject.js"></script>
 

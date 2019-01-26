@@ -30,8 +30,8 @@
             
             // 初回ログインかどうかを確認
             $flag = $user[0]['flag'];
+            $_SESSION['id'] = $user[0]['id'];
             if($flag == 0){
-                $_SESSION['id'] = $user[0]['id'];
                 $url = 'signUp.php';
                 echo $url;
             }else{
@@ -66,42 +66,46 @@
         
             // // studentsテーブルの更新
             $tables = 'Students';
-            $column = 'user_id,
-                        familyNameCharacter,
-                        firstNameCharacter,
-                        familyNameKana,
-                        firstNameKana,
-                        img,
-                        year,
-                        month,
-                        day,
-                        gender,
-                        gakureki,
-                        senkou,
-                        born,
-                        lifeStyle,
-                        studyStyle,
-                        studyType,
-                        personality,
-                        timestamp';
-            $value = "'".$uid."'".','.
-                        "'".$array[1]."'".','.
-                        "'".$array[2]."'".','.
-                        "'".$array[3]."'".','.
-                        "'".$array[4]."'".','.
-                        "'".$array[5]."'".','.
-                        "'".$array[6]."'".','.
-                        "'".$array[7]."'".','.
-                        "'".$array[8]."'".','.
-                        "'".$array[9]."'".','.
-                        "'".$array[10]."'".','.
-                        "'".$array[11]."'".','.
-                        "'".$array[12]."'".','.
-                        "'".$array[13]."'".','.
-                        "'".$array[14]."'".','.
-                        "'".$array[15]."'".','.
-                        "'".$array[16]."'".','.
-                        "'".date("Y/m/d H:i:s")."'";
+            $column = $this->signUpPalamataColumn();
+            $value = $this->signUpPalamatavalue();
+            // $column = 'user_id,
+            //             familyNameCharacter,
+            //             firstNameCharacter,
+            //             familyNameKana,
+            //             firstNameKana,
+            //             img,
+            //             year,
+            //             month,
+            //             day,
+            //             gender,
+            //             gakureki,
+            //             senkou,
+            //             born,
+            //             zokusei,
+            //             lifeStyle,
+            //             studyStyle,
+            //             studyType,
+            //             personality,
+            //             timestamp';
+            // $value = "'".$uid."'".','.
+            //             "'".$array[1]."'".','.
+            //             "'".$array[2]."'".','.
+            //             "'".$array[3]."'".','.
+            //             "'".$array[4]."'".','.
+            //             "'".$array[5]."'".','.
+            //             "'".$array[6]."'".','.
+            //             "'".$array[7]."'".','.
+            //             "'".$array[8]."'".','.
+            //             "'".$array[9]."'".','.
+            //             "'".$array[10]."'".','.
+            //             "'".$array[11]."'".','.
+            //             "'".$array[12]."'".','.
+            //             "'".$array[13]."'".','.
+            //             "'".$array[14]."'".','.
+            //             "'".$array[15]."'".','.
+            //             "'".$array[16]."'".','.
+            //             "'".$array[17]."'".','.
+            //             "'".date("Y/m/d H:i:s")."'";
             $this->db->insert($tables,$column,$value);
             header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/main.php');
             exit();
@@ -118,6 +122,53 @@
         
             // // tuotorsテーブルの更新
             $tables = 'tuotors';
+            $column = $this->signUpPalamataColumn();
+            $value = $this->signUpPalamatavalue();
+            // $column = 'user_id,
+            //             familyNameCharacter,
+            //             firstNameCharacter,
+            //             familyNameKana,
+            //             firstNameKana,
+            //             img,
+            //             year,
+            //             month,
+            //             day,
+            //             gender,
+            //             gakureki,
+            //             senkou,
+            //             born,
+            //             zokusei,
+            //             lifeStyle,
+            //             studyStyle,
+            //             studyType,
+            //             personality,
+            //             datetime';
+            // $value = "'".$uid."'".','.
+            //             "'".$array[1]."'".','.
+            //             "'".$array[2]."'".','.
+            //             "'".$array[3]."'".','.
+            //             "'".$array[4]."'".','.
+            //             "'".$array[5]."'".','.
+            //             "'".$array[6]."'".','.
+            //             "'".$array[7]."'".','.
+            //             "'".$array[8]."'".','.
+            //             "'".$array[9]."'".','.
+            //             "'".$array[10]."'".','.
+            //             "'".$array[11]."'".','.
+            //             "'".$array[12]."'".','.
+            //             "'".$array[13]."'".','.
+            //             "'".$array[14]."'".','.
+            //             "'".$array[15]."'".','.
+            //             "'".$array[16]."'".','.
+            //             "'".$array[17]."'".','.
+            //             "'".date("Y/m/d H:i:s")."'";
+            $this->db->insert($tables,$column,$value);
+            header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/viewer.php');
+            exit();
+        }
+
+        // サインアップのパラメータ
+        public function signUpPalamataColumn(){
             $column = 'user_id,
                         familyNameCharacter,
                         firstNameCharacter,
@@ -131,11 +182,17 @@
                         gakureki,
                         senkou,
                         born,
+                        zokusei,
+                        holiday,
                         lifeStyle,
                         studyStyle,
                         studyType,
                         personality,
-                        datetime';
+                        timestamp';
+            return $column;
+        }
+
+        public function signUpPalamatavalue(){
             $value = "'".$uid."'".','.
                         "'".$array[1]."'".','.
                         "'".$array[2]."'".','.
@@ -153,10 +210,10 @@
                         "'".$array[14]."'".','.
                         "'".$array[15]."'".','.
                         "'".$array[16]."'".','.
+                        "'".$array[17]."'".','.
+                        "'".$array[18]."'".','.
                         "'".date("Y/m/d H:i:s")."'";
-            $this->db->insert($tables,$column,$value);
-            header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/viewer.php');
-            exit();
+            return $value;
         }
 
         // 写真アップロード処理
@@ -208,6 +265,12 @@
             // 専攻取得
             $senkou = $this->getTuotorDetail('senkous','major', $tuotor[0]['senkou']);
             $tuotor[0]['senkou'] = $senkou[0]['major'];
+            // 属性取得
+            $zokusei = $this->getTuotorDetail('zokuseis','zokusei', $tuotor[0]['zokusei']);
+            $tuotor[0]['zokusei'] = $zokusei[0]['zokusei'];
+            // 休み取得
+            $holiday = $this->getTuotorDetail('holidays','holiday', $tuotor[0]['holiday']);
+            $tuotor[0]['holiday'] = $holiday[0]['holiday'];
             // ライフスタイル
             $lifestyle = $this->getTuotorDetail('lifestyles', 'style', $tuotor[0]['lifeStyle']);
             $tuotor[0]['lifeStyle'] = $lifestyle[0]['style'];
@@ -265,9 +328,96 @@
                     }
                 }
             }
-            // var_dump($allTuotors);
-            // exit();
+            return $allTuotors;
+        }
 
+        public function userDetail(){
+            // ユーザーID
+            $uid = $_SESSION['id'];
+            $condition = 'WHERE `user_id` = '.$uid;
+            // ユーザー情報取得
+            $userData = $this->db->select('*', 'Students', $condition);
+            return $userData;
+        }
+
+        // マッチング判定関数
+        public function matching($userData, $lists){
+            // var_dump($lists);
+            // exit();
+            $tuotorList = array();
+            foreach($lists as $list){
+                // 学歴判定
+                $gakuIndex = $list['gakureki'] - $userData['gakureki'];
+                $gakuIndex = $this->matchingSix($gakuIndex);
+                // $tuotorList[] = array($gakuIndex=>$list);
+                // $tuotorList[] = array('index'=>$gakuIndex, 'value'=>$list);
+                $list = $list + array('index'=>$gakuIndex);
+                $tuotorList[] = $list;
+            }
+            // keyを元に降順にする
+            // krsort($tuotorList);
+            // var_dump($tuotorList);
+            // exit();
+            return $tuotorList;
+            
+        }
+
+        // マッチング判定指数関数
+        public function matchingSix($data){
+            if($data == 0){
+                $num = 10;
+                return $num;
+            } else if($data == 1){
+                $num = 9;
+                return $num;
+            } else if($data == 2){
+                $num = 8;
+                return $num;
+            } else if($data == 3){
+                $num = 7;
+                return $num;
+            } else if($data == 4){
+                $num = 6;
+                return $num;
+            } else if($data == 5){
+                $num = 5;
+                return $num;
+            } else {
+                $num = 0;
+                return $num;
+            }
+        }
+
+        public function matchingFive($data){
+            if($data == 0){
+                $num = 10;
+                return $num;
+            } else if($data == 1){
+                $num = 9;
+                return $num;
+            } else if($data == 2){
+                $num = 8;
+                return $num;
+            } else if($data == 3){
+                $num = 7;
+                return $num;
+            } else if($data == 4){
+                $num = 6;
+                return $num;
+            } else {
+                $num = 0;
+                return $num;
+            }
+        }
+
+        public function matchingTwo($data){
+            if($data == 0){
+                $num = 10;
+                return $num;
+            } else {
+                $num = 0;
+                return $num;
+            }
         }
 
 

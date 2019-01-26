@@ -2,7 +2,7 @@
 
 // 資格情報描画
 function render(){
-    let view = '<form action="php/ajax.php" method="POST" name="sub">';
+    let view = '<form action="main.php" method="POST" name="sub">';
     view += '<input type="hidden" name="action" value="subject">';
     for(let i= 0; i<subjectList.length; i++){
         if(i % 2 == 0){
