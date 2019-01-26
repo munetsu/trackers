@@ -3,11 +3,7 @@ lists.sort(function(a,b){
     if(a.index<b.index) return 1;
     if(a.index>b.index) return -1;
     return 0;
-})
-
-console.log(lists);
-
-
+});
 
 // チューター情報
 // 年齢算定
@@ -28,7 +24,8 @@ function tuotorslist(){
         id:0,
         img:'',
         age:0,
-        born:''
+        born:'',
+        index: 0
     };
     const tuotor = [];
 
@@ -44,6 +41,7 @@ function tuotorslist(){
         newToutors.img = lists[i]['img'];
         newToutors.age = ages;
         newToutors.born = lists[i]['born'];
+        newToutors.index = lists[i]['index'];
         tuotor.push(newToutors);    
     }
 
@@ -51,8 +49,8 @@ function tuotorslist(){
 }
 
 // 描画内容
-function view(id,url, age, born){
-    let view = '<div class="oneBlock">';
+function view(index, id,url, age, born){
+    let view = '<div class="oneBlock" id="'+index+'">';
         view += '<div><img src="'+url+'" id="'+id+'" style="width:150px;height:150px;"></div>';
         view += '<div>';
             view += '<p id="'+age+'">年齢：'+age+'歳</p>';
@@ -64,33 +62,47 @@ function view(id,url, age, born){
 
 // 描画処理
 function render(tuotor){
-    // console.log(tuotor);
-    for(let i =0; i<tuotor.length; i++){
-        let id = tuotor[i]['id'];
-        let url = tuotor[i]['img'];
-        let age = tuotor[i]['age'];
-        let born = tuotor[i]['born'];
-        let viewer = '';
-        if(i % 2 == 0){
-            viewer = '<div class="flex block'+i+'">';    
-            viewer += view(id,url, age, born);
-            $('#app').append(viewer);
-        }else {
-            let num = i -1;
-            viewer = view(id,url, age, born);
-            viewer += '</div>';
-            $('.block'+num).append(viewer);
+    let number = tuotor.length;
+    // console.log(tuotor.length);
+    // チューターが1名もいない場合
+    if(number == 0){
+        let view = '<div><p>現在、準備中です。申し訳ありません。</p></div>';
+        $('#app').append(view);
+    }else{
+        // 1名以上いる場合
+        for(let i =0; i<tuotor.length; i++){
+            let index = tuotor[i]['index'];
+            let id = tuotor[i]['id'];
+            let url = tuotor[i]['img'];
+            let age = tuotor[i]['age'];
+            let born = tuotor[i]['born'];
+            let viewer = '';
+            if(i % 2 == 0){
+                viewer = '<div class="flex block'+i+'">';    
+                viewer += view(index,id,url, age, born);
+                $('#app').append(viewer);
+            }else {
+                let num = i -1;
+                viewer = view(index,id,url, age, born);
+                viewer += '</div>';
+                $('.block'+num).append(viewer);
+            }
         }
     }
 }
 
+// HTMLへ記載
 let tuotor = tuotorslist();
 render(tuotor);
 
 // チューター詳細情報取得
 $(document).on('click','.oneBlock',function(){
+    $('#dialog').remove();
+    $('.ui-dialog').remove();
     let target = $(this).find('img').attr('id');
     let age = $(this).find('p').attr('id');
+    let index = $(this).attr('id');
+    console.log(index);
     // console.log(age);
     // console.log('クリックされてる',target);
     $.ajax({
@@ -99,13 +111,30 @@ $(document).on('click','.oneBlock',function(){
         data: {
             action: 'tuotorList',
             id : target,
-            age: age
+            age: age,
+            index: index
         }
     })
     .done((data)=>{
         console.log(data);
-        // let data = json_encode(data);
-        $('#app').html(data);
+        $('body').append(data);
+        $(function(){
+            $('#dialog').dialog({
+                modal:'true',
+                title:'チューター詳細',
+                buttons:{
+                    "面談依頼":function(){
+                        window.location.href=""
+                    },
+                    "リスト登録":function(){
+                        $(this).dialog("close");
+                    }
+                }
+            })
+        })
+    })
+    .fail((data)=>{
+        console.log('NG');
     })
 })
 

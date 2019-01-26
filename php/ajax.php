@@ -80,6 +80,7 @@
                 $array = array();
                 $array[] = $_POST['id'];
                 $array[] = $_POST['age'];
+                $array[] = $_POST['index'];
                 // var_dump($uid);
                 // exit();
                 $this->cl = new CONTROLLER;

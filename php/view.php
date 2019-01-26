@@ -6,20 +6,22 @@
         }
 
         // チューター詳細表示画面
-        public function tuotorRender($tuotor,$age){
+        public function tuotorRender($tuotor,$age,$index){
             // $tuotor = json_decode($tuotor);
             $tuotor = $tuotor[0];
+            $index = $index;
+            
             // var_dump($tuotor['id']);
             // exit();
             $view = '
-                <div>
+                <div id="dialog" style="display:none;">
                     <div class="header">
                         <p>'.$tuotor['familyNameCharacter'].$tuotor['firstNameCharacter'].'</p>
                     </div>
-                    <div class="top">
+                    <div class="flex">
                         <div><img src="'.$tuotor['img'].'" style="width:150px; height: 150px;"></div>
                         <div id="graph"></div>
-                    <div>
+                    </div>
                     <div class="contents">
                         <table>
                             <tr>
@@ -68,9 +70,18 @@
                             <p>お気に入り追加</p>
                         </div>
                     </div>
-                </div>
+                    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                    crossorigin="anonymous">
+                </script>
+                <script
+                    src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+                    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+                    crossorigin="anonymous">
+                </script>
+                <script src="js/CircularLoader-v1.3.js"></script>
                 <script>
-                    let per = "30";
+                    var per = "'.$index.'";
                     function graph(per){
                         $("#graph").circularloader({
                         progressPercent: per,
@@ -87,6 +98,8 @@
                     };
                     $("#graph").append(graph(per));
                 </script>
+                </div>
+                
             ';
 
             echo $view;
