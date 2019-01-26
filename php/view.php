@@ -35,6 +35,14 @@
                                 <th>'.$tuotor['senkou'].'</th>
                             </tr>
                             <tr>
+                                <th>属性：</th>
+                                <th>'.$tuotor['zokusei'].'</th>
+                            </tr>
+                            <tr>
+                                <th>休み：</th>
+                                <th>'.$tuotor['holiday'].'</th>
+                            </tr>
+                            <tr>
                                 <th>生活リズム：</th>
                                 <th>'.$tuotor['lifeStyle'].'</th>
                             </tr>

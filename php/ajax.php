@@ -55,8 +55,10 @@
                 $array[] = h($_POST['day']);
                 $array[] = h($_POST['gender']);
                 $array[] = h($_POST['gakureki']);
+                $array[] = h($_POST['holiday']);
                 $array[] = h($_POST['senkou']);
                 $array[] = h($_POST['born']);
+                $array[] = h($_POST['zokusei']);
                 $array[] = h($_POST['lifeStyle']);
                 $array[] = h($_POST['studyStyle']);
                 $array[] = h($_POST['studyType']);
@@ -85,13 +87,13 @@
             }
 
             // 対象資格のチューター取得
-            if($this->POST == 'subject'){
-                $subId = $_POST['subject'];
-                // var_dump($subId);
-                // exit();
-                $this->cl = new CONTROLLER;
-                $this->cl->subjectsTuotors($subId);
-            }
+            // if($this->POST == 'subject'){
+            //     $subId = $_POST['subject'];
+            //     // var_dump($subId);
+            //     // exit();
+            //     $this->cl = new CONTROLLER;
+            //     $this->cl->subjectsTuotors($subId);
+            // }
         }
     }
 

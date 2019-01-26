@@ -3,9 +3,25 @@
     include('php/include/funcs.php');
     chkSsid();
    
+    // 資格IDの取得
+    $subId = $_POST['subject'];
     $list = new CONTROLLER;
-    $lists = $list->tuotorsList();
-    $lists = json_encode($lists);
+    // 対象チューターの取得
+    $lists = $list->subjectsTuotors($subId);
+    // ユーザー情報の取得
+    $userData = $list->userDetail();
+    $userData = $userData[0];
+
+    // マッチング係数
+    $lists = $list->matching($userData, $lists);
+
+    // var_dump($lists);
+    // exit();
+
+    // $lists = $list->tuotorsList();
+    $lists = json_encode($lists, JSON_UNESCAPED_UNICODE);
+    // var_dump($lists);
+    // exit();
     $year = date("Y");
     $month = date("m");
 ?>
