@@ -31,7 +31,7 @@
             // 初回ログインかどうかを確認
             $flag = $user[0]['flag'];
             $_SESSION['id'] = $user[0]['id'];
-            if($flag == 0){
+            if($flag === '0'){
                 $url = 'signUp.php';
                 echo $url;
             }else{

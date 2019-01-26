@@ -17,11 +17,10 @@ function render(){
     $('#app').append(view);
 }
 
+render();
 
 // Form送信処理
-$(document).on('click', '.subject', function(){
-    let id = $(this).find('input').attr('value');
+$(document).on('click', 'input', function(){
+    // let id = $(this).attr('value');
     sub.submit();
 })
-
-render();
