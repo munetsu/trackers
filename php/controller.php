@@ -180,6 +180,7 @@
             $column = '*';
             $uid = $array[0];
             $age = $array[1];
+            $index = $array[2];
             $conditions = 'WHERE `id` = '.$uid;
             $tuotor = $this->db->select($column,$table,$conditions);
 
@@ -212,7 +213,7 @@
             // var_dump($tuotor);
             // exit();
             // echo $tuotor;
-            $this->view->tuotorRender($tuotor,$age);
+            $this->view->tuotorRender($tuotor,$age,$index);
         }
 
         // チューター各詳細の置き換え
