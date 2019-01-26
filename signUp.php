@@ -89,15 +89,13 @@
             <!-- 属性 -->
             <div>
                 属性：
-                <select name="zokusei" id="zokusei">
-                    <label><input type="radio" name="zokusei" value="1">会社員</label>
-                    <label><input type="radio" name="zokusei" value="2">役員</label>
-                    <label><input type="radio" name="zokusei" value="3">自営業</label>
-                    <label><input type="radio" name="zokusei" value="4">学生</label>
-                    <label><input type="radio" name="zokusei" value="5">主婦・主夫</label>
-                    <label><input type="radio" name="zokusei" value="6">フリーター</label>
-                    <label><input type="radio" name="zokusei" value="7">その他</label>
-                </select>
+                <label><input type="radio" name="zokusei" value="1">会社員</label>
+                <label><input type="radio" name="zokusei" value="2">役員</label>
+                <label><input type="radio" name="zokusei" value="3">自営業</label>
+                <label><input type="radio" name="zokusei" value="4">学生</label>
+                <label><input type="radio" name="zokusei" value="5">主婦・主夫</label>
+                <label><input type="radio" name="zokusei" value="6">フリーター</label>
+                <label><input type="radio" name="zokusei" value="7">その他</label>
             </div>
             <!-- 生活スタイル -->
             <div>
@@ -110,11 +108,9 @@
             <!-- 休み -->
             <div>
                 休み：
-                <select name="holiday" id="holiday">
-                    <label><input type="radio" name="holiday" value="1">土日・祝</label>
-                    <label><input type="radio" name="holiday" value="2">シフト制</label>
-                    <label><input type="radio" name="holiday" value="3">平日</label>
-                </select>
+                <label><input type="radio" name="holiday" value="1">土日・祝</label>
+                <label><input type="radio" name="holiday" value="2">シフト制</label>
+                <label><input type="radio" name="holiday" value="3">平日</label>
             </div>
             <!-- 勉強スタイル -->
             <div>

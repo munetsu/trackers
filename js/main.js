@@ -1,9 +1,12 @@
 // 降順ソート
-lists.sort(function(a,b){
-    if(a.index<b.index) return 1;
-    if(a.index>b.index) return -1;
-    return 0;
-});
+function rsort(){
+    lists.sort(function(a,b){
+        if(a.index<b.index) return 1;
+        if(a.index>b.index) return -1;
+        return 0;
+    });
+    return lists;
+}
 
 // チューター情報
 // 年齢算定
@@ -28,6 +31,10 @@ function tuotorslist(){
         index: 0
     };
     const tuotor = [];
+
+    // 降順に変更
+    rsort();
+    console.log(lists);
 
     // チューターデータ整理
     for(let i=0; i<lists.length; i++){
@@ -102,41 +109,44 @@ $(document).on('click','.oneBlock',function(){
     let target = $(this).find('img').attr('id');
     let age = $(this).find('p').attr('id');
     let index = $(this).attr('id');
-    console.log(index);
     // console.log(age);
     // console.log('クリックされてる',target);
     $.ajax({
         url: 'php/ajax.php',
+        async:true,
         type: 'POST',
         data: {
             action: 'tuotorList',
             id : target,
             age: age,
             index: index
-        }
+        },
     })
     .done((data)=>{
-        console.log(data);
         $('body').append(data);
-        $(function(){
-            $('#dialog').dialog({
-                modal:'true',
-                title:'チューター詳細',
-                buttons:{
-                    "面談依頼":function(){
-                        window.location.href=""
-                    },
-                    "リスト登録":function(){
-                        $(this).dialog("close");
-                    }
-                }
-            })
-        })
+        dialog();
+        $('.clProg').attr('disabled','disabled');
     })
     .fail((data)=>{
         console.log('NG');
     })
 })
+
+// ダイアログ表示
+function dialog(){
+    $('#dialog').dialog({
+        modal:'true',
+        title:'チューター詳細',
+        buttons:{
+            "面談依頼":function(){
+                window.location.href=""
+            },
+            "リスト登録":function(){
+                $(this).dialog("close");
+            }
+        }
+    })
+};
 
 
 

@@ -3,8 +3,11 @@
     include('php/include/funcs.php');
     chkSsid();
    
+    
     // 資格IDの取得
     $subId = $_POST['subject'];
+    // var_dump($subId);
+    // exit();
     $list = new CONTROLLER;
     // 対象チューターの取得
     $lists = $list->subjectsTuotors($subId);
@@ -47,7 +50,8 @@
     <script
         src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
         integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
     <script>
         let lists = <?php echo $lists ?>;
         let year = <?php echo $year ?>;
@@ -55,6 +59,7 @@
     </script>
     <script src="js/main.js"></script>
     <script src="js/CircularLoader-v1.3.js"></script>
+    
 
     
 </body>
