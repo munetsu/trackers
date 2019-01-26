@@ -68,44 +68,6 @@
             $tables = 'Students';
             $column = $this->signUpPalamataColumn();
             $value = $this->signUpPalamatavalue();
-            // $column = 'user_id,
-            //             familyNameCharacter,
-            //             firstNameCharacter,
-            //             familyNameKana,
-            //             firstNameKana,
-            //             img,
-            //             year,
-            //             month,
-            //             day,
-            //             gender,
-            //             gakureki,
-            //             senkou,
-            //             born,
-            //             zokusei,
-            //             lifeStyle,
-            //             studyStyle,
-            //             studyType,
-            //             personality,
-            //             timestamp';
-            // $value = "'".$uid."'".','.
-            //             "'".$array[1]."'".','.
-            //             "'".$array[2]."'".','.
-            //             "'".$array[3]."'".','.
-            //             "'".$array[4]."'".','.
-            //             "'".$array[5]."'".','.
-            //             "'".$array[6]."'".','.
-            //             "'".$array[7]."'".','.
-            //             "'".$array[8]."'".','.
-            //             "'".$array[9]."'".','.
-            //             "'".$array[10]."'".','.
-            //             "'".$array[11]."'".','.
-            //             "'".$array[12]."'".','.
-            //             "'".$array[13]."'".','.
-            //             "'".$array[14]."'".','.
-            //             "'".$array[15]."'".','.
-            //             "'".$array[16]."'".','.
-            //             "'".$array[17]."'".','.
-            //             "'".date("Y/m/d H:i:s")."'";
             $this->db->insert($tables,$column,$value);
             header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/main.php');
             exit();
@@ -124,44 +86,6 @@
             $tables = 'tuotors';
             $column = $this->signUpPalamataColumn();
             $value = $this->signUpPalamatavalue();
-            // $column = 'user_id,
-            //             familyNameCharacter,
-            //             firstNameCharacter,
-            //             familyNameKana,
-            //             firstNameKana,
-            //             img,
-            //             year,
-            //             month,
-            //             day,
-            //             gender,
-            //             gakureki,
-            //             senkou,
-            //             born,
-            //             zokusei,
-            //             lifeStyle,
-            //             studyStyle,
-            //             studyType,
-            //             personality,
-            //             datetime';
-            // $value = "'".$uid."'".','.
-            //             "'".$array[1]."'".','.
-            //             "'".$array[2]."'".','.
-            //             "'".$array[3]."'".','.
-            //             "'".$array[4]."'".','.
-            //             "'".$array[5]."'".','.
-            //             "'".$array[6]."'".','.
-            //             "'".$array[7]."'".','.
-            //             "'".$array[8]."'".','.
-            //             "'".$array[9]."'".','.
-            //             "'".$array[10]."'".','.
-            //             "'".$array[11]."'".','.
-            //             "'".$array[12]."'".','.
-            //             "'".$array[13]."'".','.
-            //             "'".$array[14]."'".','.
-            //             "'".$array[15]."'".','.
-            //             "'".$array[16]."'".','.
-            //             "'".$array[17]."'".','.
-            //             "'".date("Y/m/d H:i:s")."'";
             $this->db->insert($tables,$column,$value);
             header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/viewer.php');
             exit();
@@ -348,10 +272,54 @@
             foreach($lists as $list){
                 // 学歴判定
                 $gakuIndex = $list['gakureki'] - $userData['gakureki'];
-                $gakuIndex = $this->matchingSix($gakuIndex);
-                // $tuotorList[] = array($gakuIndex=>$list);
-                // $tuotorList[] = array('index'=>$gakuIndex, 'value'=>$list);
-                $list = $list + array('index'=>$gakuIndex);
+                $gakuIndex = $this->matchingFive($gakuIndex);
+                $gakuIndex = $gakuIndex * 0.7;
+                // 年齢判定
+                $ageIndex = $list['year'] - $userData['year'];
+                $ageIndex = $this->matchingSix($ageIndex);
+                $ageIndex = $ageIndex * 0.8;
+                // 属性
+                $statusIndex = $list['zokusei'] - $userData['zokusei'];
+                $statusIndex = $this->matchingSix($statusIndex);
+                $statusIndex = $statusIndex * 0.9;
+                // 休日
+                $holidayIndex = $list['holiday'] - $userData['holiday'];
+                $holidayIndex = $this->matchingThree($holidayIndex);
+                $holidayIndex = $holidayIndex * 1.0;
+                // 生活スタイル
+                $lifeIndex = $list['lifeStyle'] - $userData['lifeStyle'];
+                $lifeIndex = $this->matchingTwo($lifeIndex);
+                $lifeIndex = $lifeIndex * 0.7;
+                // 性格
+                $personalIndex = $list['personality'] - $userData['personality'];
+                $personalIndex = $this->matchingTwo($personalIndex);
+                $personalIndex = $personalIndex * 0.8;
+                // 性別
+                $genderIndex = $list['gender'] - $userData['gender'];
+                $genderIndex = $this->matchingTwo($genderIndex);
+                $genderIndex = $genderIndex * 0.4;
+                // 勉強スタイル
+                $studySytleIndex = $list['studyStyle'] - $userData['studyStyle'];
+                $studySytleIndex = $this->matchingTwo($studySytleIndex);
+                $studySytleIndex = $studySytleIndex * 0.7;
+                // 勉強方法
+                $studyTypeIndex = $list['studyType'] - $userData['studyType'];
+                $studyTypeIndex = $this->matchingTwo($studyTypeIndex);
+                $studyTypeIndex = $studyTypeIndex * 0.9;
+
+                // マッチング度
+                $matchIndex = $gakuIndex
+                                +$ageIndex
+                                +$statusIndex
+                                +$holidayIndex
+                                +$lifeIndex
+                                +$personalIndex
+                                +$genderIndex
+                                +$studySytleIndex
+                                +$studyTypeIndex;
+            
+                // チューター詳細に追加
+                $list = $list + array('index'=>$matchIndex);
                 $tuotorList[] = $list;
             }
             // keyを元に降順にする
@@ -367,20 +335,20 @@
             if($data == 0){
                 $num = 10;
                 return $num;
-            } else if($data == 1){
+            } else if($data == 1 || $data == -1){
                 $num = 9;
                 return $num;
-            } else if($data == 2){
+            } else if($data == 2 || $data == -2){
                 $num = 8;
                 return $num;
-            } else if($data == 3){
+            } else if($data == 3 ||$data == -3){
                 $num = 7;
                 return $num;
-            } else if($data == 4){
-                $num = 6;
-                return $num;
-            } else if($data == 5){
+            } else if($data == 4 || $data == -4){
                 $num = 5;
+                return $num;
+            } else if($data == 5 || $data == -5){
+                $num = 2;
                 return $num;
             } else {
                 $num = 0;
@@ -392,16 +360,29 @@
             if($data == 0){
                 $num = 10;
                 return $num;
-            } else if($data == 1){
-                $num = 9;
-                return $num;
-            } else if($data == 2){
+            } else if($data == 1 || $data == -1){
                 $num = 8;
                 return $num;
-            } else if($data == 3){
-                $num = 7;
+            } else if($data == 2 || $data == -2){
+                $num = 6;
                 return $num;
-            } else if($data == 4){
+            } else if($data == 3 || $data == -3){
+                $num = 4;
+                return $num;
+            } else if($data == 4 || $data == -4){
+                $num = 2;
+                return $num;
+            } else {
+                $num = 0;
+                return $num;
+            }
+        }
+
+        public function matchingThree($data){
+            if($data == 0){
+                $num = 10;
+                return $num;
+            } else if($data == 1 || $data == -1){
                 $num = 6;
                 return $num;
             } else {
