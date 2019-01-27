@@ -67,7 +67,7 @@
             // // studentsテーブルの更新
             $tables = 'Students';
             $column = $this->signUpPalamataColumn();
-            $value = $this->signUpPalamatavalue();
+            $value = $this->signUpPalamatavalue($uid,$array);
             $this->db->insert($tables,$column,$value);
             header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/main.php');
             exit();
@@ -85,7 +85,7 @@
             // // tuotorsテーブルの更新
             $tables = 'tuotors';
             $column = $this->signUpPalamataColumn();
-            $value = $this->signUpPalamatavalue();
+            $value = $this->signUpPalamatavalue($uid,$array);
             $this->db->insert($tables,$column,$value);
             header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/viewer.php');
             exit();
@@ -116,7 +116,7 @@
             return $column;
         }
 
-        public function signUpPalamatavalue(){
+        public function signUpPalamatavalue($uid,$array){
             $value = "'".$uid."'".','.
                         "'".$array[1]."'".','.
                         "'".$array[2]."'".','.
