@@ -138,8 +138,10 @@ function dialog(){
         modal:'true',
         title:'チューター詳細',
         buttons:{
-            "面談依頼":function(){
-                window.location.href=""
+            "面談希望":function(){
+                console.log('テスト');
+                $(this).dialog("close");
+                // window.location.href="contract.php";
             },
             "リスト登録":function(){
                 $(this).dialog("close");
