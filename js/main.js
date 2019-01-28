@@ -140,8 +140,7 @@ function dialog(){
         buttons:{
             "面談希望":function(){
                 console.log('テスト');
-                $(this).dialog("close");
-                // window.location.href="contract.php";
+                window.location.href="contract.php";
             },
             "リスト登録":function(){
                 $(this).dialog("close");

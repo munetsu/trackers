@@ -16,7 +16,8 @@
             $values = "'".$array[0]."'".','."'".$array[1]."'".','."'".date("Y/m/d")."'";
             $table = 'users';
             $this->db->insert($table, $column, $values);
-            $this->view->login();
+            $url = 'viewer.php';
+            return $url;
         }
 
         // ログイン操作
