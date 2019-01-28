@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>会員登録画面</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 </head>
 <body>
     <div id="body">
@@ -114,20 +115,29 @@
             </div>
             <!-- 勉強スタイル -->
             <div>
-                <div>
-                    勉強スタイル：
-                    <label><input type="radio" name="studyStyle" value="1">コツコツ型</label>
-                    <label><input type="radio" name="studyStyle" value="2">短期集中型</label>
-                </div>
-                <div>
-                    勉強タイプ：
-                    <label><input type="radio" name="studyType" value="1">まずは暗記タイプ</label>
-                    <label><input type="radio" name="studyType" value="2">いきなり演習タイプ</label>
-                </div>
-                <div>
-                    性格：
-                    <label><input type="radio" name="personality" value="1">理解するまで先に進まない</label>
-                    <label><input type="radio" name="personality" value="2">不明点があっても、まずは先に進む</label>
+                勉強スタイル：
+                <label><input type="radio" name="studyStyle" value="1">コツコツ型</label>
+                <label><input type="radio" name="studyStyle" value="2">短期集中型</label>
+            </div>
+            <div>
+                勉強タイプ：
+                <label><input type="radio" name="studyType" value="1">まずは暗記タイプ</label>
+                <label><input type="radio" name="studyType" value="2">いきなり演習タイプ</label>
+            </div>
+            <div>
+                性格：
+                <label><input type="radio" name="personality" value="1">理解するまで先に進まない</label>
+                <label><input type="radio" name="personality" value="2">不明点があっても、まずは先に進む</label>
+            </div>
+            <!-- 利用書籍 -->
+            <div>
+                ISBNコード：<br />
+                現在、利用の参考書がある方のみ:<br />
+                ISBNコード：978 -4- <input type="number" name="isbn" style="border:solid;" id="isbnNum"><button id="search" type="button">検索</button>
+                <div id="bookarea"></div>
+                <a href="" id="isbnDesc">ISBNコードとは？</a>
+                <div id="dialog" style="display:none;">
+                    <img src="img/isbn.jpg" alt="" style="width:80%;height:80%;">
                 </div>
             </div>
             <button id="signUpBtn">登録する</button>
@@ -138,65 +148,14 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous">
     </script>
+     <script
+        src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous">
+    </script>
     <script>
         let year = <?php echo $year ?>;
-        for(let i =1970; i<=year; i++){
-            let view = '';
-            view = '<option value='+i+'>'+i+'</option>'
-            $('#year').append(view);
-        }
-
-        for(let k = 1; k <13; k++){
-            let view = '';
-            view = '<option value='+k+'>'+k+'</option>'
-            $('#month').append(view);
-        }
-
-        for(let n = 1; n <32; n++){
-            let view = '';
-            view = '<option value='+n+'>'+n+'</option>'
-            $('#day').append(view);
-        }
-
-        // 出身地
-        let born = ['都道府県','北海道','青森','岩手','宮城','秋田','山形','福島','茨城','栃木','群馬','埼玉','千葉','東京','神奈川','新潟','富山','石川','福井','山梨','長野','岐阜','静岡','愛知','三重','滋賀','京都','大阪','兵庫','奈良','和歌山','鳥取','島根','岡山','広島','山口','徳島','香川','愛媛','高知','福岡','佐賀','長崎','熊本','大分','宮崎','鹿児島','沖縄','America','中国','韓国','Thailand','Europe','Others'];
-        for(let m = 0; m<born.length; m++){
-            let land = born[m];
-            let view = '<option value='+born[m]+'>'+land+'</option>';
-            $('#born').append(view);
-        }
-
-        // 写真選択
-        $(function(){
-            //画像ファイルプレビュー表示のイベント追加 fileを選択時に発火するイベントを登録
-            $('form').on('change', 'input[type="file"]', function(e) {
-                var file = e.target.files[0],
-                    reader = new FileReader(),
-                    $preview = $(".photo");
-                    t = this;
-
-                // 画像ファイル以外の場合は何もしない
-                if(file.type.indexOf("image") < 0){
-                return false;
-                }
-
-                // ファイル読み込みが完了した際のイベント登録
-                reader.onload = (function(file) {
-                return function(e) {
-                    // .prevewの領域の中にロードした画像を表示するimageタグを追加
-                    $preview.append($('<img>').attr({
-                            src: e.target.result,
-                            width: "150px",
-                            height: "150px",
-                            class: "preview",
-                            title: file.name
-                        }));
-                };
-                })(file);
-
-                reader.readAsDataURL(file);
-            });
-            });
     </script>
+    <script src="js/signUp.js"></script>
 </body>
 </html>

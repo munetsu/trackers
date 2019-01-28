@@ -62,14 +62,6 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="select">
-                        <div>
-                            <p>面談申し込み</p>
-                        </div>
-                        <div>
-                            <p>お気に入り追加</p>
-                        </div>
-                    </div>
                 </div>
                 <script>
                     var per = "'.$index.'";
