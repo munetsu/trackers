@@ -131,8 +131,12 @@
             </div>
             <!-- 利用書籍 -->
             <div>
-                ISBNコード：<br />
-                現在、利用の参考書がある方のみ:<br />
+                現在、市販の参考書をお使いですか？
+                <label><input type="radio" name="books" value="yes" class="useBooks">はい</label>
+                <label><input type="radio" name="books" value="no" class="useBooks">いいえ</label>
+            </div>
+            <div id="isbnDivsion" style="display:none;">
+                ISBNコードを入力ください：<br />
                 ISBNコード：978 -4- <input type="number" name="isbn" style="border:solid;" id="isbnNum"><button id="search" type="button">検索</button>
                 <div id="bookarea"></div>
                 <a href="" id="isbnDesc">ISBNコードとは？</a>

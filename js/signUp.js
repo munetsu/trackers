@@ -1,15 +1,18 @@
+// 西暦
 for(let i =1970; i<=year; i++){
     let view = '';
     view = '<option value='+i+'>'+i+'</option>'
     $('#year').append(view);
 }
 
+// 月
 for(let k = 1; k <13; k++){
     let view = '';
     view = '<option value='+k+'>'+k+'</option>'
     $('#month').append(view);
 }
 
+// 日
 for(let n = 1; n <32; n++){
     let view = '';
     view = '<option value='+n+'>'+n+'</option>'
@@ -54,6 +57,16 @@ $(function(){
 
         reader.readAsDataURL(file);
     });
+});
+
+// 参考書利用の有無
+$('.useBooks').on('change', function(){
+    let value = $(this).val();
+    if(value === 'yes'){
+        $('#isbnDivsion').css('display','block');
+    } else{
+        $('#isbnDivsion').css('display','none');
+    }
 });
 
 // // ダイアログ表示
