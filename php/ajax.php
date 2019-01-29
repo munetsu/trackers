@@ -63,6 +63,17 @@
                 $array[] = h($_POST['studyStyle']);
                 $array[] = h($_POST['studyType']);
                 $array[] = h($_POST['personality']);
+
+                // 書籍に関する条件分岐
+                if(h($_POST['books']) == 'yes'){
+                    $array[] = '9874'.h($_POST['isbn']);
+                    $array[] = h($_POST['bookTitle']);
+                    $array[] = h($_POST['bookImage']);
+                } else {
+                    $array[] = '';
+                    $array[] = '';
+                    $array[] = '';
+                }
                 
                 // 登録情報分岐
                 $status = $_POST['status'];

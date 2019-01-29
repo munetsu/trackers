@@ -70,7 +70,7 @@
             $column = $this->signUpPalamataColumn();
             $value = $this->signUpPalamatavalue($uid,$array);
             $this->db->insert($tables,$column,$value);
-            header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/main.php');
+            header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/selectSubject.php');
             exit();
         }
 
@@ -113,6 +113,9 @@
                         studyStyle,
                         studyType,
                         personality,
+                        bookIsbn,
+                        bookTitle,
+                        bookImage,
                         timestamp';
             return $column;
         }
@@ -137,6 +140,9 @@
                         "'".$array[16]."'".','.
                         "'".$array[17]."'".','.
                         "'".$array[18]."'".','.
+                        "'".$array[19]."'".','.
+                        "'".$array[20]."'".','.
+                        "'".$array[21]."'".','.
                         "'".date("Y/m/d H:i:s")."'";
             return $value;
         }
