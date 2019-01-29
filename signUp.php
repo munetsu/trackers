@@ -135,7 +135,7 @@
                 <label><input type="radio" name="books" value="yes" class="useBooks">はい</label>
                 <label><input type="radio" name="books" value="no" class="useBooks">いいえ</label>
             </div>
-            <div id="isbnDivsion" style="display:none;">
+            <div id="isbnDivsion">
                 ISBNコードを入力ください：<br />
                 ISBNコード：978 -4- <input type="number" name="isbn" style="border:solid;" id="isbnNum"><button id="search" type="button">検索</button>
                 <div id="bookarea"></div>

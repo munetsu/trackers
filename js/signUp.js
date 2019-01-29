@@ -102,6 +102,10 @@ $("#search").on('click', function(){
         // $("#BookMemo").val("");
 
         $("#bookarea").html('<p class="bg-warning" id="warning">該当する書籍がありません。</p>');
+        $('#bookarea').append(
+            '<input type="hidden" name="bookTitle" value=""><input type="hidden" name="bookImage" value="">'
+        )
+        $('#isbnNum').val('');
         // $('#message > p').fadeOut(3000);
 
       } else {
@@ -116,7 +120,11 @@ $("#search").on('click', function(){
         // $("#BookDescription").text(data.items[0].volumeInfo.description);
         // $("#BookThumbnail").html('<img src=\"' + data.items[0].volumeInfo.imageLinks.smallThumbnail + '\" />');
 
-        $('#bookarea').html('<p>'+data.items[0].volumeInfo.title+'</p><img src=\"'+data.items[0].volumeInfo.imageLinks.smallThumbnail+ '\" />');
+        $('#bookarea').html(
+            '<p>'+data.items[0].volumeInfo.title+'</p><img src=\"'+data.items[0].volumeInfo.imageLinks.smallThumbnail+ '\" />');
+        $('#bookarea').append(
+            '<input type="hidden" name="bookTitle" value="'+data.items[0].volumeInfo.title+'"><input type="hidden" name="bookImage" value="'+data.items[0].volumeInfo.imageLinks.smallThumbnail+'">'
+        )
       }
 
     });
