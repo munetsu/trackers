@@ -42,16 +42,37 @@ $(function(){
         }
 
         // ファイル読み込みが完了した際のイベント登録
+        image = new Image();
         reader.onload = (function(file) {
         return function(e) {
-            // .prevewの領域の中にロードした画像を表示するimageタグを追加
-            $preview.append($('<img>').attr({
-                    src: e.target.result,
-                    width: "150px",
-                    height: "150px",
-                    class: "preview",
-                    title: file.name
-                }));
+            image.src = reader.result;
+            let w = 0;
+            let h = 0;
+            let standscore = 200;
+            image.onload = function() {
+                result = {width: image.naturalWidth, height: image.naturalHeight};
+                w = result['width'];
+                h = result['height'];
+                console.log(w,h);
+
+                // 描画サイズの調整
+                let keyscore = 0;
+                if(w > h){
+                    keyscore = w / standscore;
+
+                }else{
+                    keyscore = h / standscore;
+                }
+
+                // .prevewの領域の中にロードした画像を表示するimageタグを追加
+                $preview.append($('<img>').attr({
+                        src: e.target.result,
+                        width: w / keyscore,
+                        height: h / keyscore,
+                        class: "preview",
+                        title: file.name
+                    }));
+            }
         };
         })(file);
 
