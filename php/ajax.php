@@ -33,15 +33,24 @@
             
             // サインアップ処理
             if($this->POST == 'signUp'){
-                // 写真アップロード処理
-                if (isset($_FILES["upfile"] ) && $_FILES["upfile"]["error"] ==0 ) {
-                    $uid = h($_POST['uid']);
-                    $photo = $_FILES["upfile"]["name"];
-                    $photourl = $_FILES["upfile"]["tmp_name"];
-                    $this->cl = new CONTROLLER;
-                    $photo = $this->cl->photoUpload($photo,$photourl,$uid);
-                }
+                // 写真リサイズ＋保存
+                $fileData = $_FILES['upfile'];
+                // var_dump($file);
+                // exit();
+                $this->cl = new CONTROLLER;
+                $photo = $this->cl->reSize($fileData);
+                // var_dump($photo);
+                // exit();
 
+
+                // 写真アップロード処理
+                // if (isset($_FILES["upfile"] ) && $_FILES["upfile"]["error"] ==0 ) {
+                //     $uid = h($_POST['uid']);
+                //     $photo = $_FILES["upfile"]["name"];
+                //     $photourl = $_FILES["upfile"]["tmp_name"];
+                //     $this->cl = new CONTROLLER;
+                //     $photo = $this->cl->photoUpload($photo,$photourl,$uid);
+                
                 // ユーザーデータ更新
                 $array = array();
                 $array[] = h($_POST['uid']);
