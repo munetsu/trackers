@@ -3,6 +3,9 @@
     include('php/include/funcs.php');
     chkSsid();
     $uid = $_SESSION['id'];
+    // 生徒orチューター分岐
+    $num = $_GET['num'];
+    
     // var_dump($uid);
     // exit();
 
@@ -33,8 +36,10 @@
         crossorigin="anonymous">
     </script>
     <script>
-        let subjectList = <?php echo $subjectLists ?>
-        // let uid = <?php echo $uid ?>
+        let subjectList = <?php echo $subjectLists ?>;
+        let uid = <?php echo $uid ?>;
+        let num = <?php echo $num ?>;
+       
     </script>
     <script src="js/selectSubject.js"></script>
 
