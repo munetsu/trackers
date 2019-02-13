@@ -64,26 +64,15 @@
                 $array[] = h($_POST['day']);
                 $array[] = h($_POST['gender']);
                 $array[] = h($_POST['gakureki']);
-                $array[] = h($_POST['holiday']);
                 $array[] = h($_POST['senkou']);
                 $array[] = h($_POST['born']);
                 $array[] = h($_POST['zokusei']);
+                $array[] = h($_POST['holiday']);
                 $array[] = h($_POST['lifeStyle']);
                 $array[] = h($_POST['studyStyle']);
                 $array[] = h($_POST['studyType']);
                 $array[] = h($_POST['personality']);
-
-                // 書籍に関する条件分岐
-                if(h($_POST['books']) == 'yes'){
-                    $array[] = '9874'.h($_POST['isbn']);
-                    $array[] = h($_POST['bookTitle']);
-                    $array[] = h($_POST['bookImage']);
-                } else {
-                    $array[] = '';
-                    $array[] = '';
-                    $array[] = '';
-                }
-                
+        
                 // 登録情報分岐
                 $status = $_POST['status'];
                 if($status == 1){
@@ -107,23 +96,46 @@
                 $this->cl->getTuotorList($array);
             }
 
-            // 対象資格のチューター取得
+            // // 生徒資格選択
             // if($this->POST == 'subject'){
+            //     $uid = $_POST['uid'];
             //     $subId = $_POST['subject'];
-            //     // var_dump($subId);
-            //     // exit();
-            //     $this->cl = new CONTROLLER;
-            //     $this->cl->subjectsTuotors($subId);
+            //     // headerlink
+            //     header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/certificationUpdate.php?num='.$subId.'?status=1');
+                
             // }
 
             // チューターの資格登録
             if($this->POST == 'subjectTuotor'){
                 $array = array();
                 $array[] = $_POST['uid'];
+                $array[] = $_POST['status'];
                 $array[] = $_POST['subject'];
                 $this->cl = new CONTROLLER;
                 $this->cl->subjectsTuotorLists($array);
+            }
 
+            // CertificationTable_Update
+            if($this->POST == 'certificationUpdate'){
+                $array = array();
+                $array[] = $_POST['id']; //資格番号
+                $array[] = $_POST['status']; //生徒=1,チューター=2
+                $array[] = $_POST['period'];
+                $array[] = $_POST['how'];
+                $array[] = $_POST['knowhow'];
+
+                // 書籍に関する条件分岐
+                if(h($_POST['books']) == 'yes'){
+                    $array[] = '9874'.h($_POST['isbn']);
+                    $array[] = h($_POST['bookTitle']);
+                    $array[] = h($_POST['bookImage']);
+                } else {
+                    $array[] = '';
+                    $array[] = '';
+                    $array[] = '';
+                }
+                $this->cl = new CONTROLLER;
+                $this->cl->certificationUpdate($array);
             }
         }
     }

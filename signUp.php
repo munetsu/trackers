@@ -130,7 +130,7 @@
                 <label><input type="radio" name="personality" value="2">不明点があっても、まずは先に進む</label>
             </div>
             <!-- 利用書籍 -->
-            <div>
+            <!-- <div>
                 現在、市販の参考書をお使いですか？
                 <label><input type="radio" name="books" value="yes" class="useBooks">はい</label>
                 <label><input type="radio" name="books" value="no" class="useBooks">いいえ</label>
@@ -143,7 +143,7 @@
                 <div id="dialog" style="display:none;">
                     <img src="img/isbn.jpg" alt="" style="width:80%;height:80%;">
                 </div>
-            </div>
+            </div> -->
             <button id="signUpBtn">登録する</button>
         </form>
     </div>

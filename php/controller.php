@@ -92,23 +92,111 @@
             exit();
         }
 
-        // チューター科目登録
+        // 科目登録STEP1
         public function subjectsTuotorLists($array){
             $uid = $array[0];
+            $status = $array[1]; //1=生徒、2=チューター
             $subjectId = $array[1];
 
-            // チューターID取得
-            $conditions = 'WHERE `user_id` = '."'".$uid."'";
-            $tuotorId = $this->db->select('*', 'tuotors', $conditions);
-            $tuotorId = $tuotorId[0]['id'];
+            // 条件分岐
+            if($status == 1){
+                // 生徒
+                // チューターID取得
+                $conditions = 'WHERE `user_id` = '."'".$uid."'";
+                $studentsId = $this->db->select('*', 'Students', $conditions);
+                $studentsId = $studentsId[0]['id'];
+                
+                // 科目登録
+                $table = 'searchConditions';
+                $column = "`student_id`, `certification_id`";
+                $values = "'".$studentsId."'".','."'".$subjectId."'";
+                // var_dump($values);
+                // exit();
+                $this->db->insert($table, $column, $values);
+
+                // 登録ID取得
+                $condition = 'WHERE `student_id` = '."'".$studentsId."'".' AND `certification_id` = '."'".$subjectId."'";
+                $searchId = $this->db->select('*', $table, $condition);
+                $searchId = $searchId[0]['id'];
+
+                // headerlink
+                header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/certificationUpdate.php?num='.$searchId.'&status=1');
+            } else {
+                // チューター
+                // チューターID取得
+                $conditions = 'WHERE `user_id` = '."'".$uid."'";
+                $tuotorId = $this->db->select('*', 'tuotors', $conditions);
+                $tuotorId = $tuotorId[0]['id'];
+                
+                // 科目登録
+                $table = 'subjectsTuotorLists';
+                $column = "`tuotor_id`, `certification_id`";
+                $values = "'".$tuotorId."'".','."'".$subjectId."'";
+                // var_dump($values);
+                // exit();
+                $this->db->insert($table, $column, $values);
+
+                // 登録ID取得
+                $condition = 'WHERE `tuotor_id` = '."'".$tuotorId."'".' AND `certification_id` = '."'".$subjectId."'";
+                $certificationId = $this->db->select('*', $table, $condition);
+                $certificationId = $certificationId[0]['id'];
+
+                // headerlink
+                header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/certificationUpdate.php?num='.$certificationId.'?status=2');
+            }
+
+
             
-            // 科目登録
-            $column = "`tuotor_id`, `certification_id`";
-            $values = "'".$tuotorId."'".','."'".$subjectId."'";
-            // var_dump($values);
-            // exit();
-            $this->db->insert('subjectsTuotorLists', $column, $values);
-            
+        }
+
+        // 勉強方法などの登録
+        public function certificationUpdate($array){
+            $id = $array[0];
+            $status = $array[1];
+            $period = $array[2];
+            $how = $array[3];
+            $knowhow = $array[4];
+            $bookIsbn = $array[5];
+            $bookTitle = $array[6];
+            $bookImage = $array[7];
+
+            // 条件分岐（生徒/チューター）
+            if($status == 1){
+                // 生徒
+                // Update処理
+                $table = 'searchConditions';
+                $values = 
+                        '`period` = '."'".$period."'".","
+                        .'`how` = '."'".$how."'".","
+                        .'`knowhow` = '."'".$knowhow."'".","
+                        .'`bookIsbn` = '."'".$bookIsbn."'".","
+                        .'`bookTitle` = '."'".$bookTitle."'".","
+                        .'`bookImage` = '."'".$bookImage."'";
+                $conditions = 'WHERE `id` ='."'".$id."'";
+                $this->db->update($table, $values, $conditions);
+                
+                // headerlink
+                header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/main.php?subject='.$id);
+
+            } else {
+                // チューター
+                    // Update処理
+                $table = 'subjectsTuotorLists';
+                $values = 
+                        '`period` = '."'".$period."'".","
+                        .'`how` = '."'".$how."'".","
+                        .'`knowhow` = '."'".$knowhow."'".","
+                        .'`bookIsbn` = '."'".$bookIsbn."'".","
+                        .'`bookTitle` = '."'".$bookTitle."'".","
+                        .'`bookImage` = '."'".$bookImage."'";
+                $conditions = 'WHERE `id` ='."'".$id."'";
+                $this->db->update($table, $values, $conditions);
+                
+                // headerlink
+                header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/tuotorMain.php');
+
+            }
+
 
         }
 
@@ -133,9 +221,6 @@
                         studyStyle,
                         studyType,
                         personality,
-                        bookIsbn,
-                        bookTitle,
-                        bookImage,
                         timestamp';
             return $column;
         }
@@ -160,9 +245,6 @@
                         "'".$array[16]."'".','.
                         "'".$array[17]."'".','.
                         "'".$array[18]."'".','.
-                        "'".$array[19]."'".','.
-                        "'".$array[20]."'".','.
-                        "'".$array[21]."'".','.
                         "'".date("Y/m/d H:i:s")."'";
             return $value;
         }

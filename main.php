@@ -5,7 +5,7 @@
    
     
     // 資格IDの取得
-    $subId = $_POST['subject'];
+    $subId = $_GET['subject'];
     // var_dump($subId);
     // exit();
     $list = new CONTROLLER;
