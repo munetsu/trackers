@@ -115,6 +115,16 @@
             //     $this->cl = new CONTROLLER;
             //     $this->cl->subjectsTuotors($subId);
             // }
+
+            // チューターの資格登録
+            if($this->POST == 'subjectTuotor'){
+                $array = array();
+                $array[] = $_POST['uid'];
+                $array[] = $_POST['subject'];
+                $this->cl = new CONTROLLER;
+                $this->cl->subjectsTuotorLists($array);
+
+            }
         }
     }
 

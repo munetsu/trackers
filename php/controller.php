@@ -47,7 +47,7 @@
                         echo $url;    
                     }else{
                         // 科目未選択
-                        $url = 'selectSubject.php';
+                        $url = 'selectSubject.php?num=1';
                         echo $url;
                     }
                 }else{
@@ -70,7 +70,7 @@
             $column = $this->signUpPalamataColumn();
             $value = $this->signUpPalamatavalue($uid,$array);
             $this->db->insert($tables,$column,$value);
-            header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/selectSubject.php');
+            header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/selectSubject.php?num=1');
             exit();
         }
 
@@ -88,8 +88,28 @@
             $column = $this->signUpPalamataColumn();
             $value = $this->signUpPalamatavalue($uid,$array);
             $this->db->insert($tables,$column,$value);
-            header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/viewer.php');
+            header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/selectSubject.php?num=2');
             exit();
+        }
+
+        // チューター科目登録
+        public function subjectsTuotorLists($array){
+            $uid = $array[0];
+            $subjectId = $array[1];
+
+            // チューターID取得
+            $conditions = 'WHERE `user_id` = '."'".$uid."'";
+            $tuotorId = $this->db->select('*', 'tuotors', $conditions);
+            $tuotorId = $tuotorId[0]['id'];
+            
+            // 科目登録
+            $column = "`tuotor_id`, `certification_id`";
+            $values = "'".$tuotorId."'".','."'".$subjectId."'";
+            // var_dump($values);
+            // exit();
+            $this->db->insert('subjectsTuotorLists', $column, $values);
+            
+
         }
 
         // サインアップのパラメータ
