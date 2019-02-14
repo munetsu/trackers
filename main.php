@@ -11,9 +11,12 @@
     $list = new CONTROLLER;
     // 対象チューターの取得
     $lists = $list->subjectsTuotors($subId);
+   
     // ユーザー情報の取得
     $userData = $list->userDetail();
-    $userData = $userData[0];
+    // $userData = $userData[0];
+    // var_dump($userData);
+    // exit();
 
     // マッチング係数
     $lists = $list->matching($userData, $lists);

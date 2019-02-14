@@ -57,5 +57,18 @@
             }
         }
 
+        // select inner join文
+        public function selectInnerJoin($column, $table1, $table2, $column1, $column2){
+            $sql = "SELECT $column FROM $table1 INNER JOIN $table2 ON $column1 = $column2";
+            $stmt = $this->pdo->prepare($sql);
+            $res = $stmt->execute();
+            if($res === false){
+                $this->queryError($stmt);
+            }else {
+                $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $res;
+            }
+        }
+
 
     }
