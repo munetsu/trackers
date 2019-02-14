@@ -6,7 +6,7 @@
         }
 
         // チューター詳細表示画面
-        public function tuotorRender($tuotor,$age,$index){
+        public function tuotorRender($tuotor,$age,$index, $uid){
             // $tuotor = json_decode($tuotor);
             $tuotor = $tuotor[0];
             $index = $index;
@@ -14,13 +14,13 @@
             // var_dump($tuotor['id']);
             // exit();
             $view = '
-                <div id="dialog" style="display:none;">
+                <div id="dialog" data-value="'.$uid.'" style="display:none;">
                     <div class="header">
                         <p>'.$tuotor['familyNameCharacter'].$tuotor['firstNameCharacter'].'</p>
                     </div>
                     <div class="flex">
                         <div><img src="'.$tuotor['img'].'" style="width:150px; height: 150px;"></div>
-                        <div id="graph"></div>
+                        <div class="tuotorId" id="graph"></div>
                     </div>
                     <div class="contents">
                         <table>

@@ -43,8 +43,12 @@
                     // 科目選択済みか判定
                     if($flag == 2){
                         // 選択済み
-                        $url = 'main.php';
-                        echo $url;    
+                        $lists = $this->userDetail();
+                        $subject = $lists['certification_id'];
+                        $url = 'main.php?subject='.$subject;
+                        echo $url;
+                        // headerlink
+                        // header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/main.php?subject='.$subject);
                     }else{
                         // 科目未選択
                         $url = 'selectSubject.php?num=1';
@@ -151,6 +155,13 @@
 
         // 勉強方法などの登録
         public function certificationUpdate($array){
+            // UserTableのFlag更新
+            $table = 'users';
+            $uid = $_SESSION['id'];
+            $value = '`flag` = 2';
+            $condition = 'WHERE `id` = '."'".$uid."'";
+            $this->db->update($table, $value, $condition);
+
             $id = $array[0];
             $status = $array[1];
             $period = $array[2];
@@ -160,19 +171,20 @@
             $bookTitle = $array[6];
             $bookImage = $array[7];
 
-            // 条件分岐（生徒/チューター）
-            if($status == 1){
-                // 生徒
-                // Update処理
-                $table = 'searchConditions';
-                $values = 
+            $values = 
                         '`period` = '."'".$period."'".","
                         .'`how` = '."'".$how."'".","
                         .'`knowhow` = '."'".$knowhow."'".","
                         .'`bookIsbn` = '."'".$bookIsbn."'".","
                         .'`bookTitle` = '."'".$bookTitle."'".","
                         .'`bookImage` = '."'".$bookImage."'";
-                $conditions = 'WHERE `id` ='."'".$id."'";
+            $conditions = 'WHERE `id` ='."'".$id."'";
+
+            // 条件分岐（生徒/チューター）
+            if($status == 1){
+                // 生徒
+                // Update処理
+                $table = 'searchConditions';   
                 $this->db->update($table, $values, $conditions);
                 
                 // headerlink
@@ -182,22 +194,12 @@
                 // チューター
                     // Update処理
                 $table = 'subjectsTuotorLists';
-                $values = 
-                        '`period` = '."'".$period."'".","
-                        .'`how` = '."'".$how."'".","
-                        .'`knowhow` = '."'".$knowhow."'".","
-                        .'`bookIsbn` = '."'".$bookIsbn."'".","
-                        .'`bookTitle` = '."'".$bookTitle."'".","
-                        .'`bookImage` = '."'".$bookImage."'";
-                $conditions = 'WHERE `id` ='."'".$id."'";
                 $this->db->update($table, $values, $conditions);
                 
                 // headerlink
                 header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/tuotorMain.php');
 
             }
-
-
         }
 
         // サインアップのパラメータ
@@ -356,12 +358,21 @@
 
         // チューター一覧取得
         public function tuotorsList(){
-            $table = 'tuotors';
+            // $table = 'tuotors';
+            // $column = '*';
+            // $conditions = '';
+            // $lists = $this->db->select($column, $table, $conditions);
+            // return $lists;
             $column = '*';
-            $conditions = '';
-            $lists = $this->db->select($column, $table, $conditions);
+            $table1 = 'tuotors';
+            $table2 = 'subjectsTuotorLists';
+            $column1 = 'tuotors.id';
+            $column2 = 'subjectsTuotorLists.tuotor_id';
+            $lists = $this->db->selectInnerJoin($column, $table1, $table2, $column1, $column2);
             return $lists;
         }
+
+
 
         // // チューター詳細取得
         public function getTuotorList($array){
@@ -402,7 +413,7 @@
             // var_dump($tuotor);
             // exit();
             // echo $tuotor;
-            $this->view->tuotorRender($tuotor,$age,$index);
+            $this->view->tuotorRender($tuotor,$age,$index, $uid);
         }
 
         // チューター各詳細の置き換え
@@ -435,9 +446,11 @@
 
             // マッチするチューター取得
             $allTuotors = array();
+            // var_dump($tuotorsLists, $tuotors);
+            // exit();
             foreach($tuotorsLists as $tuotorList){
                 foreach($tuotors as $tuotor){
-                    if($tuotorList['tuotor_id'] == $tuotor['id']){
+                    if($tuotorList['tuotor_id'] == $tuotor['tuotor_id']){
                         $allTuotors[] = $tuotor;
                     }
                 }
@@ -448,10 +461,24 @@
         public function userDetail(){
             // ユーザーID
             $uid = $_SESSION['id'];
-            $condition = 'WHERE `user_id` = '.$uid;
-            // ユーザー情報取得
-            $userData = $this->db->select('*', 'Students', $condition);
-            return $userData;
+            // $condition = 'WHERE `user_id` = '.$uid;
+            // // ユーザー情報取得
+            // $userData = $this->db->select('*', 'Students', $condition);
+            // return $userData;
+
+            $column = '*';
+            $table1 = 'Students';
+            $table2 = 'searchConditions';
+            $column1 = 'Students.id';
+            $column2 = 'searchConditions.student_id';
+            $userDatas = $this->db->selectInnerJoin($column, $table1, $table2, $column1, $column2);
+            
+            foreach($userDatas as $userData){
+                if($userData['user_id'] == $uid){
+                    $user = $userData;
+                }
+            }
+            return $user;
         }
 
         // マッチング判定関数
@@ -460,67 +487,122 @@
             // exit();
             $tuotorList = array();
             foreach($lists as $list){
-                // 学歴判定
-                $gakuIndex = $list['gakureki'] - $userData['gakureki'];
-                $gakuIndex = $this->matchingFive($gakuIndex);
-                $gakuIndex = $gakuIndex * 0.7;
-                // 年齢判定
-                $ageIndex = $list['year'] - $userData['year'];
-                $ageIndex = $this->matchingSix($ageIndex);
-                $ageIndex = $ageIndex * 0.8;
-                // 属性
-                $statusIndex = $list['zokusei'] - $userData['zokusei'];
-                $statusIndex = $this->matchingSix($statusIndex);
-                $statusIndex = $statusIndex * 0.9;
-                // 休日
-                $holidayIndex = $list['holiday'] - $userData['holiday'];
-                $holidayIndex = $this->matchingThree($holidayIndex);
-                $holidayIndex = $holidayIndex * 1.0;
-                // 生活スタイル
-                $lifeIndex = $list['lifeStyle'] - $userData['lifeStyle'];
-                $lifeIndex = $this->matchingTwo($lifeIndex);
-                $lifeIndex = $lifeIndex * 0.7;
-                // 性格
-                $personalIndex = $list['personality'] - $userData['personality'];
-                $personalIndex = $this->matchingTwo($personalIndex);
-                $personalIndex = $personalIndex * 0.8;
-                // 性別
-                $genderIndex = $list['gender'] - $userData['gender'];
-                $genderIndex = $this->matchingTwo($genderIndex);
-                $genderIndex = $genderIndex * 0.4;
-                // 勉強スタイル
-                $studySytleIndex = $list['studyStyle'] - $userData['studyStyle'];
-                $studySytleIndex = $this->matchingTwo($studySytleIndex);
-                $studySytleIndex = $studySytleIndex * 0.7;
-                // 勉強方法
-                $studyTypeIndex = $list['studyType'] - $userData['studyType'];
-                $studyTypeIndex = $this->matchingTwo($studyTypeIndex);
-                $studyTypeIndex = $studyTypeIndex * 0.9;
+                // 勉強方法判定
+                $howIndex = $list['how'] -$userData['how'];
+                $howIndex = $this->matchingTwo($howIndex);
+                // 前提知識
+                $knowhowIndex = $list['knowhow'] - $userData['knowhow'];
+                $knowhowIndex = $this->matchingTwo($knowhowIndex);
+                if($howIndex == 0 || $knowhowIndex == 0){
+                    echo '対象となるチューターがいません';
+                    exit();
+                } else {
+                    // 勉強期間
+                    $periodIndex = $list['period'] - $userData['period'];
+                    $periodIndex = $this->matchingTen($periodIndex);
+                    $periodIndex = $periodIndex * 2.0;
 
-                // マッチング度
-                $matchIndex = $gakuIndex
-                                +$ageIndex
-                                +$statusIndex
-                                +$holidayIndex
-                                +$lifeIndex
-                                +$personalIndex
-                                +$genderIndex
-                                +$studySytleIndex
-                                +$studyTypeIndex;
-            
-                // チューター詳細に追加
-                $list = $list + array('index'=>$matchIndex);
-                $tuotorList[] = $list;
-            }
-            // keyを元に降順にする
-            // krsort($tuotorList);
-            // var_dump($tuotorList);
-            // exit();
-            return $tuotorList;
-            
+                    // 学歴判定
+                    $gakuIndex = $list['gakureki'] - $userData['gakureki'];
+                    $gakuIndex = $this->matchingFive($gakuIndex);
+                    $gakuIndex = $gakuIndex * 1.5;
+                    // 年齢判定
+                    $ageIndex = $list['year'] - $userData['year'];
+                    $ageIndex = $this->matchingSix($ageIndex);
+                    $ageIndex = $ageIndex * 0.7;
+                    // 属性
+                    $statusIndex = $list['zokusei'] - $userData['zokusei'];
+                    $statusIndex = $this->matchingSix($statusIndex);
+                    $statusIndex = $statusIndex * 1.5;
+                    // 休日
+                    $holidayIndex = $list['holiday'] - $userData['holiday'];
+                    $holidayIndex = $this->matchingThree($holidayIndex);
+                    $holidayIndex = $holidayIndex * 0.8;
+                    // 生活スタイル
+                    $lifeIndex = $list['lifeStyle'] - $userData['lifeStyle'];
+                    $lifeIndex = $this->matchingTwo($lifeIndex);
+                    $lifeIndex = $lifeIndex * 0.6;
+                    // 性格
+                    $personalIndex = $list['personality'] - $userData['personality'];
+                    $personalIndex = $this->matchingTwo($personalIndex);
+                    $personalIndex = $personalIndex * 1.0;
+                    // 性別
+                    $genderIndex = $list['gender'] - $userData['gender'];
+                    $genderIndex = $this->matchingTwo($genderIndex);
+                    $genderIndex = $genderIndex * 0.1;
+                    // 勉強スタイル
+                    $studySytleIndex = $list['studyStyle'] - $userData['studyStyle'];
+                    $studySytleIndex = $this->matchingTwo($studySytleIndex);
+                    $studySytleIndex = $studySytleIndex * 0.8;
+                    // 勉強方法
+                    $studyTypeIndex = $list['studyType'] - $userData['studyType'];
+                    $studyTypeIndex = $this->matchingTwo($studyTypeIndex);
+                    $studyTypeIndex = $studyTypeIndex * 1.0;
+
+                    // マッチング度
+                    $matchIndex = $gakuIndex
+                                    +$ageIndex
+                                    +$statusIndex
+                                    +$holidayIndex
+                                    +$lifeIndex
+                                    +$personalIndex
+                                    +$genderIndex
+                                    +$studySytleIndex
+                                    +$studyTypeIndex;
+                
+                    // チューター詳細に追加
+                    $list = $list + array('index'=>$matchIndex);
+                    $tuotorList[] = $list;
+                    // keyを元に降順にする
+                    // krsort($tuotorList);
+                    // var_dump($tuotorList);
+                    // exit();
+                    return $tuotorList;
+                }
+            }            
         }
 
         // マッチング判定指数関数
+        public function matchingTen($data){
+            if($data == 0){
+                $num = 10;
+                return $num;
+            } else if($data == 1 || $data == -1){
+                $num = 9;
+                return $num;
+            } else if($data == 2 || $data == -2){
+                $num = 8;
+                return $num;
+            } else if($data == 3 ||$data == -3){
+                $num = 7;
+                return $num;
+            } else if($data == 4 || $data == -4){
+                $num = 6;
+                return $num;
+            } else if($data == 5 || $data == -5){
+                $num = 5;
+                return $num;
+            } else if($data == 6 || $data == -6){
+                $num = 4;
+                return $num;
+            } else if($data == 7 || $data == -7){
+                $num = 3;
+                return $num;
+            } else if($data == 8 || $data == -8){
+                $num = 2;
+                return $num;
+            } else if($data == 9 || $data == -9){
+                $num = 1;
+                return $num;
+            } else {
+                $num = 0;
+                return $num;
+            }
+        }
+
+
+
+
         public function matchingSix($data){
             if($data == 0){
                 $num = 10;
@@ -590,6 +672,8 @@
                 return $num;
             }
         }
+
+
 
 
 

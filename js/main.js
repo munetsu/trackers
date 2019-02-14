@@ -1,3 +1,9 @@
+// 変数リスト
+// 勉強方法
+const howList = ['独学','資格学校','通信教育'];
+const knowhowList = ['全くなし','業務経験あり','勉強実績あり'];
+
+
 // 降順ソート
 function rsort(){
     lists.sort(function(a,b){
@@ -28,7 +34,10 @@ function tuotorslist(){
         img:'',
         age:0,
         born:'',
-        index: 0
+        index: 0,
+        period:0,
+        how:0,
+        knowhow:0
     };
     const tuotor = [];
 
@@ -49,6 +58,9 @@ function tuotorslist(){
         newToutors.age = ages;
         newToutors.born = lists[i]['born'];
         newToutors.index = lists[i]['index'];
+        newToutors.period = lists[i]['period'];
+        newToutors.how = lists[i]['how'];
+        newToutors.knowhow = lists[i]['knowhow'];
         tuotor.push(newToutors);    
     }
 
@@ -56,12 +68,16 @@ function tuotorslist(){
 }
 
 // 描画内容
-function view(index, id,url, age, born){
+function view(index, id,url, age, born, period, how, knowhow){
+    // console.log(index);
     let view = '<div class="oneBlock" id="'+index+'">';
         view += '<div><img src="'+url+'" id="'+id+'" style="width:150px;height:150px;"></div>';
         view += '<div>';
             view += '<p id="'+age+'">年齢：'+age+'歳</p>';
-            view += '<p>出身地：'+born+'</p>';
+            view += '<p>勉強期間：'+period+'ヶ月</p>';
+            view += '<p>勉強方法：'+howList[how]+'</p>';
+            view += '<p>前提知識：'+knowhowList[knowhow]+'</p>';
+            // view += '<p>出身地：'+born+'</p>';
         view += '</div>';
     view += '</div>';
    return view;
@@ -70,7 +86,7 @@ function view(index, id,url, age, born){
 // 描画処理
 function render(tuotor){
     let number = tuotor.length;
-    // console.log(tuotor.length);
+    // console.log(tuotor[0]);
     // チューターが1名もいない場合
     if(number == 0){
         let view = '<div><p>現在、準備中です。申し訳ありません。</p></div>';
@@ -83,14 +99,18 @@ function render(tuotor){
             let url = tuotor[i]['img'];
             let age = tuotor[i]['age'];
             let born = tuotor[i]['born'];
+            let period = tuotor[i]['period'];
+            let how = tuotor[i]['how'];
+            let knowhow = tuotor[i]['knowhow'];
+            // console.log(period)
             let viewer = '';
             if(i % 2 == 0){
                 viewer = '<div class="flex block'+i+'">';    
-                viewer += view(index,id,url, age, born);
+                viewer += view(index,id,url, age, born,period, how, knowhow);
                 $('#app').append(viewer);
             }else {
                 let num = i -1;
-                viewer = view(index,id,url, age, born);
+                viewer = view(index,id,url, age, born, period, how, knowhow);
                 viewer += '</div>';
                 $('.block'+num).append(viewer);
             }
@@ -139,8 +159,9 @@ function dialog(){
         title:'チューター詳細',
         buttons:{
             "面談希望":function(){
-                console.log('テスト');
-                window.location.href="contract.php";
+                const tuotor = $(this).attr('data-value');
+                console.log(tuotor);
+                // window.location.href="contract.php";
             },
             "リスト登録":function(){
                 $(this).dialog("close");
