@@ -137,6 +137,29 @@
                 $this->cl = new CONTROLLER;
                 $this->cl->certificationUpdate($array);
             }
+
+            // 面談希望処理
+            if($this->POST == 'offers'){
+                $array = array();
+                $array[] = $_POST['tuotorId'];
+                $array[] = $_POST['userId'];
+                $array[] = $_POST['date1'];
+                $array[] = $_POST['time1_start'];
+                $array[] = $_POST['time1_finish'];
+                if($_POST['date2ex'] == 1){
+                    $array[] = $_POST['date2'];
+                    $array[] = $_POST['time2_start'];
+                    $array[] = $_POST['time2_finish'];
+                } 
+                if($_POST['date3ex'] == 1){
+                    $array[] = $_POST['date3'];
+                    $array[] = $_POST['time3_start'];
+                    $array[] = $_POST['time3_finish'];
+                }
+
+                $this->cl = new CONTROLLER;
+                $this->cl->offers($array); 
+            }
         }
     }
 

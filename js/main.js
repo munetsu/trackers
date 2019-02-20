@@ -42,8 +42,9 @@ function tuotorslist(){
     const tuotor = [];
 
     // 降順に変更
-    rsort();
     console.log(lists);
+    rsort();
+    
 
     // チューターデータ整理
     for(let i=0; i<lists.length; i++){
@@ -159,12 +160,30 @@ function dialog(){
         title:'チューター詳細',
         buttons:{
             "面談希望":function(){
-                const tuotor = $(this).attr('data-value');
-                console.log(tuotor);
-                // window.location.href="contract.php";
+                let tuotor = $(this).attr('data-value');
+                // console.log(tuotor);
+                $(this).dialog("close");
+                window.location.href='contract.php?tuotorId='+tuotor+'&uid='+uid;
             },
             "リスト登録":function(){
-                $(this).dialog("close");
+                let tuotor = $(this).attr('data-value');
+                $.ajax({
+                    url:'like.php',
+                    type:'POST',
+                    data: {
+                        tuotorId:tuotor,
+                        uid:uid
+                    }
+                })
+                .done((data) =>{
+                    console.log(data);
+                    window.alert('お気に入り登録が完了しました');
+                    $(this).dialog("close");
+                })
+                .fail((data) => {
+                    windoe.alert('エラーが発生しました');
+                    $(this).dialog("close");
+                })
             }
         }
     })
