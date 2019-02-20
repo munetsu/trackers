@@ -168,11 +168,12 @@ function dialog(){
             "リスト登録":function(){
                 let tuotor = $(this).attr('data-value');
                 $.ajax({
-                    url:'like.php',
+                    url:'php/ajax.php',
                     type:'POST',
                     data: {
                         tuotorId:tuotor,
-                        uid:uid
+                        uid:uid,
+                        action: 'likes'
                     }
                 })
                 .done((data) =>{
@@ -181,7 +182,7 @@ function dialog(){
                     $(this).dialog("close");
                 })
                 .fail((data) => {
-                    windoe.alert('エラーが発生しました');
+                    window.alert('エラーが発生しました');
                     $(this).dialog("close");
                 })
             }

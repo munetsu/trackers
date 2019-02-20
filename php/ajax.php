@@ -160,6 +160,19 @@
                 $this->cl = new CONTROLLER;
                 $this->cl->offers($array); 
             }
+
+            // like処理
+            if($this->POST == 'likes'){
+                $tuotorId = $_POST['tuotorId']; //チューターID
+                $uid = $_POST['uid']; //生徒のUserID
+
+                $this->cl = new CONTROLLER;
+                // 生徒ID取得
+                $studentId = $this->cl->selectStudentId($uid);
+
+                // お気に入り登録
+                $this->cl->likes($studentId, $tuotorId);
+            }
         }
     }
 
