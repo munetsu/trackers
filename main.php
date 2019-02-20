@@ -11,6 +11,8 @@
     $list = new CONTROLLER;
     // 対象チューターの取得
     $lists = $list->subjectsTuotors($subId);
+    // var_dump($lists);
+    // exit();
    
     // ユーザー情報の取得
     $userData = $list->userDetail();
@@ -30,6 +32,7 @@
     // exit();
     $year = date("Y");
     $month = date("m");
+    $uid = $_SESSION['id']
 ?>
 
 <!DOCTYPE html>
@@ -59,6 +62,7 @@
         let lists = <?php echo $lists ?>;
         let year = <?php echo $year ?>;
         let month = <?php echo $month ?>;
+        let uid = <?php echo $uid ?>;
     </script>
     <script src="js/main.js"></script>
     <script src="js/CircularLoader-v1.3.js"></script>

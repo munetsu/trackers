@@ -10,6 +10,14 @@
             $this->view = new VIEW;
         }
 
+        // 全データ取得
+        public function selectAll($table){
+            $column = '*';
+            $condition = '';
+            $data = $this->db->select($column, $table, $condition);
+            return $data;
+        }
+
         // 会員登録操作
         public function signUp($array){
             $column = 'email'.','.'password'.','.'datetime';
@@ -18,6 +26,34 @@
             $this->db->insert($table, $column, $values);
             $url = 'viewer.php';
             return $url;
+        }
+
+        // studentsId取得
+        public function selectStudentId($uid){
+            $column = 'id';
+            $table = 'Students';
+            $conditions = 'WHERE `user_id`='."'".$uid."'";
+            $studentsId = $this->db->select($column, $table, $conditions);
+            return $studentsId[0]['id'];
+        }
+
+        // matchingId取得
+        public function matchingId($id){
+            $column = 'id';
+            $table = 'matchings';
+            $conditions = 'WHERE `student_id`='."'".$id."'";
+            $matchingsId = $this->db->select($column, $table, $conditions);
+            return $matchingsId;
+        }
+
+        // OfferId取得
+        public function offerId($id){
+            $column = 'id';
+            $table = 'offers';
+            $conditions = 'WHERE `student_id`='."'".$id."'";
+            $matchingsId = $this->db->select($column, $table, $conditions);
+            // $matchingsId = $matchingsId[0]['id'];
+            return $matchingsId;
         }
 
         // ログイン操作
@@ -31,6 +67,7 @@
             
             // 初回ログインかどうかを確認
             $flag = $user[0]['flag'];
+            $contract_flag = $user[0]['contract_flag'];
             $_SESSION['id'] = $user[0]['id'];
             if($flag === '0'){
                 $url = 'signUp.php';
@@ -42,6 +79,13 @@
                     // 生徒
                     // 科目選択済みか判定
                     if($flag == 2){
+                        // 現在の契約状態
+                        if($contract_flag != 0){
+                            $url = 'student_top.php?uid='.$user[0]['id'];
+                            echo $url;
+                            exit();
+                        }
+
                         // 選択済み
                         $lists = $this->userDetail();
                         $subject = $lists['certification_id'];
@@ -488,14 +532,15 @@
             $tuotorList = array();
             foreach($lists as $list){
                 // 勉強方法判定
-                $howIndex = $list['how'] -$userData['how'];
+                $howIndex = $list['how'] - $userData['how'];
                 $howIndex = $this->matchingTwo($howIndex);
                 // 前提知識
                 $knowhowIndex = $list['knowhow'] - $userData['knowhow'];
                 $knowhowIndex = $this->matchingTwo($knowhowIndex);
+
+                
                 if($howIndex == 0 || $knowhowIndex == 0){
-                    echo '対象となるチューターがいません';
-                    exit();
+                    continue;
                 } else {
                     // 勉強期間
                     $periodIndex = $list['period'] - $userData['period'];
@@ -559,6 +604,9 @@
                     // exit();
                     return $tuotorList;
                 }
+
+                echo '対象チューターがいません';
+                exit();
             }            
         }
 
@@ -673,8 +721,112 @@
             }
         }
 
+        // 面談依頼処理
+        public function offers($array){
+            // studentsIdの取得
+            $studentId = $this->selectStudnetId($array[1]);
+            // tuotorId
+            $tuotorId = $array[0];
+            // 面談候補日（第一）
+            $date1 = $array[2];
+            $date1_start= $array[3];
+            $date1_finish = $array[4];
+            $date1_start = $date1.' '.$date1_start;
+            $date1_finish = $date1.' '.$date1_finish;
+            
+            // offersテーブル更新
+            $count = count($array);
+            $table = 'offers';
+            $column = "`student_id`, `tuotor_id`, `flag`,";
+            $value = "'".$studentId."'".","."'".$tuotorId."'".","."1".",";
 
+            // 第一希望のみしか記入されていない場合
+            if($count == 5){
+                $column = $column.'`date1_start`, `date1_finish`';
+                $values = $value."'".$date1_start."'".",".
+                            "'".$date1_finish."'";
+                $this->db->insert($table, $column, $values);
+    
+            // 第二希望までしか記入されていない場合
+            } else if ($count == 8){
+                // 面談候補日（第二）
+                $date2 = $array[5];
+                $date2_start= $array[6];
+                $date2_finish = $array[7];
+                $date2_start = $date2.' '.$date2_start;
+                $date2_finish = $date2.' '.$date2_finish;
 
+                // DBUpdate
+                $column = $column.'`date1_start`, `date1_finish`,
+                                    `date2_start`, `date2_finish`';
+                
+                $values = $value."'".$date1_start."'".","."'".$date1_finish."'".",".
+                                "'".$date2_start."'".","."'".$date2_finish."'";
+                $this->db->insert($table, $column, $values);
 
+            } else if($count == 11){
+                // 面談候補日（第二）
+                $date2 = $array[5];
+                $date2_start= $array[6];
+                $date2_finish = $array[7];
+                $date2_start = $date2.' '.$date2_start;
+                $date2_finish = $date2.' '.$date2_finish;
+                
+                // 面談候補日（第三）
+                $date3 = $array[8];
+                $date3_start= $array[9];
+                $date3_finish = $array[10];
+                $date3_start = $date3.' '.$date3_start;
+                $date3_finish = $date3.' '.$date3_finish;
 
+                // DBUpdate
+                $column = $column.'`date1_start`, `date1_finish`,
+                                    `date2_start`, `date2_finish`,
+                                    `date3_start`, `date3_finish`';
+                
+                $values = $value."'".$date1_start."'".","."'".$date1_finish."'".",".
+                                "'".$date2_start."'".","."'".$date2_finish."'".",".
+                                "'".$date3_start."'".","."'".$date3_finish."'";
+                $this->db->insert($table, $column, $values);
+    
+            }
+
+            // Userテーブル更新
+            $table = 'users';
+            $values = 'contract_flag = 1';
+            $condition = 'WHERE id='."'".$array[1]."'";
+            $this->db->update($table, $values, $condition);
+        }
+
+        // offer内容取得
+        public function offerDetail($ids){
+            $details = array();
+            foreach($ids as $id){
+                $id = $id['id'];
+                $column = '*';
+                $table = 'offers';
+                $condition = 'WHERE id='."'".$id."'";
+                $detail = $this->db->select($column, $table, $condition);
+                if($detail[0]['flag'] == 99){
+                    continue;
+                } else {
+                    $details[] = $detail;
+                }
+            }
+            // var_dump($details);
+            // exit();
+            return $details;
+        }
+
+        // お気に入り登録
+        public function likes($studentId, $tuotorId){
+            $table = 'likes';
+            $column = "`student_id`, `tuotor_id`, `flag`";
+            $values = "'".$studentId."'".","
+                    ."'".$tuotorId."'".","
+                    ."0";
+            $this->db->insert($table, $column, $values);
+        }
     }
+            
+    
