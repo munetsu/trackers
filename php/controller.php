@@ -724,7 +724,7 @@
         // 面談依頼処理
         public function offers($array){
             // studentsIdの取得
-            $studentId = $this->selectStudnetId($array[1]);
+            $studentId = $this->selectStudentId($array[1]);
             // tuotorId
             $tuotorId = $array[0];
             // 面談候補日（第一）
@@ -796,6 +796,8 @@
             $values = 'contract_flag = 1';
             $condition = 'WHERE id='."'".$array[1]."'";
             $this->db->update($table, $values, $condition);
+
+            header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/student_top.php?uid='.$array[1]);
         }
 
         // offer内容取得
