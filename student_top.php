@@ -51,11 +51,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/student_top.css">
 </head>
 <body>
     <div id="body">
-        <!-- <div id="header"></div> -->
+        <div class="logo"></div>
         <div id="main"></div>
         <div id="footer"></div>
     </div>

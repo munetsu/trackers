@@ -1,7 +1,11 @@
 // 西暦
 for(let i =1970; i<=year; i++){
     let view = '';
-    view = '<option value='+i+'>'+i+'</option>'
+    if(i == 1990){
+        view = '<option value='+i+' selected>'+i+'</option>'    
+    } else {
+        view = '<option value='+i+'>'+i+'</option>'    
+    }
     $('#year').append(view);
 }
 

@@ -16,10 +16,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/contract.css">
 </head>
 <body>
-
-    <div>
+    <div class="logo"></div>
+    <div class="body">
         <p>面談希望日時を登録してください</p>
         <p>例）<br>
             面談可能時間が、20時〜22時までの場合<br>
@@ -30,20 +33,20 @@
             <input type="hidden" name="action" value="offers">
             <div>
                 <p>第一候補日</p>
-                日付：<input type="date" name="date1"><span id="date1"></span><br>
-                開始時間：<input type="time" name="time1_start"> 〜 終了時間：<input type="time" name="time1_finish">
+                日付：<input type="date" name="date1" class="date"><span id="date1"></span><br>
+                開始時間：<input type="time" name="time1_start" class="time"> 〜 終了時間：<input type="time" name="time1_finish" class="time">
                 <input type="hidden" name="date1ex" value="0">
             </div>
             <div>
                 <p>第二候補日</p>
-                日付：<input type="date" name="date2"><span id="date2"></span><br>
-                開始時間：<input type="time" name="time2_start"> 〜 終了時間：<input type="time" name="time2_finish">
+                日付：<input type="date" name="date2" class="date"><span id="date2"></span><br>
+                開始時間：<input type="time" name="time2_start" class="time"> 〜 終了時間：<input type="time" name="time2_finish" class="time">
                 <input type="hidden" name="date2ex" value="0">
             </div>
             <div>
                 <p>第三候補日</p>
-                日付：<input type="date" name="date3"><span id="date3"></span><br>
-                開始時間：<input type="time" name="time3_start"> 〜 終了時間：<input type="time" name="time3_finish">
+                日付：<input type="date" name="date3" class="date"><span id="date3"></span><br>
+                開始時間：<input type="time" name="time3_start" class="time"> 〜 終了時間：<input type="time" name="time3_finish" class="time">
                 <input type="hidden" name="date3ex" value="0">
             </div>
             <button id="subBtn" type="button">候補日時を送信する</button>

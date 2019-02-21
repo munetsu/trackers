@@ -26,9 +26,9 @@ function renderTuotor(){
     for(let i= 0; i<subjectList.length; i++){
         if(i % 2 == 0){
             view += '<div class="flex">';
-                view += '<div><label class="subject"><input type="radio" name="subject" value="'+subjectList[i]['id']+'" style="display:none;">'+subjectList[i]['kinds']+'</label></div>';
+                view += '<div class="one"><label class="subject"><input type="radio" name="subject" value="'+subjectList[i]['id']+'" style="display:none;">'+subjectList[i]['kinds']+'</label></div>';
         }else{
-            view += '<div><label class="subject"><input type="radio" name="subject" value="'+subjectList[i]['id']+'" style="display:none;">'+subjectList[i]['kinds']+'</label></div>';
+            view += '<div class="one"><label class="subject"><input type="radio" name="subject" value="'+subjectList[i]['id']+'" style="display:none;">'+subjectList[i]['kinds']+'</label></div>';
             view += '</div>';
         }
     }

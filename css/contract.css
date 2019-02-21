@@ -1,0 +1,29 @@
+.body {
+    height: 90vh;
+    padding: 2vh;
+}
+
+p {
+    margin-top: 3vh;
+    font-weight: bold;
+}
+
+.time {
+    width: 18vw;
+    height: 3vh;
+}
+
+input {
+    letter-spacing: 0vw;
+}
+
+#subBtn {
+    width: 90vw;
+    height: 10vh;
+    background-color: #808080;
+    color: white;
+    font-weight: bold;
+    margin: 5vw 0;
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
