@@ -43,10 +43,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+    <div class="logo"></div>
     <div id="app"></div>
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"

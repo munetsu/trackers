@@ -43,26 +43,28 @@ function tuotorslist(){
 
     // 降順に変更
     console.log(lists);
-    rsort();
-    
+    if(lists != null){
+        rsort();
+        
 
-    // チューターデータ整理
-    for(let i=0; i<lists.length; i++){
-        // 年齢計算
-        let birthYear = lists[i]['year'];
-        let birthMonth = lists[i]['month'];
-        let ages = ageCulculate(birthMonth, birthYear);
-        // オブジェクトコピー
-        const newToutors = Object.assign({},toutors);
-        newToutors.id = lists[i]['id'];
-        newToutors.img = lists[i]['img'];
-        newToutors.age = ages;
-        newToutors.born = lists[i]['born'];
-        newToutors.index = lists[i]['index'];
-        newToutors.period = lists[i]['period'];
-        newToutors.how = lists[i]['how'];
-        newToutors.knowhow = lists[i]['knowhow'];
-        tuotor.push(newToutors);    
+        // チューターデータ整理
+        for(let i=0; i<lists.length; i++){
+            // 年齢計算
+            let birthYear = lists[i]['year'];
+            let birthMonth = lists[i]['month'];
+            let ages = ageCulculate(birthMonth, birthYear);
+            // オブジェクトコピー
+            const newToutors = Object.assign({},toutors);
+            newToutors.id = lists[i]['tuotor_id'];
+            newToutors.img = lists[i]['img'];
+            newToutors.age = ages;
+            newToutors.born = lists[i]['born'];
+            newToutors.index = lists[i]['index'];
+            newToutors.period = lists[i]['period'];
+            newToutors.how = lists[i]['how'];
+            newToutors.knowhow = lists[i]['knowhow'];
+            tuotor.push(newToutors);    
+        }
     }
 
     return tuotor;
@@ -71,13 +73,13 @@ function tuotorslist(){
 // 描画内容
 function view(index, id,url, age, born, period, how, knowhow){
     // console.log(index);
-    let view = '<div class="oneBlock" id="'+index+'">';
-        view += '<div><img src="'+url+'" id="'+id+'" style="width:150px;height:150px;"></div>';
-        view += '<div>';
+    let view = '<div class="oneblock" id="'+index+'">';
+        view += '<div><img src="'+url+'" id="'+id+'" class="image"></div>';
+        view += '<div class="info">';
             view += '<p id="'+age+'">年齢：'+age+'歳</p>';
             view += '<p>勉強期間：'+period+'ヶ月</p>';
             view += '<p>勉強方法：'+howList[how]+'</p>';
-            view += '<p>前提知識：'+knowhowList[knowhow]+'</p>';
+            view += '<p>予備知識：'+knowhowList[knowhow]+'</p>';
             // view += '<p>出身地：'+born+'</p>';
         view += '</div>';
     view += '</div>';
@@ -124,7 +126,7 @@ let tuotor = tuotorslist();
 render(tuotor);
 
 // チューター詳細情報取得
-$(document).on('click','.oneBlock',function(){
+$(document).on('click','.oneblock',function(){
     $('#dialog').remove();
     $('.ui-dialog').remove();
     let target = $(this).find('img').attr('id');

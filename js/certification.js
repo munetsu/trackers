@@ -8,6 +8,7 @@ $('.useBooks').on('change', function(){
     }
 });
 
+
 // // ダイアログ表示
 $(function(){
     $('#dialog').dialog({
@@ -18,9 +19,20 @@ $(function(){
     $('#isbnDesc').on('click', function(e){
         e.preventDefault();
         $('#dialog').dialog("open");
-        $('.ui-dialog').css('background-color','gray');
+        $('.ui-dialog').css({
+            'background-color':'gray',
+            'width': '90vw',
+            'height': '90vh',
+            'top': '-90vh',
+        });
     });
 });
+
+$(document).on('click', '.ui-dialog', function(){
+    $('#dialog').dialog("close");
+})
+
+
 
 // GoogleBooksAPI
 $("#search").on('click', function(){
@@ -68,4 +80,13 @@ $("#search").on('click', function(){
       }
 
     });
-  });
+});
+
+
+// 月
+for(let k = 1; k <24; k++){
+    let view = '';
+    view = '<option value='+k+'>'+k+'</option>'
+    $('#month').append(view);
+}
+

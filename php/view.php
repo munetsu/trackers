@@ -16,49 +16,55 @@
             $view = '
                 <div id="dialog" data-value="'.$uid.'" style="display:none;">
                     <div class="header">
-                        <p>'.$tuotor['familyNameCharacter'].$tuotor['firstNameCharacter'].'</p>
+                        <div class="dialogFlex">
+                            <div class="tuotorImage">
+                                <img src="'.$tuotor['img'].'" class="dialogImage">
+                            </div>
+                            <div class="name">
+                                <p>'.$tuotor['familyNameCharacter'].$tuotor['firstNameCharacter'].'</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex">
-                        <div><img src="'.$tuotor['img'].'" style="width:150px; height: 150px;"></div>
-                        <div class="tuotorId" id="graph"></div>
-                    </div>
+                        
+                    <div class="tuotorId" id="graph"></div>
+                    
                     <div class="contents">
                         <table>
                             <tr>
-                                <th>年齢：</th>
-                                <th>'.$age.'</th>
+                                <th class="index">年齢：</th>
+                                <th class="value">'.$age.'</th>
                             </tr>
                             <tr>
-                                <th>学歴：</th>
-                                <th>'.$tuotor['gakureki'].'</th>
+                                <th class="index">学歴：</th>
+                                <th class="value">'.$tuotor['gakureki'].'</th>
                             </tr>
                             <tr>
-                                <th>専攻：</th>
-                                <th>'.$tuotor['senkou'].'</th>
+                                <th class="index">専攻：</th>
+                                <th class="value">'.$tuotor['senkou'].'</th>
                             </tr>
                             <tr>
-                                <th>属性：</th>
-                                <th>'.$tuotor['zokusei'].'</th>
+                                <th class="index">属性：</th>
+                                <th class="value">'.$tuotor['zokusei'].'</th>
                             </tr>
                             <tr>
-                                <th>休み：</th>
-                                <th>'.$tuotor['holiday'].'</th>
+                                <th class="index">休み：</th>
+                                <th class="value">'.$tuotor['holiday'].'</th>
                             </tr>
                             <tr>
-                                <th>生活リズム：</th>
-                                <th>'.$tuotor['lifeStyle'].'</th>
+                                <th class="index">生活：</th>
+                                <th class="value">'.$tuotor['lifeStyle'].'</th>
                             </tr>
                             <tr>
-                                <th>性格：</th>
-                                <th>'.$tuotor['personality'].'</th>
+                                <th class="index">性格：</th>
+                                <th class="value">'.$tuotor['personality'].'</th>
                             </tr>
                             <tr>
-                                <th>勉強スタイル：</th>
-                                <th>'.$tuotor['studyStyle'].'</th>
+                                <th class="index">期間：</th>
+                                <th class="value">'.$tuotor['studyStyle'].'</th>
                             </tr>
                             <tr>
-                                <th>勉強法：</th>
-                                <th>'.$tuotor['studyType'].'</th>
+                                <th class="index">方法：</th>
+                                <th class="value">'.$tuotor['studyType'].'</th>
                             </tr>
                         </table>
                     </div>

@@ -12,10 +12,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div id="body">
+        <div class="logo"></div>
         <div id="all" class="all pc-all">
             <!-- ログイン画面 -->
             <div id="login" class="login">
