@@ -13,7 +13,7 @@ $(window).on('resize', function() {
     $('#body').css('min-height', h + 'px');
 });
 
-function slice(data){
+function sliced(data){
     if(data == null){
         data = '未選択'
     } else {
@@ -38,50 +38,62 @@ function mainOfferRender(){
     let view = '';
     for(let i=0; i<offerDetail.length; i++){
         view += '<div class="block">';
-            view += '<div>';
-            view += '<p><img src="'+images[i]+'" style="width:150px;height:150px;"></p>';
+            view += '<div class="tuotorImage">';
+            view += '<p><img src="'+images[i]+'" style="width:25vh;height:25vh;"></p>';
             view += '</div>';
-            view += '<div>';
-            view += '<p>第一希望日：'+substr(offerDetail[i][0]['date1_start'])+'</p>';
-            view += '<p>'+slice(offerDetail[i][0]['date1_start'])+' 〜 '+slice(offerDetail[i][0]['date1_finish'])+'</p>'
-            view += '</div>';
-            let judge = substr(offerDetail[i][0]['date2_start']);
-            console.log(judge);
-            if(judge === '未選択'){
-                view += '</div>'
-                continue;
-            } else {
-                view += '<div>';
-                view += '<p>第二希望日：'+substr(offerDetail[i][0]['date2_start'])+'</p>';
-                view += '<p>'+slice(offerDetail[i][0]['date2_start'])+' 〜 '+slice(offerDetail[i][0]['date2_finish'])+'</p>';
+            view += '<div class="offerDate">';
+                view += '<div class="Date">';
+                view += '<p>第１希望日：</p><p>'+substr(offerDetail[i][0]['date1_start'])+'</p>';
+                view += '<p>'+sliced(offerDetail[i][0]['date1_start'])+' 〜 '+sliced(offerDetail[i][0]['date1_finish'])+'</p>'
                 view += '</div>';
-
-                let judge2 = substr(offerDetail[i][0]['date3_start']);
-                if(judge2 === '未選択'){
+                let judge = substr(offerDetail[i][0]['date2_start']);
+                console.log(judge);
+                if(judge === '未選択'){
+                    view += '</div>';
                     view += '</div>'
                     continue;
                 } else {
-                    view += '<div>';
-                    view += '<p>第三希望日：'+substr(offerDetail[i][0]['date3_start'])+'</p>';
-                    view += '<p>'+slice(offerDetail[i][0]['date3_start'])+' 〜 '+slice(offerDetail[i][0]['date3_finish'])+'</p>'    
+                    view += '<div class="Date">';
+                    view += '<p>第２希望日：</p><p>'+substr(offerDetail[i][0]['date2_start'])+'</p>';
+                    view += '<p>'+sliced(offerDetail[i][0]['date2_start'])+' 〜 '+sliced(offerDetail[i][0]['date2_finish'])+'</p>';
                     view += '</div>';
+                    let judge2 = substr(offerDetail[i][0]['date3_start']);
+                    if(judge2 === '未選択'){
+                        view += '</div>';
+                        view += '</div>'
+                        continue;
+                    } else {
+                        view += '<div class="Date">';
+                        view += '<p>第３希望日：</p><p>'+substr(offerDetail[i][0]['date3_start'])+'</p>';
+                        view += '<p>'+sliced(offerDetail[i][0]['date3_start'])+' 〜 '+sliced(offerDetail[i][0]['date3_finish'])+'</p>'    
+                        view += '</div>';
+                        view += '</div>';
+                    }
                 }
-            }
         view += '</div>'
     }
 
     $('#main').html(view)
 }
 
+
+
 function footerRender(){
-    let view = '<div class="footerList">';
-        view += '<p>担当チューター</p>';
+    let view ='<div class="footerList">';
+        view += '<img src="img/search.svg" class="footerImage">';
+        view += '<p>資格検索</p>';
         view += '</div>';
         view += '<div class="footerList">';
-        view += '<p>面談リスト</p>';
+        view += '<img src="img/human.svg" class="footerImage">';
+        view += '<p>担当</p>';
         view += '</div>';
         view += '<div class="footerList">';
-        view += '<p>お気に入りリスト</p>';
+        view += '<img src="img/calendar.svg" class="footerImage">';
+        view += '<p>面談依頼中</p>';
+        view += '</div>';
+        view += '<div class="footerList">';
+        view += '<img src="img/list.svg" class="footerImage">';
+        view += '<p>候補リスト</p>';
         view += '</div>';
     let data = $('#footer').html(view);
     return data;
@@ -91,10 +103,42 @@ function addClass(data, n){
     data.ready(function(){
         console.log('check',n)
         $('.footerList').eq(n).addClass('footerFirst');
+        let src = $('.footerImage').eq(n).addClass('footerImageWhite');
+        imageChange(src);
     })
 }
 
-addClass(footerRender(), 0);
+function strIns(str, idx, val){
+    var res = str.slice(0, idx) + val + str.slice(idx);
+    return res;
+};
+
+function imageChange(src){
+    src.ready(function(){
+        let src = $('.footerImageWhite').attr('src');
+        src = strIns(src, -4, '_white');
+        src =$('.footerImageWhite').attr('src', src);
+        console.log(src);
+        return src;
+    })
+}
+
+
+// ////////////////////////////////////////////
+// 関数実行部分
+// ////////////////////////////////////////////
+
+if(renderNumber == 0){
+
+} else if(renderNumber == 1){
+    
+} else if(renderNumber == 2){
+    mainOfferRender()
+} else {
+
+}
+
+addClass(footerRender(), renderNumber);
 
 
 
