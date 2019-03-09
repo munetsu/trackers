@@ -168,7 +168,7 @@
                 $searchId = $searchId[0]['id'];
 
                 // headerlink
-                header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/certificationUpdate.php?num='.$searchId.'&status=1');
+                header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/certificationUpdate.php?num='.$subjectId.'&status=1');
             } else {
                 // チューター
                 // チューターID取得
@@ -206,6 +206,11 @@
             $condition = 'WHERE `id` = '."'".$uid."'";
             $this->db->update($table, $value, $condition);
 
+            // 生徒ID取得
+            $studentId = $this->selectStudentId($uid);
+            // var_dump($studentId);
+            // exit();
+
             $id = $array[0];
             $status = $array[1];
             $period = $array[2];
@@ -215,6 +220,9 @@
             $bookTitle = $array[6];
             $bookImage = $array[7];
 
+            // var_dump($how,$knowhow);
+            // exit();
+
             $values = 
                         '`period` = '."'".$period."'".","
                         .'`how` = '."'".$how."'".","
@@ -222,14 +230,22 @@
                         .'`bookIsbn` = '."'".$bookIsbn."'".","
                         .'`bookTitle` = '."'".$bookTitle."'".","
                         .'`bookImage` = '."'".$bookImage."'";
-            $conditions = 'WHERE `id` ='."'".$id."'";
+            $conditions = 'WHERE `certification_id` ='."'".$id."'".' AND `student_id` ='."'".$studentId."'";
+
+            // var_dump($conditions);
+            // exit();
+
+            // var_dump($status);
+            // exit();
 
             // 条件分岐（生徒/チューター）
             if($status == 1){
                 // 生徒
                 // Update処理
-                $table = 'searchConditions';   
-                $this->db->update($table, $values, $conditions);
+                $tables = 'searchConditions'; 
+                // var_dump($tables, $values, $conditions);
+                // exit();
+                $this->db->update($tables, $values, $conditions);
                 
                 // headerlink
                 header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/main.php?subject='.$id);
@@ -527,7 +543,7 @@
 
         // マッチング判定関数
         public function matching($userData, $lists){
-            // var_dump($lists);
+            // var_dump($lists,$userData);
             // exit();
             $tuotorList = array();
             foreach($lists as $list){
@@ -538,7 +554,8 @@
                 $knowhowIndex = $list['knowhow'] - $userData['knowhow'];
                 $knowhowIndex = $this->matchingTwo($knowhowIndex);
 
-                
+                // var_dump($howIndex,$knowhowIndex);
+                // exit();
                 if($howIndex == 0 || $knowhowIndex == 0){
                     continue;
                 } else {
