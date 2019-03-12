@@ -1,4 +1,5 @@
 <?php
+
     class DATA{
         function __construct(){
             $this->pdo = $this->db_con();
@@ -24,6 +25,8 @@
 
         // INSERT文
         public function insert($table, $column, $values){
+            // var_dump($column);
+            // exit();
             $sql = "INSERT INTO $table ($column) VALUES($values)";
             // var_dump($sql);
             // exit();
