@@ -48,17 +48,33 @@
             <p>面談希望日時</p>
             <p>
                 第一希望：
-                <input type="date" name="firstDay">
-                <input type="time" name="firstTime">
+                <input type="date" name="firstDate">
+            </p>
+            <p>
+                開始時間：
+                <input type="time" name="f_startTime">
+                〜終了時間：
+                <input type="time" name="f_finishTime">
             </p>
             <p>
                 第二希望：
-                <input type="date" name="secondDay">
-                <input type="time" name="secondTime">            </p>
+                <input type="date" name="secondDate">
+            </p>
+            <p>
+                開始時間：
+                <input type="time" name="s_startTime">
+                〜終了時間：
+                <input type="time" name="s_finishTime">
+            </p>
             <p>
                 第三希望：
-                <input type="date" name="thirdDay">
-                <input type="time" name="thirdTime">
+                <input type="date" name="thirdDate">
+            </p>
+            <p>
+                開始時間：
+                <input type="time" name="t_startTime">
+                〜終了時間：
+                <input type="time" name="t_finishTime">
             </p>
             <span>対応可能時間：</span>
             <table>
