@@ -1,0 +1,70 @@
+/* ------------------------------------- 
+* 共通
+------------------------------------- */
+.flex {
+    display: flex;
+    padding: 5vh 5vw;
+}
+
+.icon {
+    width: 10vw;
+}
+
+.three {
+    width: 30vw;
+    margin: 0 1vw;
+    background-color: gray; 
+}
+
+.fifth {
+    width: 20vw;
+    margin: 0 1vw;
+    background-color: gray;
+}
+
+/* ------------------------------------- 
+* TOP画像
+------------------------------------- */
+
+.topimage {
+    position: relative;
+    top: 0;
+    height: 80vh;
+}
+
+.image {
+    background-image: url('../img/tuotortop2.jpg');
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.image::before {
+    z-index:0;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(211,211,211,0.8);
+}
+
+.topText {
+    position: absolute;
+    width: 30vw;
+    top: 50vh;
+    left: 40vw;
+}
+
+/* ------------------------------------- 
+* 収入部分
+------------------------------------- */
+.tableContent {
+    text-align: right;
+}
