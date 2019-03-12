@@ -11,6 +11,7 @@
         // 処理切り分け
         private function judge(){
 
+            // チューター面談登録
             if($this->POST == 'tuotorRegister'){
                 // TuotorRegister処理
                 $array = array();
