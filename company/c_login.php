@@ -25,7 +25,7 @@
             <div>
                 <p>
                     パスワード：
-                    <input type="text" name="password" placeholder="パスワードを入力">
+                    <input type="password" name="password" placeholder="パスワードを入力">
                 </p>
             </div>
             <button>ログインする</button>
@@ -48,7 +48,7 @@
             <div>
                 <p>
                     パスワード：
-                    <input type="text" name="password" placeholder="パスワードを入力">
+                    <input type="password" name="password" placeholder="パスワードを入力">
                 </p>
             </div>
             <button>ログインする</button>
