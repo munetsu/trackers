@@ -1,3 +1,39 @@
+<?php
+    $data = "https://spreadsheets.google.com/feeds/list/1CaRHTu-Hw-QsJOfFM2GGgcViDfuXrr7fUNbeY9uXxv4/od6/public/values?alt=json";
+    $json = file_get_contents($data);
+    $json_decode = json_decode($json);
+    
+    $names = $json_decode->feed->entry;
+    // var_dump($names);
+    // exit();
+
+    // ○日以内
+    function datejudge($m){
+        $date = date("Y/m/d",strtotime("+".$m." day"));
+        return $date;
+    }
+
+    $schedule = array();
+
+    foreach ($names as $name) {
+        $res = $name->{'gsx$reservation'}->{'$t'};
+        if($res == 0){
+            $temp = array();
+            $temp = array_merge($temp,array('date' => $name->{'gsx$date'}->{'$t'}));
+            $temp = array_merge($temp,array('weekday' => $name->{'gsx$weekday'}->{'$t'}));
+            $temp = array_merge($temp,array('time' => $name->{'gsx$time'}->{'$t'}));
+
+            array_push($schedule, $temp);
+        }
+    }
+    // var_dump($schedule);
+    $schedule = JSON_ENCODE($schedule,JSON_UNESCAPED_UNICODE);
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -5,6 +41,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    
 </head>
 <body>
     <h3>面談申し込みフォーム</h3>
@@ -90,5 +127,18 @@
         </div>
         <button>登録する</button>
     </form>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
+     <script
+        src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous">
+    </script>
+    <script>
+        const data = <?php echo $schedule ?>;
+    </script>
+    <script src="js/tuotorRegister.js"></script>
 </body>
 </html>
