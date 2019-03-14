@@ -1,5 +1,5 @@
 <?php
-    include('../../mvc/data.php');
+    include('../mvc/data.php');
 
     class C_MODEL{
         function __construct(){
@@ -31,5 +31,14 @@
                             'AND `password` = '."'".$array['password']."'";
             $res = $this->db->select($column, $table, $conditions);
            return $res;
+        }
+
+        // チューター面談リスト取得
+        public function interviewList(){
+            $table = 'tuotorRegisters';
+            $column = '*';
+            $condictions = 'WHERE `result` = 0';
+            $res = $this->db->selectAll($column, $table, $condictions);
+            return $res;
         }
     }

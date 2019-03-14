@@ -1,5 +1,7 @@
 <?php
+    session_start();
     include('../funcs/funcs.php');
+    $_SESSION["chk_ssid"] = session_id()
 
 ?>
 
@@ -14,7 +16,7 @@
 <body>
     <div>
         <h5>ログイン画面</h5>
-        <form action="mvc/c_controller.php" method="POST">
+        <form action="c_controller.php" method="POST">
         <input type="hidden" name="action" value="login">
             <div>
                 <p>
@@ -31,7 +33,7 @@
             <button>ログインする</button>
         </form>
         <h5>新規ユーザー作成</h5>
-        <form action="mvc/c_controller.php" method="POST">
+        <form action="c_controller.php" method="POST">
         <input type="hidden" name="action" value="signUp">
             <div>
                 <p>

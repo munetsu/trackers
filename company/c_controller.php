@@ -1,5 +1,5 @@
 <?php
-    include('../../funcs/funcs.php');
+    include('../funcs/funcs.php');
     include('c_model.php');
 
     class C_CONTROLLER{
@@ -56,7 +56,7 @@
                     echo 'ログインエラー';
                     exit();
                 }else{
-                    echo 'ログインしました';
+                    header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/company/c_adminPage.php');
                     exit();
                 }
 
