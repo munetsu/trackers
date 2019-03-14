@@ -41,6 +41,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <!-- jQuery本体-->
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Datepicker日本語化 -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+    <!-- jQuery UI のCSS -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     
 </head>
 <body>
@@ -85,57 +93,43 @@
             <p>面談希望日時</p>
             <p>
                 第一希望：
-                <input type="date" name="firstDate">
+                <input type="text" name="firstDate" class="datepicker" placeholder="クリックして日付選択">
             </p>
-            <p>
+            <p>希望時間</p>
+            <div id="firstDate"></div>
+            <!-- <p>
                 開始時間：
-                <input type="time" name="f_startTime">
+                <input type="time" name="f_startTime" class="datepicker">
                 〜終了時間：
                 <input type="time" name="f_finishTime">
-            </p>
+            </p> -->
             <p>
                 第二希望：
-                <input type="date" name="secondDate">
+                <input type="text" name="secondDate" class="datepicker" placeholder="クリックして日付選択">
             </p>
-            <p>
+            <p>希望時間</p>
+            <div id="secondDate"></div>
+            <!-- <p>
                 開始時間：
                 <input type="time" name="s_startTime">
                 〜終了時間：
                 <input type="time" name="s_finishTime">
-            </p>
+            </p> -->
             <p>
                 第三希望：
-                <input type="date" name="thirdDate">
+                <input type="text" name="thirdDate" class="datepicker" placeholder="クリックして日付選択">
             </p>
-            <p>
+            <p>希望時間</p>
+            <div id="thirdDate"></div>
+            <!-- <p>
                 開始時間：
                 <input type="time" name="t_startTime">
                 〜終了時間：
                 <input type="time" name="t_finishTime">
-            </p>
-            <span>対応可能時間：</span>
-            <table>
-                <tr>
-                    <td>平日</td>
-                    <th>9:00　〜 22:00開始まで</th>
-                </tr>
-                <tr>
-                    <td>土日祝</td>
-                    <th>9:00　〜 18:00開始まで</th>
-                </tr>
-            </table>
+            </p> -->
         </div>
         <button>登録する</button>
     </form>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous">
-    </script>
-     <script
-        src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-        crossorigin="anonymous">
-    </script>
     <script>
         const data = <?php echo $schedule ?>;
     </script>
