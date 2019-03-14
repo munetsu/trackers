@@ -20,28 +20,22 @@
                          `tel`,
                          `certification`,
                          `firstDate`,
-                         `firstStartTime`,
-                         `firstFinishTime`,
+                         `ftime`,
                          `secondDate`,
-                         `secondStartTime`,
-                         `secondFinishTime`,
+                         `stime`,
                          `thirdDate`,
-                         `thirdStartTime`,
-                         `thirdFinishTime`,
+                         `ttime`,
                          `sendTime`";
             $values = "'".$array['name']."'".",".
                         "'".$array['email']."'".",".
                         "'".$array['tel']."'".",".
                         "'".$array['certification']."'".",".
                         "'".$array['firstDate']."'".",".
-                        "'".$array['f_startTime']."'".",".
-                        "'".$array['f_finishTime']."'".",".
+                        "'".$array['ftime']."'".",".
                         "'".$array['secondDate']."'".",".
-                        "'".$array['s_startTime']."'".",".
-                        "'".$array['s_finishTime']."'".",".
+                        "'".$array['stime']."'".",".
                         "'".$array['thirdDate']."'".",".
-                        "'".$array['t_startTime']."'".",".
-                        "'".$array['t_finishTime']."'".",".
+                        "'".$array['ttime']."'".",".
                         "'".$sendtime."'";
             $this->db->insert($table, $column, $values);
             echo '日程に関しては、頂いたメールアドレス宛に返信します。';
