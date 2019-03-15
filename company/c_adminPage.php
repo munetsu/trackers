@@ -29,6 +29,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <!-- jQuery本体-->
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="c_js/c_adminPage.js"></script>
 </head>
 <body>
     <div>
@@ -40,7 +43,7 @@
         <!-- 面談リスト -->
         <div class="interviewList">
             <a href="https://docs.google.com/spreadsheets/d/1CaRHTu-Hw-QsJOfFM2GGgcViDfuXrr7fUNbeY9uXxv4/edit#gid=0" target="_blank">日程調整Sheet</a>
-            <p>面談希望者一覧</p>
+            <p>日程調整前リスト</p>
             <?php foreach($interviewLists as $interviewList){ ?>
                 <?php if($count%3 == 0){ ?>
                     <div class="flex">
@@ -57,20 +60,22 @@
                             <input type="hidden" name="action" value="interviewConfirm">
                             <input type="hidden" name="tuotorRegisterId" value=<?php echo $interviewList['id'] ?>>
                             <div>
-                                <label><input type="radio" name="interviewDate" value=<?php echo $interviewList['firstDate'] ?>>
+                                <label><input type="radio" name="interviewDate" value=<?php echo $interviewList['firstDate']."/".$interviewList['ftime']?>>
                                 第一候補日：<?php echo $interviewList['firstDate'] ?><br></label>
                                 時間：<?php echo $interviewList['ftime'] ?>
                             </div>
                             <div>
-                                <label><input type="radio" name="interviewDate" value=<?php echo $interviewList['secondDate'] ?>>
+                                <label><input type="radio" name="interviewDate" value=<?php echo $interviewList['secondDate']."/".$interviewList['stime'] ?>>
                                 第二候補日：<?php echo $interviewList['secondDate'] ?><br></label>
                                 時間：<?php echo $interviewList['stime'] ?>
                             </div>
                             <div>
-                                <label><input type="radio" name="interviewDate" value=<?php echo $interviewList['thirdDate'] ?>>
+                                <label><input type="radio" name="interviewDate" value=<?php echo $interviewList['thirdDate']."/".$interviewList['ttime'] ?>>
                                 第三候補日：<?php echo $interviewList['thirdDate'] ?><br></label>
                                 時間：<?php echo $interviewList['ttime'] ?>
-                            </div>    
+                            </div>
+                            <input type="hidden" name="itime" value="" id="itime">
+                            <button>日程確定</button>
                         </form>
                     </div>
                 <?php if($count%3 == 2){ ?>

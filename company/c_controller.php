@@ -61,6 +61,19 @@
                 }
 
             }
+
+            // 面談日程確定
+            if($this->POST == 'interviewConfirm'){
+                $array = array();
+                $array['tuotorRegisterId'] = $_POST['tuotorRegisterId'];
+                $array['interviewDate'] = $_POST['interviewDate'];
+                // modelへデータ引き継ぎ
+                $this->model = new C_MODEL;
+                $this->model->interviewConfirm($array);
+
+                header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/company/c_adminPage.php');
+                exit();
+            }
         }
 
 

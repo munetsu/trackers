@@ -37,8 +37,17 @@
         public function interviewList(){
             $table = 'tuotorRegisters';
             $column = '*';
-            $condictions = 'WHERE `result` = 0';
+            $condictions = 'WHERE `result` = 0 AND `interviewDate` is NULL';
             $res = $this->db->selectAll($column, $table, $condictions);
             return $res;
+        }
+
+        // チューター面談日程確定
+        public function interviewConfirm($array){
+            $table = 'tuotorRegisters';
+            $values = '`interviewDate` = '."'".$array['interviewDate']."'";
+            $conditions = 'WHERE `id`='."'".$array['tuotorRegisterId']."'";
+            $this->db->update($table, $values, $conditions);
+
         }
     }
