@@ -38,7 +38,8 @@
                         "'".$array['ttime']."'".",".
                         "'".$sendtime."'";
             $this->db->insert($table, $column, $values);
-            echo '日程に関しては、頂いたメールアドレス宛に返信します。';
+
+            header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/tuotor.php?status=registeredowksmdndjchfifu93744rfif8j4bfkd87jenf0f9iwlwls0s8wj2hdpdudn');
             exit();
         }
 

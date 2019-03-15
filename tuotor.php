@@ -1,3 +1,12 @@
+<?php 
+    if($_GET['status'] == 'registeredowksmdndjchfifu93744rfif8j4bfkd87jenf0f9iwlwls0s8wj2hdpdudn'){
+        $alert = 1;
+    }else{
+        $alert = 0;
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,6 +15,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>【Trackers】資格チューター募集</title>
     <link rel="stylesheet" href="css/tuotor.css">
+    <!-- jQuery本体-->
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
     <div>
@@ -108,7 +120,11 @@
             <h5>登録フォーム</h5>
             <p><a href="tuotorRegister.php">こちらから登録お願いします</a></p>
         </div>
-
+        <button id="btn">ボタン</button>
     </div>
+    <script>
+        const alert = <?php echo $alert ?>;
+    </script>
+    <script src="js/tuotor.js"></script>
 </body>
 </html>
