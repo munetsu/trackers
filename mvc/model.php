@@ -43,6 +43,15 @@
             exit();
         }
 
+        // ログイン処理
+        public function login($array){
+            $table = $array['status'];
+            $column = '*';
+            $conditions = 'WHERE `email` ='."'".$array['email']."'".' AND `password`='."'".$array['password']."'";
+            $info = $this->db->select($column, $table, $conditions);
+            return $info;
+        }
+
 
 
 
