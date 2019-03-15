@@ -97,36 +97,18 @@
             </p>
             <p>希望時間</p>
             <div id="firstDate"></div>
-            <!-- <p>
-                開始時間：
-                <input type="time" name="f_startTime" class="datepicker">
-                〜終了時間：
-                <input type="time" name="f_finishTime">
-            </p> -->
             <p>
                 第二希望：
                 <input type="text" name="secondDate" class="datepicker" placeholder="クリックして日付選択">
             </p>
             <p>希望時間</p>
             <div id="secondDate"></div>
-            <!-- <p>
-                開始時間：
-                <input type="time" name="s_startTime">
-                〜終了時間：
-                <input type="time" name="s_finishTime">
-            </p> -->
             <p>
                 第三希望：
                 <input type="text" name="thirdDate" class="datepicker" placeholder="クリックして日付選択">
             </p>
             <p>希望時間</p>
             <div id="thirdDate"></div>
-            <!-- <p>
-                開始時間：
-                <input type="time" name="t_startTime">
-                〜終了時間：
-                <input type="time" name="t_finishTime">
-            </p> -->
         </div>
         <button>登録する</button>
     </form>
