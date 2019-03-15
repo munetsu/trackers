@@ -4,6 +4,10 @@
 
         }
 
+        //////////////////////////////////////
+        //共通部分
+        //////////////////////////////////////
+
         // ヘッダー
         public function headerView(){
             $header = 
@@ -31,7 +35,7 @@
         }
 
         //////////////////////////////////////
-        //Tuotorメニュー（チューター一覧）
+        //c_tuotor.php
         //////////////////////////////////////
         // 日程調整前チューター
         public function tuotorList($lists){
@@ -108,6 +112,23 @@
                 $view .= '</div>';
             }
             $view .= '</div>';
+            echo $view;
+        }
+
+        // 合格者の登録作業
+        public function examOkTuotor($array){
+            $view = '
+                <div>
+                    <p>合格者登録</p>
+                    <form action="c_controller.php" method="POST">
+                        <input type="hidden" name="action" value="tuotorResitor">
+                        <p>氏名：<input type="text" name="name" value="'.$array['name'].'" size="40"></p>
+                        <p>メールアドレス：<input type="text" name="email" value="'.$array['email'].'" size="40"></p>
+                        <p>電話番号：<input type="tel" name="tel" value="'.$array['tel'].'" size="40"></p>
+                        <button>チューター登録する</button>
+                    </form>
+                </div>
+            ';
             echo $view;
         }
 
