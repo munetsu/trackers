@@ -54,9 +54,9 @@
 
         // チューター登録者一覧
         public function tuotorList(){
-            $table = 'tuotorRegisters';
+            $table = 'tuotors';
             $column = '*';
-            $conditions = 'WHERE `result` = 2';
+            $conditions = '';
             $lists = $this->db->selectAll($column, $table, $conditions);
             return $lists;
         }
@@ -92,11 +92,13 @@
                         `email`,
                         `password`,
                         `tel`,
+                        `picture`,
                         `registerDate`";
             $values = "'".$array['c_name']."'".",".
                         "'".$array['email']."'".",".
                         "'".$password."'".",".
                         "'".$array['tel']."'".",".
+                        '"../upload/noimage.svg"'.','.
                         "'".$registerTime."'";
             $this->db->insert($table, $column, $values);
             header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/company/c_tuotor.php');
