@@ -33,7 +33,7 @@
            return $res;
         }
 
-        // チューター面談リスト取得
+        // 日程調整リスト取得
         public function interviewList(){
             $table = 'tuotorRegisters';
             $column = '*';
@@ -48,6 +48,24 @@
             $values = '`interviewDate` = '."'".$array['interviewDate']."'";
             $conditions = 'WHERE `id`='."'".$array['tuotorRegisterId']."'";
             $this->db->update($table, $values, $conditions);
-
         }
+
+        // チューター面談リスト
+        public function examTuotor(){
+            $table = 'tuotorRegisters';
+            $column = '*';
+            $conditions = 'WHERE `interviewDate` is NOT Null AND `result` = 0';
+            $res = $this->db->selectAll($column, $table, $conditions);
+            return $res;
+        }
+
+        // チューター合否更新
+        public function examResult($array){
+            $table = 'tuotorRegisters';
+            $values = '`result` = '."'".$array['result']."'";
+            $conditions = 'WHERE `id` ='."'".$array['tuotorId']."'";
+            $this->db->update($table, $values, $conditions);
+        }
+
+
     }

@@ -4,6 +4,7 @@
 
     class C_CONTROLLER{
         function __construct(){
+            $this->model = new C_MODEL;
             $this->POST = $_POST['action'];
             $this->c_judge();
         }
@@ -16,8 +17,14 @@
             return $password;
         }
 
-        // 処理切り分け
+        /////////////////////////////////////////////
+        //処理切り分け
+        /////////////////////////////////////////////
         private function c_judge(){
+
+            /////////////////////////////////////////////
+            //c_login.php処理
+            /////////////////////////////////////////////
 
             // 会社メンバー登録
             if($this->POST == 'signUp'){
@@ -32,7 +39,7 @@
                 $array['password'] = $password;
 
                 // modelへデータ引き継ぎ
-                $this->model = new C_MODEL;
+                // $this->model = new C_MODEL;
                 $this->model->signUp($array);
 
             }
@@ -48,7 +55,7 @@
                 $array['password'] = $password;
 
                 // modelへ引き継ぎ
-                $this->model = new C_MODEL;
+                // $this->model = new C_MODEL;
                 $res = $this->model->login($array);
 
                 // 条件分岐
@@ -62,18 +69,61 @@
 
             }
 
+            /////////////////////////////////////////////
+            //c_adminPage.php処理
+            /////////////////////////////////////////////
+
             // 面談日程確定
             if($this->POST == 'interviewConfirm'){
                 $array = array();
                 $array['tuotorRegisterId'] = $_POST['tuotorRegisterId'];
                 $array['interviewDate'] = $_POST['interviewDate'];
                 // modelへデータ引き継ぎ
-                $this->model = new C_MODEL;
+                // $this->model = new C_MODEL;
                 $this->model->interviewConfirm($array);
 
                 header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/company/c_adminPage.php');
                 exit();
             }
+
+            //////////////////////////////////////////////
+            // c_tuotor.php処理
+            /////////////////////////////////////////////
+
+            // 日程調整前リスト
+            if($this->POST == 'beforeAjax'){
+                $lists = $this->model->interviewList();
+                // viewへ引き継ぎ
+                include('c_view.php');
+                $this->view = new C_VIEW;
+                $this->view->tuotorList($lists);
+            }
+
+            // 面談リスト
+            if($this->POST == 'interviewAjax'){
+                // modelへ引き継ぎ
+                $lists = $this->model->examTuotor();
+                // viewへ引き継ぎ
+                include('c_view.php');
+                $this->view = new C_VIEW;
+                $this->view->interviewTuotor($lists);
+            }
+
+            // 合格判定結果処理
+            if($this->POST == 'exam'){
+                // データ引き継ぎ
+                $array = array();
+                $array['tuotorId'] = $_POST['tuotorId'];
+                $array['result'] = $_POST['result'];
+            
+                // modelへ引き継ぎ
+                $this->model->examResult($array);
+                header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/company/c_tuotor.php');
+                exit();
+            }
+
+            
+
         }
 
 
