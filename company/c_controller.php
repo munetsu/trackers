@@ -145,10 +145,10 @@
             if($this->POST == 'tuotorListAjax'){
                 // modelへ引き継ぎ
                 $lists = $this->model->tuotorList();
+                // var_dump($lists);
+                // exit();
                 // viewへ引き継ぎ
-                
-                
-                
+                $this->view->tuotors($lists);
             }
 
             

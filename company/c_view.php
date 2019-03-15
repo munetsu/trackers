@@ -132,4 +132,40 @@
             echo $view;
         }
 
+        // 登録チューター一覧
+        public function tuotors($lists){
+            // var_dump($lists);
+            // exit();
+            $count = 0;
+            $view = '';
+            foreach($lists as $list){
+                if($count%3 == 0){
+                    $view .= '<div class="flex">';
+                    $view .= '<div>';
+                }else{
+                    $view .= '<div>';
+                }
+
+                $view .= '<div class="flex">';
+                $view .= '<div><img src="'.$list['picture'].'" style="width:50px;height:50px"></div>';
+                $view .= '<div>';
+                    $view .= '<p>氏名：'.$list['c_name'].'</p>';
+                    $view .= '<p>氏名：'.$list['k_name'].'</p>';
+                    $view .= '<p>mail：'.$list['email'].'</p>';
+                    $view .= '<p>tel：'.$list['tel'].'</p>';
+                $view .= '</div>';
+                $view .= '</div>';
+
+                $view .= '<div><a href="?tutorid='.$list['tuotor_id'].'">合格体験記</a></div>';
+
+                if($count%3 == 2){
+                    $view .= '</div>';
+                    $view .= '</div>';
+                }else{
+                    $view .= '</div>';
+                }
+                $count .= 1;
+            }
+           echo $view;
+        }
     }    
