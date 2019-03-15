@@ -4,12 +4,17 @@
 
     class CONTROLLER{
         function __construct(){
+            $this->model = new MODEL;
             $this->POST = $_POST['action'];
             $this->judge();
         }
 
         // 処理切り分け
         private function judge(){
+
+            ///////////////////////////////////////////
+            //tuotorRegister.php
+            ///////////////////////////////////////////
 
             // チューター面談登録
             if($this->POST == 'tuotorRegister'){
@@ -26,9 +31,36 @@
                 $array['thirdDate'] = h($_POST['thirdDate']); //第三候補日
                 $array['ttime'] = h($_POST['ttime']); //第三候補時間
                 // modelへデータ引き継ぎ
-                $this->model = new MODEL;
+                // $this->model = new MODEL;
                 $this->model->tuotorRegister($array);
             }
+
+            ///////////////////////////////////////////
+            //login.php
+            ///////////////////////////////////////////
+
+            // ログイン
+            if($this->POST == 'login'){
+                // データ展開
+                $array = array();
+                $array['status'] = $_POST['status'];
+                $array['email'] = $_POST['email'];
+                $array['password'] = $_POST['password'];
+
+                // modelへ引き継ぎ
+                $info = $this->model->login($array);
+                
+                // 初ログインの場合
+                if($info['loginDate'] == NULL){
+                    header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/tuotor_signUp.php?id='.$info['tuotor_id']);
+                    exit();
+                }else{
+                    echo '工事中';
+                    exit();
+                }
+
+            }
+
         }
 
     }
