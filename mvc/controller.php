@@ -49,8 +49,9 @@
 
                 // modelへ引き継ぎ
                 $info = $this->model->login($array);
-
+                
                 // sessionへsecurity_code登録
+                session_start();
                 $_SESSION['security_code'] = $info['security_code'];
                 
                 // 初ログインの場合
