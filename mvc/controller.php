@@ -88,6 +88,8 @@
 
                 // modelへ引き継ぎ
                 $this->model->tuotorSignUp($array);
+                echo '登録完了';
+                exit();
                 
 
             }
@@ -182,7 +184,7 @@
                     // 読み出したファイルは消去
                     imagedestroy($original_image);
                     imagedestroy($canvas);
-                    return 'upload/'.$uniq_name;
+                    return $file_dir_path.$uniq_name;
                 } else {
                     echo '<script>alert("写真変更ができませんでした");location.href="setting.php;</script>';
                 }
