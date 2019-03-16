@@ -137,6 +137,13 @@
                 $array['email'] = $_POST['email'];
                 $array['tel'] = $_POST['tel'];
 
+                // security_code作成
+                $security1 = $this->password($_POST['email']);
+                $security2 = $this->password($_POST['tel']);
+                $temp = date("Ymd");
+                $security3 = $this->password($temp);
+                $array['security_code'] = $security1.$security2.$security3;
+
                 // modelへ引き継ぎ
                 $this->model->tuotorRegister($array);
             }

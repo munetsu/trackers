@@ -93,12 +93,14 @@
                         `password`,
                         `tel`,
                         `picture`,
+                        `security_code`,
                         `registerDate`";
             $values = "'".$array['c_name']."'".",".
                         "'".$array['email']."'".",".
                         "'".$password."'".",".
                         "'".$array['tel']."'".",".
                         '"../upload/noimage.svg"'.','.
+                        "'".$array['security_code']."'".",".
                         "'".$registerTime."'";
             $this->db->insert($table, $column, $values);
             header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/company/c_tuotor.php');
