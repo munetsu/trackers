@@ -49,6 +49,9 @@
 
                 // modelへ引き継ぎ
                 $info = $this->model->login($array);
+
+                // sessionへsecurity_code登録
+                $_SESSION['security_code'] = $info['security_code'];
                 
                 // 初ログインの場合
                 if($info['loginDate'] == NULL){
@@ -84,8 +87,7 @@
 
                 // modelへ引き継ぎ
                 $this->model->tuotorSignUp($array);
-                echo 'データ更新完了';
-                exit();
+                
 
             }
 
