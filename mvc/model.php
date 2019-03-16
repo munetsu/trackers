@@ -6,6 +6,35 @@
             $this->db = new DATA;
         }
 
+        //////////////////////////////////////
+        //SELECT文
+        //////////////////////////////////////
+
+        // ログイン処理
+        public function login($array){
+            $table = $array['status'];
+            $column = '*';
+            $conditions = 'WHERE `email` ='."'".$array['email']."'".' AND `password`='."'".$array['password']."'";
+            $info = $this->db->select($column, $table, $conditions);
+            return $info;
+        }
+
+        // チューター情報取得
+        public function tuotorInfo($id){
+            $table = 'tuotors';
+            $column = '*';
+            $conditions = 'WHERE `tuotor_id` = '."'".$id."'";
+            $info = $this->db->select($column, $table, $conditions);
+            return $info;
+        }
+        //////////////////////////////////////
+        //SELECTALL文
+        //////////////////////////////////////
+
+        //////////////////////////////////////
+        //INSERT文
+        //////////////////////////////////////
+
         public function tuotorRegister($array){
             // データ開封
             // var_dump($array);
@@ -43,13 +72,26 @@
             exit();
         }
 
-        // ログイン処理
-        public function login($array){
-            $table = $array['status'];
-            $column = '*';
-            $conditions = 'WHERE `email` ='."'".$array['email']."'".' AND `password`='."'".$array['password']."'";
-            $info = $this->db->select($column, $table, $conditions);
-            return $info;
+
+        //////////////////////////////////////
+        //UPDATE文
+        //////////////////////////////////////
+
+        // チューター会員登録
+        public function tuotorSignUp($array){
+            $registerDate = Date("Y/m/d H:i:s");
+            $table = 'tuotors';
+            $values = '`c_name` ='."'".$array['c_name']."'".",".
+                        '`k_name` ='."'".$array['k_name']."'".",".
+                        '`email` ='."'".$array['email']."'".",".
+                        '`password` ='."'".$array['password']."'".",".
+                        '`tel` ='."'".$array['tel']."'".",".
+                        '`picture` ='."'".$array['picture']."'".",".
+                        '`birthyear` ='."'".$array['birthyear']."'".",".
+                        '`birthmonth` ='."'".$array['birthmonth']."'".",".
+                        '`loginDate` ='."'".$registerDate."'";
+            $conditions = 'WHERE `tuotor_id` ='."'".$array['tuotor_id']."'";
+            $this->db->update($table, $values, $conditions);
         }
 
 
