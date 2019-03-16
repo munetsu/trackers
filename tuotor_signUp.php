@@ -11,6 +11,12 @@
     $model = new MODEL;
     $info = $model->tuotorInfo($id);
     
+    // 不正ログインチェック
+    if($_SESSION['security_code'] != $info['security_code']){
+        echo '不正アクセスです';
+        exit();
+    }
+    
 ?>
 
 <!DOCTYPE html>
