@@ -78,8 +78,8 @@
             // 面談日程確定
             if($this->POST == 'interviewConfirm'){
                 $array = array();
-                $array['tuotorRegisterId'] = $_POST['tuotorRegisterId'];
-                $array['interviewDate'] = $_POST['interviewDate'];
+                $array['tuotorRegisterId'] = h($_POST['tuotorRegisterId']);
+                $array['interviewDate'] = h($_POST['interviewDate']);
                 // modelへデータ引き継ぎ
                 // $this->model = new C_MODEL;
                 $this->model->interviewConfirm($array);
@@ -115,8 +115,8 @@
             if($this->POST == 'exam'){
                 // データ引き継ぎ
                 $array = array();
-                $array['tuotorId'] = $_POST['tuotorId'];
-                $array['result'] = $_POST['result'];
+                $array['tuotorId'] = h($_POST['tuotorId']);
+                $array['result'] = h($_POST['result']);
             
                 // modelへ引き継ぎ
                 // 合格登録
@@ -133,9 +133,9 @@
             if($this->POST == 'tuotorResitor'){
                 // データ引き継ぎ
                 $array = array();
-                $array['c_name'] = $_POST['name'];
-                $array['email'] = $_POST['email'];
-                $array['tel'] = $_POST['tel'];
+                $array['c_name'] = h($_POST['name']);
+                $array['email'] = h($_POST['email']);
+                $array['tel'] = h($_POST['tel']);
 
                 // security_code作成
                 $security1 = $this->password($_POST['email']);
@@ -158,6 +158,18 @@
                 $this->view->tuotors($lists);
             }
 
+            //////////////////////////////////////////////
+            // c_certification.php処理
+            /////////////////////////////////////////////
+
+            // 資格登録
+            if($this->POST == 'certification'){
+                $certifiction = h($_POST['certification']);
+
+                // modelへ引き継ぎ
+                $this->model->certificationRegister($certifiction);
+                header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/company/c_certification.php');
+            }
             
 
         }

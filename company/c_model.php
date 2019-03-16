@@ -107,6 +107,14 @@
             exit();
         }
 
+        // 資格登録
+        public function certificationRegister($certification){
+            $table = 'certifications';
+            $column = "`certification_kind`";
+            $values = "'".$certification."'";
+            $this->db->insert($table, $column, $values);
+        }
+
         /////////////////////////////////////////
         //UPDATE文
         /////////////////////////////////////////
