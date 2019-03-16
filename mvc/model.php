@@ -10,14 +10,25 @@
         //SELECT文
         //////////////////////////////////////
 
-        // ログイン処理
-        public function login($array){
+        // 仮ログイン処理
+        public function temp_login($array){
             $table = $array['status'];
             $column = '*';
             $conditions = 'WHERE `email` ='."'".$array['email']."'".' AND `password`='."'".$array['password']."'";
             $info = $this->db->select($column, $table, $conditions);
             return $info;
         }
+
+        // ログイン処理
+        public function login($array){
+            $table = 'tuotors';
+            $column = '*';
+            $conditions = 'WHERE `email` ='."'".$array['email']."'".'AND `password` ='."'".$array['password']."'";
+            $info =$this->db->select($column, $table, $conditions);
+            return $info;
+        }
+
+
 
         // チューター情報取得
         public function tuotorInfo($id){
@@ -30,6 +41,15 @@
         //////////////////////////////////////
         //SELECTALL文
         //////////////////////////////////////
+
+        // 資格取得
+        public function certificationList(){
+            $table = 'certifications';
+            $column = '*';
+            $conditions = '';
+            $certificationList = $this->db->selectAll($column, $table, $conditions);
+            return $certificationList;
+        }
 
         //////////////////////////////////////
         //INSERT文

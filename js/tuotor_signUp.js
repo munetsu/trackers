@@ -32,3 +32,5 @@ $(function(){
     $('.birthmonth').append(view);
 })
 
+// 資格情報
+console.log(info);

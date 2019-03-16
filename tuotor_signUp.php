@@ -10,12 +10,17 @@
     include('mvc/model.php');
     $model = new MODEL;
     $info = $model->tuotorInfo($id);
+    $info = JSON_ENCODE($info,JSON_UNESCAPED_UNICODE);
+
+    // 資格取得
+    $certificationList = $model->certificationList();
+    $certificationList = JSON_ENCODE($certificationList,JSON_UNESCAPED_UNICODE);
 
     // 不正ログインチェック
-    if($_SESSION['security_code'] != $info['security_code']){
-        echo '不正アクセスです';
-        exit();
-    }
+    // if($_SESSION['security_code'] != $info['security_code']){
+    //     echo '不正アクセスです';
+    //     exit();
+    // }
     
 ?>
 
@@ -79,6 +84,10 @@
 
         </div>
     </div>
+    <script>
+        let certificaionList = <?php echo $certificationList ?>
+        let info = <?php echo $info ?>
+    </script>
     <script src="js/tuotor_signUp.js"></script>
 </body>
 </html>
