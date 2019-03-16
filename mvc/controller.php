@@ -39,16 +39,16 @@
             //login.php
             ///////////////////////////////////////////
 
-            // ログイン
-            if($this->POST == 'login'){
+            // 仮ログイン
+            if($this->POST == 'temp_login'){
                 // データ展開
                 $array = array();
-                $array['status'] = $_POST['status'];
-                $array['email'] = $_POST['email'];
-                $array['password'] = $_POST['password'];
+                $array['status'] = h($_POST['status']);
+                $array['email'] = h($_POST['email']);
+                $array['password'] = h($_POST['password']);
 
                 // modelへ引き継ぎ
-                $info = $this->model->login($array);
+                $info = $this->model->temp_login($array);
                 
                 // sessionへsecurity_code登録
                 session_start();
@@ -65,6 +65,28 @@
 
             }
 
+            // ログイン
+            if($this->POST == 'login'){
+                // password処理
+                $password = h($_POST['password']);
+                $password = $this->password($password);
+
+                // データ展開
+                $array = array();
+                $array['email'] = $_POST['email'];
+                $array['password'] = $password;
+
+                // modelへ引き継ぎ
+                $info =$this->model->login($array);
+
+                // login判定
+                $this->login_judge($info);
+
+                // チューターMyPageへ
+                header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/tuotor_mypage.php');
+                exit();
+            }
+
             // チューター会員登録
             if($this->POST == 'tuotorSignUp'){
                 
@@ -76,22 +98,21 @@
 
                 // データ展開
                 $array = array();
-                $array['tuotor_id'] = $_POST['tuotor_id'];
-                $array['c_name'] = $_POST['c_name'];
-                $array['k_name'] = $_POST['k_name'];
-                $array['email'] = $_POST['email'];
+                $array['tuotor_id'] = h($_POST['tuotor_id']);
+                $array['c_name'] = h($_POST['c_name']);
+                $array['k_name'] = h($_POST['k_name']);
+                $array['email'] = h($_POST['email']);
                 $array['password'] = $password;
-                $array['tel'] = $_POST['tel'];
+                $array['tel'] = h($_POST['tel']);
                 $array['picture'] = $picture;
-                $array['birthyear'] = $_POST['birthyear'];
-                $array['birthmonth'] = $_POST['birthmonth'];
+                $array['birthyear'] = h($_POST['birthyear']);
+                $array['birthmonth'] = h($_POST['birthmonth']);
 
                 // modelへ引き継ぎ
                 $this->model->tuotorSignUp($array);
                 echo '登録完了';
                 exit();
                 
-
             }
 
             
@@ -100,6 +121,7 @@
         ////////////////////////////////////////////////
         //password_sha256処理
         ////////////////////////////////////////////////
+
         // password_sha256処理
         private function password($password){
             // password sha256
@@ -107,6 +129,19 @@
             $password = hash_hmac('sha256' ,$password , False);
             return $password;
         }
+
+        ////////////////////////////////////////////////
+        //login出来なかった処理
+        ////////////////////////////////////////////////
+
+        // login不可の場合
+        private function login_judge($info){
+            if($info == ''){
+                echo 'ログイン出来ませんでした';
+                exit();
+            }
+        }
+
 
 
         ////////////////////////////////////////////////
