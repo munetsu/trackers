@@ -29,7 +29,7 @@
             $sideBar = 
                 '<div class="sideBar">
                     <li><a href="c_tuotor.php">チューター</a></li>
-                    <li><a href="#">資格追加</a></li>
+                    <li><a href="c_certification.php">資格追加</a></li>
                 </div>';
             return $sideBar;
         }
