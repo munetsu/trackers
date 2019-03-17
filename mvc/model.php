@@ -28,8 +28,6 @@
             return $info;
         }
 
-
-
         // チューター情報取得
         public function tuotorInfo($id){
             $table = 'tuotors';
@@ -38,18 +36,19 @@
             $info = $this->db->select($column, $table, $conditions);
             return $info;
         }
+
+        // 資格取得
+        public function certificationList($info){
+            $table = 'certifications';
+            $column = '*';
+            $conditions = 'WHERE `certification_id`='."'".$info."'";
+            $certificationList = $this->db->select($column, $table, $conditions);
+            return $certificationList;
+        }
+
         //////////////////////////////////////
         //SELECTALL文
         //////////////////////////////////////
-
-        // 資格取得
-        public function certificationList(){
-            $table = 'certifications';
-            $column = '*';
-            $conditions = '';
-            $certificationList = $this->db->selectAll($column, $table, $conditions);
-            return $certificationList;
-        }
 
         //////////////////////////////////////
         //INSERT文
