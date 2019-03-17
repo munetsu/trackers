@@ -10,11 +10,12 @@
     include('mvc/model.php');
     $model = new MODEL;
     $info = $model->tuotorInfo($id);
-    $info = JSON_ENCODE($info,JSON_UNESCAPED_UNICODE);
 
     // 資格取得
-    $certificationList = $model->certificationList();
-    $certificationList = JSON_ENCODE($certificationList,JSON_UNESCAPED_UNICODE);
+    $certificationList = $model->certificationList($info['certification']);
+    // $certificationList = JSON_ENCODE($certificationList,JSON_UNESCAPED_UNICODE);
+    // var_dump($certificationList);
+    // exit();
 
     // 不正ログインチェック
     if($_SESSION['security_code'] != $info['security_code']){
@@ -38,8 +39,7 @@
     <div>
         <div>
             <p>利用規約を最後までお読みください。</p>
-            <textarea name="" id="" rows="10" style="width: 80vw">
-                ああああああああああ
+            <textarea name="" id="" rows="10" style="width: 80vw">ああああああああああ
             </textarea><br>
             <label><input type="checkbox" value="1" id="rule">利用規約に同意する</label>
         </div>
@@ -48,9 +48,10 @@
             <span>既に登録頂いてる部分で変更がある場合は、変更をお願いします</span>
 
             </p>
-            <form action="mvc/controller.php" method="POST" enctype="multipart/form-data">
+            <form action="mvc/controller.php" method="POST" name="signUp" enctype="multipart/form-data">
                 <input type="hidden" name="action" value="tuotorSignUp">
                 <input type="hidden" name="tuotor_id" value=<?php echo $info['tuotor_id']?>>
+                <p>登録資格：<?php echo $certificationList['certification_kind'] ?></p>
                 <div>
                     <p>氏名（漢字）:<input type="text" name="c_name" value=<?php echo $info['c_name']?>></p>
                 </div>
@@ -79,15 +80,11 @@
                         <select class="birthmonth" name="birthmonth"></select>月
                     </p>
                 </div>
-                <button id="btn">登録</button>
+                <button id="btn" type="button">登録</button>
             </form>
 
         </div>
     </div>
-    <script>
-        let certificaionList = <?php echo $certificationList ?>
-        let info = <?php echo $info ?>
-    </script>
     <script src="js/tuotor_signUp.js"></script>
 </body>
 </html>
