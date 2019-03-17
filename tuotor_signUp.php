@@ -17,10 +17,10 @@
     $certificationList = JSON_ENCODE($certificationList,JSON_UNESCAPED_UNICODE);
 
     // 不正ログインチェック
-    // if($_SESSION['security_code'] != $info['security_code']){
-    //     echo '不正アクセスです';
-    //     exit();
-    // }
+    if($_SESSION['security_code'] != $info['security_code']){
+        echo '不正アクセスです';
+        exit();
+    }
     
 ?>
 
