@@ -110,7 +110,9 @@
 
                 // modelへ引き継ぎ
                 $this->model->tuotorSignUp($array);
-                echo '登録完了';
+                
+                // 次ページへ
+                header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/tuotor_signUp2.php?id='."'".$array['tuotor_id']."'");
                 exit();
                 
             }
