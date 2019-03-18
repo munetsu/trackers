@@ -105,7 +105,7 @@ $(document).on('click', '.search' ,function(){
 
 // 登録ボタンを押した時
 $(document).on('click', '.registerBtn', function(){
-    let data = JSON.stringify(bookLists);
+    // let data = JSON.stringify(bookLists);
     $.ajax({
         url:"mvc/controller.php",
         type:"POST",
@@ -117,7 +117,7 @@ $(document).on('click', '.registerBtn', function(){
         }
     })
     .done((data)=>{
-        console.log(data)
+        $('.all').html(data);
     })
     .fail((textStatus)=>{
         console.log('失敗'+textStatus)
