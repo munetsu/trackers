@@ -91,6 +91,45 @@
             exit();
         }
 
+        public function booklist($array){
+            $table = 'booklists';
+            if($array['count'] == 1){
+                $column = "`tuotor_id`,
+                        `title1`,
+                        `imageUrl1`";
+                $values = "'".$array['tuotor_id']."'".",".
+                            "'".$array['title1']."'".",".
+                            "'".$array['imageUrl1']."'";
+            }else if($array['count'] == 2){
+                $column = "`tuotor_id`,
+                        `title1`,
+                        `imageUrl1`,
+                        `title2`,
+                        `imageUrl2`";
+                $values = "'".$array['tuotor_id']."'".",".
+                            "'".$array['title1']."'".",".
+                            "'".$array['imageUrl1']."'".",".
+                            "'".$array['title2']."'".",".
+                            "'".$array['imageUrl2']."'";
+            }else{
+                $column = "`tuotor_id`,
+                        `title1`,
+                        `imageUrl1`,
+                        `title2`,
+                        `imageUrl2`,
+                        `title3`,
+                        `imageUrl3`";
+                $values = "'".$array['tuotor_id']."'".",".
+                            "'".$array['title1']."'".",".
+                            "'".$array['imageUrl1']."'".",".
+                            "'".$array['title2']."'".",".
+                            "'".$array['imageUrl2']."'".",".
+                            "'".$array['title3']."'".",".
+                            "'".$array['imageUrl3']."'";
+            }
+            $this->db->insert($table, $column, $values);
+        }
+
 
         //////////////////////////////////////
         //UPDATE文

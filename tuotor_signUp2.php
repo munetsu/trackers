@@ -32,7 +32,7 @@
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-    <div>
+    <div class="all">
         <p>登録ステップ2</p>
         <div>
             <p>市販テキストを利用していましたか？</p>

@@ -120,16 +120,32 @@
             ///////////////////////////////////////////
             //tuotor_signUp2.php
             ///////////////////////////////////////////
-            // 本登録
+            // booklist登録
             if($this->POST == 'bookRegister'){
                 
                 // データ展開
                 $array = array();
                 $array['tuotor_id'] = $_POST['tuotor_id'];
                 
-                $data = $_POST['data'];
-                var_dump($data);
-               
+                $datas = $_POST['data'];
+                $count = 0;
+                foreach($datas as $data){
+                    $count++;
+                    $array['title'.$count] = $data['title'];
+                    $array['imageUrl'.$count] = $data['imageUrl'];
+                }
+                $array['count'] = $count;
+
+                // modelへ引き継ぎ
+                $this->model->booklist($array);
+
+                // チューター情報取得
+                $tuotorInfo = $this->model->tuotorInfo($array['tuotor_id']);
+                
+                // VIEWへ引き継ぎ
+                include('view.php');
+                $this->view = new VIEW;
+                $this->view->tuotorView($array, $tuotorInfo);
                 
             }
             
@@ -234,7 +250,8 @@
                     // 読み出したファイルは消去
                     imagedestroy($original_image);
                     imagedestroy($canvas);
-                    return $file_dir_path.$uniq_name;
+                    // return $file_dir_path.$uniq_name;
+                    return $uniq_name;
                 } else {
                     echo '<script>alert("写真変更ができませんでした");location.href="setting.php;</script>';
                 }
