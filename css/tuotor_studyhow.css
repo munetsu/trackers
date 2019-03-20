@@ -1,0 +1,16 @@
+.flex{
+    display:flex;
+}
+
+.month{
+    list-style: none;
+    width: 7vw;
+    margin-left:1vw;
+    border: #bfbfbf solid 1px;
+    text-align: center;
+}
+
+.selected{
+    background-color: red;
+    color: white;
+}
