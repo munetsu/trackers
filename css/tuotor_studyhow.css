@@ -1,9 +1,17 @@
+li {
+    list-style: none;
+}
+
+textarea {
+    line-height: 150%;   
+}
+
+
 .flex{
     display:flex;
 }
 
 .month{
-    list-style: none;
     width: 7vw;
     margin-left:1vw;
     border: #bfbfbf solid 1px;
@@ -13,4 +21,22 @@
 .selected{
     background-color: red;
     color: white;
+}
+
+.howto{
+    width: 70vw;
+    height: 10vh;
+}
+
+.plusminus {
+    width: 5vw;
+    height: 5vw;
+    margin-left: 3vw;
+    padding-top: auto;
+    padding-bottom: auto;
+}
+
+.img {
+    width: 20vw;
+    height: 20vh;
 }
