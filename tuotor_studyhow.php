@@ -19,9 +19,14 @@
 <body>
     <div>
         <div>
+            <p>対象月を選択してください（複数選択可）</p>
             <ul class="monthList flex"></ul>
         </div>
         <div class="studytime"></div>
+        <div>
+            <p>勉強方法を記載してください<img src="img/icon/plus.svg" class="plusminus"></p>
+            <div class="block"></div>
+        </div>
     
     </div>
     <script src="js/tuotor_studyhow.js"></script>
