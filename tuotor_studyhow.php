@@ -24,7 +24,7 @@
         </div>
         <div class="studytime"></div>
         <div>
-            <p>勉強方法を記載してください<img src="img/icon/plus.svg" class="plusminus"></p>
+            <p>勉強方法を記載してください<img src="img/icon/plus.svg" class="plusminus plus"></p>
             <div class="block"></div>
         </div>
     
