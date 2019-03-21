@@ -8,6 +8,15 @@ let holidaytime = 5;
 let holiday = 2;
 let num = 1;
 
+// book情報形式
+let bookInfo = {
+    'title':'',
+    'imageUrl':''
+}
+
+// book情報配列
+const bookLists = [];
+
 //////////////////////////////////////////////////////////////////////
 //読み込み時に描画
 //////////////////////////////////////////////////////////////////////
@@ -66,22 +75,93 @@ $(document).on('change', '.whatlist', function(){
     let focus = $(this).parent('div').attr('data-id');
     if(selectList == 'q' || selectList == 't'){
         $(this).next('div').remove();
-        $('#whatlist'+focus).append(viewbookSearch());
+        $('#whatlist'+focus).append(viewbookSearch(focus));
+    }else{
+        $('[data-isbn=whatarea'+focus+']').remove();
     }
 })
 
 // ISBN文字数カウント
 $(document).on('keyup', '.isbnNumber', function(){
+    let dataNum = $(this).attr('data-input');
     let length = $(this).val().length;
     length = 10 - length;
-    $('.isbnString').remove();
-    $(this).parent().append(stringNum(length));
+    $('[data-strings='+dataNum+']').remove();
+    $(this).parent().append(stringNum(length, dataNum));
 
     if(length == 0){
-        $(this).parent().next('.isbnBtn').prop('disabled', false);
+        $('[data-btn='+dataNum+']').prop('disabled', false);
     }else{
-        $(this).parent().next('.isbnBtn').prop('disabled', true);
+        $('[data-btn='+dataNum+']').prop('disabled', true);
     }
+})
+
+// GoogleBooksAPI
+function googleBookAPI(isbn, bookarea){
+
+    $('[data-isbn='+bookarea+']').remove();
+    $('.bg-warning').remove();
+    
+    const isbnNum = '978'+isbn;
+    console.log(isbnNum);
+    const url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbnNum;
+
+    $.getJSON(url, function(data) {
+      if(!data.totalItems) {
+        // $(".bookarea").append('<p class="bg-warning" id="warning">該当する書籍がありません。</p>');
+        $('[data-book='+bookarea+']').append('<p class="bg-warning" id="warning">該当する書籍がありません。</p><button class="reSreach">再検索</button>');
+
+      } else {
+
+// 該当書籍が存在した場合、JSONから値を取得して入力項目のデータを取得する
+
+        // bookInfoオブジェクト生成
+        const newbookInfo = Object.assign({},bookInfo);
+        newbookInfo.title = data.items[0].volumeInfo.title;
+        newbookInfo.imageUrl = data.items[0].volumeInfo.imageLinks.smallThumbnail;
+        bookLists.push(newbookInfo);
+
+        $('[data-book='+bookarea+']').append(
+            '<p>'+data.items[0].volumeInfo.title+'</p><img src=\"'+data.items[0].volumeInfo.imageLinks.smallThumbnail+ '\" /><button class="reSreach">再検索</button>');
+        };
+    })
+};
+
+// 書籍検索クリック
+$(document).on('click', '.isbnBtn', function(){
+    let data_num = $(this).attr('data-btn');
+    let isbn = $('[data-input='+data_num+']').val();
+    console.log(data_num);
+    // let isbn = $(this).parents().find('.isbnNumber').val();
+    // let bookarea = $(this).parents('div').find('.what').attr('data-focus');
+    // console.log(bookarea);
+    $(this).parents('.what').append(viewbook(data_num));
+    googleBookAPI(isbn, data_num);
+})
+
+// 再検索クリック
+$(document).on('click', '.reSreach', function(){
+    let data_focus = $(this).parents('div').attr('data-book');
+    $('[data-book='+data_focus+']').remove();
+    $('[data-booksearch='+data_focus+']').append(viewbookSearch(focus));
+})
+
+// delete処理
+$(document).on('click', '.delete', function(){
+    let data_focus = $(this).attr('data-focus');
+    if(!confirm('削除しますか？')){
+        // キャンセル
+        return false;
+    }else{
+        // 削除処理
+        $('[data-div='+data_focus+']').remove();
+    }
+})
+
+// plus処理
+$(document).on('click', '.plus', function(){
+    num += 1;
+    $('.block').append(viewstudyHow(num));
 })
 
 //////////////////////////////////////////////////////////////////////
@@ -105,8 +185,8 @@ function viewStudytime(){
 // 勉強方法
 function viewstudyHow(num){
     let view = `
-        <div class="flex">
-            <div class="what" id="whatlist`+num+`" data-id="`+num+`">
+        <div class="flex whatarea" data-div="whatarea`+num+`">
+            <div class="what" id="whatlist`+num+`" data-id="`+num+`" data-booksearch="whatarea`+num+`">
                 <select class="whatlist">
                     <option selected disabled hidden>選択▼</option>
                     <option></option>
@@ -120,28 +200,39 @@ function viewstudyHow(num){
                 <p>利用方法</p>
                 <textarea class="howto" name="howto`+num+`" col="30" placeholder="どのように使っていたか記載してください"></textarea>
             </div>
-            <div><img src="img/icon/minus.svg" class="plusminus"></div>
+            <div class="delete" data-focus="whatarea`+num+`">
+                <img src="img/icon/minus.svg" class="plusminus"><br>
+                <span>削除</span>
+            </div>
         </div>
         `;
     return view;
 }
 
 // 書籍検索
-function viewbookSearch(){
+function viewbookSearch(focus){
     let view = `
-        <div class="isbn">
+        <div class="isbn" data-isbn="whatarea`+focus+`" data-id="`+focus+`">
             <p>ISBNコードを入力してください。<img src="img/isbn.png" class="img"></p>
-            <p>ISBNコード:978-<input type="number" name="isbn" max-length="10" class="isbnNumber"></p>
-            <button class="isbnBtn" disabled>検索</button>
+            <p>ISBNコード:978-<input type="number" name="isbn" max-length="10" class="isbnNumber" data-input="whatarea`+focus+`"></p>
+            <button class="isbnBtn" data-btn="whatarea`+focus+`" disabled>検索</button>
         </div>
         `;
     return view;
 }
 
 // 文字数表示
-function stringNum(m){
+function stringNum(m,dataNum){
     let view =`
-        <p class="isbnString">あと<span class="number">`+m+`文字</p>
+        <p class="isbnString" data-strings="`+dataNum+`">あと<span class="number">`+m+`文字</p>
+    `;
+    return view;
+}
+
+// 書籍検索表示
+function viewbook(bookarea){
+    let view =`
+        <div class="bookarea" data-book="`+bookarea+`"></div>
     `;
     return view;
 }
