@@ -2,11 +2,9 @@
 //変数・配列一覧
 //////////////////////////////////////////////////////////////////////
 const selectMonth = [];
-let weektime = 3;
-let week = 5;
-let holidaytime = 5;
-let holiday = 2;
-let num = 1;
+// 格納情報数
+const infoLists = [0];
+
 
 // book情報形式
 let bookInfo = {
@@ -16,6 +14,7 @@ let bookInfo = {
 
 // book情報配列
 const bookLists = [];
+
 
 //////////////////////////////////////////////////////////////////////
 //読み込み時に描画
@@ -30,7 +29,7 @@ for(let i = 1;i<13;i++){
 $('.studytime').html(viewStudytime());
 
 // 勉強方法表示
-$('.block').html(viewstudyHow(num));
+$('.block').html(viewstudyHow(0));
 
 //////////////////////////////////////////////////////////////////////
 //クリック・動的イベント
@@ -149,19 +148,27 @@ $(document).on('click', '.reSreach', function(){
 // delete処理
 $(document).on('click', '.delete', function(){
     let data_focus = $(this).attr('data-focus');
+    let data_id = $(this).attr('data-id');
     if(!confirm('削除しますか？')){
         // キャンセル
         return false;
     }else{
         // 削除処理
         $('[data-div='+data_focus+']').remove();
+        console.log(data_id);
+        infoLists.splice(data_id, 1);
+        console.log(infoLists);
     }
 })
 
 // plus処理
 $(document).on('click', '.plus', function(){
-    num += 1;
-    $('.block').append(viewstudyHow(num));
+    let number = infoLists.length;
+    number = number++
+    console.log(number);
+    infoLists.push(number);
+    $('.block').append(viewstudyHow(number));
+    console.log(infoLists);
 })
 
 //////////////////////////////////////////////////////////////////////
@@ -185,7 +192,7 @@ function viewStudytime(){
 // 勉強方法
 function viewstudyHow(num){
     let view = `
-        <div class="flex whatarea" data-div="whatarea`+num+`">
+        <div class="flex whatarea" data-div="whatarea`+num+`" data-id="`+num+`">
             <div class="what" id="whatlist`+num+`" data-id="`+num+`" data-booksearch="whatarea`+num+`">
                 <select class="whatlist">
                     <option selected disabled hidden>選択▼</option>
@@ -200,7 +207,7 @@ function viewstudyHow(num){
                 <p>利用方法</p>
                 <textarea class="howto" name="howto`+num+`" col="30" placeholder="どのように使っていたか記載してください"></textarea>
             </div>
-            <div class="delete" data-focus="whatarea`+num+`">
+            <div class="delete" data-focus="whatarea`+num+`" data-id="`+num+`">
                 <img src="img/icon/minus.svg" class="plusminus"><br>
                 <span>削除</span>
             </div>
