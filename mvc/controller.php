@@ -155,10 +155,17 @@
             if($this->POST == 'studyhow'){
                 // データ展開
                 $array = array();
+                $array['tuotor_id'] = $_POST['tuotor_id'];
                 $array['monthly'] = $_POST['monthly'];
+                $array['weektime'] = $_POST['weektime'];
+                $array['weekday'] = $_POST['weekday'];
+                $array['holidaytime'] = $_POST['holidaytime'];
+                $array['holiday'] = $_POST['holiday'];
                 $array['booklists'] = $_POST['booklists'];
-                var_dump($array['monthly']);
-                exit();
+                $array['howtolists'] = $_POST['howtolists'];
+ 
+                // modelへ引き継ぎ
+                $this->model->tuotor_studyhow($array);
             }
             
         }

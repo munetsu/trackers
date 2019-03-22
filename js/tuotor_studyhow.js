@@ -248,7 +248,7 @@ $('#register').on('click', function(){
             holidaytime:holidaytime,
             holiday:holiday,
             booklists: bookLists,
-            howtoLists: howtoLists
+            howtolists: howtoLists
         }
     })
     .done((data)=>{

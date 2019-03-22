@@ -130,6 +130,53 @@
             $this->db->insert($table, $column, $values);
         }
 
+        // studyhow部分(from:controller.php)
+        public function tuotor_studyhow($array){
+            $datetime = date("Y/m/d"); //日付取得
+            $booklists = $array['booklists'];
+            $howtolists = $array['howtolists'];
+            $columnlist = '';
+            $valuelist = '';
+            for($i = 0;$i<count($booklists);$i++){
+                $columnlist .= "`kind".$i."`,
+                                `title".$i."`,
+                                `imageUrl".$i."`,
+                                `authors".$i."`,
+                                `howto".$i."`,";
+                $valuelist .= "'".$booklists[$i]['kind']."'".",".
+                            "'".$booklists[$i]['title']."'".",".
+                            "'".$booklists[$i]['imageUrl']."'".",".
+                            "'".$booklists[$i]['authors']."'".",".
+                            "'".$howtolists[$i]['content']."'".",";
+            }
+            
+            $table = 'studyHows';
+            $column = "`tuotor_id`,
+                        `weektime`,
+                        `weekday`,
+                        `holidaytime`,
+                        `holiday`,
+                        ".$columnlist."                       
+                        `registerDate`,
+                        `monthly`
+                    ";
+            
+            foreach($array['monthly'] as $monthly){
+                $values = "'".$array['tuotor_id']."'".",".
+                        "'".$array['weektime']."'".",".
+                        "'".$array['weekday']."'".",".
+                        "'".$array['holidaytime']."'".",".
+                        "'".$array['holiday']."'".",".
+                        $valuelist.
+                        "'".$datetime."'".",".
+                        "'".$monthly."'";
+                var_dump($column."::://".$values.",,,,".$monthly);
+                $this->db->insert($table, $column, $values);
+            }
+            exit();
+
+        }
+
 
         //////////////////////////////////////
         //UPDATE文
