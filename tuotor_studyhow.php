@@ -1,7 +1,21 @@
 <?php
+    // session_start();
+    // include('funcs/funcs.php');
+    // chkSsid();
 
+    $id = $_GET['id'];
 
+    // // modelへ引き継ぎ
+    // // 対象チューター情報取得
+    // include('mvc/model.php');
+    // $model = new MODEL;
+    // $info = $model->tuotorInfo($id);
 
+    // // 不正ログインチェック
+    // if($_SESSION['security_code'] != $info['security_code']){
+    //     echo '不正アクセスです';
+    //     exit();
+    // }
 
 ?>
 
@@ -24,11 +38,14 @@
         </div>
         <div class="studytime"></div>
         <div>
-            <p>勉強方法を記載してください<img src="img/icon/plus.svg" class="plusminus plus"></p>
+            <p>勉強方法を記載してください(4つまで登録可）<img src="img/icon/plus.svg" class="plusminus plus">追加</p>
             <div class="block"></div>
         </div>
-    
+        <div><button id="register">登録</button></div>
     </div>
+    <script>
+        let tuotor_id = <?php echo $id ?>
+    </script>
     <script src="js/tuotor_studyhow.js"></script>
 </body>
 </html>

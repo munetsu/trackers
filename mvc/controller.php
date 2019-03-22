@@ -148,6 +148,18 @@
                 $this->view->tuotorView($array, $tuotorInfo);
                 
             }
+            ///////////////////////////////////////////
+            //tuotor_studyhow.php
+            ///////////////////////////////////////////
+            // 情報登録
+            if($this->POST == 'studyhow'){
+                // データ展開
+                $array = array();
+                $array['monthly'] = $_POST['monthly'];
+                $array['booklists'] = $_POST['booklists'];
+                var_dump($array['monthly']);
+                exit();
+            }
             
         }
 
