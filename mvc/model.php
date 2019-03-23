@@ -29,11 +29,12 @@
         }
 
         // チューター情報取得
-        public function tuotorInfo($id){
+        public function tuotorInfo($id, $column){
             $table = 'tuotors';
-            $column = '*';
-            $conditions = 'WHERE `tuotor_id` = '."'".$id."'";
+            $column = $column;
+            $conditions = 'WHERE `tuotor_id` ='.$id;
             $info = $this->db->select($column, $table, $conditions);
+            
             return $info;
         }
 
@@ -44,6 +45,22 @@
             $conditions = 'WHERE `certification_id`='."'".$info."'";
             $certificationList = $this->db->select($column, $table, $conditions);
             return $certificationList;
+        }
+
+        // 勉強法登録検索
+        public function studyhowSelect($tuotor_id, $monthly){
+            $table = 'studyHows';
+            $column = 'monthly';
+            $monthList = array();
+            foreach($monthly as $month){
+                $conditions = 'WHERE `tuotor_id` ='.$tuotor_id.' AND `monthly` ='."'".$month."'";
+                $res = $this->db->select($column, $table, $conditions);
+                if($res == ''){
+                    // 未登録月
+                    array_push($monthList, $month);
+                }
+            }
+            return $monthList;
         }
 
         //////////////////////////////////////
@@ -143,11 +160,11 @@
                                 `imageUrl".$i."`,
                                 `authors".$i."`,
                                 `howto".$i."`,";
-                $valuelist .= "'".$booklists[$i]['kind']."'".",".
-                            "'".$booklists[$i]['title']."'".",".
-                            "'".$booklists[$i]['imageUrl']."'".",".
-                            "'".$booklists[$i]['authors']."'".",".
-                            "'".$howtolists[$i]['content']."'".",";
+                $valuelist .= "'".h($booklists[$i]['kind'])."'".",".
+                            "'".h($booklists[$i]['title'])."'".",".
+                            "'".h($booklists[$i]['imageUrl'])."'".",".
+                            "'".h($booklists[$i]['authors'])."'".",".
+                            "'".h($howtolists[$i]['content'])."'".",";
             }
             
             $table = 'studyHows';
@@ -169,12 +186,10 @@
                         "'".$array['holiday']."'".",".
                         $valuelist.
                         "'".$datetime."'".",".
-                        "'".$monthly."'";
-                var_dump($column."::://".$values.",,,,".$monthly);
+                        "'".h($monthly)."'";
+                // var_dump($column."::://".$values.",,,,".$monthly);
                 $this->db->insert($table, $column, $values);
             }
-            exit();
-
         }
 
 
