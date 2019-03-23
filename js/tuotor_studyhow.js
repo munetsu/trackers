@@ -88,7 +88,6 @@ $(document).on('change', '.whatlist', function(){
         $('#whatlist'+focus).append(viewbookSearch(focus));
     }else{
         $('[data-isbn=whatarea'+focus+']').remove();
-        $('[data-book=whatarea'+focus+']').remove();
         const newbookInfo = Object.assign({},bookInfo);
         newbookInfo.id ='whatarea'+focus;
         newbookInfo.kind = selectList;
@@ -170,7 +169,7 @@ $(document).on('click', '.reSreach', function(){
     let focus = $(this).parents('div').parents('div').attr('data-id');
     $('[data-book='+data_focus+']').remove();
     $('[data-booksearch='+data_focus+']').append(viewbookSearch(focus));
-    bookInfoDelete(data_focus);
+    arrayDelete(bookLists, data_focus);
     console.log(bookLists);
 })
 
@@ -256,11 +255,19 @@ $('#register').on('click', function(){
         }
     })
     .done((data)=>{
-        console.log('成功'+data);
+        if(!confirm('他の月も登録しますか？')){
+            console.log(data);
+            // キャンセル
+            window.location.href ="/trackers/tuotor_mypage.php?id="+data;
+            return;
+        }else{
+            // 登録する場合
+            location.reload();
+        }
     })
     .fail((data)=>{
-        alert('登録失敗しました');
-        console.log(data);
+        alert('登録失敗しました。再度、登録処理をお願いします。');
+        location.reload();
     })
 })
 
