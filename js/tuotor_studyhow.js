@@ -80,20 +80,24 @@ function checkArray(m){
 // 勉強ツール選択
 $(document).on('change', '.whatlist', function(){
     let selectList = $(this).val();
-    // selectList = selectList.slice(0,1);
     let focus = $(this).parent('div').attr('data-id');
+    let id = 'whatarea'+focus;
+    arrayDelete(bookLists, id);
     if(selectList == '1' || selectList == '2'){
         $(this).next('div').remove();
         $('#whatlist'+focus).append(viewbookSearch(focus));
     }else{
         $('[data-isbn=whatarea'+focus+']').remove();
+        $('[data-book=whatarea'+focus+']').remove();
+        const newbookInfo = Object.assign({},bookInfo);
+        newbookInfo.id ='whatarea'+focus;
+        newbookInfo.kind = selectList;
+        newbookInfo.title = '';
+        newbookInfo.imageUrl = '';
+        newbookInfo.authors = '';
+        bookLists.push(newbookInfo);
+        console.log(bookLists);
     }
-    // if(selectList == 'q' || selectList == 't'){
-    //     $(this).next('div').remove();
-    //     $('#whatlist'+focus).append(viewbookSearch(focus));
-    // }else{
-    //     $('[data-isbn=whatarea'+focus+']').remove();
-    // }
 })
 
 // ISBN文字数カウント
