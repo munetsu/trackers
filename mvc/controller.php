@@ -1,6 +1,7 @@
 <?php
     include('../funcs/funcs.php');
     include('model.php');
+    $http = 'https';
 
     class CONTROLLER{
         function __construct(){
@@ -110,9 +111,9 @@
 
                 // modelへ引き継ぎ
                 $this->model->tuotorSignUp($array);
-                
+               
                 // 次ページへ
-                header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/tuotor_signUp2.php?id='."'".$array['tuotor_id']."'");
+                header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/tuotor_studyhow.php?id='."'".$array['tuotor_id']."'");
                 exit();
                 
             }
@@ -155,17 +156,23 @@
             if($this->POST == 'studyhow'){
                 // データ展開
                 $array = array();
-                $array['tuotor_id'] = $_POST['tuotor_id'];
-                $array['monthly'] = $_POST['monthly'];
-                $array['weektime'] = $_POST['weektime'];
-                $array['weekday'] = $_POST['weekday'];
-                $array['holidaytime'] = $_POST['holidaytime'];
-                $array['holiday'] = $_POST['holiday'];
+                $array['tuotor_id'] = h($_POST['tuotor_id']);
+                $array['weektime'] = h($_POST['weektime']);
+                $array['weekday'] = h($_POST['weekday']);
+                $array['holidaytime'] = h($_POST['holidaytime']);
+                $array['holiday'] = h($_POST['holiday']);
                 $array['booklists'] = $_POST['booklists'];
                 $array['howtolists'] = $_POST['howtolists'];
  
                 // modelへ引き継ぎ
+                // select文
+                $monthList = $this->model->studyhowSelect($array['tuotor_id'], $_POST['monthly']);
+                $array['monthly'] = $monthList;
+
+                // INSERT文
                 $this->model->tuotor_studyhow($array);
+
+                echo $array['tuotor_id'];
             }
             
         }

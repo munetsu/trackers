@@ -9,13 +9,11 @@
     // 対象チューター情報取得
     include('mvc/model.php');
     $model = new MODEL;
-    $info = $model->tuotorInfo($id);
+    $column = '*';
+    $info = $model->tuotorInfo($id, $column);
 
     // 資格取得
     $certificationList = $model->certificationList($info['certification']);
-    // $certificationList = JSON_ENCODE($certificationList,JSON_UNESCAPED_UNICODE);
-    // var_dump($certificationList);
-    // exit();
 
     // 不正ログインチェック
     if($_SESSION['security_code'] != $info['security_code']){
