@@ -66,6 +66,14 @@
         //////////////////////////////////////
         //SELECTALL文
         //////////////////////////////////////
+        // howtoリスト
+        public function howtoMonth($id, $select){
+            $table= 'studyHows';
+            $column = $select;
+            $conditions = 'WHERE `tuotor_id`='.$id;
+            $monthLists = $this->db->selectAll($column, $table, $conditions);
+            return $monthLists;
+        }
 
         //////////////////////////////////////
         //INSERT文

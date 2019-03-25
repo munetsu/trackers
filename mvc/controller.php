@@ -174,6 +174,12 @@
 
                 echo $array['tuotor_id'];
             }
+
+            if($this->POST == 'how'){
+               $test = $_POST['datakind'];
+                var_dump($test);
+                exit();
+            }
             
         }
 
