@@ -40,3 +40,7 @@ textarea {
     width: 20vw;
     height: 20vh;
 }
+
+.gray {
+    background-color: black;
+}
