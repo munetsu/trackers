@@ -5,7 +5,7 @@ const selectMonth = [];
 // 格納情報数
 const infoLists = [0];
 
-// 写真orurl
+// 写真orUrl
 let dataInfo = {
     id:'',
     type:''
@@ -19,14 +19,27 @@ let textareaInfo = {
 }
 const howtoLists = [];
 
-
 //////////////////////////////////////////////////////////////////////
 //読み込み時に描画
 //////////////////////////////////////////////////////////////////////
 // 月作成
 for(let i = 1;i<13;i++){
-    let view = '<li class="month" id="month'+i+'">'+i+'月</li>';
+    let view = checkedMonth(i)
     $('.monthList').append(view);
+}
+
+// 登録済み月処理
+function checkedMonth(i){
+    for(let k =0;k<monthly.length;k++){
+        var month = parseInt(monthly[k]['monthly'], 10);
+        if(i == month){
+            var view = '<li class="month gray" id="month'+i+'">'+i+'月</li>';
+            break;
+        }else{
+            var view = '<li class="month" id="month'+i+'">'+i+'月</li>';
+        }
+    }
+    return view;
 }
 
 // 勉強時間表示
@@ -40,14 +53,21 @@ $('.block').html(viewstudyHow(0));
 //////////////////////////////////////////////////////////////////////
 // 月選択
 $(document).on('click', '.month', function(){
-    $(this).toggleClass('selected');
+    let classed = $(this).attr('class');
     // 月を取得
     let month = $(this).text();
     month = month.replace('月', '');
-    // 数値変換
-    month = parseInt(month, 10);
-    checkArray(month);
-    console.log(selectMonth);
+    
+    // 既に選択済みの場合は、選択させない
+    if(classed.match(/gray/)){
+        alert(month+'月は既に登録済みです。')
+    }else{
+        $(this).toggleClass('selected');
+        // 数値変換
+        month = parseInt(month, 10);
+        checkArray(month);
+        console.log(selectMonth);
+    }
 })
 
 // 配列操作(selectMonth)
@@ -232,7 +252,13 @@ $(document).on('focus', '.howto', function(){
 
 // 登録処理
 $('#register').on('click', function(){
-
+    // for(let i=0;i<dataLists.length;i++){
+    //     $('form[name="how"]').append('<input name="datakind[]" value="'+dataLists[i]+'">');
+    //     console.log(dataLists[i]['type']);
+    // }
+    $('form[name="how"]').append('<input name="datakind" value='+dataLists+'>');
+    console.log(dataLists);
+    // $('form[name="how"]').submit();
 })
 
 // オブジェクト処理
@@ -306,3 +332,14 @@ function viewbookUrl(num){
     return view;
 }
 
+////////////////////////////////////////////////////
+// 通知機能
+////////////////////////////////////////////////////
+// Push.create("Trackers", {
+//     body: "新着メッセージがあります!",
+//     // timeout: 4000,
+//     onClick: function () {
+//         window.focus();
+//         this.close();
+//     }
+// });

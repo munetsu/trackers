@@ -13,11 +13,21 @@
     $info = $model->tuotorInfo($id, $column);
 
     // 不正ログインチェック
-    if($_SESSION['security_code'] != $info['security_code']){
-        echo '不正アクセスです';
-        exit();
-    }
+    // if($_SESSION['security_code'] != $info['security_code']){
+    //     echo '不正アクセスです';
+    //     exit();
+    // }
 
+    // 登録済み勉強方法月を取得
+    $select = 'monthly';
+    $month = $model->howtoMonth($id, $select);
+    $monthLength = count($month);
+    if($monthLength != 0){
+        $month = JSON_ENCODE($month,JSON_UNESCAPED_UNICODE);
+    }else{
+        $month = 0;
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -49,8 +59,11 @@
         <div><button id="register">登録</button></div>
     </div>
     <script>
-        let tuotor_id = <?php echo $id ?>
+        let tuotor_id = <?php echo $id ?>;
+        let monthly = <?php echo $month ?>;
+        
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/0.0.11/push.min.js"></script>
     <script src="js/tuotor_how.js"></script>
 </body>
 </html>
