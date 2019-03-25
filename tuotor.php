@@ -1,9 +1,9 @@
 <?php 
-    if($_GET['status'] == 'registeredowksmdndjchfifu93744rfif8j4bfkd87jenf0f9iwlwls0s8wj2hdpdudn'){
-        $alert = 1;
-    }else{
-        $alert = 0;
-    }
+    // if($_GET['status'] == 'registeredowksmdndjchfifu93744rfif8j4bfkd87jenf0f9iwlwls0s8wj2hdpdudn'){
+    //     $alert = 1;
+    // }else{
+    //     $alert = 0;
+    // }
 
 ?>
 
@@ -117,14 +117,12 @@
 
         <!-- 登録フォーム -->
         <div>
-            <h5>登録フォーム</h5>
-            <p><a href="tuotorRegister.php">こちらから登録お願いします</a></p>
+            <h5>登録希望者はこちら</h5>
+            <a href="t_signUp.php">こちらをクリックしてください</a>
+            <!-- <a href="" id="mail" class="mail-contact">こちらをクリックしメール送信お願いします</a> -->
+            <!-- <p><a href="tuotorRegister.php">こちらから登録お願いします</a></p> -->
         </div>
-        <button id="btn">ボタン</button>
     </div>
-    <script>
-        const alert = <?php echo $alert ?>;
-    </script>
     <script src="js/tuotor.js"></script>
 </body>
 </html>
