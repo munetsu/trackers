@@ -1,0 +1,7 @@
+.flex {
+    display:flex;
+}
+
+p {
+    border-bottom: solid gray 0.5px;
+}

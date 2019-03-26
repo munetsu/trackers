@@ -1,5 +1,7 @@
 <?php
-    
+    session_start();
+    include('funcs/funcs.php');
+    chkSsid();
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +30,17 @@
         </div>
         <div class="itemList">
             <p>下記項目の入力をお願いします</p>
+            <form action="t_signUp_confirm.php" method="POST" name="signUp">
+            <p>氏名<span>*</span>：<input type="text" name="k_familyname" class="text" placeholder="(例)田中"><input type="text" name="k_firstname" class="text" placeholder="(例)太郎"></p>
+            <p>NAME<span>*</span>：<input type="text" name="a_familyname" class="text" placeholder="(例)tanaka"><input type="text" name="a_firstname" class="text" placeholder="(例)tarou"></p>
+            <p>E-mail<span>*</span>：<input type="email" name="email" class="text" placeholder="(例)sample@trackers.co.jp"></p>
+            <p>電話番号(携帯)<span>*</span>：<input type="text" name="tel" class="text" placeholder="(例)09011111111"></p>
+            <p>生年月日<span>*</span>：<select name="birthyear" id="birthyear"></select>年／<select name="birthmonth" id="birthmonth"></select>月</p>
+            <p>属性<span>*</span>：<select name="status" id="status"></select></p>
+            <p>学歴<span>*</span>：<select name="academic" id="academic"></select></p>
+            <p>勉強方法<span>*</span>：<select name="howto" id="howto"></select></p>
+            <p>受験回数<span>*</span>：<select name="howmany" id="howmany"></select></p>
+        </form>
         </div>
     </div>
     <script src="js/t_signUp.js"></script>
