@@ -38,6 +38,25 @@
             echo $view;
         }
 
+        //////////////////////////////////////////
+        // controller.php_'t_signUp'
+        //////////////////////////////////////////
+        // （既にチューター登録済みの場合）
+        public function tuotorRegisterError(){
+            $view = '
+                <div>
+                    <p>先ほど記載頂いたメールアドレスまたは携帯番号は既に登録頂いております。</p>
+                    <a href="../t_signUp.php">登録ページに戻る</a>
+                </div>
+            ';
+            echo $view;
+        }
+
+        
+
+
+
+
 
 
     }

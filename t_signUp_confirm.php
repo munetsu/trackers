@@ -13,10 +13,10 @@
     $birthmonth = h($_POST['birthmonth']);
     $status = h($_POST['status']);
     $academic = h($_POST['academic']);
-    if($academic != 0){
-        $schoolname = h($_POST['shcoolname']);
-    }
     $howto = h($_POST['howto']);
+    if($howto != 1){
+        $schoolname = h($_POST['schoolname']);
+    }
     $howmany = h($_POST['howmany']);
 
     // 配列データ
@@ -39,6 +39,7 @@
     <div>
         <p>内容の確認をお願いします</p>
         <form action="" method="POST" name="signUp">
+            <input type="hidden" name="action" value="t_signUp">
             <table>
                 <tr>
                     <td>氏名</td>
@@ -72,7 +73,7 @@
                     <td>勉強方法</td>
                     <td><input type="hidden" name="howto" value=<?php echo $howto ?>><?php echo $kindhow[$howto] ?></td>
                 </tr>
-                <?php if($howto != 0): ?>
+                <?php if($howto != 1): ?>
                 <tr>
                     <td>学校・サービス</td>
                     <td><input type="hidden" name="schoolname" value=<?php echo $schoolname ?>><?php echo $schoolname ?></td>

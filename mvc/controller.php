@@ -180,7 +180,80 @@
                 var_dump($test);
                 exit();
             }
-            
+
+            ///////////////////////////////////////////
+            //t_signUp_confirm.php
+            ///////////////////////////////////////////
+            if($this->POST == 't_signUp'){
+                $tableLists1 = [
+                    'k_familyname',
+                    'k_firstname',
+                    'a_familyname',
+                    'a_firstname',
+                    'email',
+                    'tel',
+                    'birthyear',
+                    'birthmonth',
+                    'status',
+                    'academic',
+                    'howto',
+                    'howmany'
+                ];
+               
+                $tableLists = [
+                    'k_familyname',
+                    'k_firstname',
+                    'a_familyname',
+                    'a_firstname',
+                    'email',
+                    'tel',
+                    'birthyear',
+                    'birthmonth',
+                    'status',
+                    'academic',
+                    'howto',
+                    'schoolname',
+                    'howmany'
+                ];
+
+                // データ展開
+                $array = array();
+                if($_POST['howto'] == 1){
+                    foreach($tableLists1 as $tableList){
+                        $array[$tableList] = h($_POST[$tableList]);
+                    }
+                }else{
+                    foreach($tableLists as $tableList){
+                        $array[$tableList] = h($_POST[$tableList]);
+                    }
+                }
+  
+                // modelへ引き継ぎ
+                // データ重複がないか確認
+                $res = $this->model->t_tuotorsSelect($array, '*');
+
+                // データ重複判定
+                if($res){
+                    // 重複があった場合
+                    include('view.php');
+                    $this->view = new VIEW;
+                    $this->view->tuotorRegisterError();
+                    return;
+                }else{
+                    // 新規データの場合
+                    if(count($array) == count($tableLists1)){
+                        $result = $this->model->t_tuotors($array, $tableLists1);
+                    }else{
+                        $result = $this->model->t_tuotors($array, $tableLists);
+                    }
+                }
+
+                if($result == null){
+                    echo 'データ登録完了';
+                }else{
+                    echo 'データ登録でエラー発生';
+                }
+            }
         }
 
         ////////////////////////////////////////////////
@@ -192,6 +265,13 @@
             // password sha256
             $password = h($password);
             $password = hash_hmac('sha256' ,$password , False);
+            return $password;
+        }
+
+        // password_md5処理
+        private function passmd5($password){
+            $password = h($password);
+            $password = md5($password);
             return $password;
         }
 

@@ -63,6 +63,15 @@
             return $monthList;
         }
 
+        // t_tuotor登録情報の照合
+        public function t_tuotorsSelect($array, $column){
+            $table = 't_tuotors';
+            $column = $column;
+            $conditions = 'WHERE `email` = '."'".$array['email']."'".'AND `tel` = '."'".$array['tel']."'";
+            $res = $this->db->select($column, $table, $conditions);
+            return $res;
+        }
+
         //////////////////////////////////////
         //SELECTALL文
         //////////////////////////////////////
@@ -199,6 +208,23 @@
                 $this->db->insert($table, $column, $values);
             }
         }
+
+        public function t_tuotors($array, $tableLists){
+            $datetime = Date("Y/m/d H:i:s"); //日付取得
+            $table = 't_tuotors';
+            $column = '';
+            $values = '';
+            foreach($tableLists as $tableList){
+                $column .= "`".$tableList."`,";
+                $values .= "'".$array[$tableList]."'".",";
+            }
+            $column .= "`registerDate`";
+            $values .= "'".$datetime."'";
+            $res = $this->db->insert($table, $column, $values);
+            return $res;
+        }
+
+
 
 
         //////////////////////////////////////

@@ -10,7 +10,7 @@ let academiccheck = howto;
 
 // 属性
 function setstatus(){
-    let kindstatus = ['会社員', '役員', '学生', '主婦・主夫', 'フリーター・パート', 'その他'];
+    let kindstatus = ['','会社員', '役員', '学生', '主婦・主夫', 'フリーター・パート', 'その他'];
     let view = '';
     for(let i=0;i<kindstatus.length;i++){
         if(status == i){
@@ -24,7 +24,7 @@ function setstatus(){
 
 // 学歴
 function setacademic(){
-    let kindacademic = ['大学院卒', '大学卒', '専門・高専卒', '高校卒', '中卒', '非回答'];
+    let kindacademic = ['', '大学院卒', '大学卒', '専門・高専卒', '高校卒', '中卒', '非回答'];
     let view = '';
     for(let i=0;i<kindacademic.length;i++){
         if(academic == i){
@@ -38,7 +38,7 @@ function setacademic(){
 
 // 勉強方法
 function sethowto(){
-    let kindhow = ['独学', '資格学校', '通信教育'];
+    let kindhow = ['', '独学', '資格学校', '通信教育'];
     let view = '';
     for(let i=0;i<kindhow.length;i++){
         if(howto == i){
@@ -54,7 +54,7 @@ function sethowto(){
 $(document).on('change', '.howto', function(){
     $('.howtoschool').empty();
     let value = $(this).val();
-    if(value != 0){
+    if(value != 1){
         academiccheck = 1;
         let view = `
             <td>学校・サービス名</td>
@@ -98,7 +98,6 @@ sethowmany();
 $(document).on('blur', 'input[name="email"]', function(){
     let value = $(this).val();
     let mailcheck = value.match(/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i);
-    console.log(mailcheck);
     if(mailcheck == null){
         error = 0;
         alert('現在のアドレスは登録出来ません');
@@ -112,12 +111,13 @@ $(document).on('blur', 'input[name="tel"]', function(){
     let value = $(this).val();
     for(let i=0;i<value.length;i++){
         value = value.replace(/-/, '');
+        value = value.replace(/[^0-9]/g, '');
     }
     $(this).val(value)
     if(value.length != 11){
         error = 1;
         alert(`電話番号をもう一度ご確認ください。
-                数字のみ記載ください`);
+    「-」など記号は入力できません`);
     }else{
         error = 0;
     }
