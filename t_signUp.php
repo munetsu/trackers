@@ -1,7 +1,7 @@
 <?php
     session_start();
     include('funcs/funcs.php');
-    chkSsid();
+    $_SESSION['chk_ssid'] = session_id();
 ?>
 
 <!DOCTYPE html>

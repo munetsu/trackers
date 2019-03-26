@@ -13,10 +13,10 @@
     $birthmonth = h($_POST['birthmonth']);
     $status = h($_POST['status']);
     $academic = h($_POST['academic']);
-    if($academic != 0){
+    $howto = h($_POST['howto']);
+    if($howto != 1){
         $schoolname = h($_POST['schoolname']);
     }
-    $howto = h($_POST['howto']);
     $howmany = h($_POST['howmany']);
 
     // 配列データ
@@ -55,7 +55,7 @@
                 </tr>
                 <tr>
                     <td>電話番号</td>
-                    <td><input type="text" name="tel" class="text" value=<?php echo $tel ?>></td>
+                    <td><input type="tel" name="tel" class="text" value=<?php echo $tel ?>></td>
                 </tr>
                 <tr>
                     <td>生年月日</td>
@@ -73,7 +73,7 @@
                     <td>勉強方法</td>
                     <td><select name="howto" class="howto"></select></td>
                 </tr>
-                <?php if($howto != 0): ?>
+                <?php if($howto != 1): ?>
                 <tr class="howtoschool">
                     <td>学校・サービス</td>
                     <td><input type="text" name="shcoolname" value=<?php echo $schoolname ?>></td>

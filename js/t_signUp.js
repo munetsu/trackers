@@ -50,7 +50,7 @@ function birthmonth(){
 
 // 属性
 function status(){
-    let kindstatus = ['会社員', '役員', '学生', '主婦・主夫', 'フリーター・パート', 'その他'];
+    let kindstatus = ['', '会社員', '役員', '学生', '主婦・主夫', 'フリーター・パート', 'その他'];
     let view = '';
     for(let i=0;i<kindstatus.length;i++){
         view = '<option value="'+i+'">'+kindstatus[i]+'</option>';
@@ -60,7 +60,7 @@ function status(){
 
 // 学歴
 function academic(){
-    let kindacademic = ['大学院卒', '大学卒', '専門・高専卒', '高校卒', '中卒', '非回答'];
+    let kindacademic = ['', '大学院卒', '大学卒', '専門・高専卒', '高校卒', '中卒', '非回答'];
     let view = '';
     for(let i=0;i<kindacademic.length;i++){
         view = '<option value="'+i+'">'+kindacademic[i]+'</option>';
@@ -70,7 +70,7 @@ function academic(){
 
 // 勉強方法
 function howto(){
-    let kindhow = ['独学', '資格学校', '通信教育'];
+    let kindhow = ['', '独学', '資格学校', '通信教育'];
     let view = '';
     for(let i=0;i<kindhow.length;i++){
         view = '<option value="'+i+'">'+kindhow[i]+'</option>';
@@ -82,7 +82,7 @@ function howto(){
 $(document).on('change', '#howto', function(){
     $('#howtoSchool').remove();
     let value = $(this).val();
-    if(value != 0){
+    if(value != 1){
         academiccheck = 1;
         let view = `<div id="howtoSchool">学校・サービス名：<input type="text" name="shcoolname"></div>`;
         $(this).parent('p').append(view);
