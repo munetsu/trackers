@@ -3,6 +3,8 @@
 ///////////////////////////////////////////
 let checkpoint = 0;
 
+let error = 0;
+let academiccheck = 0;
 
 
 ///////////////////////////////////////////
@@ -13,6 +15,9 @@ $('#useRule').val(viewUseRule());
 
 // 個人情報取り扱い
 $('#privacyPolicy').val(viewUseRule());
+
+// 登録フォーム追記
+mainAppend();
 
 // 生年月日(西暦)
 // 西暦
@@ -78,8 +83,11 @@ $(document).on('change', '#howto', function(){
     $('#howtoSchool').remove();
     let value = $(this).val();
     if(value != 0){
+        academiccheck = 1;
         let view = `<div id="howtoSchool">学校・サービス名：<input type="text" name="shcoolname"></div>`;
         $(this).parent('p').append(view);
+    }else{
+        academiccheck = 0;
     }
 })
 
@@ -129,16 +137,18 @@ $('.checkpoint').on('change', function(){
     if(status){
         checkpoint += value;
         if(checkpoint == 11){
-            mainAppend();
+            $('.itemList').append(viewBtn());
         }
     }else{
         checkpoint -= value;
+        if(checkpoint != 11){
+            $('#confirmBtn').remove();
+        }
     }
 });
 
 // 登録フォーム表示
 function mainAppend(){
-    $('.itemList').append(viewMain());
     birthyear();
     birthmonth();
     status();
@@ -147,7 +157,63 @@ function mainAppend(){
     howmany();
 }
 
+// メールアドレスのチェック
+$(document).on('blur', 'input[type="email"]', function(){
+    let value = $(this).val();
+    let mailcheck = value.match(/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i);
+    if(mailcheck == null){
+        error = 0;
+        $('#errormail').remove();
+        $(this).parent('p').append('<span id="errormail">メールアドレスの確認をお願いします</span>');
+    }else{
+        error = 1;
+        $('#errormail').remove();
+    }
+})
 
+// 電話番号のチェック
+$(document).on('blur', 'input[name="tel"]', function(){
+    $('#telnumber').remove();
+    let value = $(this).val();
+    for(let i=0;i<value.length;i++){
+        value = value.replace(/-/, '');
+    }
+    $(this).val(value)
+    if(value.length != 11){
+        error = 1;
+        $(this).parent('p').append('<span id="telnumber">番号を確認してください</span>');
+    }else{
+        error = 0;
+    }
+})
+
+// 確認画面への処理
+$(document).on('click', '#btn', function(e){
+    e.preventDefault();
+    let test = [];
+    test.push($('input[name="k_familyname"]').val());
+    test.push($('input[name="k_firstname"]').val());
+    test.push($('input[name="a_familyname"]').val());
+    test.push($('input[name="a_firstname"]').val());
+    test.push($('input[name="email"]').val());
+    test.push($('input[name="tel"]').val());
+    for(let i=0;i<test.length;i++){
+        if(test[i] == ''){
+            alert('未記入欄があります');
+            return;
+        }
+    }
+    if(academiccheck == 1){
+        if($('input[name="shcoolname"]').val() == ''){
+            alert('学校名・サービス名を記載してください')
+            return;
+        }
+    }
+    if(error != 0){
+        alert('emailもしくは電話番号をご確認ください')
+    }
+    signUp.submit();
+})
 
 
 
@@ -199,31 +265,14 @@ function viewPrivacyPolicy(){
 
 }
 
-// 登録情報
-function viewMain(){
-    let view = `
-        <form action="mvc/controller.php" method="POST" name="signUp">
-            <p>氏名<span>*</span>：<input type="text" name="k_familyname" class="text" placeholder="(例)田中"><input type="text" name="k_firstname" class="text" placeholder="(例)太郎"></p>
-            <p>NAME<span>*</span>：<input type="text" name="a_familyname" class="text" placeholder="(例)tanaka"><input type="text" name="a_firstname" class="text" placeholder="(例)tarou"></p>
-            <p>E-mail<span>*</span>：<input type="text" name="email" class="text" placeholder="(例)sample@trackers.co.jp"></p>
-            <p>携帯番号<span>*</span>：<input type="number" name="tel" class="text" placeholder="(例)09011111111"></p>
-            <p>生年月日<span>*</span>：<select id="birthyear"></select>年／<select id="birthmonth"></select>月</p>
-            <p>属性<span>*</span>：<select id="status"></select></p>
-            <p>学歴<span>*</span>：<select id="academic"></select></p>
-            <p>勉強方法<span>*</span>：<select id="howto"></select></p>
-            <p>受験回数<span>*</span>：<select id="howmany"></select></p>
-        </form>
-    `;
-    return view;
-}
+
 
 // 登録フォーム送信ボタン
 function viewBtn(){
     let view = `
-        <div>
-        <a href="" id="btn">登録</a>
+        <div id="confirmBtn">
+        <a href="" id="btn">確認画面</a>
         </div>
     `;
     return view;
-
 }
