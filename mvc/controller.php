@@ -249,7 +249,10 @@
                 }
 
                 if($result == null){
-                    echo 'データ登録完了';
+                    // tuotor_id取得
+                    $id = $this->model->t_tuotorsSelect($array, 'tuotor_id');
+                    header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/t_signUp2.php?id='.$id['tuotor_id']);
+                    exit();
                 }else{
                     echo 'データ登録でエラー発生';
                 }
