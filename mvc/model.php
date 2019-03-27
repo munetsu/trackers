@@ -72,6 +72,15 @@
             return $res;
         }
 
+        // t_tuotor登録情報照合(id検索)
+        public function t_tuotorsAnySelect($column, $where){
+            $table = 't_tuotors';
+            $column = $column;
+            $conditions = $where;
+            $res = $this->db->select($column, $table, $conditions);
+            return $res;
+        }
+
         //////////////////////////////////////
         //SELECTALL文
         //////////////////////////////////////
@@ -209,8 +218,14 @@
             }
         }
 
+        // t_signUpのチューター登録処理
         public function t_tuotors($array, $tableLists){
-            $datetime = Date("Y/m/d H:i:s"); //日付取得
+            //日付取得
+            $datetime = Date("Y/m/d H:i:s"); 
+            $code = $array['email'].$datetime.$array['a_familyname'];
+            // security_code処理
+            $security_code = hash_hmac('sha256' ,$code, False);
+            // DB登録処理
             $table = 't_tuotors';
             $column = '';
             $values = '';
@@ -218,9 +233,12 @@
                 $column .= "`".$tableList."`,";
                 $values .= "'".$array[$tableList]."'".",";
             }
-            $column .= "`registerDate`";
-            $values .= "'".$datetime."'";
+            $column .= "`registerDate`,`security_code`";
+            $values .= "'".$datetime."'".","."'".$security_code."'";
             $res = $this->db->insert($table, $column, $values);
+            // sessionスタート
+            session_start();
+            $_SESSION['security_code'] = $security_code;
             return $res;
         }
 
