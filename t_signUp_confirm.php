@@ -20,9 +20,9 @@
     $howmany = h($_POST['howmany']);
 
     // 配列データ
-    $kindstatus = ['会社員', '役員', '学生', '主婦・主夫', 'フリーター・パート', 'その他'];
-    $kindacademic = ['大学院卒', '大学卒', '専門・高専卒', '高校卒', '中卒', '非回答'];
-    $kindhow = ['独学', '資格学校', '通信教育'];
+    $kindstatus = ['', '会社員', '役員', '学生', '主婦・主夫', 'フリーター・パート', 'その他'];
+    $kindacademic = ['', '大学院卒', '大学卒', '専門・高専卒', '高校卒', '中卒', '非回答'];
+    $kindhow = ['', '独学', '資格学校', '通信教育'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +37,7 @@
 </head>
 <body>
     <div>
-        <p>内容の確認をお願いします</p>
+        <p>内容の確認をお願いします。修正する場合は、下記修正ボタンから戻ってください。</p>
         <form action="" method="POST" name="signUp">
             <input type="hidden" name="action" value="t_signUp">
             <table>

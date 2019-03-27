@@ -84,7 +84,7 @@ $(document).on('change', '#howto', function(){
     let value = $(this).val();
     if(value != 1){
         academiccheck = 1;
-        let view = `<div id="howtoSchool">学校・サービス名：<input type="text" name="shcoolname"></div>`;
+        let view = `<div id="howtoSchool">学校・サービス名：<input type="text" name="schoolname"></div>`;
         $(this).parent('p').append(view);
     }else{
         academiccheck = 0;
@@ -103,6 +103,12 @@ function howmany(){
         }
     }
 
+}
+
+// 利用規約などのcheckbox初期化
+let checkstatus = $('.checkpoint').prop('checked');
+if(checkstatus){
+    $('.checkpoint').prop('checked', false);
 }
 
 
@@ -145,6 +151,7 @@ $('.checkpoint').on('change', function(){
             $('#confirmBtn').remove();
         }
     }
+    console.log(checkpoint);
 });
 
 // 登録フォーム表示
