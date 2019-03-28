@@ -117,7 +117,7 @@ $(document).on('click', '#yes', function(){
 
 // スマホアプリNo
 $(document).on('click', '#no', function(){
-    window.location.href = 't_passgenerate.php?id='+tuotor_id;
+    window.location.href = 't_mypage.php?id='+tuotor_id;
 })
 
 //////////////////////////////////////////////////
@@ -219,9 +219,15 @@ $('#regBtn').on('click', function(e){
         }
     })
     .done((data)=>{
-        console.log(data);
-        $('.textarea').empty();
-        $('.textarea').append(viewAlert());
+        if(data == 'nodata'){
+            if(!comfirm('テキストなしで登録しますがよろしいですか？')){
+                // キャンセルの場合
+                location.reload();
+            }else{
+                $('.textarea').empty();
+                $('.textarea').append(viewAlert());
+            }
+        }
     })
     .fail((data)=>{
         console.log(data);

@@ -74,6 +74,15 @@
             return $res;
         }
 
+        // t_booklistsの重複確認
+        public function t_booklistSelect($column, $where){
+            $table = 't_booklists';
+            $column = $column;
+            $conditions = $where;
+            $res = $this->db->select($column, $table, $conditions);
+            return $res;
+        }
+
         //////////////////////////////////////
         //SELECTALL文
         //////////////////////////////////////
@@ -337,7 +346,14 @@
             // sessionスタート
             session_start();
             $_SESSION['security_code'] = $security_code;
+        }
 
+        // step更新
+        public function tuotorStep($tuotor_id, $step){
+            $table = 't_tuotors';
+            $values = '`step` ='.$step;
+            $conditions = 'WHERE `tuotor_id` ='.$tuotor_id;
+            $this->db->update($table, $values, $conditions);
         }
 
 

@@ -100,7 +100,7 @@ $('#regBtn').on('click', function(e){
     .done((data)=>{
         console.log(data);
         alert('登録が完了しました');
-        window.location.href = 'tuotor_mypage.php?id='+tuotor_id;
+        window.location.href = 't_mypage.php?id='+tuotor_id;
         
     })
     .fail((data)=>{
