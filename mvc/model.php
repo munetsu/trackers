@@ -242,6 +242,33 @@
             return $res;
         }
 
+        // t_signUp2_book登録
+        public function bookRegister($tuotor_id, $array){
+            $table = 't_booklists';
+            $column = '';
+            $values = '';
+            $count = 1;
+            $minus = -1;
+            
+            foreach($array as $book){
+                if($count == 1){
+                    $column .= "`title".$count.'`,';
+                    $values .= "'".$book."'".",";
+                }else if($count % 2 != 0){
+                    $column .= "`title".($count+$minus).'`,';
+                    $values .= "'".$book."'".",";
+                    $minus--;
+                }else{
+                    $column .= "`imageUrl".($count+$minus).'`,';
+                    $values .= "'".$book."'".",";
+                }
+                $count++;
+            }
+            $column .= '`tuotor_id`';
+            $values .= "'".$tuotor_id."'";
+            $this->db->insert($table, $column, $values);
+        }
+
 
 
 
