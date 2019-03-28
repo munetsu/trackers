@@ -4,21 +4,16 @@
     chkSsid();
 
     $id = $_GET['id'];
-
-    // modelへ引き継ぎ
-    // 対象チューター情報取得
     include('mvc/model.php');
     $model = new MODEL;
     $column = 'security_code';
-    $info = $model->tuotorInfo($id, $column);
-    // var_dump($info);
-    // var_dump($_SESSION['security_code']);
-
-    // 不正ログインチェック
-    if($_SESSION['security_code'] != $info['security_code']){
+    $where = 'WHERE tuotor_id ='.$id;
+    $code = $model->t_tuotorsAnySelect($column, $where);
+    // // // 不正ログインチェック
+    if($_SESSION['security_code'] != $code['security_code']){
         echo '不正アクセスです';
         exit();
-    }
+    }  
 
 ?>
 
