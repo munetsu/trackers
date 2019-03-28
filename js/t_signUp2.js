@@ -82,7 +82,7 @@ $('input[name="amazon"]').on('blur', function(){
     // }
 })
 
-// Google
+// GoogleBookAPI
 $('input[name="google"]').on('blur', function(){
     
     // 登録内容取得
@@ -177,6 +177,23 @@ function viewBook(m){
     return view;
 }
 
+// Yes/Noダイアログ
+function viewAlert(){
+    let view = `
+        <div id="dialog" style="width: 30vw;
+                    margin: auto;
+                    padding: 30px 20px;
+                    text-align: center;
+                    border: 1px solid #aaa;
+                    box-shadow: 2px 2px 4px #888;">
+            <p>スマホアプリは利用していましたか？</p>
+            <button id="yes">はい</button>
+            <button id="no">いいえ</button>
+        </div>
+    `;
+    return view;
+}
+
 //////////////////////////////////////////////////
 // ajax処理
 //////////////////////////////////////////////////
@@ -192,9 +209,12 @@ $('#regBtn').on('click', function(e){
         }
     })
     .done((data)=>{
-        console.log(data)
+        console.log(data);
+        $('.textarea').empty();
+        $('.textarea').append(viewAlert());
     })
     .fail((data)=>{
-        console.log(data)
+        console.log(data);
+        alert('データ登録に失敗しました\n申し訳ありませんが、もう一度登録をお願いします');
     })
 })
