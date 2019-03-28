@@ -37,6 +37,36 @@
             }
 
             ///////////////////////////////////////////
+            //t_passgenerate.php
+            ///////////////////////////////////////////
+            // パスワード作成
+            if($this->POST == 'passgene'){
+                // パスワードをハッシュ化
+                $password = $_POST['pass1'];
+                $password = $this->passmd5($password);
+                $password = $this->password($password);
+                // データ展開
+                $tuotor_id = $_POST['tuotor_id'];
+                $email = $_POST['email'];
+                
+                // idとメールアドレスの確認
+                $column = 'email';
+                $where = 'WHERE `tuotor_id`='.$tuotor_id;
+                $res = $this->model->t_tuotorsAnySelect($column, $where);
+                if($email != $res['email']){
+                    echo 'メールアドレスが異なっております';
+                    exit();
+                }
+
+                // ログイン用データへ保存
+                $this->model->tuotorUpdate($password, $tuotor_id);
+
+                // loginへ
+                header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/login.php?status="tuotor"');
+
+            }
+
+            ///////////////////////////////////////////
             //login.php
             ///////////////////////////////////////////
 
