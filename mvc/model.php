@@ -320,6 +320,14 @@
             $this->db->update($table, $values, $conditions);
         }
 
+        // パスワード登録
+        public function tuotorUpdate($password, $tuotor_id){
+            $table = 't_tuotors';
+            $values = '`password` ='."'".$password."'";
+            $conditions = 'WHERE `tuotor_id` ='.$tuotor_id;
+            $this->db->update($table, $values, $conditions);
+        }
+
 
 
 
