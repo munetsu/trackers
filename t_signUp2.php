@@ -33,16 +33,33 @@
         <!-- textエリア -->
         <div class="textarea">
             <div>
-                <p>利用していた市販テキストを登録してください<br>
+                <p>利用していた市販テキストを登録してください(最大10冊まで)<br>
                     シリーズものの場合はシリーズの1冊だけの登録で大丈夫です。</p>
                 <div>
-                    <p>Amazonの商品リンクを下記に貼ってください</p>
-                    <input type="text" name="amazonurl">
+                    <p>下記にISBN13コードの入力をお願いします。</p>
+                    <p>お手元に書籍がある方はこちらの画像を参照ください
+                        <a href="img/isbn.png" target="_blank">（参考）記載場所</a>
+                    </p>
+                    <p>書籍がお手元にない方はAmazonのページから番号を検索し記載してください
+                        <a href="img/amazonIsbn.png" target="_blank">（参考）Amazonページでの記載場所</a>
+                    </p>
+                    <span>ISBNコードで書籍が見つからない場合は、AmazonのページURLを記載してください</span>
+                    <div>
+                    <p>ISBN-13：978-<input type="text" name="google"></p>
+                    <p>Amazon：<input type="text" name="amazon"></p>
+                    </div>
                     <div class="flex"></div>
                 </div>
             </div>
         </div>
+        <!-- 登録ボタン -->
+        <div>
+            <a href="" id="regBtn">登録</a>
+        </div>
     </div>
+    <script>
+        let tuotor_id = <?php echo $id ?>;
+    </script>
     <script src="js/t_signUp2.js"></script>
 </body>
 </html>
