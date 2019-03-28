@@ -11,7 +11,7 @@
     $code = $model->t_tuotorsAnySelect($column, $where);
     // // // 不正ログインチェック
     if($_SESSION['security_code'] != $code['security_code']){
-        echo '不正アクセスです';
+        echo 'ログイン中にエラーが発生しました';
         exit();
     }  
 ?>

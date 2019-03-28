@@ -3,16 +3,22 @@
     include('funcs/funcs.php');
     chkSsid();
 
-    $id = $_GET['id'];
+    $id = h($_GET['id']);
     include('mvc/model.php');
     $model = new MODEL;
-    $column = 'security_code';
+    $column = '*';
     $where = 'WHERE tuotor_id ='.$id;
-    $code = $model->t_tuotorsAnySelect($column, $where);
+    $info = $model->t_tuotorsAnySelect($column, $where);
     // // // 不正ログインチェック
-    if($_SESSION['security_code'] != $code['security_code']){
+    if($_SESSION['security_code'] != $info['security_code']){
         echo 'ログイン上の問題が発生しました';
         exit();
+    }
+
+    $step = $info['step'];
+    // 登録状況によって振り分け
+    if($step == 1){
+        header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/t_signUp2.php?id='.$id);
     }
     
 ?>
@@ -26,6 +32,7 @@
     <title>Document</title>
 </head>
 <body>
-        mypage
+    <div>tuotor_mypage</div>
+    <script ></script>
 </body>
 </html>

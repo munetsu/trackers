@@ -99,13 +99,12 @@
                 // データ引き継ぎ
                 if($_POST['status'] == 1){
                     $id = $info['tuotor_id'];
-                    $step = $info['step'];
 
                     // ログインアップデート
                     $this->model->loginUpDate($table, $id);
     
                     // チューターMyPageへ
-                    header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/tuotor_mypage.php?id='.$id.'&step='.$step);
+                    header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/t_mypage.php?id='.$id);
                     exit();
                 }else{
                     // 生徒側処理
@@ -276,7 +275,7 @@
                 if($result == null){
                     // tuotor_id取得
                     $id = $this->model->t_tuotorsSelect($array, 'tuotor_id');
-                    header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/t_signUp2.php?id='.$id['tuotor_id']);
+                    header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/t_passgenerate.php?id='.$id['tuotor_id']);
                     exit();
                 }else{
                     echo 'データ登録でエラー発生';
@@ -287,18 +286,31 @@
             //t_signUp2.php
             ///////////////////////////////////////////
             if($this->POST == 'bookLists'){
+                // 既に登録があるか確認
+                $column = '*';
+                $tuotor_id = h($_POST['id']);
+                $where = 'WHERE `tuotor_id` ='.$tuotor_id;
+                $res = $this->model->t_booklistSelect($column, $where);
+                if($res != null){
+                    // t_tuotorsのstep更新
+                    $step = 2;
+                    $this->model->tuotorStep($tuotor_id, $step);
+                    return;
+                }
+
                 $count = 1;
                 // データ数を確認
                 if(count($_POST) == 2){
                     // 書籍登録がないため、処理なし
+                    echo 'nodata';
                     return;
                 }else{
                     // 書籍データがある場合
                     $array = array();
-                    $tuotor_id = $_POST['id'];
+                    
                     foreach($_POST['bookInfo'] as $book){
-                        $array['title'.$count] = $book['title'];
-                        $array['imageUrl'.$count] = $book['imageUrl'];
+                        $array['title'.$count] = h($book['title']);
+                        $array['imageUrl'.$count] = h($book['imageUrl']);
                         $count++;
                     }
                     // var_dump($array);
@@ -306,6 +318,9 @@
                     // modelへ引き継ぎ
                     $this->model->bookRegister($tuotor_id, $array);
                 }
+                // t_tuotorsのstep更新
+                $step = 2;
+                $this->model->tuotorStep($tuotor_id, $step);
             }
             ///////////////////////////////////////////
             //t_signUp3.php
