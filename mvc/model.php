@@ -10,23 +10,16 @@
         //SELECT文
         //////////////////////////////////////
 
-        // 仮ログイン処理
-        public function temp_login($array){
-            $table = $array['status'];
+        // ログイン処理
+        public function login($table, $email, $password){
+            $table = $table;
             $column = '*';
-            $conditions = 'WHERE `email` ='."'".$array['email']."'".' AND `password`='."'".$array['password']."'";
+            $conditions = 'WHERE `email` ='."'".$email."'".' AND `password`='."'".$password."'";
             $info = $this->db->select($column, $table, $conditions);
             return $info;
         }
 
-        // ログイン処理
-        public function login($array){
-            $table = 'tuotors';
-            $column = '*';
-            $conditions = 'WHERE `email` ='."'".$array['email']."'".'AND `password` ='."'".$array['password']."'";
-            $info =$this->db->select($column, $table, $conditions);
-            return $info;
-        }
+
 
         // チューター情報取得
         public function tuotorInfo($id, $column){
@@ -326,6 +319,25 @@
             $values = '`password` ='."'".$password."'";
             $conditions = 'WHERE `tuotor_id` ='.$tuotor_id;
             $this->db->update($table, $values, $conditions);
+        }
+
+        // ログイン日時更新
+        public function loginUpDate($table, $tuotor_id){
+            $loginDate = Date("Y/m/d H:i:s");
+            // security_code処理
+            $code = $tuotor_id.$loginDate;
+            $security_code = hash_hmac('sha256' ,$code, False);
+
+            $table = $table;
+            $values ='`lastLoginDate` ='."'".$loginDate."'".",".
+                        '`security_code` ='."'".$security_code."'";
+            $conditions = 'WHERE `tuotor_id` ='.$tuotor_id;
+            $this->db->update($table, $values, $conditions);
+
+            // sessionスタート
+            session_start();
+            $_SESSION['security_code'] = $security_code;
+
         }
 
 
