@@ -62,7 +62,7 @@
                 $this->model->tuotorUpdate($password, $tuotor_id);
 
                 // loginへ
-                header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/login.php?status="tuotor"');
+                header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/login.php?status=tuotor');
 
             }
 
@@ -70,52 +70,47 @@
             //login.php
             ///////////////////////////////////////////
 
-            // 仮ログイン
-            if($this->POST == 'temp_login'){
-                // データ展開
-                $array = array();
-                $array['status'] = h($_POST['status']);
-                $array['email'] = h($_POST['email']);
-                $array['password'] = h($_POST['password']);
-
-                // modelへ引き継ぎ
-                $info = $this->model->temp_login($array);
-                
-                // sessionへsecurity_code登録
-                session_start();
-                $_SESSION['security_code'] = $info['security_code'];
-                
-                // 初ログインの場合
-                if($info['loginDate'] == NULL){
-                    header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/tuotor_signUp.php?id='.$info['tuotor_id']);
-                    exit();
-                }else{
-                    echo '工事中';
-                    exit();
-                }
-
-            }
-
             // ログイン
             if($this->POST == 'login'){
                 // password処理
                 $password = h($_POST['password']);
+                $password = $this->passmd5($password);
                 $password = $this->password($password);
 
-                // データ展開
-                $array = array();
-                $array['email'] = $_POST['email'];
-                $array['password'] = $password;
+                // status確認
+                if($_POST['status'] == 1){
+                    $table = 't_tuotors';
+                }else if($_POST['status'] == 2){
+                    $table = 's_students';
+                }else{
+                    echo 'ログインエラー';
+                    exit();
+                }
 
+                // データ展開
+                $email = h($_POST['email']);
+                
                 // modelへ引き継ぎ
-                $info =$this->model->login($array);
+                $info =$this->model->login($table, $email, $password);
 
                 // login判定
                 $this->login_judge($info);
 
-                // チューターMyPageへ
-                header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/tuotor_mypage.php');
-                exit();
+                // データ引き継ぎ
+                if($_POST['status'] == 1){
+                    $id = $info['tuotor_id'];
+                    $step = $info['step'];
+
+                    // ログインアップデート
+                    $this->model->loginUpDate($table, $id);
+    
+                    // チューターMyPageへ
+                    header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/tuotor_mypage.php?id='.$id.'&step='.$step);
+                    exit();
+                }else{
+                    // 生徒側処理
+                }
+
             }
 
             // チューター会員登録

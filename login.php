@@ -4,6 +4,14 @@
 
     // 条件分岐用のデータ取得
     $status = $_GET['status'];
+    if($status == 'tuotor'){
+        $side = 1;
+    }else if($status == 'student'){
+        $side = 2;
+    }else{
+        echo '不正アクセス';
+    }
+   
 
 ?>
 
@@ -19,10 +27,10 @@
 </head>
 <body>
     <div>
-        <p>仮ログイン画面</p>
-        <form action="mvc/controller.php" method="POST">
-            <input type="hidden" name="action" value="temp_login">
-            <input type="hidden" name="status" value=<?php echo $status ?>>
+        <p>ログイン</p>
+        <form action="mvc/controller.php" method="POST" name="login">
+            <input type="hidden" name="action" value="login">
+            <input type="hidden" name="status" value=<?php echo $side ?>>
             <div>
                 <p>メールアドレス</p>
                 <input type="text" name="email" size="30">
@@ -31,8 +39,9 @@
                 <p>パスワード</p>
                 <input type="password" name="password" size="30">
             </div>
-            <button>ログイン</button>
         </form>
+        <div id="btn">ログイン</div>
     </div>
+    <script src="js/login.js"></script>
 </body>
 </html>
