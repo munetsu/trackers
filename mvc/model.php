@@ -269,6 +269,33 @@
             $this->db->insert($table, $column, $values);
         }
 
+        // t_signUp3_book登録
+        public function appRegister($tuotor_id, $array){
+            $table = 't_applists';
+            $column = '';
+            $values = '';
+            $count = 1;
+            $minus = -1;
+            
+            foreach($array as $app){
+                if($count == 1){
+                    $column .= "`sp".$count.'`,';
+                    $values .= "'".$app."'".",";
+                }else if($count % 2 != 0){
+                    $column .= "`sp".($count+$minus).'`,';
+                    $values .= "'".$app."'".",";
+                    $minus--;
+                }else{
+                    $column .= "`app".($count+$minus).'`,';
+                    $values .= "'".$app."'".",";
+                }
+                $count++;
+            }
+            $column .= '`tuotor_id`';
+            $values .= "'".$tuotor_id."'";
+            $this->db->insert($table, $column, $values);
+        }
+
 
 
 

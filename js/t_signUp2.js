@@ -106,9 +106,19 @@ $(document).on('click', '.deleBtn', function(){
 })
 
 // 書籍登録上限数判定
-if(count == 11){
+if(bookLists.length == 10){
     alert('登録最大数に達しました');
 }
+
+// スマホアプリYes
+$(document).on('click', '#yes', function(){
+    window.location.href = 't_signUp3.php?id='+tuotor_id;
+})
+
+// スマホアプリNo
+$(document).on('click', '#no', function(){
+    window.location.href = 't_passgenerate.php?id='+tuotor_id;
+})
 
 //////////////////////////////////////////////////
 // 関数処理

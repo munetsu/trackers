@@ -282,6 +282,27 @@
                     $this->model->bookRegister($tuotor_id, $array);
                 }
             }
+            ///////////////////////////////////////////
+            //t_signUp3.php
+            ///////////////////////////////////////////
+            if($this->POST == 'appLists'){
+                $count = 1;
+                if(count($_POST) == 2){
+                    // 書籍登録がないため、処理なし
+                    return;
+                }else{
+                    // 書籍データがある場合
+                    $array = array();
+                    $tuotor_id = $_POST['id'];
+                    foreach($_POST['appInfo'] as $app){
+                        $array['sp'.$count] = h($app['smartphone']);
+                        $array['app'.$count] = h($app['appName']);
+                        $count++;
+                    }    
+                    // modelへ引き継ぎ
+                    $this->model->appRegister($tuotor_id, $array);
+                }
+            }
 
 
         }
