@@ -262,8 +262,25 @@
             //t_signUp2.php
             ///////////////////////////////////////////
             if($this->POST == 'bookLists'){
-                var_dump($_POST);
-                exit();
+                $count = 1;
+                // データ数を確認
+                if(count($_POST) == 2){
+                    // 書籍登録がないため、処理なし
+                    return;
+                }else{
+                    // 書籍データがある場合
+                    $array = array();
+                    $tuotor_id = $_POST['id'];
+                    foreach($_POST['bookInfo'] as $book){
+                        $array['title'.$count] = $book['title'];
+                        $array['imageUrl'.$count] = $book['imageUrl'];
+                        $count++;
+                    }
+                    // var_dump($array);
+                    // exit();
+                    // modelへ引き継ぎ
+                    $this->model->bookRegister($tuotor_id, $array);
+                }
             }
 
 
