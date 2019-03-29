@@ -10,6 +10,7 @@
         $side = 2;
     }else{
         echo '不正アクセス';
+        exit();
     }
    
 

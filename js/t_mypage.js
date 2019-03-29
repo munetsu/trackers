@@ -2,8 +2,11 @@
 // ロジック
 //////////////////////////////////////////////////
 if(step == 2){
+    console.log('test')
     // 確認書類の送付中
-    $('.main').append(viewStep2());
+    $('.mainarea').append(viewStep2());
+}else{
+    $('.mainarea').append(viewMain());
 }
 
 //////////////////////////////////////////////////
@@ -31,4 +34,9 @@ function viewStep2(){
         </div>
     `;   
     return view;
+}
+
+// step99の場合
+function viewMain(){
+    
 }
