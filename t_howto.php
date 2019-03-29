@@ -22,8 +22,8 @@
     // $howtoLists = JSON_ENCODE($howtoLists,JSON_UNESCAPED_UNICODE);
 
     // 登録済み勉強方法月を取得
-    $select = 'monthly';
-    $month = $model->howtoMonth($id, $select);
+    $select = 'month';
+    $month = $model->howtoMonthly($id, $select);
     $monthLength = count($month);
     if($monthLength != 0){
         $month = JSON_ENCODE($month,JSON_UNESCAPED_UNICODE);
@@ -76,8 +76,19 @@
             <p>利用テキスト等を選択してください</p>
             <div class="textList flex"></div>
         </div>
+        <div>
+            <p>勉強方法を記載してください</p>
+            <textarea id="howtostudy" cols="50" rows="10"></textarea><br>
+            <a href="t_howtoEx.php" target="_blank">記載例はこちら</a>
+        </div>
+        <div class="flex">
+            <div id="next" class="btn">他の月も登録</div>
+            <div id="stop" class="btn">一時保存</div>
+            <div id="finish" class="btn">登録完了</div>
+        </div>
     </div>
     <script>
+        let tuotor_id = <?php echo $id ?>;
         let howto = <?php echo $howto ?>;
         let monthly = <?php echo $month ?>;
         let bookLists = <?php echo $booklists ?>;

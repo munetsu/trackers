@@ -10,7 +10,7 @@ const text = [];
 // カウント用
 let count = 0;
 
-// console.log(howto);
+console.log(monthly.length);
 /////////////////////////////////////////////
 // 読み込み時に処理
 /////////////////////////////////////////////
@@ -44,7 +44,7 @@ $(function(){
 // 登録済み月処理
 function checkedMonth(i){
     for(let k =0;k<monthly.length;k++){
-        var month = parseInt(monthly[k]['monthly'], 10);
+        var month = parseInt(monthly[k]['month'], 10);
         if(i == month){
             var view = '<li class="month gray" id="month'+i+'">'+i+'月</li>';
             break;
@@ -142,3 +142,75 @@ function viewSchool(){
     `;
     return view;
 }
+
+////////////////////////////////////////////////////////////////
+// クリックイベント（ajax含む）
+////////////////////////////////////////////////////////////////
+$(document).on('click', '.btn', function(){
+    let select = $(this).attr('id');
+    let howtoStudy = $('#howtostudy').val();
+    let weektime = $('input[name="weektime"]').val();
+    let weekday = $('input[name="weekday"]').val();
+    let holidaytime = $('input[name="holidaytime"]').val();
+    let holiday = $('input[name="holiday"]').val();
+
+    console.log(howtoStudy);
+    if(selectMonth.length == 0){
+        alert('月が選択されていません');
+        return;
+    }else if(howtoStudy == ''){
+        alert('勉強方法が記載されていません');
+        return;
+    }else if(weektime == null){
+        alert('平日の勉強時間が記載されていません');
+        return;
+    }else if(weekday == null){
+        alert('平日の日数が記載されていません');
+        return;
+    }else if(holidaytime == null){
+        alert('休日の勉強時間が記載されていません');
+        return;
+    }else if(holiday == null){
+        alert('休日の日数が記載されていません');
+        return;
+    }
+
+    if(text.length == 0){
+        if(!confirm('「テキストなし」で登録しますか？')){
+            // キャンセルの場合
+            return;
+        }
+    }
+
+    // 勉強時間の配列
+    const studytime = [];
+    studytime.push(weektime, weekday, holidaytime, holiday);
+   
+    // ajax処理
+    $.ajax({
+        url:'mvc/controller.php',
+        type:'POST',
+        data:{
+            action:'howto',
+            month:selectMonth,
+            time:studytime,
+            text:text,
+            howto:howtoStudy,
+            tuotor_id:tuotor_id,
+            step:select
+        }
+    })
+    .done((data)=>{
+        console.log(data);
+        if(select == 'next'){
+            // リロード
+            location.reload();
+        }else{
+            window.location.href="/trackers/t_mypage.php?id="+tuotor_id;
+        }
+    })
+    .fail((data)=>{
+        console.log(data);
+        alert('登録できませんでした\n再度、登録処理をお願いします');
+    })
+})

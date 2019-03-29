@@ -344,6 +344,52 @@
                 }
             }
 
+            ///////////////////////////////////////////
+            //t_howto.php
+            ///////////////////////////////////////////
+            // howto登録
+            if($this->POST == 'howto'){
+                $tuotor_id = h($_POST['tuotor_id']);
+                // 重複登録の確認
+                $monthly = array();
+                foreach($_POST['month'] as $month){
+                    array_push($monthly, h($month));
+                }
+                // 未登録月分を抽出
+                $monthlist = $this->model->t_howtoSelect($tuotor_id, $monthly);
+                if(count($monthlist) == 0){
+                    return;
+                }
+
+                // 未登録月分の登録
+                // データ展開
+                $array = array();
+                $array['weektime'] = h($_POST['time'][0]);
+                $array['weekday'] = h($_POST['time'][1]);
+                $array['holidaytime'] = h($_POST['time'][2]);
+                $array['holiday'] = h($_POST['time'][3]);
+
+                $books = array();
+                foreach($_POST['text'] as $text){
+                    array_push($books, h($text));
+                }
+                $howto = h($_POST['howto']);
+                
+                if(h($_POST['step']) == 'next' || h($_POST['step']) == 'stop'){
+                    $step = 3;
+                }else if(h($_POST['step']) == 'finish'){
+                    $step = 99;
+                }else{
+                    return;
+                }
+
+                // データ登録
+                $this->model->t_howtoRegister($tuotor_id, $monthlist, $array, $howto, $books);
+                
+                // step更新
+                $this->model->tuotorStep($tuotor_id,$step);
+            }
+
 
         }
 
