@@ -1,3 +1,12 @@
+/**************************************************** 
+スマホリサイズ
+*****************************************************/
+@media screen and (max-width: 480px){
+    .flex {
+        flex-wrap:wrap;
+    }
+}
+
 li {
     list-style: none;
 }
@@ -43,4 +52,13 @@ textarea {
 
 .gray {
     background-color: black;
+}
+
+.bookimg {
+    width: 130px;
+    height: 170px;
+}
+
+.bookselect {
+    background-color: #eeaab0;
 }
