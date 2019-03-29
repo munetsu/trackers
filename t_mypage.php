@@ -19,6 +19,11 @@
     // 登録状況によって振り分け
     if($step == 1){
         header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/t_signUp2.php?id='.$id);
+        exit();
+    }else if($step == 3){
+        // 審査通過者の初業務
+        header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/t_howto.php?id='.$id);
+        exit();
     }
     
 ?>
@@ -30,9 +35,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <!-- jQuery本体-->
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-    <div>tuotor_mypage</div>
-    <script ></script>
+    <div>
+        <div class="main"></div>
+    </div>
+    <script>
+        let step = <?php echo $step ?>;
+    </script>
+    <script src="js/t_mypage.js"></script>
 </body>
 </html>

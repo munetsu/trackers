@@ -95,6 +95,17 @@
             return $monthLists;
         }
 
+        // 勉強方法リスト
+        public function howtoList(){
+            $table = 'howtoLists';
+            $column = '*';
+            $conditions = '';
+            $howtoLists = $this->db->selectAll($column, $table, $conditions);
+            return $howtoLists;
+        }
+
+        
+
         //////////////////////////////////////
         //INSERT文
         //////////////////////////////////////
