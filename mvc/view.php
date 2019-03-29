@@ -52,6 +52,39 @@
             echo $view;
         }
 
+        //////////////////////////////////////////
+        // t_mypage.phpの共通部分
+        //////////////////////////////////////////
+        public function viewCommon(){
+            $view = '
+                <div>
+                    <!-- 固定上段-->
+                    <div class="topbar">
+                        <div>
+                            <a href="#"><img src="img/logo.png"></a>
+                        </div>
+                        <div>
+                            <a href="logout.php?status=tuotor">ログアウト</a>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <!-- サイドバー部分 -->
+                        <div class="sidebar">
+                            <ul>
+                                <li>実施予定</li>
+                                <li>過去実施</li>
+                                <li>勉強方法</li>
+                                <li>プロフィール</li>
+                            </ul>
+                        </div>
+                        <!-- メイン部分 -->
+                        <div class="mainarea"></div>
+                    </div>
+                </div>
+            ';
+            return $view;
+        }
+
         
 
 
