@@ -83,6 +83,22 @@
             return $res;
         }
 
+        // 勉強法登録検索
+        public function t_howtoSelect($tuotor_id, $monthly){
+            $table = 't_howtos';
+            $column = 'month';
+            $monthList = array();
+            foreach($monthly as $month){
+                $conditions = 'WHERE `tuotor_id` ='.$tuotor_id.' AND `month` ='."'".$month."'";
+                $res = $this->db->select($column, $table, $conditions);
+                if($res == ''){
+                    // 未登録月
+                    array_push($monthList, $month);
+                }
+            }
+            return $monthList;
+        }
+
         //////////////////////////////////////
         //SELECTALL文
         //////////////////////////////////////
@@ -102,6 +118,15 @@
             $conditions = '';
             $howtoLists = $this->db->selectAll($column, $table, $conditions);
             return $howtoLists;
+        }
+
+        // howto登録月を抽出
+        public function howtoMonthly($id, $select){
+            $table= 't_howtos';
+            $column = $select;
+            $conditions = 'WHERE `tuotor_id`='.$id;
+            $monthLists = $this->db->selectAll($column, $table, $conditions);
+            return $monthLists;
         }
 
         
@@ -309,6 +334,37 @@
             $this->db->insert($table, $column, $values);
         }
 
+        // t_howto登録
+        public function t_howtoRegister($tuotor_id, $monthlist, $array, $howto, $books){
+            $datetime = Date("Y/m/d"); 
+            $table = 't_howtos';
+            $column = '`tuotor_id`,
+                        `weektime`,
+                        `weekday`,
+                        `holidaytime`,
+                        `holiday`,
+                        `howto`,
+                        `Date`,';
+            $values = "'".$tuotor_id."'".",".
+                        "'".$array['weektime']."'".",".
+                        "'".$array['weekday']."'".",".
+                        "'".$array['holidaytime']."'".",".
+                        "'".$array['holiday']."'".",".
+                        "'".$howto."'".",".
+                        "'".$datetime."'".",";
+            $count = 1;
+            foreach($books as $book){
+                $column .= '`text'.$count.'`,';
+                $values .= "'".$book."'".",";
+                $count++;
+            }
+            $column .= '`month`';
+            foreach($monthlist as $month){
+                $values .= "'".$month."'";
+                $this->db->insert($table, $column, $values);
+            }
+            
+        }
 
 
 
