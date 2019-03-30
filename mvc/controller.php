@@ -67,6 +67,36 @@
             }
 
             ///////////////////////////////////////////
+            //s_passgenerate.php
+            ///////////////////////////////////////////
+            // パスワード作成
+            if($this->POST == 's_passgene'){
+                // パスワードをハッシュ化
+                $password = $_POST['pass1'];
+                $password = $this->passmd5($password);
+                $password = $this->password($password);
+                // データ展開
+                $student_id = $_POST['student_id'];
+                $email = $_POST['email'];
+                
+                // idとメールアドレスの確認
+                $column = 'email';
+                $where = 'WHERE `student_id`='.$student_id;
+                $res = $this->model->s_studentsAnySelect($column, $where);
+                if($email != $res['email']){
+                    echo 'メールアドレスが異なっております';
+                    exit();
+                }
+
+                // ログイン用データへ保存
+                $this->model->studentUpdate($password, $student_id);
+
+                // loginへ
+                header('location: ../login.php?status=student');
+
+            }
+
+            ///////////////////////////////////////////
             //login.php
             ///////////////////////////////////////////
 

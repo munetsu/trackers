@@ -436,11 +436,19 @@
             $this->db->update($table, $values, $conditions);
         }
 
-        // パスワード登録
+        // パスワード登録(tuotor)
         public function tuotorUpdate($password, $tuotor_id){
             $table = 't_tuotors';
             $values = '`password` ='."'".$password."'";
             $conditions = 'WHERE `tuotor_id` ='.$tuotor_id;
+            $this->db->update($table, $values, $conditions);
+        }
+
+        // パスワード登録(student)
+        public function studentUpdate($password, $tuotor_id){
+            $table = 's_students';
+            $values = '`password` ='."'".$password."'";
+            $conditions = 'WHERE `student_id` ='.$tuotor_id;
             $this->db->update($table, $values, $conditions);
         }
 
