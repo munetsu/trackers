@@ -131,13 +131,26 @@
                     $id = $info['tuotor_id'];
 
                     // ログインアップデート
-                    $this->model->loginUpDate($table, $id);
+                    $this->model->t_loginUpDate($table, $id);
     
                     // チューターMyPageへ
                     header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/t_mypage.php?id='.$id);
                     exit();
-                }else{
+                }else if($_POST['status'] == 2){
                     // 生徒側処理
+                    $id = $info['student_id'];
+
+                    // ログインアップデート
+                    $this->model->s_loginUpDate($table, $id);
+
+                    // ステップアップデート
+                    $step = 2;
+                    $this->model->studentStep($id, $step);
+
+                    // studentTopPageへ
+                    header('location: ../s_mypage.php?id='.$id);
+                    exit();
+
                 }
 
             }

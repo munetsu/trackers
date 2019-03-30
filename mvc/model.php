@@ -452,8 +452,8 @@
             $this->db->update($table, $values, $conditions);
         }
 
-        // ログイン日時更新
-        public function loginUpDate($table, $tuotor_id){
+        // ログイン日時更新(チューター)
+        public function t_loginUpDate($table, $tuotor_id){
             $loginDate = Date("Y/m/d H:i:s");
             // security_code処理
             $code = $tuotor_id.$loginDate;
@@ -470,7 +470,25 @@
             $_SESSION['security_code'] = $security_code;
         }
 
-        // step更新
+        // ログイン日時更新(student))
+        public function s_loginUpDate($table, $student_id){
+            $loginDate = Date("Y/m/d H:i:s");
+            // security_code処理
+            $code = $student_id.$loginDate;
+            $security_code = hash_hmac('sha256' ,$code, False);
+
+            $table = $table;
+            $values ='`lastLoginDate` ='."'".$loginDate."'".",".
+                        '`security_code` ='."'".$security_code."'";
+            $conditions = 'WHERE `student_id` ='.$student_id;
+            $this->db->update($table, $values, $conditions);
+
+            // sessionスタート
+            session_start();
+            $_SESSION['security_code'] = $security_code;
+        }
+
+        // step更新(tuotor)
         public function tuotorStep($tuotor_id, $step){
             $table = 't_tuotors';
             $values = '`step` ='.$step;
@@ -478,7 +496,13 @@
             $this->db->update($table, $values, $conditions);
         }
 
-
+        // step更新(student)
+        public function studentStep($student_id, $step){
+            $table = 's_students';
+            $values = '`step` ='.$step;
+            $conditions = 'WHERE `student_id` ='.$student_id;
+            $this->db->update($table, $values, $conditions);
+        }
 
 
 
