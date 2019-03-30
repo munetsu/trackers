@@ -99,6 +99,17 @@
             return $monthList;
         }
 
+        // s_studeny登録情報の照合
+        public function s_studentsSelect($array, $column){
+            $table = 's_students';
+            $column = $column;
+            $conditions = 'WHERE `email` = '."'".$array['email']."'".'AND `tel` = '."'".$array['tel']."'";
+            $res = $this->db->select($column, $table, $conditions);
+            return $res;
+        }
+
+        
+
         //////////////////////////////////////
         //SELECTALL文
         //////////////////////////////////////
@@ -364,6 +375,33 @@
                 $this->db->insert($table, $column, $values);
             }
             
+        }
+
+        // s_signUpのチューター登録処理
+        public function s_students($array, $tableLists){
+            //日付取得
+            $datetime = Date("Y/m/d H:i:s"); 
+            $code = $array['email'].$datetime.$array['a_familyname'];
+            // security_code処理
+            $security_code = hash_hmac('sha256' ,$code, False);
+            // DB登録処理
+            $table = 's_students';
+            $column = '';
+            $values = '';
+            foreach($tableLists as $tableList){
+                $column .= "`".$tableList."`,";
+                $values .= "'".$array[$tableList]."'".",";
+            }
+            $column .= "`registerDate`,`security_code`";
+            $values .= "'".$datetime."'".","."'".$security_code."'";
+            // var_dump($column);
+            // var_dump($values);
+            // exit();
+            $res = $this->db->insert($table, $column, $values);
+            // sessionスタート
+            session_start();
+            $_SESSION['security_code'] = $security_code;
+            return $res;
         }
 
 
