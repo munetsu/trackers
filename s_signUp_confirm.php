@@ -11,19 +11,8 @@
     $tel = h($_POST['tel']);
     $birthyear = h($_POST['birthyear']);
     $birthmonth = h($_POST['birthmonth']);
-    $status = h($_POST['status']);
-    $academic = h($_POST['academic']);
-    $howto = h($_POST['howto']);
-    if($howto != 1){
-        $schoolname = h($_POST['schoolname']);
-    }
-    $howmany = h($_POST['howmany']);
-
-    // 配列データ
-    $kindstatus = ['', '会社員', '役員', '学生', '主婦・主夫', 'フリーター・パート', 'その他'];
-    $kindacademic = ['', '大学院卒', '大学卒', '専門・高専卒', '高校卒', '中卒', '非回答'];
-    $kindhow = ['', '独学', '資格学校', '通信教育'];
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -31,15 +20,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="css/t_signUp_confirm.css">
     <!-- jQuery本体-->
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-    <div>
+<div>
         <p>内容の確認をお願いします。修正する場合は、下記修正ボタンから戻ってください。</p>
         <form action="" method="POST" name="signUp">
-            <input type="hidden" name="action" value="t_signUp">
+            <input type="hidden" name="action" value="s_signUp">
             <table>
                 <tr>
                     <td>氏名</td>
@@ -61,28 +49,6 @@
                     <td>生年月日</td>
                     <td><input type="hidden" name="birthyear" value=<?php echo $birthyear ?>><?php echo $birthyear ?>年／<input type="hidden" name="birthmonth" value=<?php echo $birthmonth ?>><?php echo $birthmonth ?>月</td>
                 </tr>
-                <tr>
-                    <td>職業</td>
-                    <td><input type="hidden" name="status" value=<?php echo $status ?>><?php echo $kindstatus[$status] ?></td>
-                </tr>
-                <tr>
-                    <td>学歴</td>
-                    <td><input type="hidden" name="academic" value=<?php echo $academic ?>><?php echo $kindacademic[$academic] ?></td>
-                </tr>
-                <tr>
-                    <td>勉強方法</td>
-                    <td><input type="hidden" name="howto" value=<?php echo $howto ?>><?php echo $kindhow[$howto] ?></td>
-                </tr>
-                <?php if($howto != 1): ?>
-                <tr>
-                    <td>学校・サービス</td>
-                    <td><input type="hidden" name="schoolname" value=<?php echo $schoolname ?>><?php echo $schoolname ?></td>
-                </tr>
-                <?php endif; ?>
-                <tr>
-                    <td>受験回数</td>
-                    <td><input type="hidden" name="howmany" value=<?php echo $howmany ?>><?php echo $howmany ?>回</td>
-                </tr>
             </table>          
         </form>
     </div>
@@ -94,6 +60,6 @@
             <a href="" class="btn" data-id="register">登録</a>
         </div>
     </div>
-    <script src="js/t_signUp_confirm.js"></script>
+    <script src="js/s_signUp_confirm.js"></script>
 </body>
 </html>
