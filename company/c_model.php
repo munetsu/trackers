@@ -1,5 +1,5 @@
 <?php
-    include('../mvc/data.php');
+    include('c_data.php');
 
     class C_MODEL{
         function __construct(){
@@ -77,6 +77,7 @@
                         "'".$array['email']."'".",".
                         "'".$array['password']."'".",".
                         "'".$registerTime."'";
+            var_dump($values);
             $this->db->insert($table, $column, $values);
             header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/company/c_login.php');
             exit();

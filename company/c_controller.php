@@ -65,7 +65,7 @@
                     echo 'ログインエラー';
                     exit();
                 }else{
-                    header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/company/c_adminPage.php');
+                    header('Location: /company/c_adminPage.php');
                     exit();
                 }
 
