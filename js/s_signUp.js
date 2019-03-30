@@ -178,7 +178,7 @@ $(document).on('click', '#btn', function(e){
     if(error != 0){
         alert('emailもしくは電話番号をご確認ください')
     }
-    // signUp.submit();
+    signUp.submit();
 })
 
 ///////////////////////////////////////////
