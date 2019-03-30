@@ -99,10 +99,10 @@ $(document).on('blur', 'input[name="email"]', function(){
     let value = $(this).val();
     let mailcheck = value.match(/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i);
     if(mailcheck == null){
-        error = 0;
+        error = 1;
         alert('現在のアドレスは登録出来ません');
     }else{
-        error = 1
+        error = 0;
     }
 })
 
