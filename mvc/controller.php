@@ -264,6 +264,8 @@
                     $this->view->tuotorRegisterError();
                     return;
                 }else{
+                    // var_dump($array);
+                    // exit();
                     // 新規データの場合
                     if(count($array) == count($tableLists1)){
                         $result = $this->model->t_tuotors($array, $tableLists1);
@@ -389,6 +391,53 @@
                 // step更新
                 $this->model->tuotorStep($tuotor_id,$step);
             }
+
+            ///////////////////////////////////////////
+            //s_signUp_confirm.php
+            ///////////////////////////////////////////
+            if($this->POST == 's_signUp'){
+                // テーブルリスト
+                $tableLists = [
+                    'k_familyname',
+                    'k_firstname',
+                    'a_familyname',
+                    'a_firstname',
+                    'email',
+                    'tel',
+                    'birthyear',
+                    'birthmonth'
+                ];
+                // データ展開
+                $array = array();
+                foreach($tableLists as $table){
+                    $array[$table] = h($_POST[$table]);
+                }
+                // var_dump($array);
+                // exit();
+                // 重複データの確認
+                $res = $this->model->s_studentsSelect($array, '*');
+                // 重複データ判定
+                if($res){
+                    // 重複データがあった場合
+                    include('view.php');
+                    $this->view = new VIEW;
+                    echo '重複データあり';
+                    exit();
+                }else{
+                    $res = $this->model->s_students($array, $tableLists);
+                }
+                
+                if($res == null){
+                    // student_id取得
+                    $id = $this->model->s_studentsSelect($array, 'student_id');
+                    
+                    header('location: ../s_passgenerate.php?id='.$id['student_id']);
+                    exit();
+                }else{
+                    echo 'データ登録でエラー発生';
+                }
+            }
+
 
 
         }
