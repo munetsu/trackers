@@ -12,6 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <!-- jQuery本体-->
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
     <div>
@@ -53,7 +55,7 @@
                     <input type="password" name="password" placeholder="パスワードを入力">
                 </p>
             </div>
-            <button>ログインする</button>
+            <button>新規ユーザー作成</button>
         </form>
 
     </div>
