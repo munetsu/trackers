@@ -108,6 +108,15 @@
             return $res;
         }
 
+        // s_student登録情報照合(id検索)
+        public function s_studentsAnySelect($column, $where){
+            $table = 's_students';
+            $column = $column;
+            $conditions = $where;
+            $res = $this->db->select($column, $table, $conditions);
+            return $res;
+        }
+
         
 
         //////////////////////////////////////
