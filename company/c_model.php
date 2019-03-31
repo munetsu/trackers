@@ -79,8 +79,6 @@
             return $res;
         }
 
-        
-
         /////////////////////////////////////////
         //INSERT文
         /////////////////////////////////////////
@@ -136,6 +134,33 @@
             $this->db->insert($table, $column, $values);
         }
 
+        // booklists登録
+        public function booklistsRegister($tuotor_id, $booklists){
+            $table = 'booklists';
+            $column = '`tuotor_id`,
+                        `title`,
+                        `imageUrl`,
+                        `isbn`,
+                        `link`'; 
+            // データ展開
+            foreach($booklists as $book){
+                // 重複確認
+                $table = 'booklists';
+                $column = 'isbn';
+                $where = 'WHERE `tuotor_id` ='."'".$tuotor_id."'".'AND `isbn` = '."'".$book['isbn']."'";
+                $info = $this->selectFree($table, $column, $where);
+                if($info != null){
+                    continue;
+                }
+                $values = "'".$tuotor_id."'".",";
+                $values .= "'".$book['title']."'".",";
+                $values .= "'".$book['imageUrl']."'".",";
+                $values .= "'".$book['isbn']."'".",";
+                $values .= "'".$book['link']."'";
+                $this->db->insert($table, $column, $values);
+            }
+        }
+
         /////////////////////////////////////////
         //UPDATE文
         /////////////////////////////////////////
@@ -172,6 +197,8 @@
         public function sendEmail($to, $from, $subject, $message){
             // ヘッダー処理
             $header = "From: {$from}\r\n";
+            $header.= "\n";
+            $header.= "Bcc: info@trackers.co.jp";
 
             // 送信処理
             mb_language('ja');
