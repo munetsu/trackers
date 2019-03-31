@@ -61,6 +61,20 @@
             return $lists;
         }
 
+        // チューターstep別件数
+        public function countGroupBy($table, $col){
+            $table = $table;
+            $column = '`'.$col.'`, COUNT("*")';
+            $conditions = 'GROUP BY `'.$col.'`';
+            $num = $this->db->selectAll($column, $table, $conditions);
+            return $num;
+        }
+
+        // 勉強法確認件数
+        public function howtoStep($col){
+
+        }
+
         /////////////////////////////////////////
         //INSERT文
         /////////////////////////////////////////
