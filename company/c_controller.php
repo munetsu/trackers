@@ -170,6 +170,39 @@
                 $this->model->certificationRegister($certifiction);
                 header('Location: http://'.$_SERVER["HTTP_HOST"].'/trackers/company/c_certification.php');
             }
+
+            //////////////////////////////////////////////
+            // チューター登録承認処理
+            /////////////////////////////////////////////
+            if($this->POST == 'ok'){
+                // データ展開
+                $tuotor_id = h($_POST['id']);
+                $step = 3;
+
+                // modelへ引き継ぎ
+                // step更新
+                $this->model->tuotorOk($tuotor_id, $step);
+
+                // メール送信
+                $to = h($_POST['email']);
+                $from = 'info@trackers.co.jp';
+                $subject = '【Trackers】ご登録ありがとうございました';
+                $message = ''
+                    ."\n"
+                    ."身分証明書等の送付ありがとうございました。\n"
+                    ."ご確認させていただきました。\n"
+                    ."続いて、資格試験の勉強方法に関してのご登録をお願いします。\n"
+                    ."====================================\n"
+                    ."【ログインページ】\n"
+                    .'<a href="http://trackers.co.jp/trackers/login.php?status=tuotor">\n
+                    http://yumefukuro.sakura.ne.jp/trackers/login.php?status=tuotor</a>\n'
+                    ."ご不明点等ございましたら、下記アドレスまでご連絡ください\n"
+                    ."連絡先：info@trackers.co.jp\n"
+                    ."====================================\n"
+                    ;
+                $this->model->sendEmail($to, $from, $subject, $message);
+                
+            }
             
 
         }
