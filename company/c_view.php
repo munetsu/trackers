@@ -34,6 +34,34 @@
             return $sideBar;
         }
 
+        // 共有VIEW
+        public function viewCommon(){
+            $view = '
+                <div class="topbar">
+                    <div class="logo">
+                        <img src="../img/logo.png">
+                    </div>
+                    <div class="logout">
+                        <a href="c_logout.php">ログアウト</a>
+                    </div>
+                </div>
+                <div class="body">
+                    <div class="sidebar">
+                        <ul>
+                            <li><a href="c_offerlist.php">申請一覧</a></li>
+                            <li><a href="c_waitConfirm.php">勉強法承認待ち</a></li>
+                            <li><a href="c_adjustmentDate.php">日程調整中<a/></li>
+                            <li><a href="c_waitCashList.php">未入金リスト</a></li>
+                            <li><a href="c_salaryList.php">振込リスト</a></li>
+                        </ul>
+                    </div>
+                    <div class="main">
+                    <div>
+                </div>
+            ';
+            return $view;
+        }
+
         //////////////////////////////////////
         //c_tuotor.php
         //////////////////////////////////////
