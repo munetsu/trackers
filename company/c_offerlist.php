@@ -8,7 +8,7 @@
     $model = new C_MODEL;
     $table = 't_tuotors';
     $column = '*';
-    $where = 'WHERE `step` = 1';
+    $where = 'WHERE `step` = 10';
     $lists = $model->selectFree($table, $column, $where);
     $lists = json($lists);
 
