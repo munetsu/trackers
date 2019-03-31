@@ -61,7 +61,7 @@
             return $lists;
         }
 
-        // チューターstep別件数
+        // GroupBySelect
         public function countGroupBy($table, $col){
             $table = $table;
             $column = '`'.$col.'`, COUNT("*")';
@@ -70,10 +70,16 @@
             return $num;
         }
 
-        // 勉強法確認件数
-        public function howtoStep($col){
-
+        // selectFree
+        public function selectFree($table, $column, $where){
+            $table = $table;
+            $column = $column;
+            $conditions = $where;
+            $res = $this->db->selectAll($column, $table, $conditions);
+            return $res;
         }
+
+        
 
         /////////////////////////////////////////
         //INSERT文
@@ -151,7 +157,29 @@
             $this->db->update($table, $values, $conditions);
         }
 
-        
+        // チューター承認
+        public function tuotorOk($tuotor_id, $step){
+            $table = 't_tuotors';
+            $values = '`step` ='."'".$step."'";
+            $conditions = 'WHERE `tuotor_id` ='."'".$tuotor_id."'";
+            $this->db->update($table, $values, $conditions);
+        }
 
+        /////////////////////////////////////////////////////////
+        // DB操作以外
+        //////////////////////////////////////////////////////////
+        // メール送信
+        public function sendEmail($to, $from, $subject, $message){
+            // ヘッダー処理
+            $header = "From: {$from}\r\n";
 
+            // 送信処理
+            mb_language('ja');
+            mb_internal_encoding('UTF-8');
+            if(mb_send_mail($to, $subject, $message, $header)){
+                echo 'メール送信に成功致しました。';
+            }else{
+                echo 'メール送信に失敗致しました。';
+            }
+        }
     }
