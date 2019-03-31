@@ -201,10 +201,35 @@
                     ."====================================\n"
                     ;
                 $this->model->sendEmail($to, $from, $subject, $message);
-                
             }
-            
 
+            ///////////////////////////////////////////////
+            // booklist取得
+            //////////////////////////////////////////////
+            if($this->POST == 'bookedit'){
+                $id = h($_POST['id']);
+                // modelへ
+                $table = 't_booklists';
+                $column = '*';
+                $where = 'WHERE `tuotor_id` ='."'".$id."'";
+                $booklists = $this->model->selectFree($table, $column, $where);
+                $booklists = json($booklists);
+                echo $booklists;
+            }
+
+            ///////////////////////////////////////////////
+            // booklist登録
+            //////////////////////////////////////////////
+            if($this->POST == 'booklist'){
+                $tuotor_id = $_POST['tuotor_id'];
+                $booklists = $_POST['bookInfoLists'];
+                // modelへ
+                $this->model->booklistsRegister($tuotor_id, $booklists);
+
+                // step更新
+                $step = 10;
+                $this->model->tuotorOk($tuotor_id, $step);
+            }
         }
 
 
