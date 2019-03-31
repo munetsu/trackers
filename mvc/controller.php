@@ -423,7 +423,7 @@
                 if(h($_POST['step']) == 'next' || h($_POST['step']) == 'stop'){
                     $step = 3;
                 }else if(h($_POST['step']) == 'finish'){
-                    $step = 99;
+                    $step = 20;
                 }else{
                     return;
                 }

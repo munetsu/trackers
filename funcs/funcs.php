@@ -43,5 +43,11 @@ function chkSsid(){
   }
 }
 
+// JSON_ENCODE
+function json($array){
+  $array = JSON_ENCODE($array,JSON_UNESCAPED_UNICODE);
+  return $array;
+}
+
 
 ?>
