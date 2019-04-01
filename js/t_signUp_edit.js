@@ -127,6 +127,7 @@ $(document).on('blur', 'input[name="tel"]', function(){
 $(document).on('click', '#btn', function(e){
     e.preventDefault();
     let test = [];
+    test.push($('input[name="certification"]').val());
     test.push($('input[name="k_familyname"]').val());
     test.push($('input[name="k_firstname"]').val());
     test.push($('input[name="a_familyname"]').val());
@@ -139,7 +140,7 @@ $(document).on('click', '#btn', function(e){
             return;
         }
     }
-    if(academiccheck == 1){
+    if(academiccheck != 1){
         if($('input[name="shcoolname"]').val() == ''){
             alert('学校名・サービス名を記載してください')
             return;

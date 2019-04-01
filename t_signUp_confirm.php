@@ -3,6 +3,7 @@
     include('funcs/funcs.php');
     chkSsid();
 
+    $certification = h($_POST['certification']);
     $k_fa_name = h($_POST['k_familyname']);
     $k_f_name = h($_POST['k_firstname']);
     $a_fa_name = h($_POST['a_familyname']);
@@ -41,6 +42,10 @@
         <form action="" method="POST" name="signUp">
             <input type="hidden" name="action" value="t_signUp">
             <table>
+                <tr>
+                    <td>資格名</td>
+                    <td><input type="hidden" name="certification" class="text" value=<?php echo $certification ?>><?php echo $certification ?></td>
+                </tr>
                 <tr>
                     <td>氏名</td>
                     <td><input type="hidden" name="k_familyname" class="text" value=<?php echo $k_fa_name ?>><input type="hidden" name="k_firstname" class="text" value=<?php echo $k_f_name ?>><?php echo $k_fa_name ?>&nbsp;<?php echo $k_f_name ?></td>
