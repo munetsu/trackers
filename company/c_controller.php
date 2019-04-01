@@ -65,7 +65,7 @@
                     echo 'ログインエラー';
                     exit();
                 }else{
-                    header('Location: ../company/c_adminPage.php');
+                    header('Location: ../company/c_top.php');
                     exit();
                 }
 
@@ -229,6 +229,78 @@
                 // step更新
                 $step = 10;
                 $this->model->tuotorOk($tuotor_id, $step);
+            }
+
+            ///////////////////////////////////////////////
+            // howto詳細取得
+            //////////////////////////////////////////////
+            if($this->POST == 'getHowto'){
+                $howto_id = $_POST['howto_id'];
+                
+                // modelへ
+                $table = 't_howtos';
+                $column = '*';
+                $where = 'WHERE `howto_id` ='."'".$howto_id."'";
+                $howto = $this->model->anyselect($table, $column, $where);
+                
+                
+                // textデータ取得
+                $textlist = array();
+                for($i = 1;$i<11;$i++){
+                    if($howto['text'.$i] == null){
+                        break;
+                    }else{
+                        array_push($textlist,$howto['text'.$i]);
+                    }
+                }
+                
+                // modelへ
+                $booklists = array();
+                $table = 'booklists';
+                $column = '`title`, `imageUrl`';
+                foreach($textlist as $text){
+                    if($text == 0){
+                        $noimage = array();
+                        $noimage['title'] = "指定教材";
+                        $noimage['imageUrl'] = '<img src="../img/school.png" >';
+                        array_push($booklists, $noimage);
+                        continue;
+                    }
+                    $where = 'WHERE `booklist_id` ='."'".$text."'";
+                    $res = $this->model->anyselect($table, $column, $where);
+                    array_push($booklists, $res);
+                }
+                $array = array();
+                array_push($array, $howto);
+                array_push($array, $booklists);
+                $array = json($array);
+                echo $array;
+            }
+
+            ///////////////////////////////////////////////
+            // howto承認処理
+            //////////////////////////////////////////////
+            if($this->POST == 'howtoJudge'){
+                $howto_id = h($_POST['howto_id']);
+                // modelへ引き継ぎ
+                $table = 't_howtos';
+                $values = '`agree` =  20';
+                $where = 'WHERE `howto_id` ='."'".$howto_id."'";
+                $this->model->anyUpdate($table, $values, $where);
+            }
+
+            ///////////////////////////////////////////////
+            // howto不承認処理
+            //////////////////////////////////////////////
+            if($this->POST == 'Nohowto'){
+                $howto_id = h($_POST['howto_id']);
+                $reason = h($_POST['reason']);
+                
+                // modelへ
+                $table = 't_howtos';
+                $values = '`agree` = 2 , `comment` = '."'".$reason."'";
+                $where = 'WHERE `howto_id` ='."'".$howto_id."'";
+                $this->model->anyUpdate($table, $values, $where);
             }
         }
 
