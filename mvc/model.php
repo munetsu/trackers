@@ -149,6 +149,15 @@
             return $monthLists;
         }
 
+        // 登録ブックを取得
+        public function anyselectAll($table, $column, $where){
+            $table = $table;
+            $column = $column;
+            $conditions = $where;
+            $res = $this->db->selectAll($column, $table, $conditions);
+            return $res;
+        }
+
         
 
         //////////////////////////////////////
