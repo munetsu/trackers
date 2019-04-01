@@ -29,6 +29,15 @@
             return $res;
         }
 
+        // select文
+        public function anyselect($table, $column, $conditions){
+            $table = $table;
+            $column = $column;
+            $conditions = $conditions;
+            $res = $this->db->select($column, $table, $conditions);
+            return $res;
+        }
+
 
         /////////////////////////////////////////
         //SELECT文(複数件)
@@ -187,6 +196,14 @@
             $table = 't_tuotors';
             $values = '`step` ='."'".$step."'";
             $conditions = 'WHERE `tuotor_id` ='."'".$tuotor_id."'";
+            $this->db->update($table, $values, $conditions);
+        }
+
+        // update処理
+        public function anyUpdate($table, $values, $where){
+            $table = $table;
+            $values = $values;
+            $conditions = $where;
             $this->db->update($table, $values, $conditions);
         }
 
