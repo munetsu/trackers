@@ -10,7 +10,7 @@ const text = [];
 // カウント用
 let count = 0;
 
-console.log(monthly.length);
+console.log(bookLists);
 /////////////////////////////////////////////
 // 読み込み時に処理
 /////////////////////////////////////////////
@@ -27,13 +27,13 @@ for(let i = 1;i<13;i++){
 // テキストリスト作成
 $(function(){
     // 登録テキスト数の確認
-    let bookNum = bookListLength();
+    let bookNum = bookLists.length;
     // 勉強法によって描画変更
     if(howto != 1){
         $('.textList').append(viewSchool());
     }
     // 書籍登録数分を描画
-    for(let i=1;i<=bookNum;i++){
+    for(let i=0;i<bookNum;i++){
         let view = viewtextList(i, bookLists);
         $('.textList').append(view);
     }
@@ -77,15 +77,15 @@ function checkArray(array, data){
 }
 
 // 登録テキスト数の確認
-function bookListLength(){
-    let bookListNum = 0;
-    for(let i =1;i<11;i++){
-        if(bookLists['title'+i] != null){
-            bookListNum++;
-        }
-    }
-    return bookListNum;
-}
+// function bookListLength(){
+//     let bookListNum = 0;
+//     for(let i =1;i<11;i++){
+//         if(bookLists['title'+i] != null){
+//             bookListNum++;
+//         }
+//     }
+//     return bookListNum;
+// }
 
 
 //////////////////////////////////////////////////////////////////////
@@ -111,12 +111,13 @@ $(document).on('click', '.month', function(){
 })
 
 // 書籍選択
-$(document).on('click', '.book', function(){
+$(document).on('click', '.book', function(e){
+    e.preventDefault()
     let id = $(this).attr('data-id');
-    let title = $(this).find('p').text();
+    // let title = $(this).find('p').text();
 
     $(this).toggleClass('bookselect');
-    checkArray(text, title);
+    checkArray(text, id);
     console.log(text);
 })
 
@@ -125,9 +126,9 @@ $(document).on('click', '.book', function(){
 //////////////////////////////////////////////////////////////////////
 function viewtextList(num, booklists){
     let view = `
-        <div class="book" data-id=`+num+`>
-            <p>`+booklists['title'+num]+`</p>
-            <img src="`+booklists['imageUrl'+num]+`" class="bookimg">
+        <div class="book" data-id="`+booklists[num]['booklist_id']+`">
+            <p>`+booklists[num]['title']+`</p>
+            `+booklists[num]['imageUrl']+`
         </div>
     `;
     return view;
