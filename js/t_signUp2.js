@@ -220,13 +220,14 @@ $('#regBtn').on('click', function(e){
     })
     .done((data)=>{
         if(data == 'nodata'){
-            if(!comfirm('テキストなしで登録しますがよろしいですか？')){
+            if(!confirm('テキストなしで登録しますがよろしいですか？')){
                 // キャンセルの場合
                 location.reload();
-            }else{
-                $('.textarea').empty();
-                $('.textarea').append(viewAlert());
             }
+        }else{
+            console.log(data);
+            $('.textarea').empty();
+            $('.textarea').append(viewAlert());
         }
     })
     .fail((data)=>{
