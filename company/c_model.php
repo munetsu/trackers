@@ -146,7 +146,7 @@
         // booklists登録
         public function booklistsRegister($tuotor_id, $booklists){
             $table = 'booklists';
-            $column = '`tuotor_id`,
+            $columns = '`tuotor_id`,
                         `title`,
                         `imageUrl`,
                         `isbn`,
@@ -166,7 +166,7 @@
                 $values .= "'".$book['imageUrl']."'".",";
                 $values .= "'".$book['isbn']."'".",";
                 $values .= "'".$book['link']."'";
-                $this->db->insert($table, $column, $values);
+                $this->db->insert($table, $columns, $values);
             }
         }
 

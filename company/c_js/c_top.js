@@ -3,6 +3,7 @@
 //////////////////////////////////////////
 // チューター証明書待ち
 num;
+console.log(num);
 // console.log(num);
 // 勉強法承認待ち
 howtoNum;
@@ -15,6 +16,30 @@ console.log(howtoNum);
 $('.main').append(viewdashboard(num, howtoNum));
 
 //////////////////////////////////////////
+// 条件分岐
+//////////////////////////////////////////
+function numJudge(num, i){
+    if(num[i]['step'] == 10 || num[i]['step'] == 2){
+        let view = '<span>'+num[i]['COUNT("*")']+'</span>件';
+        return view;
+    }else{
+        let view = '<span>0件</span>';
+        return view;
+    }
+}
+
+// 書籍登録
+function howtoJudge(howtoNum, i){
+    if(howtoNum[i]['agree'] == 1){
+        let view = '<span>'+howtoNum[i]['COUNT("*")']+'</span>件';
+        return view;
+    }else{
+        let view = '<span>0件</span>';
+        return view;
+    }
+}
+
+//////////////////////////////////////////
 // VIEW部分
 //////////////////////////////////////////
 function viewdashboard(num, howtoNum){
@@ -24,16 +49,16 @@ function viewdashboard(num, howtoNum){
             <div class="t_step">    
                 <div class="t_step1">
                     <p>チューター（証明書待ち件数）</p>
-                    <span>`+num[0]['COUNT("*")']+`</span>件
+                    `+numJudge(num, 0)+`
                 </div>
                 <div class="t_step2">
                     <p>チューター（書籍登録件数）</p>
-                    <span>`+num[1]['COUNT("*")']+`</span>件
+                    `+numJudge(num, 1)+`
                 </div>
             </div>
             <div class="t_howto">
                 <p>勉強法承認待ち</p>
-                <span>`+howtoNum[0]['COUNT("*")']+`</span>件
+                `+howtoJudge(howtoNum, 0)+`
             </div>
         </div>
     `;
