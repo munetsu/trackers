@@ -32,15 +32,22 @@
         $month = JSON_ENCODE($month,JSON_UNESCAPED_UNICODE);
     }
 
-    // 登録済みテキストを取得
-    $booklists = $model->t_booklistSelect($column, $where);
-    $booklistsLength = count($booklists);
-    if($booklistsLength != 0){
-        $booklists = JSON_ENCODE($booklists,JSON_UNESCAPED_UNICODE);
-    }else{
-        array_push($booklists, 0);
-        $booklists = JSON_ENCODE($booklists,JSON_UNESCAPED_UNICODE);
-    }
+    // // 登録済みテキストを取得
+    // $booklists = $model->t_booklistSelect($column, $where);
+    // $booklistsLength = count($booklists);
+    // if($booklistsLength != 0){
+    //     $booklists = JSON_ENCODE($booklists,JSON_UNESCAPED_UNICODE);
+    // }else{
+    //     array_push($booklists, 0);
+    //     $booklists = JSON_ENCODE($booklists,JSON_UNESCAPED_UNICODE);
+    // }
+
+    // 登録テキストを取得
+    $table = 'booklists';
+    $column = '*';
+    $where = 'WHERE `tuotor_id` ='."'".$id."'";
+    $books = $model->anyselectAll($table, $column, $where);
+    $books = json($books);
     
 ?>
 
@@ -91,7 +98,7 @@
         let tuotor_id = <?php echo $id ?>;
         let howto = <?php echo $howto ?>;
         let monthly = <?php echo $month ?>;
-        let bookLists = <?php echo $booklists ?>;
+        let bookLists = <?php echo $books ?>;
     </script>
     <script src="js/t_howto.js"></script>
 </body>
