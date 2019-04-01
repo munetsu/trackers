@@ -27,7 +27,7 @@ function viewStep2(){
                     <dd><a href="mailto:info@trackers.co.jp?subject=【資格証明書等の送付】" target="_blank">info@trackers.co.jp</a></dd>
                 <dt>注意事項</dt>
                     <dd>・メール本文に必ず氏名(フルネーム)の記載を忘れないようにお願いします</dd>
-                    <dd>・件名は変更しないようお願いします</dd>
+                    <dd>・件名：【資格証明書等の送付】は変更しないようお願いします</dd>
                     <dd>・登録頂いたメールアドレスから送信をお願いします<br>
                         (※)登録アドレスと異なるアドレスからメール送信頂いた場合は確認のご連絡をさせて頂く可能性があります</dd>
             </dl>
