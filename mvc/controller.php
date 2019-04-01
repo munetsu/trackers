@@ -253,6 +253,7 @@
             ///////////////////////////////////////////
             if($this->POST == 't_signUp'){
                 $tableLists1 = [
+                    'certification',
                     'k_familyname',
                     'k_firstname',
                     'a_familyname',
@@ -268,6 +269,7 @@
                 ];
                
                 $tableLists = [
+                    'certification',
                     'k_familyname',
                     'k_firstname',
                     'a_familyname',
