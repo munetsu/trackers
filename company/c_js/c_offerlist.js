@@ -52,8 +52,7 @@ function viewMail(){
 
 
         【ログインページ】
-        <a href="http://yumefukuro.sakura.ne.jp/trackers/login.php?status=tuotor">\n
-        http://yumefukuro.sakura.ne.jp/trackers/login.php?status=tuotor</a>\n
+        http://yumefukuro.sakura.ne.jp/trackers/login.php?status=tuotor\n
 
 
         ご不明点等ございましたら、下記アドレスまでご連絡ください\n
