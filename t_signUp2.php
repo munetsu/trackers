@@ -47,6 +47,7 @@
                     <div>
                     <p>ISBN-13：978-<input type="text" name="google"></p>
                     <p>Amazon：<input type="text" name="amazon"></p>
+                    <a href="https://www.amazon.co.jp/b/ref=s9_acss_bw_cg_BooksCat_md1_w?ie=UTF8&node=492228&pf_rd_m=A3P5ROKL5A1OLE&pf_rd_s=merchandised-search-1&pf_rd_r=CR1TVHH0KY0JM2KXN1DR&pf_rd_t=101&pf_rd_p=b53052f5-e7be-4669-a64a-81e8a5264c33&pf_rd_i=465610" target="_blank">Amazonへのリンク</a>
                     </div>
                     <div class="flex"></div>
                 </div>

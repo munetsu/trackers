@@ -31,6 +31,7 @@
         <div class="itemList">
             <p>下記項目の入力をお願いします</p>
             <form action="t_signUp_confirm.php" method="POST" name="signUp">
+            <p>資格名<span>*</span>:<input type="text" name="certification" class="text" placeholder="(例)宅建士"></p>
             <p>氏名<span>*</span>：<input type="text" name="k_familyname" class="text" placeholder="(例)田中"><input type="text" name="k_firstname" class="text" placeholder="(例)太郎"></p>
             <p>NAME<span>*</span>：<input type="text" name="a_familyname" class="text" placeholder="(例)tanaka"><input type="text" name="a_firstname" class="text" placeholder="(例)tarou"></p>
             <p>E-mail<span>*</span>：<input type="email" name="email" class="text" placeholder="(例)sample@trackers.co.jp"></p>
