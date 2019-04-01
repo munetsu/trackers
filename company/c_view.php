@@ -14,7 +14,7 @@
                 '<div class="header">
                     <div class="flex">
                         <div class="logo">
-                            <img src="../img/logo.png">
+                            <a href="c_top.php"><img src="../img/logo.png"></a>
                         </div>
                         <div class="logout">
                             <button>ログアウト</button>
@@ -39,7 +39,7 @@
             $view = '
                 <div class="topbar">
                     <div class="logo">
-                        <img src="../img/logo.png">
+                        <a href="c_top.php"><img src="../img/logo.png"></a>
                     </div>
                     <div class="logout">
                         <a href="c_logout.php">ログアウト</a>
