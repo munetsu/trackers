@@ -135,6 +135,7 @@ $(document).on('click', '.bookBtn', function(e){
         }
     })
     .done((data)=>{
+        console.log(data);
         alert('登録処理が無事、完了しました');
         location.reload();
     })
