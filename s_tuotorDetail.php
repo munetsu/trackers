@@ -150,10 +150,10 @@
                 </div>
                 <!-- クリック -->
                 <div class="btn">
-                    <div class="like">
+                    <div class="likearea">
                         <a href="" class="like">参考にする</a>
                     </div>
-                    <div class="consultation">
+                    <div class="consultationarea">
                         <a href="" class="consultation">相談したい</a>
                     </div>
                 </div>
@@ -164,6 +164,7 @@
 <script>
     let tuotor_id = <?php echo $tuotor_id ?>;
     let monthly = <?php echo $month ?>;
+    let student_id = <?php echo $student_id ?>;
 </script>
 <script src="js/s_tuotorDetail.js"></script>
 </html>
