@@ -117,6 +117,15 @@
             return $res;
         }
 
+        // anyselect
+        public function anyselect($table, $column, $where){
+            $table = $table;
+            $column = $column;
+            $conditions = $where;
+            $res = $this->db->select($column, $table, $conditions);
+            return $res;
+        }
+
         
 
         //////////////////////////////////////
