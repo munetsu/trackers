@@ -85,7 +85,34 @@
             return $view;
         }
 
-        
+        //////////////////////////////////////////
+        // t_mypage.phpの共通部分
+        //////////////////////////////////////////
+        // s_mypageのトップバー
+        public function viewStudentTopbar($tid, $familyname, $firstname){
+            $view = '
+            <div class="topbar">
+            <!-- left -->
+            <div class="left">
+                <div class="logo">
+                    <img src="img/logo.png">
+                </div>
+                <div class="search">
+                    <p class="selectCertification">資格で絞り込む</p>
+                    <ul class="certificaionList"></ul>
+                </div>
+            </div>
+            <!-- right -->
+            <div class="right">
+                <div class="mypage">
+                    <p class="myname" data-name="'.$tid.'">'.$familyname.$firstname.'</p>
+                    <p><a href="logout.php?status=student">ログアウト</a></p>
+                </div>
+            </div>
+            </div>
+            ';
+            return $view;
+        }
 
         
 
