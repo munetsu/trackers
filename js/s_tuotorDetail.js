@@ -149,3 +149,42 @@ $(document).on('click', '.month', function(){
         alert('データ取得できませんでした');
     })
 })
+
+// 参考にする場合
+$('.like').on('click', function(e){
+    e.preventDefault();
+    let clicked = $(this).attr('class');
+    if(clicked.match(/clicked/)){
+        alert('「参考にするリスト」に追加済みです');
+        return;
+    }
+
+    // ajax処理
+    $.ajax({
+        url:'mvc/controller.php',
+        type:'POST',
+        data:{
+            action:'matchLike',
+            tuotor_id:tuotor_id,
+            student_id:student_id
+        }
+    })
+    .done((data)=>{
+        console.log(data);
+        if(data == 'selected'){
+            alert('「参考にするリスト」に追加済みです');
+            $(this).text('参考リスト追加済み');
+            $(this).addClass('clicked');
+        }else if(data == '' || data == 'NULL'){
+            alert('「参考リスト」に追加しました');
+            $(this).text('参加リスト追加済み');
+            $(this).addClass('clicked');
+        }else{
+            alert('登録時にエラーが発生しました。\nもう一度、クリックお願いします');
+            return;
+        }
+    })
+    .fail((data)=>{
+        alert('登録時にエラーが発生しました。\nもう一度、クリックお願いします');
+    })
+})

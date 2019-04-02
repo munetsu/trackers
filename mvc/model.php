@@ -431,6 +431,17 @@
             return $res;
         }
 
+        // 参考リストに追加
+        public function matchLikes($tuotor_id, $student_id){
+            // 日付
+            $date = Date("Y/m/d H:i:s");
+            $table = 'matchLikes';
+            $column = '`tuotor_id`,`student_id`,`Datetime`';
+            $values = "'".$tuotor_id."'".","."'".$student_id."'".","."'".$date."'";
+            $res = $this->db->insert($table, $column, $values);
+            return $res;
+        }
+
 
 
         //////////////////////////////////////
