@@ -148,6 +148,7 @@ function viewSchool(){
 // クリックイベント（ajax含む）
 ////////////////////////////////////////////////////////////////
 $(document).on('click', '.btn', function(){
+    $('.btn').css('pointer-event', 'none');
     let select = $(this).attr('id');
     let howtoStudy = $('#howtostudy').val();
     let weektime = $('input[name="weektime"]').val();
@@ -201,8 +202,7 @@ $(document).on('click', '.btn', function(){
             step:select
         }
     })
-    .done((data)=>{
-        $('.btn').css('pointer-event', 'none');
+    .done((data)=>{    
         console.log(data);
         if(select == 'next'){
             // リロード
@@ -212,6 +212,7 @@ $(document).on('click', '.btn', function(){
         }
     })
     .fail((data)=>{
+        $('.btn').css('pointer-event', 'auto');
         console.log(data);
         alert('登録できませんでした\n再度、登録処理をお願いします');
     })

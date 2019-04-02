@@ -108,6 +108,7 @@ $(document).on('click', '.block', function(){
 // 承認処理
 $(document).on('click', '#ok', function(e){
     e.preventDefault();
+    $(this).css('pointer-event', 'none');
     let howto_id = $(this).attr('data-id');
     $.ajax({
         url:'c_controller.php',
@@ -122,6 +123,7 @@ $(document).on('click', '#ok', function(e){
         location.reload();
     })
     .fail((data)=>{
+        $(this).css('pointer-event', 'auto');
         alert('更新失敗：エラー\n'+data);
     })
 })
