@@ -487,6 +487,48 @@
                 }
             }
 
+            ///////////////////////////////////////////
+            //s_tuotorDetail.php
+            ///////////////////////////////////////////
+            // （利用書籍取得）
+            if($this->POST == 'tuotorDetailBooks'){
+                $tuotor_id = h($_POST['tuotor_id']);
+                $table = 'booklists';
+                $column = '`link`';
+                $where = 'WHERE `tuotor_id` ='."'".$tuotor_id."'";
+                $books = $this->model->anyselectAll($table, $column, $where);
+                $books = json($books);
+                echo $books;
+            }
+
+            // 勉強法取得
+            if($this->POST == 'tuotorDetailHowto'){
+                $tuotor_id = h($_POST['tuotor_id']);
+                $selectMonth = h($_POST['selectMonth']);
+                // modelへ
+                $table = 't_howtos';
+                $column = '*';
+                $where = 'WHERE `tuotor_id` ='."'".$tuotor_id."'".'AND `month` = '."'".$selectMonth."'";
+                $info = $this->model->anyselect($table, $column, $where);
+
+                // 利用書籍取得
+                $table = 'booklists';
+                $column = '`title`, `imageUrl`';
+                for($i =1; $i<=11; $i++){
+                    if($info['text'.$i] == null){
+                        continue;
+                    }
+                    $where = 'WHERE `booklist_id` ='."'".$info['text'.$i]."'";
+                    $book = $this->model->anyselect($table, $column, $where);
+                    if($book != null){
+                        $info['title'.$i] = $book['title'];
+                        $info['imageUrl'.$i] = $book['imageUrl'];
+                    }
+                }
+                $info = json($info);
+                echo $info;
+            }
+
 
 
         }
