@@ -529,6 +529,32 @@
                 echo $info;
             }
 
+            // 参考にするリスト追加
+            if($this->POST == 'matchLike'){
+                $tuotor_id = h($_POST['tuotor_id']);
+                $student_id = h($_POST['student_id']);
+                if($tuotor_id == 0 || $student_id == 0){
+                    echo 'NG';
+                    return;
+                }
+
+                // 追加済みか確認
+                $table = 'matchLikes';
+                $column = '`like_status`';
+                $where = 'WHERE `tuotor_id` ='."'".$tuotor_id."'".'AND `student_id` ='."'".$student_id."'";
+                $res = $this->model->anyselect($table, $column, $where);
+                if($res != null){
+                    echo 'selected';
+                    return;
+                }
+
+                // 未登録の場合ー＞追加
+                $result =$this->model->matchLikes($tuotor_id, $student_id);
+                echo $result;
+            }
+
+
+        
 
 
         }
