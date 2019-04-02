@@ -5,6 +5,9 @@
 certifications;
 // console.log(certifications);
 
+// student_id
+student_id;
+
 ///////////////////////////////////////////
 // VIEW
 ///////////////////////////////////////////
@@ -31,6 +34,12 @@ $('.search').hover(function(){
         $('.certificaionList').empty();
     }
 )
+
+// チューター個人をクリックした場合
+$(document).on('click', '.tuotor', function(){
+    let tuotor_id = $(this).attr('data-id');
+    window.location.href="s_tuotorDetail.php?tid="+tuotor_id+"&sid="+student_id;
+})
 
 
 
