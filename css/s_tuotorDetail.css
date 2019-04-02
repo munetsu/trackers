@@ -1,0 +1,26 @@
+.face {
+    width: 20vw;
+    height: 30vh;
+}
+
+.gray {
+    background-color: black;
+}
+
+.monthlist {
+    display: flex;
+}
+
+.month {
+    width: 7vw;
+    margin:0 1vw;
+}
+
+.textarea {
+    display: flex;
+}
+
+.amazon{
+    width: 20vw;
+    margin: 0 2vw;
+}
