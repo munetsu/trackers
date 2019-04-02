@@ -20,7 +20,7 @@ function viewcertificationList(num, certifications){
 // 動的処理
 ///////////////////////////////////////////
 // 資格描画（マウスホバー）
-$('.selectCertification').hover(function(){
+$('.search').hover(function(){
     // マウスホバー時
     $.each(certifications, function(index, value){
         viewcertificationList(index, value['certification_kind']);

@@ -43,7 +43,10 @@
 
         // 資格を追加
         $tempArray = array();
-        $tempArray[] = $certification['certification_kind'];
+        $tempCertification = array();
+        array_push($tempCertification, $certification);
+        // $tempArray[] = $certification['certification_kind'];
+        $tempArray[] = $tempCertification;
 
         // チューター格納
         $tempTuotor = array();
@@ -57,8 +60,8 @@
             if($books == ''){
                 $book = array();
                 $book['title'] = '市販書籍なし';
-                // $book['imageUrl'] = '<img src="img/icon/noimage.svg">';
-                $book['imageUrl'] = '';
+                $book['imageUrl'] = '<img src="img/icon/noimage.svg" class="noimg">';
+                // $book['imageUrl'] = '';
                 array_push($tuotor, $book);
             }else{
                 array_push($tuotor, $books);
@@ -79,9 +82,21 @@
     // 配列内容
     // 資格名：$array[i][0];
     // チューター情報：$array[i][1]];
+
+    // 日付
+    $date = Date("d");
+    $year = Date("Y");
+
+    // 勉強法
+    $table = 'howtoLists';
+    $column = '`howto_kind`';
+    $where = '';
+    $howto = $model->anyselectAll($table, $column, $where);
+    // var_dump($howto[1]['howto_kind']);
     
     // JSON処理
     $certifications = json($certifications);
+
 
 
 ?>
@@ -93,6 +108,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="css/s_mypage.css">
     <!-- jQuery本体-->
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
@@ -122,22 +138,33 @@
             <!-- 資格別チューター一覧 -->
             <?php foreach($array as $tuotor): ?>
             <div class="certificationArea">
-                <p><?php echo $tuotor[0] ?></p>
-                <div class="tuotorArea"></div>
+                <div class="textlist">
+                <p><?php echo $tuotor[0][0]['certification_kind'] ?></p>
+                <p><a href="" data-certification=<?php echo $tuotor[0][0]['certification_id']?>>すべてのチューターを表示>>></a></p>
+                </div>
+                <div class="tuotorArea">
                 <!-- 個人表示 -->
-                <?php foreach($tuotor[1] as $one): ?>
-                    <div class="tuotor" data-id=<?php echo $one[0]['tuotor_id']?>>
-                        <p><?php echo $one[0]['k_familyname'] ?><?php echo $one[0]['k_firstname'] ?></p>
-                        <p><?php echo $one[0]['birthyear'] ?>年生まれ</p>
-                        <p><?php echo $one[0][0]['title'] ?></p>
-                        <?php echo $one[0][0]['imageUrl'] ?>
-                    </div>
-
-                <?php endforeach; ?>
-                
-            </div>
-            <?php endforeach; ?>
-            
+                    <?php foreach($tuotor[1] as $one): ?>
+                        <div class="tuotor" data-id=<?php echo $one[0]['tuotor_id']?>>
+                            <!-- 年齢計算 -->
+                            <?php if(($date - $one[0]['birthmonth']) <0): ?>
+                            <?php $age = ($year - $one[0]['birthyear'] -1) ?>
+                            <?php else: ?>
+                            <?php $age = ($year - $one[0]['birthyear']) ?>
+                            <?php endif; ?>
+                            <!-- 名前：年齢 -->
+                            <p><?php echo $one[0]['k_familyname'] ?><?php echo $one[0]['k_firstname'] ?>(<?php echo $age ?>)</p>
+                            <!-- 勉強方法 -->
+                            <?php $howtoIndex = ($one[0]['howto']-1) ?>
+                            <p><?php echo $howto[$howtoIndex]['howto_kind'] ?></p>
+                            <!-- 利用書籍 -->
+                            <p><?php echo $one[0][0]['title'] ?></p>
+                            <!-- 書籍画像 -->
+                            <?php echo $one[0][0]['imageUrl'] ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endforeach; ?>  
         </div>
     </div>
 </body>
