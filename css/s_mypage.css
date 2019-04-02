@@ -1,0 +1,40 @@
+/************************************************ 
+** 共通部分
+*************************************************/
+
+/************************************************ 
+** PC用
+*************************************************/
+.textlist {
+    display:flex;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    flex-flow: column;
+    -webkit-box-pack:justify;
+    -ms-flex-pack:justify;
+    justify-content:space-between;
+}
+
+.tuotorArea {
+    display: flex;
+}
+
+.tuotor {
+    width: 20vw;
+    padding: 0 2.5vw;
+}
+
+.noimg {
+    width: 180px;
+    height: 250px;
+}
+
+
+
+
+
+
+/************************************************ 
+** スマホ用
+*************************************************/
+
