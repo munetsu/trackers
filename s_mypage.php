@@ -45,7 +45,9 @@
         $tempArray = array();
         $tempArray[] = $certification['certification_kind'];
 
-
+        // チューター格納
+        $tempTuotor = array();
+        
         // チューター1名ずつ取得
         foreach($tuotors as $tuotor){
             // 登録書籍を1冊取得
@@ -62,8 +64,14 @@
                 array_push($tuotor, $books);
             }
             // チューター情報を追加
-            $tempArray[] = $tuotor;
-        }        
+            // チューター格納配列
+            $temp = array();
+            array_push($temp, $tuotor);
+            array_push($tempTuotor, $temp);
+            
+            // array_push($tempArray, $tuotor);
+        }
+        $tempArray[] = $tempTuotor;
         array_push($array, $tempArray);
     }
     // var_dump($array[0][1]);
@@ -117,9 +125,14 @@
                 <p><?php echo $tuotor[0] ?></p>
                 <div class="tuotorArea"></div>
                 <!-- 個人表示 -->
-                <?php foreach($tuotor as $one): ?>
-                    <?php echo var_dump($one) ?>
-                    
+                <?php foreach($tuotor[1] as $one): ?>
+                    <div class="tuotor" data-id=<?php echo $one[0]['tuotor_id']?>>
+                        <p><?php echo $one[0]['k_familyname'] ?><?php echo $one[0]['k_firstname'] ?></p>
+                        <p><?php echo $one[0]['birthyear'] ?>年生まれ</p>
+                        <p><?php echo $one[0][0]['title'] ?></p>
+                        <?php echo $one[0][0]['imageUrl'] ?>
+                    </div>
+
                 <?php endforeach; ?>
                 
             </div>
