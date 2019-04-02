@@ -34,7 +34,7 @@
     // VIEW読み込み
     include('mvc/view.php');
     $view = new VIEW;
-    $viewCommon = $view->viewCommon();
+    $viewCommon = $view->viewCommon($id);
 
     
 ?>

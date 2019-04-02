@@ -55,13 +55,13 @@
         //////////////////////////////////////////
         // t_mypage.phpの共通部分
         //////////////////////////////////////////
-        public function viewCommon(){
+        public function viewCommon($id){
             $view = '
                 <div>
                     <!-- 固定上段-->
                     <div class="topbar">
                         <div>
-                            <a href="#"><img src="img/logo.png"></a>
+                            <a href="t_mypage.php?id="'.$id.'"><img src="img/logo.png"></a>
                         </div>
                         <div>
                             <a href="logout.php?status=tuotor">ログアウト</a>
