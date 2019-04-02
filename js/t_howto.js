@@ -202,6 +202,7 @@ $(document).on('click', '.btn', function(){
         }
     })
     .done((data)=>{
+        $('.btn').css('pointer-event', 'none');
         console.log(data);
         if(select == 'next'){
             // リロード
