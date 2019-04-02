@@ -89,7 +89,7 @@
             <a href="t_howtoEx.php" target="_blank">記載例はこちら</a>
         </div>
         <div class="flex">
-            <div id="next" class="btn">他の月も登録</div>
+            <div id="next" class="btn">続けて登録</div>
             <div id="stop" class="btn">一時保存</div>
             <div id="finish" class="btn">登録完了</div>
         </div>
