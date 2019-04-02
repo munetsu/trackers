@@ -129,6 +129,9 @@
                 // データ引き継ぎ
                 if($_POST['status'] == 1){
                     $id = $info['tuotor_id'];
+                    // sessionスタート
+                    $_SESSION['tuotor_id'] = $id;
+
 
                     // ログインアップデート
                     $this->model->t_loginUpDate($table, $id);
@@ -139,6 +142,7 @@
                 }else if($_POST['status'] == 2){
                     // 生徒側処理
                     $id = $info['student_id'];
+                    $_SESSION['student_id'] = $id;
 
                     // ログインアップデート
                     $this->model->s_loginUpDate($table, $id);

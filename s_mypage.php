@@ -97,7 +97,10 @@
     // JSON処理
     $certifications = json($certifications);
 
-
+    // View処理
+    include('mvc/view.php');
+    $view = new VIEW;
+    $views = $view->viewStudentTopbar($code['student_id'], $code['k_familyname'], $code['k_firstname']);
 
 ?>
 
@@ -115,24 +118,7 @@
 <body>
     <div>
         <!-- トップバー -->
-        <div class="topbar">
-            <!-- left -->
-            <div class="left">
-                <div class="logo">
-                    <img src="img/logo.png">
-                </div>
-                <div class="search">
-                    <p class="selectCertification">資格で絞り込む</p>
-                    <ul class="certificaionList"></ul>
-                </div>
-            </div>
-            <!-- right -->
-            <div class="right">
-                <div class="mypage">
-                    <p class="myname"><?php echo $code['k_familyname'] ?><?php echo $code['k_firstname'] ?></p>
-                </div>
-            </div>
-        </div>
+        <?php echo $views ?>
         <!-- メイン -->
         <div class="main">
             <!-- 資格別チューター一覧 -->
@@ -140,7 +126,7 @@
             <div class="certificationArea">
                 <div class="textlist">
                 <p><?php echo $tuotor[0][0]['certification_kind'] ?></p>
-                <p><a href="" data-certification=<?php echo $tuotor[0][0]['certification_id']?>>すべてのチューターを表示>>></a></p>
+                <p><a href="" class="alldescribe" data-certification=<?php echo $tuotor[0][0]['certification_id']?>>すべてのチューターを表示>>></a></p>
                 </div>
                 <div class="tuotorArea">
                 <!-- 個人表示 -->
@@ -170,6 +156,7 @@
 </body>
 <script>
     let certifications = <?php echo $certifications ?>;
+    let student_id = <?php echo $id ?>;
 </script>
 <script src="js/s_mypage.js"></script>
 </html>
