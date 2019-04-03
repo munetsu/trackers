@@ -150,7 +150,7 @@ $(document).on('click', '.month', function(){
     })
 })
 
-// 参考にする場合
+// 参考リストに追加処理
 $('.like').on('click', function(e){
     e.preventDefault();
     let clicked = $(this).attr('class');
@@ -182,6 +182,39 @@ $('.like').on('click', function(e){
         }else{
             alert('登録時にエラーが発生しました。\nもう一度、クリックお願いします');
             return;
+        }
+    })
+    .fail((data)=>{
+        alert('登録時にエラーが発生しました。\nもう一度、クリックお願いします');
+    })
+})
+
+// 相談リストに追加
+$('.consultation').on('click', function(e){
+    e.preventDefault();
+    let clicked = $(this).attr('class');
+    if(clicked.match(/clicked/)){
+        alert('「相談したいリスト」に追加済みです');
+        return;
+    }
+
+    // ajax処理
+    $.ajax({
+        url:'mvc/controller.php',
+        type:'POST',
+        data:{
+            action:'matchConsul',
+            tuotor_id:tuotor_id,
+            student_id:student_id
+        }
+    })
+    .done((data)=>{
+        console.log(data);
+        if(data == 'registered'){
+            alert('このチューターには依頼済みです。\n相談リストをご確認ください');
+            return;
+        }else{
+            window.location.href="s_resevation.php?consulid="+data;
         }
     })
     .fail((data)=>{
