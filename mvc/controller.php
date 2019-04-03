@@ -587,6 +587,44 @@
                 echo $matchNo;
             }
 
+            ///////////////////////////////////////////
+            //s_resevation_confirm.php
+            ///////////////////////////////////////////
+            if($this->POST == 'resevation'){
+                $sid = h($_POST['sid']);
+                $consulid = h($_POST['consulid']);
+                $date = Date("Y/m/d H:i:s");
+                $i = 1;
+                
+                // matchConsulへ登録
+                $table = 'matchConsultations';
+                for($i = 1;$i<4;$i++){
+                    $starttime = $_POST['dateInfo']['offerStarttimeh'.$i]."：".$_POST['dateInfo']["offerStarttimem".$i];
+                    $finishtime = $_POST['dateInfo']["offerFinishtimeh".$i]."：".$_POST['dateInfo']["offerFinishtimem".$i];
+
+                    // 条件分岐
+                    if($i == 3){
+                        $values = '`offerDate'.$i.'` ='."'".$_POST['dateInfo']["offerDate".$i]."'".",".
+                        '`offerStarttime'.$i.'` ='."'".$starttime."'".",".
+                        '`offerFinishtime'.$i.'` ='."'".$finishtime."'".",".
+                        '`lastUpdatetime` ='."'".$date."'";
+                        $where = 'WHERE `matchConsultation_id` ='."'".$consulid."'".'AND `student_id` ='."'".$sid."'";
+                        $res = $this->model->anyUpdate($table, $values, $where);
+                    }else{
+                        $values = '`offerDate'.$i.'` ='."'".$_POST['dateInfo']["offerDate".$i]."'".",".
+                        '`offerStarttime'.$i.'` ='."'".$starttime."'".",".
+                        '`offerFinishtime'.$i.'` ='."'".$finishtime."'";    
+                        $where = 'WHERE `matchConsultation_id` ='."'".$consulid."'".'AND `student_id` ='."'".$sid."'";
+                        $res = $this->model->anyUpdate($table, $values, $where);
+                    }
+
+                    if($res != NULL){
+                        echo 'dataError';
+                        return;
+                    }
+                }
+                echo 'OK';
+            }
 
         
 

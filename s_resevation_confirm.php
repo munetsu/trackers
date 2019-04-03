@@ -34,7 +34,7 @@
     $array['offerStarttimem1'] = h($_POST['offerStarttimem1']);
     $array['offerFinishtimeh1'] = h($_POST['offerFinishtimeh1']);
     $array['offerFinishtimem1'] = h($_POST['offerFinishtimem1']);
-    $array['offerDate2 ']= h($_POST['offerDate2']);
+    $array['offerDate2']= h($_POST['offerDate2']);
     $array['offerStarttimeh2'] = h($_POST['offerStarttimeh2']);
     $array['offerStarttimem2'] = h($_POST['offerStarttimem2']);
     $array['offerFinishtimeh2'] = h($_POST['offerFinishtimeh2']);
@@ -42,8 +42,8 @@
     $array['offerDate3'] = h($_POST['offerDate3']);
     $array['offerStarttimeh3'] = h($_POST['offerStarttimeh3']);
     $array['offerStarttimem3'] = h($_POST['offerStarttimem3']);
-    $aray['offerFinishtimeh3'] = h($_POST['offerFinishtimeh3']);
-    $array['offerFinishtimem3 ']= h($_POST['offerFinishtimem3']);
+    $array['offerFinishtimeh3'] = h($_POST['offerFinishtimeh3']);
+    $array['offerFinishtimem3']= h($_POST['offerFinishtimem3']);
     $array = json($array);
     
 ?>
