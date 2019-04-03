@@ -60,7 +60,7 @@
                 </p>
                 <div>
                     希望時間<br>
-                    開始時間：<select class="time" name="offerStarttime1h"></select>：<select class="minute" name="offerStarttime1m"></select> 〜 終了時間：<select class="time" name="offerFinishtime1h"></select>：<select class="minute" name="offerFinishtime1m"></select>
+                    開始時間：<select class="time" name="offerStarttimeh1"></select>：<select class="minute" name="offerStarttimem1"></select> 〜 終了時間：<select class="time" name="offerFinishtimeh1"></select>：<select class="minute" name="offerFinishtimem1"></select>
                 </div>
                 <p>
                     第2希望：
@@ -69,7 +69,7 @@
                 
                 <div>
                     希望時間<br>
-                    開始時間：<select class="time" name="offerStarttime2h"></select>：<select class="minute" name="offerStarttime2m"></select> 〜 終了時間：<select class="time" name="offerFinishtime2h"></select>：<select class="minute" name="offerFinishtime2m"></select>
+                    開始時間：<select class="time" name="offerStarttimeh2"></select>：<select class="minute" name="offerStarttimem2"></select> 〜 終了時間：<select class="time" name="offerFinishtimeh2"></select>：<select class="minute" name="offerFinishtimem2"></select>
                 </div>
                 <p>
                     第3希望：
@@ -77,7 +77,7 @@
                 </p>
                 <div>
                     希望時間<br>
-                    開始時間：<select class="time" name="offerStarttime3h"></select>：<select class="minute" name="offerStarttime3m"></select> 〜 終了時間：<select class="time" name="offerFinishtime3h"></select>：<select class="minute" name="offerFinishtime3m"></select>
+                    開始時間：<select class="time" name="offerStarttimeh3"></select>：<select class="minute" name="offerStarttimem3"></select> 〜 終了時間：<select class="time" name="offerFinishtimeh3"></select>：<select class="minute" name="offerFinishtimem3"></select>
                 </div>
             </form>
         </div>
