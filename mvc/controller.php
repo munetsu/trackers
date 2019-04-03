@@ -576,9 +576,13 @@
                 $result = $this->model->matchConsul($tuotor_id, $student_id);
                 
                 // 予約リストNoを取得
-                $column = '`matchConsultation_id`';
+                $column = '`matchConsultation_id`,`security_code`';
                 $where = 'WHERE `tuotor_id` ='."'".$tuotor_id."'".'AND `student_id` = '."'".$student_id."'".'AND `matchConsulStatus` = "0"';
                 $matchNo = $this->model->anyselect($table, $column, $where);
+
+                // sessionスタート
+                session_start();
+                $_SESSION['matchSecurity'] = $matchNo['security_code'];
                 $matchNo = $matchNo['matchConsultation_id'];
                 echo $matchNo;
             }

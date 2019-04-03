@@ -3,7 +3,7 @@
     include('funcs/funcs.php');
     chkSsid();
 
-    $id = $_GET['id'];
+    $id = h($_GET['id']);
     include('mvc/model.php');
     $model = new MODEL;
     $column = '*';
