@@ -42,7 +42,8 @@ $('.confirm').on('click', function(e){
             alert('登録できませんでした。\n再度、送信処理をお願いします');
             return;
         }else if(data == 'OK'){
-            console.log('OK');
+            alert('日程打診が完了しました');
+            window.location.href="s_mypage.php?id="+sid;
         }
     })
     .fail((data)=>{
