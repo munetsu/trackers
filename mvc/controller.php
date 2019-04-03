@@ -553,6 +553,36 @@
                 echo $result;
             }
 
+            // 相談したいリスト追加
+            if($this->POST == 'matchConsul'){
+                $tuotor_id = h($_POST['tuotor_id']);
+                $student_id = h($_POST['student_id']);
+                if($tuotor_id == 0 || $student_id == 0){
+                    echo 'NG';
+                    return;
+                }
+
+                // 日程確定済みコンサルがあるか確認
+                $table = 'matchConsultations';
+                $column = '*';
+                $where = 'WHERE `tuotor_id` ='."'".$tuotor_id."'".'AND `student_id` = '."'".$student_id."'".'AND (`matchConsulStatus` = "0" OR `matchConsulStatus` = "1" OR `matchConsulStatus` = "10")';
+                $res = $this->model->anyselectAll($table, $column, $where);
+                if(count($res) != 0){
+                    echo 'registered';
+                    return;
+                }
+
+                // 未登録の場合ー＞予約処理へ
+                $result = $this->model->matchConsul($tuotor_id, $student_id);
+                
+                // 予約リストNoを取得
+                $column = '`matchConsultation_id`';
+                $where = 'WHERE `tuotor_id` ='."'".$tuotor_id."'".'AND `student_id` = '."'".$student_id."'".'AND `matchConsulStatus` = "0"';
+                $matchNo = $this->model->anyselect($table, $column, $where);
+                $matchNo = $matchNo['matchConsultation_id'];
+                echo $matchNo;
+            }
+
 
         
 
