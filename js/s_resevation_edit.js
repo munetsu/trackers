@@ -12,7 +12,6 @@ $(".datepicker").datepicker({
 for(let i=0;i<offerStarttimeh.length;i++){
     let view = '';
     for(let k= 0;k<=23;k++){
-        console.log(offerStarttimeh[i]);
         if(offerStarttimeh[i] == k){
             view = '<option value='+k+' selected>'+k+'時</option>';
         }else{
@@ -25,8 +24,7 @@ for(let i=0;i<offerStarttimeh.length;i++){
 // 時間側(finish)
 for(let i=0;i<offerFinishtimeh.length;i++){
     let view = '';
-    for(let k= 0;k<=23;k++){
-        console.log(offerFinishtimeh[i]);
+    for(let k= 00;k<=23;k++){
         if(offerFinishtimeh[i] == k){
             view = '<option value='+k+' selected>'+k+'時</option>';
         }else{
@@ -40,11 +38,18 @@ for(let i=0;i<offerFinishtimeh.length;i++){
 for(let i=0;i<offerStarttimem.length;i++){
     let view = '';
     for(let k= 0;k<=50;k+=10){
-        console.log(offerStarttimem[i]);
-        if(offerStarttimem[i] == k){
-            view = '<option value='+k+' selected>'+k+'分</option>';
+        if(k == 0){
+            if(offerStarttimem[i] == k){
+                view = '<option value="00" selected>00分</option>';
+            }else{
+                view = '<option value="00">00分</option>';
+            }                
         }else{
-            view = '<option value='+k+'>'+k+'分</option>';
+            if(offerStarttimem[i] == k){
+                view = '<option value='+k+' selected>'+k+'分</option>';
+            }else{
+                view = '<option value='+k+'>'+k+'分</option>';
+            }    
         }
         $('.sminute'+(i+1)).append(view);
     }
@@ -54,11 +59,18 @@ for(let i=0;i<offerStarttimem.length;i++){
 for(let i=0;i<offerFinishtimem.length;i++){
     let view = '';
     for(let k= 0;k<=50;k+=10){
-        console.log(offerFinishtimem[i]);
-        if(offerFinishtimem[i] == k){
-            view = '<option value='+k+' selected>'+k+'分</option>';
+        if(k == 0){
+            if(offerFinishtimem[i] == k){
+                view = '<option value="00" selected>00分</option>';
+            }else{
+                view = '<option value="00">00分</option>';
+            }
         }else{
-            view = '<option value='+k+'>'+k+'分</option>';
+            if(offerFinishtimem[i] == k){
+                view = '<option value='+k+' selected>'+k+'分</option>';
+            }else{
+                view = '<option value='+k+'>'+k+'分</option>';
+            }    
         }
         $('.fminute'+(i+1)).append(view);
     }
@@ -85,3 +97,5 @@ $('.btn').on('click', function(e){
     $(this).addClass('clicked');
     booking.submit();
 })
+
+console.log(offerFinishtimeh);
