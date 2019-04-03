@@ -546,6 +546,14 @@
             $this->db->update($table, $values, $conditions);
         }
 
+        // update処理
+        public function anyUpdate($table, $values, $where){
+            $table = $table;
+            $values = $values;
+            $conditions = $where;
+            $res =$this->db->update($table, $values, $conditions);
+            return $res;
+        }
 
 
 

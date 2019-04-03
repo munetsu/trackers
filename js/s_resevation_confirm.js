@@ -15,6 +15,37 @@ $('.back').on('click', function(e){
     if(clicked.match(/clicked/)){
         return;
     }
-
+    // フォーム送信
     edit.submit();
+})
+
+// 送信する
+$('.confirm').on('click', function(e){
+    e.preventDefault();
+    let clicked = $(this).attr('class');
+    if(clicked.match(/clicked/)){
+        return;
+    }
+    // ajax
+    $.ajax({
+        url:'mvc/controller.php',
+        type:'POST',
+        data:{
+            action:'resevation',
+            sid:sid,
+            consulid:consulid,
+            dateInfo:array
+        }
+    })
+    .done((data)=>{
+        if(data == 'dataError'){
+            alert('登録できませんでした。\n再度、送信処理をお願いします');
+            return;
+        }else if(data == 'OK'){
+            console.log('OK');
+        }
+    })
+    .fail((data)=>{
+        console.log(data);
+    })
 })
