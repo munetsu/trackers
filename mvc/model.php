@@ -446,9 +446,11 @@
         public function matchConsul($tuotor_id, $student_id){
             // 日付
             $date = Date("Y/m/d H:i:s");
+            $security_code = $tuotor_id.$student_id.$date;
+            $security_code = hash_hmac('sha256' ,$security_code, False);
             $table = 'matchConsultations';
-            $column = '`tuotor_id`,`student_id`,`fristRegisterDatetime`';
-            $values = "'".$tuotor_id."'".","."'".$student_id."'".","."'".$date."'";
+            $column = '`tuotor_id`,`student_id`,`fristRegisterDatetime`,`security_code`';
+            $values = "'".$tuotor_id."'".","."'".$student_id."'".","."'".$date."'".","."'".$security_code."'";
             $res = $this->db->insert($table, $column, $values);
             return $res;
         }
