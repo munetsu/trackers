@@ -22,7 +22,7 @@
 
     // 日程調整リスト
     $table = 'matchConsultations';
-    $column = '`student_id`,`offerDate1`,`offerStarttime1`,`offerFinishtime1`,`offerDate2`,`offerStarttime2`,`offerFinishtime2`,`offerDate3`,`offerStarttime3`,`offerFinishtime3`';
+    $column = '`matchConsultation_id`,`student_id`,`offerDate1`,`offerStarttime1`,`offerFinishtime1`,`offerDate2`,`offerStarttime2`,`offerFinishtime2`,`offerDate3`,`offerStarttime3`,`offerFinishtime3`';
     $where = 'WHERE `tuotor_id` ='."'".$id."'".'AND (`matchConsulStatus` = 0 OR `matchConsulStatus` =1)';
     $resevationlists = $model->anyselectAll($table, $column, $where);
     

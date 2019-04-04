@@ -628,6 +628,31 @@
                 echo 'OK';
             }
 
+            ///////////////////////////////////////////
+            // t_adjustment.php（日程確定）
+            ///////////////////////////////////////////
+            if($this->POST == 'confirm'){
+                $matchid = h($_POST['matchid']);
+                $confirmDate = h($_POST['date']);
+                $confirmTime = h($_POST['time']);
+                $date = Date("Y/m/d H:i:s");
+                
+                // modelへ引き継ぎ
+                $table = 'matchConsultations';
+                $values = '`confirmDate` ='."'".$confirmDate."'".",".
+                            '`confirmTime` ='."'".$confirmTime."'".",".
+                            '`lastUpDatetime` ='."'".$date."'".",".
+                            '`matchConsulStatus` = 10';
+                $where = 'WHERE `matchConsultation_id` ='."'".$matchid."'";
+                $res = $this->model->anyUpdate($table, $values, $where);
+
+                if($res != NULL){
+                    echo 'dataError';
+                    return;
+                }
+
+                echo 'OK';
+            }
         
 
 
