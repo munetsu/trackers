@@ -126,8 +126,6 @@
             return $res;
         }
 
-        
-
         //////////////////////////////////////
         //SELECTALL文
         //////////////////////////////////////
@@ -166,6 +164,8 @@
             $res = $this->db->selectAll($column, $table, $conditions);
             return $res;
         }
+
+        
 
         
 

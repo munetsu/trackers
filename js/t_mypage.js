@@ -1,13 +1,36 @@
 //////////////////////////////////////////////////
+// 変数一覧
+//////////////////////////////////////////////////
+// 日程調整中リスト
+lists;
+// 0->生徒からの連絡待ち、1->チューターからの連絡待ち、2->日程確定
+// console.log(lists);
+
+
+
+//////////////////////////////////////////////////
 // ロジック
 //////////////////////////////////////////////////
-if(step == 2){
-    console.log('test')
-    // 確認書類の送付中
-    $('.mainarea').append(viewStep2());
-}else{
-    $('.mainarea').append(viewMain());
-}
+function listsJudge(lists, i){
+    if(lists[i]['matchConsulStatus'] == 0){
+        let view = '<span>'+lists[i]['COUNT("*")']+'件</span>'
+        return view;
+    }else if(lists[i]['matchConsulStatus'] == 1){
+        let view = '<span>'+lists[i]['COUNT("*")']+'件</span>'
+        return view;
+    }else{
+        let view = '<span>'+lists[i]['COUNT("*")']+'件</span>'
+        return view;
+    }
+};
+
+
+
+//////////////////////////////////////////////////
+// 読み込み時に描画
+//////////////////////////////////////////////////
+$('.main').append(viewMain(lists));
+
 
 //////////////////////////////////////////////////
 // VIEW
@@ -36,7 +59,26 @@ function viewStep2(){
     return view;
 }
 
-// step99の場合
-function viewMain(){
-    
+// viewMain
+function viewMain(lists){
+    let view = `
+        <div>
+            <div class="area">
+                <p><a href="t_adjustmentlist.php" >日程調整中（生徒からの連絡待ち）<a/></p>
+                <p>`+listsJudge(lists, 0)+`</p>
+            </div>
+            <div class="area">
+                <p><a href="t_resevationlist.php" >日程調整中（自分への未連絡）<a/></p>
+                <p>`+listsJudge(lists, 1)+`</p>
+            </div>
+            <div class="area">
+                <p><a href="t_donelist.php" >実施予定リスト<a/></p>
+                <p>`+listsJudge(lists, 2)+`</p>
+            </div>
+
+        </div>
+    `;
+    return view;
 }
+
+

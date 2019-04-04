@@ -25,17 +25,19 @@
         header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/t_howto.php?id='.$id);
         exit();
     }
-    // else if($step == 2){
-    // }else if($step != 99){
-    //     echo 'ログイン上の問題が発生しました';
-    //     exit();
-    // }
-
+    
     // VIEW読み込み
     include('mvc/view.php');
     $view = new VIEW;
     $viewCommon = $view->viewCommon($id);
 
+    // 日程調整中リスト
+    $table = 'matchConsultations';
+    $column = '`matchConsulStatus`, COUNT("*")';
+    $where = 'WHERE `tuotor_id` ='."'".$id."'".'AND (`matchConsulStatus` = 0 OR `matchConsulStatus` =1 OR `matchConsulStatus` =10) GROUP BY `matchConsulStatus`';
+    $lists = $model->anyselectAll($table, $column, $where);
+    // var_dump($lists);
+    $lists = json($lists);
     
 ?>
 
@@ -50,10 +52,13 @@
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-    <div class="body"><?php echo $viewCommon ?></div>
-    <script>
-        let step = <?php echo $step ?>;
-    </script>
-    <script src="js/t_mypage.js"></script>
+    <div class="body">
+    <?php echo $viewCommon ?>
+    </div>
 </body>
+<script>
+        let step = <?php echo $step ?>;
+        let lists = <?php echo $lists ?>;
+</script>
+<script src="js/t_mypage.js"></script>
 </html>
