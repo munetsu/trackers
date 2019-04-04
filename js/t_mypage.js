@@ -3,26 +3,14 @@
 //////////////////////////////////////////////////
 // 日程調整中リスト
 lists;
-// 0->生徒からの連絡待ち、1->チューターからの連絡待ち、2->日程確定
-// console.log(lists);
+// 0->生徒からの連絡待ち、1->チューターからの連絡待ち、10->日程確定
+// console.log(lists[10]);
 
 
 
 //////////////////////////////////////////////////
 // ロジック
 //////////////////////////////////////////////////
-function listsJudge(lists, i){
-    if(lists[i]['matchConsulStatus'] == 0){
-        let view = '<span>'+lists[i]['COUNT("*")']+'件</span>'
-        return view;
-    }else if(lists[i]['matchConsulStatus'] == 1){
-        let view = '<span>'+lists[i]['COUNT("*")']+'件</span>'
-        return view;
-    }else{
-        let view = '<span>'+lists[i]['COUNT("*")']+'件</span>'
-        return view;
-    }
-};
 
 
 
@@ -64,16 +52,16 @@ function viewMain(lists){
     let view = `
         <div>
             <div class="area">
-                <p><a href="t_adjustmentlist.php" >日程調整中（生徒からの連絡待ち）<a/></p>
-                <p>`+listsJudge(lists, 0)+`</p>
+                <p><a href="t_adjustmentlist.php" >日程調整中（生徒から日程打診あり）<a/></p>
+                <p>`+lists[0]+`件</p>
             </div>
             <div class="area">
-                <p><a href="t_resevationlist.php" >日程調整中（自分への未連絡）<a/></p>
-                <p>`+listsJudge(lists, 1)+`</p>
+                <p><a href="t_resevationlist.php" >日程調整中（生徒からの日程連絡待ち）<a/></p>
+                <p>`+lists[1]+`件</p>
             </div>
             <div class="area">
                 <p><a href="t_donelist.php" >実施予定リスト<a/></p>
-                <p>`+listsJudge(lists, 2)+`</p>
+                <p>`+lists[10]+`件</p>
             </div>
 
         </div>
