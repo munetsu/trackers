@@ -15,7 +15,6 @@ thismonth;
 //////////////////////////////////////////////
 // 先頭文字取得
 function split(string){
-    console.log(string);
     let firstString = string.slice(0,1);
     return firstString;
 }
@@ -30,6 +29,8 @@ function calculate(year, month){
     }
     return age;
 }
+
+
 
 //////////////////////////////////////////////
 // VIEW
@@ -48,19 +49,19 @@ function viewLists(array, i){
                         <th>希望時間</th>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" name="select" value=`+array[i]['offerDate1']+`></td>
+                        <td><input type="checkbox" name="select" value=`+array[i]['offerDate1']+` class="check"></td>
                         <td>第一希望</td>
                         <td>`+array[i]['offerDate1']+`</td>
                         <td>`+array[i]['offerStarttime1']+`〜`+array[i]['offerFinishtime1']+`</td>
                     <tr>
                     <tr>
-                        <td><input type="checkbox" name="select" value=`+array[i]['offerDate2']+`></td>
+                        <td><input type="checkbox" name="select" value=`+array[i]['offerDate2']+` class="check"></td>
                         <td>第二希望</td>
                         <td>`+array[i]['offerDate2']+`</td>
                         <td>`+array[i]['offerStarttime2']+`〜`+array[i]['offerFinishtime2']+`</td>
                     <tr>
                     <tr>
-                        <td><input type="checkbox" name="select" value=`+array[i]['offerDate3']+`></td>
+                        <td><input type="checkbox" name="select" value=`+array[i]['offerDate3']+` class="check"></td>
                         <td>第三希望</td>
                         <td>`+array[i]['offerDate3']+`</td>
                         <td>`+array[i]['offerStarttime3']+`〜`+array[i]['offerFinishtime3']+`</td>
@@ -68,9 +69,57 @@ function viewLists(array, i){
                 </table>
             </div>
             <div class="answer">
-                <a href="" >再調整</a>
+            </div>
+            <div class="rescedule">
+                <a href="" class="reBtn" data-area=`+i+`>再調整</a>
+                <div class="resce" data-area=`+i+`>
+                </div>
             </div>
         </div>
+    `;
+    return view;
+}
+
+// 日程確定用VIEW
+function dateConfrim(date){
+    let view = `
+        <p>日付：`+date+`</p>
+        <p>時間：<input type="text" name="time">：<input type="text" name="minute"></p>
+        <a href="" class="confirm">確定</a>
+    `;
+    return view;
+}
+
+// 日程再調整VIEW
+function rescedule(area){
+    let view = `
+        <p>
+            第1希望：
+            <input type="text" name="offerDate1" class="datepicker" placeholder="クリックして日付選択">
+        </p>
+        <div>
+            希望時間<br>
+            開始時間：<select class="time" name="offerStarttimeh1"></select>：<select class="minute" name="offerStarttimem1"></select> 〜 終了時間：<select class="time" name="offerFinishtimeh1"></select>：<select class="minute" name="offerFinishtimem1"></select>
+        </div>
+        <p>
+            第2希望：
+            <input type="text" name="offerDate2" class="datepicker" placeholder="クリックして日付選択">
+        </p>
+        <div>
+            希望時間<br>
+            開始時間：<select class="time" name="offerStarttimeh2"></select>：<select class="minute" name="offerStarttimem2"></select> 〜 終了時間：<select class="time" name="offerFinishtimeh2"></select>：<select class="minute" name="offerFinishtimem2"></select>
+        </div>
+        <p>
+            第3希望：
+            <input type="text" name="offerDate3" class="datepicker" placeholder="クリックして日付選択">
+        </p>
+        <div>
+            希望時間<br>
+            開始時間：<select class="time" name="offerStarttimeh3"></select>：<select class="minute" name="offerStarttimem3"></select> 〜 終了時間：<select class="time" name="offerFinishtimeh3"></select>：<select class="minute" name="offerFinishtimem3"></select>
+        </div>
+        <div>
+        <a href="" class="edit" data-area=`+area+`>確認する</a>
+        </div> 
     `;
     return view;
 }
@@ -81,3 +130,102 @@ function viewLists(array, i){
 for(let i = 0;i<resevationlists.length;i++){
     $('.main').append(viewLists(resevationlists, i));
 }
+
+
+//////////////////////////////////////////////
+// クリックイベント
+//////////////////////////////////////////////
+// 日程調整部分
+$('input[name="select"]').on('click', function(){
+    if ($(this).prop('checked')){
+        // 一旦全てをクリアして再チェックする
+        $('.check').prop('checked', false);
+        $(this).prop('checked', true);
+    }
+    let clicked = $(this).attr('class');
+
+    // 既にチェックされていたか確認
+    if(clicked.match(/clicked/)){
+        $('.answer').empty();
+        $('.rescedule').css('display', 'block');
+        $(this).removeClass('clicked');
+        return;
+    }else{
+        $('.rescedule').css('display','none');
+        let date = $(this).val();
+        $('.answer').empty();
+        $('.answer').append(dateConfrim(date));
+        console.log(date);    
+    }
+
+    // チェックされているか確認
+    $(this).addClass('clicked');
+})
+
+// 再調整部分
+$(document).on('click', '.reBtn', function(e){
+    e.preventDefault();
+    let classes = $(this).attr('class');
+
+    // 他の調整欄が開いている場合
+    if(classes.match(/none/)){
+        return;
+    }
+    
+    let area = $(this).attr('data-area');
+    $('div[data-area='+area+']').append(rescedule());
+
+    // 再調整時に処理
+    // カレンダー部分
+    $(".datepicker").datepicker({
+        dateFormat:'yy/mm/dd',
+        minDate: "+7d",
+        maxDate: "+40d",
+    });
+
+    // 時間部分
+    for(let i=0;i<=23;i++){
+        let view = '';
+        if(i == 12){
+            view = '<option value='+i+' selected>'+i+'時</option>';        
+        }else{
+            view = '<option value='+i+'>'+i+'時</option>';
+        }
+        $('.time').append(view);
+    };
+
+    // 分部分
+    for(let i=00;i<=59;i+=10){
+        let view = '';
+        if(i == 30){
+            view = '<option value='+i+' selected>'+i+'分</option>';        
+        }else{
+            view = '<option value='+i+'>'+i+'分</option>';
+        }
+        $('.minute').append(view);
+    };
+
+    // 他の再調整を無効化する
+    $('.reBtn').addClass('none');
+
+    // テキスト変更
+    $(this).text('閉じる');
+    $(this).removeClass('reBtn');
+    $(this).addClass('close');
+})
+
+// 閉じるボタンを押した時
+$(document).on('click', '.close', function(e){
+    e.preventDefault();
+
+    // 無効化していたボタンを復活
+    $('.reBtn').removeClass('none');
+    
+    let area = $(this).attr('data-area');
+    $('div[data-area='+area+']').empty();
+
+    // テキスト変更
+    $(this).text('再調整');
+    $(this).removeClass('close');
+    $(this).addClass('reBtn');
+})
