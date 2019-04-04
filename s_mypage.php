@@ -2,7 +2,7 @@
     session_start();
     include('funcs/funcs.php');
     chkSsid();
-
+    
     $id = h($_GET['id']);
     include('mvc/model.php');
     $model = new MODEL;

@@ -71,14 +71,15 @@
                         <!-- サイドバー部分 -->
                         <div class="sidebar">
                             <ul>
-                                <li>実施予定</li>
-                                <li>過去実施</li>
-                                <li>勉強方法</li>
-                                <li>プロフィール</li>
+                                <li><a href="t_adjustmentlist.php">日程調整中</a></li>
+                                <li><a href="t_resevationlist.php">実施予定</a></li>
+                                <li><a href="t_donelist.php">過去実施</a></li>
+                                <li><a href="t_howtoedit.php">勉強方法<a/></li>
+                                <li><a href="t_pgofile.php">プロフィール</a></li>
                             </ul>
                         </div>
                         <!-- メイン部分 -->
-                        <div class="mainarea"></div>
+                        <div class="main"></div>
                     </div>
                 </div>
             ';

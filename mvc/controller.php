@@ -130,6 +130,7 @@
                 if($_POST['status'] == 1){
                     $id = $info['tuotor_id'];
                     // sessionスタート
+                    session_start();
                     $_SESSION['tuotor_id'] = $id;
 
 
@@ -142,6 +143,7 @@
                 }else if($_POST['status'] == 2){
                     // 生徒側処理
                     $id = $info['student_id'];
+                    session_start();
                     $_SESSION['student_id'] = $id;
 
                     // ログインアップデート
