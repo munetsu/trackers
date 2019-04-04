@@ -3,7 +3,7 @@
     include('funcs/funcs.php');
     chkSsid();
 
-    $id = h($_GET['id']);
+    $id = $_SESSION['tuotor_id'];
     include('mvc/model.php');
     $model = new MODEL;
     $column = '*';
@@ -34,10 +34,15 @@
     // 日程調整中リスト
     $table = 'matchConsultations';
     $column = '`matchConsulStatus`, COUNT("*")';
-    $where = 'WHERE `tuotor_id` ='."'".$id."'".'AND (`matchConsulStatus` = 0 OR `matchConsulStatus` =1 OR `matchConsulStatus` =10) GROUP BY `matchConsulStatus`';
-    $lists = $model->anyselectAll($table, $column, $where);
-    // var_dump($lists);
+    $where = 'WHERE `tuotor_id` ='."'".$id."'".'AND `matchConsulStatus` = 0';
+    $list0 = $model->anyselectAll($table, $column, $where);
+    $where = 'WHERE `tuotor_id` ='."'".$id."'".'AND `matchConsulStatus` = 1';
+    $list1 = $model->anyselectAll($table, $column, $where);
+    $where = 'WHERE `tuotor_id` ='."'".$id."'".'AND `matchConsulStatus` = 10';
+    $list10 = $model->anyselectAll($table, $column, $where);
+    $lists = array('0'=>$list0[0]['COUNT("*")'], '1'=>$list1[0]['COUNT("*")'], '10'=>$list10[0]['COUNT("*")']);
     $lists = json($lists);
+    
     
 ?>
 

@@ -48,7 +48,7 @@ function minute(){
     for(let i=00;i<=59;i+=10){
         let view = '';
         if(i == 0){
-            view = '<option value='+i+' selected>00分</option>';        
+            view = '<option value=00 selected>00分</option>';        
         }else if(i == 30){
             view = '<option value='+i+' selected>'+i+'分</option>';        
         }else{
@@ -100,8 +100,8 @@ function viewLists(array, i){
             <div class="answer" data-id=`+array[i]['matchConsultation_id']+`>
             </div>
             <div class="rescedule">
-                <a href="" class="reBtn" data-area=`+i+`>再調整</a>
-                <div class="resce" data-area=`+i+`>
+                <a href="" class="reBtn" data-area=`+array[i]['matchConsultation_id']+`>再調整</a>
+                <div class="resce" data-area=`+array[i]['matchConsultation_id']+`>
                 </div>
             </div>
         </div>
@@ -122,6 +122,8 @@ function dateConfrim(date, id){
 // 日程再調整VIEW
 function rescedule(area){
     let view = `
+        <form action="t_adjustmentConfirm.php" method="POST" name="edit">
+        <input type="hidden" name="consulid" value=`+area+`>
         <p>
             第1希望：
             <input type="text" name="offerDate1" class="datepicker" placeholder="クリックして日付選択">
@@ -146,6 +148,7 @@ function rescedule(area){
             希望開始時間<br>
             <select class="time" name="offerStarttimeh3"></select>：<select class="minute" name="offerStarttimem3"></select> 〜 <select class="time" name="offerFinishtimeh3"></select>：<select class="minute" name="offerFinishtimem3"></select>開始まで
         </div>
+        </form>
         <div>
         <a href="" class="edit" data-area=`+area+`>確認する</a>
         </div> 
@@ -199,14 +202,14 @@ $('input[name="select"]').on('click', function(){
 $(document).on('click', '.reBtn', function(e){
     e.preventDefault();
     let classes = $(this).attr('class');
-
+    
     // 他の調整欄が開いている場合
     if(classes.match(/none/)){
         return;
     }
     
     let area = $(this).attr('data-area');
-    $('div[data-area='+area+']').append(rescedule());
+    $('div[data-area='+area+']').append(rescedule(area));
 
     // 再調整時に処理
     // カレンダー部分
@@ -281,4 +284,25 @@ $(document).on('click', '.confirm', function(e){
             console.log(data);
         })
     }
+})
+
+
+// 再調整送信
+$(document).on('click', '.edit', function(e){
+    e.preventDefault();
+    let clicked = $(this).attr('class');
+    if(clicked.match(/clicked/)){
+        return;
+    }
+
+    // 未選択がないか確認
+    for(let i=1; i<=3;i++){
+        let offerdate = $('input[name="offerDate'+i+'"]').val();
+        if(offerdate == ''){
+            alert('第'+i+'希望日が選択されていません')
+            return;
+        }
+    }
+    $(this).addClass('clicked');
+    edit.submit();
 })
