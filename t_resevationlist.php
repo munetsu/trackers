@@ -22,11 +22,27 @@
 
     // 日程調整リスト
     $table = 'matchConsultations';
-    $column = '*';
-    $where = 'WHERE `tuotor_id` ='."'".$id."'";
+    $column = '`matchConsultation_id`, `student_id`, `confirmDate`, `confirmTime`';
+    $where = 'WHERE `tuotor_id` ='."'".$id."'".'AND `matchConsulStatus` = 10';
     $resevationlists = $model->anyselectAll($table, $column, $where);
-    var_dump($resevationlists);
+    
+    // 生徒情報
+    $table = 's_students';
+    $column = '`a_familyname`,`a_firstname`, `birthyear`,`birthmonth`';
+    $count = 0;
+    foreach($resevationlists as $resevation){
+        $where ='WHERE `student_id` ='."'".$resevation['student_id']."'";
+        $info = $model->anyselect($table, $column, $where);
+        array_push($resevationlists[$count], $info);
+        $count++;
+    }
 
+    // var_dump($resevationlists);
+    $resevationlists = json($resevationlists);
+
+    // 日付取得
+    $year = Date("Y");
+    $month = Date("d");
 
 ?>
 
@@ -37,11 +53,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <!-- jQuery本体-->
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
     <div>
         <?php echo $viewCommon ?>
     </div>
 </body>
-
+<script>
+    let resevationlists = <?php echo $resevationlists ?>;
+    let thisyear = <?php echo $year ?>;
+    let thismonth = <?php echo $month ?>;
+    let tid = <?php echo $id ?>;
+</script>
+<script src="js/t_resevationlist.js"></script>
 </html>

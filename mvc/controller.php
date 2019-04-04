@@ -564,7 +564,7 @@
                     return;
                 }
 
-                // 日程確定済みコンサルがあるか確認
+                // 日程確定・調整中コンサルがあるか確認
                 $table = 'matchConsultations';
                 $column = '*';
                 $where = 'WHERE `tuotor_id` ='."'".$tuotor_id."'".'AND `student_id` = '."'".$student_id."'".'AND (`matchConsulStatus` = "0" OR `matchConsulStatus` = "1" OR `matchConsulStatus` = "10")';
@@ -691,7 +691,41 @@
                     }
                 }
                 echo 'OK';
+            }
+
+            ///////////////////////////////////////////
+            // t_resevationlist.php（生徒情報取得）
+            ///////////////////////////////////////////
+            if($this->POST == 'student_profile'){
+                $sid = h($_POST['sid']);
+                $tid = h($_POST['tid']);
+                $matchid = h($_POST['matchid']);
+
+                // matchしているか確認
+                $table = 'matchConsultations';
+                $column = '`matchConsultation_id`';
+                $where = 'WHERE `tuotor_id` ='."'".$tid."'".'AND `student_id` ='."'".$sid."'".'AND `matchConsulStatus` = 10';
+                $res = $this->model->anyselect($table, $column, $where);
                 
+                // マッチしているか（マッチしていない場合はエラー処理）
+                if($matchid != $res['matchConsultation_id']){
+                    echo 'NG';
+                    return;
+                }
+
+                // 生徒情報を取得
+                $table = 's_students';
+                $column = '`k_familyname`, `k_firstname`, `a_familyname`,`a_firstname`, `birthyear`, `birthmonth`,`email`,`photo`';
+                $where = 'WHERE `student_id` ='."'".$sid."'";
+                $res = $this->model->anyselect($table, $column, $where);
+                if($res == NULL){
+                    echo 'dataError';
+                    return;
+                }
+                $res = json($res);
+                echo $res;
+
+
             }
         
 
