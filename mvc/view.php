@@ -96,7 +96,7 @@
             <!-- left -->
             <div class="left">
                 <div class="logo">
-                    <img src="img/logo.png">
+                    <a href="s_mypage.php"><img src="img/logo.png"></a>
                 </div>
                 <div class="search">
                     <p class="selectCertification">資格で絞り込む</p>
@@ -106,7 +106,7 @@
             <!-- right -->
             <div class="right">
                 <div class="mypage">
-                    <p class="resevationlist">予約リスト</p>
+                    <p class="resevationlist"><a href="s_matchConsullist.php">予約リスト</a></p>
                     <p><a href="logout.php?status=student">ログアウト</a></p>
                 </div>
             </div>
