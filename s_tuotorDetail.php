@@ -4,7 +4,8 @@
     include('funcs/funcs.php');
     chkSsid();
 
-    $student_id = h($_GET['sid']);
+    // $student_id = h($_GET['sid']);
+    $student_id = $_SESSION['student_id'];
     include('mvc/model.php');
     $model = new MODEL;
     $column = '*';
