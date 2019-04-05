@@ -46,10 +46,19 @@ $(document).on('click', '.tuotor', function(){
 })
 
 ///////////////////////////////////////////
-// アラート
+// ローカルストレージ 
 ///////////////////////////////////////////
-if(alertcheck == 1){
-    alert('チューターより日程打診があります。ご返信をお願いします');
-    window.location.href="s_adjustmentlist.php";
+let getStorage = localStorage.getItem('datecheck');
+
+///////////////////////////////////////////
+// アラート（日程調整が必要なものがあった場合）
+///////////////////////////////////////////
+if(alertcheck == 1 && getStorage != date){
+    if(!confirm('チューターより日程打診があります。\n今すぐ確認しますか？')){
+        // キャンセルの場合
+        localStorage.setItem('datecheck', date);
+    }else{
+        window.location.href="s_adjustmentlist.php";
+    }
 }
 

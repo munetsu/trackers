@@ -170,6 +170,7 @@
     let certifications = <?php echo $certifications ?>;
     let student_id = <?php echo $id ?>;
     let alertcheck = <?php echo $alertcheck ?>;
+    let date = <?php echo $date ?>;
 </script>
 <script src="js/s_mypage.js"></script>
 </html>
