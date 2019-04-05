@@ -87,10 +87,10 @@
         }
 
         //////////////////////////////////////////
-        // t_mypage.phpの共通部分
+        // s_mypage.phpの共通部分
         //////////////////////////////////////////
         // s_mypageのトップバー
-        public function viewStudentTopbar($tid, $familyname, $firstname){
+        public function viewStudentTopbar(){
             $view = '
             <div class="topbar">
             <!-- left -->
@@ -106,7 +106,7 @@
             <!-- right -->
             <div class="right">
                 <div class="mypage">
-                    <p class="myname" data-name="'.$tid.'">'.$familyname.$firstname.'</p>
+                    <p class="resevationlist">予約リスト</p>
                     <p><a href="logout.php?status=student">ログアウト</a></p>
                 </div>
             </div>
