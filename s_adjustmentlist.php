@@ -41,6 +41,28 @@
     $view = new VIEW;
     $views = $view->viewStudentTopbar();
 
+    // ステータス一覧
+    $table = 'statusLists';
+    $column = '*';
+    $where = '';
+    $statuslist = $model->anyselectAll($table, $column, $where);
+    $statuslist = json($statuslist);
+
+    // 学歴一覧
+    $table = 'academyLists';
+    $academiclist = $model->anyselectAll($table, $column, $where);
+    $academiclist = json($academiclist);
+
+    // 勉強法一覧
+    $table = 'howtoLists';
+    $howtolist = $model->anyselectAll($table, $column, $where);
+    $howtolist = json($howtolist);
+
+    // 日付取得
+    $year = Date("Y");
+    $month = Date("d");
+
+
 ?>
 
 <!DOCTYPE html>
@@ -68,6 +90,11 @@
 </body>
 <script>
     let lists = <?php echo $lists ?>;
+    let statuslist = <?php echo $statuslist ?>;
+    let academiclist = <?php echo $academiclist ?>;
+    let howtolist = <?php echo $howtolist ?>;
+    let thisyear = <?php echo $year ?>;
+    let thismonth = <?php echo $month ?>;
 </script>
 <script src="js/s_adjustmentlist.js"></script>
 </html>
