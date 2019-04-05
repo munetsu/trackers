@@ -23,10 +23,9 @@ $('.confirm').on('click', function(e){
         url:'mvc/controller.php',
         type:'POST',
         data:{
-            action:'resevation',
+            action:'consuldateEdit',
             consulid:consulid,
-            dateInfo:offerlist,
-            sid:sid
+            dateInfo:offerlist
         }
     })
     .done((data)=>{
@@ -35,7 +34,7 @@ $('.confirm').on('click', function(e){
             return;
         }else if(data == 'OK'){
             alert('日程打診が完了しました');
-            window.location.href="s_mypage.php";
+            window.location.href="t_mypage.php";
         }
     })
     .fail((data)=>{
