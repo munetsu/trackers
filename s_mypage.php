@@ -108,10 +108,10 @@
     $column = '`matchConsultation_id`';
     $where = 'WHERE `student_id` ='."'".$id."'".'AND `matchConsulStatus` = "1"';
     $consullist = $model->anyselect($table, $column, $where);
-    if(count($consullist) != 0){
-        $alert = 1;
+    if(!$consullist){
+        $alertcheck = 0;
     }else{
-        $alert = 0;
+        $alertcheck = 1;
     }
 
 ?>
@@ -169,7 +169,7 @@
 <script>
     let certifications = <?php echo $certifications ?>;
     let student_id = <?php echo $id ?>;
-    let alertcheck = <?php echo $alert ?>;
+    let alertcheck = <?php echo $alertcheck ?>;
 </script>
 <script src="js/s_mypage.js"></script>
 </html>
