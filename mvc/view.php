@@ -107,6 +107,7 @@
             <div class="right">
                 <div class="mypage">
                     <p class="resevationlist"><a href="s_matchConsullist.php">予約リスト</a></p>
+                    <p class="resevationlist"><a href="s_adjustmentlist.php">日程調整中リスト</a></p>
                     <p><a href="logout.php?status=student">ログアウト</a></p>
                 </div>
             </div>
