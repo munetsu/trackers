@@ -1,0 +1,419 @@
+/*テーマカラー：d72835 */
+/*http://sweetdrop.net/sweetcolor.html*/
+
+/* ------------------------------------- 
+* 共通
+------------------------------------- */
+
+h3 {
+    font-size: 4vw;
+    text-align: center;
+    padding-top: 5vh;
+}
+
+span {
+    background: linear-gradient(transparent 80%, #cf5e66 80%);
+}
+
+/* ------------------------------------- 
+* ヘッダー
+------------------------------------- */
+.header{
+    display:flex;
+    justify-content:space-between;
+    height: 10vh;
+    /* background-color: #e8dedf; */
+}
+
+.logo {
+    margin-left: 2vw;
+}
+
+.logoicon{
+    width: 20vw;
+    height: 10vh;
+}
+
+.login {
+    text-align: right;
+    height: 10vh;
+}
+
+.login ul {
+    display: flex;
+}
+
+.login ul li {
+    margin-right: 5vw;
+    margin-top: 2vh;
+}
+
+.student {
+    background-color: #d72835;
+    color: #e8deef;
+    width: 10vw;
+    text-align:center;
+    padding: 2vh 2vw;
+    font-weight: bold;
+}
+
+.tuotor {
+    background-color: #2861d7;
+    color: #e8deef;
+    width: 10vw;
+    text-align:center;
+    padding: 2vh 2vw;
+    font-weight: bold;
+}
+
+/* ------------------------------------- 
+* TOP画像
+------------------------------------- */
+
+.topimage {
+    position: relative;
+    top: 0;
+    height: 80vh;
+}
+
+.image {
+    background-image: url('../img/image.jpg');
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: -30vw;
+}
+
+.image::before {
+    z-index:0;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(211,211,211,0.3);
+}
+
+.topText {
+    position: absolute;
+    width: 40vw;
+    top: 30vh;
+    right: 5vw;
+}
+
+.topmessage {
+    font-size: 3vw;
+    font-weight: bold;
+    color: #3c3c3c;
+}
+
+.topmessage_p {
+    display: inline-block;
+    margin-top: 5vh;
+    font-size: 2vw;
+    color: #5d5d5d;
+}
+
+
+/* ------------------------------------- 
+* 横並び（特徴など）
+------------------------------------- */
+
+.block {
+    margin-top: 10vh;
+}
+
+.odd {
+    background-color: #FFF5EE;
+}
+
+.flex {
+    display: flex;
+    padding: 5vh 5vw;
+}
+
+.three {
+    width: 30vw;
+    margin: 0 1vw;
+}
+
+.icon {
+    width: 10vw;
+    margin-top: 5vh;
+}
+
+.title {
+    font-size:3vw;
+    margin-top: 3vh;
+}
+
+.titleString {
+    background: linear-gradient(transparent 70%, #e6adb1 70%);
+}
+
+.text {
+    font-size: 3vh;
+    display: inline-block;
+    margin-top: 5vh;
+    text-align: left;
+    line-height: 3.5vh;
+}
+
+.plus {
+    font-size: 2vh;
+    text-align: left;
+}
+
+.step {
+    font-size:3vw;
+    margin-top: 3vh;
+}
+
+.stepString {
+    background: linear-gradient(transparent 70%, #e6adb1 70%);
+}
+
+.stepthree {
+    width: 30vw;
+    margin: 0 1vw;
+    text-align: center;
+}
+
+.steptext {
+    font-size: 2.5vh;
+    display: inline-block;
+    margin-top: 5vh;
+    text-align: left;
+    line-height: 3.5vh;
+}
+
+/* ------------------------------------- 
+* 料金
+------------------------------------- */
+.fee {
+    text-align: center;
+    width: 80vw;
+    height: 20vh;
+    margin: 10vh 10vw;
+    border:double 1vh #4b4b4b;
+}
+
+.ticket {
+    background-color: #e6adb1;
+}
+
+.feelist {
+    font-size: 2.5vw;
+}
+
+td {
+    font-size: 2vw;
+    height: 5vh;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    border:solid 0.5vh #4b4b4b;
+}
+
+.feeadd {
+    font-size: 1.5vw;
+}
+
+/* ------------------------------------- 
+* Q&A
+------------------------------------- */
+.questionside {
+    width: 80vw;
+    margin-left: 5vw;
+    padding-left: 0;
+}
+
+.answerside {
+    width: 80vw;
+    margin-right: 5vw;
+    margin-left: auto;
+    padding-right:0;
+}
+
+.face {
+    width: 5vw;
+    margin: 1vh 1vw;
+    text-align: center;
+}
+
+.quetion {
+    width: 60vw;
+    height: 6vh;
+    margin: 1vh 1vw;
+    padding-top: 4vh;
+    padding-left: 1vw;
+    color: #4b4b4b;
+    background: #aac5de;
+    border-right: solid 6px #5e83ef;
+    border-radius: 1vw;
+}
+
+.quetion p {
+    margin: 0; 
+    padding: 0;
+}
+
+.faceicon {
+    width: 5vw;
+}
+
+.answer {
+    width: 60vw;
+    height: 8vh;
+    margin: 1vh 1vw;
+    padding-top: 4vh;
+    padding-left: 1vw;
+    color: #4b4b4b;
+    background: #aac5de;
+    border-left: solid 6px #5e83ef;
+    border-radius: 1vw;
+}
+
+/* ------------------------------------- 
+* 登録フォーム
+------------------------------------- */
+.register {
+    width: 40vw;
+    margin: 10vh 5vw;
+}
+
+.tuo {
+    background-color: #2861d7;
+    color: #e8deef;
+    text-align:center;
+    padding: 5vh 2vw;
+    font-weight: bold;
+}
+
+.stu {
+    background-color: #d72835;
+    color: #e8deef;
+    text-align:center;
+    padding: 5vh 2vw;
+    font-weight: bold;
+}
+
+/* ------------------------------------- 
+* 会社情報
+------------------------------------- */
+.companyarea {
+    background-color: #4b4b4b;
+    color: #e8deef;
+    font-size: 1vw;
+}
+
+.companyarea ul {
+    margin: 5vh 3vw 0 3vw;
+}
+
+.companyarea li {
+    margin-right: 5vw;
+}
+
+.copyright {
+    text-align: center;
+    padding-bottom: 3vh;
+}
+
+
+/* ------------------------------------- 
+* スマホ用
+------------------------------------- */
+@media screen and (max-width:480px){
+    /* ------------------------------------- 
+    * ヘッダー
+    ------------------------------------- */
+    .header{
+        display: none;
+    }
+
+    /* ------------------------------------- 
+    * TOP画像
+    ------------------------------------- */
+    .topimage {
+        position: relative;
+        top: 0;
+        height: 30vh;
+    }
+
+    image {
+        background-image: url('../img/image.jpg');
+        background-size:100% 100%;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: -30vw;
+    }
+    
+    .image::before {
+        z-index:0;
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(211,211,211,0.3);
+    }
+    
+    .topText {
+        position: absolute;
+        top: 15vh;
+        left: 50vw;
+    }
+
+    .topmessage {
+        font-size: 0;
+    }
+
+    .topmessage::before {
+        font-size: 4vw;
+        content:"資格チューターサービス";
+        white-space: nowrap;
+
+    }
+
+    .topmessage_p {
+        font-size:0;
+        margin-top:1vw;
+    }
+
+    .topmessage_p::before{
+        display:inline-block;
+        font-size: 6vw;
+        content:" Trackers";
+    }
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }
