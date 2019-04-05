@@ -62,3 +62,12 @@ if(alertcheck == 1 && getStorage != date){
     }
 }
 
+///////////////////////////////////////////
+// クリック処理
+///////////////////////////////////////////
+// 資格ごとのチューター一覧ページへ
+$(document).on('click','.alldescribe', function(e){
+    e.preventDefault();
+    let certificationid = $(this).attr('data-certification');
+    window.location.href="s_tuotoralllist.php?certificationid="+certificationid;
+})
