@@ -724,8 +724,24 @@
                 }
                 $res = json($res);
                 echo $res;
+            }
 
-
+            ///////////////////////////////////////////
+            // s_adjustmentlist.php（チューター情報取得）
+            ///////////////////////////////////////////
+            if($this->POST == 'tuotorDetail'){
+                $tid = h($_POST['tid']);
+                // modelへ
+                $table = 't_tuotors';
+                $column = '`tuotor_id`,`a_familyname`,`a_firstname`,`k_familyname`,`k_firstname`,`birthyear`,`birthmonth`,`status`,`academic`,`howto`,`schoolname`,`howmany`,`photo`';
+                $where = 'WHERE `tuotor_id` ='."'".$tid."'";
+                $tuotorInfo = $this->model->anyselect($table, $column, $where);
+                if(count($tuotorInfo) ==0){
+                    echo 'NG';
+                    return;
+                }
+                $tuotorInfo =json($tuotorInfo);
+                echo $tuotorInfo;
             }
         
 

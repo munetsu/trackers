@@ -3,7 +3,8 @@
     include('funcs/funcs.php');
     chkSsid();
     
-    $id = h($_GET['id']);
+    // $id = h($_GET['id']);
+    $id = $_SESSION['student_id'];
     include('mvc/model.php');
     $model = new MODEL;
     $column = '*';
@@ -100,7 +101,18 @@
     // View処理
     include('mvc/view.php');
     $view = new VIEW;
-    $views = $view->viewStudentTopbar($code['student_id'], $code['k_familyname'], $code['k_firstname']);
+    $views = $view->viewStudentTopbar();
+
+    // コンサルリスト取得
+    $table = 'matchConsultations';
+    $column = '`matchConsultation_id`';
+    $where = 'WHERE `student_id` ='."'".$id."'".'AND `matchConsulStatus` = "1"';
+    $consullist = $model->anyselect($table, $column, $where);
+    if(count($consullist) != 0){
+        $alert = 1;
+    }else{
+        $alert = 0;
+    }
 
 ?>
 
@@ -157,6 +169,7 @@
 <script>
     let certifications = <?php echo $certifications ?>;
     let student_id = <?php echo $id ?>;
+    let alertcheck = <?php echo $alert ?>;
 </script>
 <script src="js/s_mypage.js"></script>
 </html>
