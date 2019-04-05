@@ -8,6 +8,10 @@ certifications;
 // student_id
 student_id;
 
+// 日程調整用のアラート
+alertcheck;
+// 0->日程調整なし、1->日程調整必要
+
 ///////////////////////////////////////////
 // VIEW
 ///////////////////////////////////////////
@@ -41,6 +45,11 @@ $(document).on('click', '.tuotor', function(){
     window.location.href="s_tuotorDetail.php?tid="+tuotor_id+"&sid="+student_id;
 })
 
-
-
+///////////////////////////////////////////
+// アラート
+///////////////////////////////////////////
+if(alertcheck == 1){
+    alert('チューターより日程打診があります。ご返信をお願いします');
+    window.location.href="s_adjustmentlist.php";
+}
 
