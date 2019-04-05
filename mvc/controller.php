@@ -609,7 +609,8 @@
                         $values = '`offerDate'.$i.'` ='."'".$_POST['dateInfo']["offerDate".$i]."'".",".
                         '`offerStarttime'.$i.'` ='."'".$starttime."'".",".
                         '`offerFinishtime'.$i.'` ='."'".$finishtime."'".",".
-                        '`lastUpdatetime` ='."'".$date."'";
+                        '`lastUpdatetime` ='."'".$date."'".",".
+                        '`matchConsulStatus` =0';
                         $where = 'WHERE `matchConsultation_id` ='."'".$consulid."'".'AND `student_id` ='."'".$sid."'";
                         $res = $this->model->anyUpdate($table, $values, $where);
                     }else{
@@ -743,6 +744,10 @@
                 $tuotorInfo =json($tuotorInfo);
                 echo $tuotorInfo;
             }
+
+            
+
+           
         
 
 
