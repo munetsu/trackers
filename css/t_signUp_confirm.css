@@ -1,7 +1,100 @@
-.flex {
-    display:flex;
+@charset "utf-8";
+body {
+    width: 90vw;
+    margin: 5vh 5vw;
+    background-color:#dee1e8;
+    font-size: 1.5vw;
+}
+/****************************************************
+** 確認フォーム
+****************************************************/
+p {
+    margin-bottom: 3vh;
+    line-height: 2vw;
 }
 
-p {
-    border-bottom: solid gray 0.5px;
+tr {
+    height: 5vh;
+}
+
+.item {
+    padding-right: 1vw;
+}
+
+/****************************************************
+** ボタン
+****************************************************/
+.flex {
+    margin-top: 10vh;
+    display:flex;
+    width: 30vw;
+}
+
+.btnarea {
+    width: 40%;
+    padding-right: 10%;
+}
+
+.edit {
+    padding: 2vh 3vw;
+    background-color: #9acd56;
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+}
+
+.regist {
+    padding: 2vh 3vw;
+    background-color: #2861d7;
+    text-decoration: none;
+    color: #e8deef;
+    font-weight: bold;
+}
+
+/* ------------------------------------- 
+* スマホ用
+------------------------------------- */
+@media screen and (max-width:480px){
+    body {
+        font-size: 2vh;
+    }
+
+    /****************************************************
+    ** 確認フォーム
+    ****************************************************/
+    p {
+        margin-bottom: 3vh;
+        line-height: 3vh;
+    }
+
+    /****************************************************
+    ** ボタン
+    ****************************************************/
+    .flex {
+        margin-top: 5vh;
+        display:flex;
+        width: 80vw;
+    }
+    
+    .btnarea {
+        width: 40%;
+        padding-right: 10%;
+    }
+    
+    .edit {
+        padding: 2vh 10vw;
+        background-color: #9acd56;
+        text-decoration: none;
+        color: #333333;
+        font-weight: bold;
+    }
+    
+    .regist {
+        padding: 2vh 10vw;
+        background-color: #2861d7;
+        text-decoration: none;
+        color: #e8deef;
+        font-weight: bold;
+    }
+
 }

@@ -90,7 +90,7 @@ $(document).on('change', '#howto', function(){
                 <td><input type="text" name="schoolname" placeholder="(例)TEST学校"></td>
             </tr>
         `;
-        $('table').append(view);
+        $('tbody').append(view).trigger('create');
     }else{
         academiccheck = 0;
     }
@@ -204,6 +204,7 @@ $(document).on('change', 'input[name="tel"]', function(){
 $(document).on('click', '#btn', function(e){
     e.preventDefault();
     let test = [];
+    test.push($('input[name="certification"]').val());
     test.push($('input[name="k_familyname"]').val());
     test.push($('input[name="k_firstname"]').val());
     test.push($('input[name="a_familyname"]').val());
@@ -216,6 +217,15 @@ $(document).on('click', '#btn', function(e){
             return;
         }
     }
+    if($('select[name="status"]').val() == '' || $('select[name="status"]').val() == 0){
+        alert('職業を選択してください');
+        return;
+    }
+    if($('select[name="academic"]').val() == 0 || $('select[name="academic"]').val() == ''){
+        alert('学歴を選択してください');
+        return;
+    }
+    
     if(academiccheck == 1){
         if($('input[name="shcoolname"]').val() == ''){
             alert('学校名・サービス名を記載してください')
