@@ -1,25 +1,22 @@
+/* テーマカラー：2861d7 */
+/*http://sweetdrop.net/sweetcolor.html*/
+
 /* ------------------------------------- 
 * 共通
 ------------------------------------- */
+h3 {
+    font-size: 4vw;
+    text-align: center;
+    padding-top: 5vh;
+}
+
+span {
+    background: linear-gradient(transparent 80%, #779ce9 80%);
+}
+
 .flex {
     display: flex;
     padding: 5vh 5vw;
-}
-
-.icon {
-    width: 10vw;
-}
-
-.three {
-    width: 30vw;
-    margin: 0 1vw;
-    background-color: gray; 
-}
-
-.fifth {
-    width: 20vw;
-    margin: 0 1vw;
-    background-color: gray;
 }
 
 /* ------------------------------------- 
@@ -57,14 +54,186 @@
 
 .topText {
     position: absolute;
-    width: 30vw;
-    top: 50vh;
-    left: 40vw;
+    top: 55vh;
+    left: 28vw;
 }
+
+.topmessageHead {
+    font-size:3vw;
+}
+
+.topmessage {
+    font-size: 1.5vw;
+    margin-top: 2vh;
+}
+
+/* ------------------------------------- 
+* 業務内容
+------------------------------------- */
+.title {
+    font-size:3vw;
+    margin-top: 3vh;
+}
+
+.titleString {
+    background: linear-gradient(transparent 70%, #adbfe6 70%);
+}
+
+.icon {
+    width: 10vw;
+    margin-top: 5vh;
+}
+
+.text {
+    font-size: 2.5vh;
+    display: inline-block;
+    margin-top: 5vh;
+    text-align: left;
+    line-height: 3.5vh;
+}
+
+.plus {
+    font-size: 2vh;
+    text-align: left;
+    margin-top:1vh;
+}
+
+
+.two {
+    width: 40vw;
+    margin: 0 5vw;
+}
+
+/* ------------------------------------- 
+* 登録からの流れ
+------------------------------------- */
+.process {
+    background-color: #dee1e8;
+    height: 60vh;
+}
+
+.step {
+    font-size:3vw;
+    margin-top: 3vh;
+}
+
+.stepString {
+    background: linear-gradient(transparent 70%, #adbfe6 70%);
+}
+
+.steptext {
+    font-size: 3vh;
+    display: inline-block;
+    margin-top: 5vh;
+    text-align: left;
+    line-height: 4.5vh;
+}
+
+.stepbox {
+    width: 30vw;
+    margin: 0 3vw;
+
+}
+
+.stepicon {
+    width: 4vw;
+    margin-top: 4vh;
+}
+
+.comwork {
+    font-size: 1.5vw;
+}
+
 
 /* ------------------------------------- 
 * 収入部分
 ------------------------------------- */
-.tableContent {
-    text-align: right;
+.salarytable {
+    text-align: center;
+    width: 80vw;
+    height: 20vh;
+    margin: 10vh 10vw 2vh 10vw;
+    border:double 1vh #4b4b4b;
+}
+
+td {
+    font-size: 2vw;
+    height: 5vh;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    border:solid 0.5vh #4b4b4b;
+    width: 33%;
+}
+
+.add {
+    font-size: 1.5vw;
+}
+
+.howmuch {
+    font-size: 2.5vw;
+}
+
+/* ------------------------------------- 
+* 条件
+------------------------------------- */
+.terms {
+    background-color: #dee1e8;
+}
+
+.titlelist {
+    width: 20%;
+    font-size: 2vw;
+}
+
+.termtable {
+    text-align: center;
+    width: 80vw;
+    height: 20vh;
+    margin: 10vh 10vw 2vh 10vw;
+    border:double 1vh #4b4b4b;
+}
+
+.addterm {
+    display: inline-block;
+    text-align: left;
+    font-size: 1.5vw;
+    padding-bottom: 3vh;
+}
+
+/* ------------------------------------- 
+* 登録部分
+------------------------------------- */
+.register {
+    display: inline-block;
+    font-size: 3vw;
+    width: 60vw;
+    height: 8vh;
+    padding-top: 3vh;
+    margin-top: 3vh;
+    text-decoration: none;
+    background-color: #2861d7;
+    border-bottom: solid 6px #a9c0ef;
+    color: #e8deef;
+}
+
+/* ------------------------------------- 
+* 会社情報
+------------------------------------- */
+.companyarea {
+    background-color: #4b4b4b;
+    color: #e8deef;
+    font-size: 1vw;
+}
+
+.companyarea ul {
+    margin: 5vh 3vw 0 3vw;
+}
+
+.companyarea li {
+    margin-right: 5vw;
+}
+
+.copyright {
+    text-align: center;
+    padding-bottom: 3vh;
 }
