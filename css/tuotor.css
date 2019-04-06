@@ -102,6 +102,7 @@ span {
 .two {
     width: 40vw;
     margin: 0 5vw;
+    text-align: center;
 }
 
 /* ------------------------------------- 
@@ -132,7 +133,7 @@ span {
 .stepbox {
     width: 30vw;
     margin: 0 3vw;
-
+    text-align: center;
 }
 
 .stepicon {
@@ -173,6 +174,15 @@ td {
     font-size: 2.5vw;
 }
 
+.addterm {
+    width: 80vw;
+    margin: 1vh 10vw;
+    display: inline-block;
+    text-align: left;
+    font-size: 1.5vw;
+    padding-bottom: 3vh;
+}
+
 /* ------------------------------------- 
 * 条件
 ------------------------------------- */
@@ -191,13 +201,6 @@ td {
     height: 20vh;
     margin: 10vh 10vw 2vh 10vw;
     border:double 1vh #4b4b4b;
-}
-
-.addterm {
-    display: inline-block;
-    text-align: left;
-    font-size: 1.5vw;
-    padding-bottom: 3vh;
 }
 
 /* ------------------------------------- 
@@ -236,4 +239,273 @@ td {
 .copyright {
     text-align: center;
     padding-bottom: 3vh;
+}
+
+/* ------------------------------------- 
+* スマホ用
+------------------------------------- */
+@media screen and (max-width:480px){
+    /* ------------------------------------- 
+    * 共通
+    ------------------------------------- */
+    h3 {
+        font-size: 3vh;
+        text-align: center;
+        padding-top: 1vh;
+    }
+
+    .flex {
+        display: block;
+        padding: 0;
+    }
+
+    /* ------------------------------------- 
+    * TOP画像
+    ------------------------------------- */
+
+    .topimage {
+        position: relative;
+        top: 0;
+        height: 30vh;
+    }
+
+    .image {
+        background-image: url('../img/tuotortop2.jpg');
+        background-size:100% 100%;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+
+    .image::before {
+        z-index:0;
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(211,211,211,0.8);
+    }
+
+    .topText {
+        position: absolute;
+        top: 20vh;
+        left: 15vw;
+    }
+
+    .topmessageHead {
+        font-size:2.5vh;
+    }
+
+    .topmessage {
+        font-size: 1.5vh;
+        margin-top: 2vh;
+    }
+
+    /* ------------------------------------- 
+    * 業務内容
+    ------------------------------------- */
+    .title {
+        font-size:2.5vh;
+        margin-top: 2vh;
+    }
+
+    .titleString {
+        background: linear-gradient(transparent 70%, #adbfe6 70%);
+    }
+
+    .icon {
+        width: 10vw;
+        margin-top: 3vh;
+    }
+
+    .text {
+        font-size: 2vh;
+        display: inline-block;
+        margin-top: 3vh;
+        text-align: left;
+        line-height: 3vh;
+        width: 80vw;
+    }
+
+    .plus {
+        font-size: 1.5vh;
+        text-align: left;
+        margin-top:1vh;
+        margin-bottom: 3vh;
+        width: 80vw;
+        display: inline-block;
+    }
+
+    .two {
+        width: 90vw;
+        margin: 0 5vw;
+    }
+
+    .workDetail {
+        text-align: center;
+    }
+
+    /* ------------------------------------- 
+    * 登録からの流れ
+    ------------------------------------- */
+    .process {
+        background-color: #dee1e8;
+        height: auto;
+        text-align: center;
+        padding-top: 3vh;
+        padding-bottom: 3vh;
+    }
+
+    .step {
+        font-size:2.5vh;
+        margin-top: 3vh;
+    }
+
+    .stepString {
+        background: linear-gradient(transparent 70%, #adbfe6 70%);
+    }
+
+    .steptext {
+        font-size: 2vh;
+        display: inline-block;
+        margin-top: 3vh;
+        text-align: center;
+        line-height: 2.5vh;
+    }
+
+    .stepbox {
+        width: 90vw;
+        margin: 0 5vw;
+
+    }
+
+    .stepicon {
+        width: 4vw;
+        margin-top: 4vh;
+    }
+
+    .comwork {
+        font-size: 1.5vw;
+    }
+
+    .yajirusi {
+        display: none;
+    }
+
+    /* ------------------------------------- 
+    * 収入部分
+    ------------------------------------- */
+    .salarytable {
+        text-align: center;
+        width: 80vw;
+        height: auto;
+        margin: 3vh 10vw 2vh 10vw;
+        border:double 1vh #4b4b4b;
+    }
+
+    td {
+        font-size: 2vh;
+        height: auto;
+        padding-top: 3vh;
+        padding-bottom: 3vh;
+        border:solid 0.5vh #4b4b4b;
+        width: 33%;
+    }
+
+    .addterm {
+        display: inline-block;
+        font-size: 2vh;
+    }
+
+    .add {
+        font-size: 1vh;
+        padding-top:0.5vh;
+        background:linear-gradient(transparent 100%, #fff 70%);
+    }
+
+    .howmuch {
+        font-size: 2vh;
+    }
+
+    .salaryarea {
+        padding-top: 3vh;
+        padding-bottom: 3vh;
+        text-align: center;
+    }
+
+    /* ------------------------------------- 
+    * 条件
+    ------------------------------------- */
+    .terms {
+        background-color: #dee1e8;
+        padding-top: 3vh;
+        padding-bottom: 3vh;
+        text-align: center;
+    }
+
+    .titlelist {
+        width: 20%;
+        font-size: 2vh;
+    }
+
+    .termtable {
+        text-align: center;
+        width: 80vw;
+        height: auto;
+        margin: 3vh 10vw 2vh 10vw;
+        border:double 1vh #4b4b4b;
+    }
+
+    /* ------------------------------------- 
+    * 登録部分
+    ------------------------------------- */
+    .registerarea {
+        padding-top: 3vh;
+        padding-bottom: 3vh;
+    }
+
+    .register {
+        display: inline-block;
+        font-size: 2.5vh;
+        width: 60vw;
+        height: auto;
+        padding-top: 3vh;
+        padding-bottom: 2vh;
+        margin-top: 3vh;
+        text-decoration: none;
+        background-color: #2861d7;
+        border-bottom: solid 6px #a9c0ef;
+        color: #e8deef;
+    }
+
+    /* ------------------------------------- 
+    * 会社情報
+    ------------------------------------- */
+    .companyarea {
+        background-color: #4b4b4b;
+        color: #e8deef;
+        font-size: 1.5vh;
+        padding-top: 0.5vh;
+    }
+
+    .companyarea ul {
+        margin: 5vh 3vw 0 3vw;
+    }
+
+    .companyarea li {
+        margin-right: 0;
+        margin-bottom: 2vh;
+    }
+
+    .copyright {
+        text-align: center;
+        padding-bottom: 3vh;
+    }
+
 }
