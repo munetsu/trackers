@@ -39,7 +39,7 @@
         </div>
         <!-- サービス特徴 -->
         <div class="block">
-            <h3><span>サービス特徴</span><h3>
+            <h3><span>サービス特徴</span></h3>
             <div class="flex">
                 <div class="three">
                     <img src="img/icon/knowhow.svg" alt="ノウハウ" class="icon"><br>
@@ -55,14 +55,14 @@
                     <p class="plus">※オンライン通話は「Skype」「Google Hangout」を利用</p>
                 </div>
                 <div class="three">
-                        <img src="img/icon/people.svg" alt="" class="icon"><br>
-                        <h5 class="title"><span class="titleString">何回・何人でも</span></h5>
-                        <p class="text">気になるチューターがいれば何人でも質問し放題。数人のチューターと話すことで合格に必要なものが見えてくるかもしれません。</p>
-                        <p class="plus">※同一チューターへの質問も何回でも出来ます。</p>
+                    <img src="img/icon/people.svg" alt="" class="icon"><br>
+                    <h5 class="title"><span class="titleString">何回・何人でも</span></h5>
+                    <p class="text">気になるチューターがいれば何人でも質問し放題。数人のチューターと話すことで合格に必要なものが見えてくるかもしれません。</p>
+                    <p class="plus">※同一チューターへの質問も何回でも出来ます。</p>
                 </div>
             </div>
         </div>
-        <!-- trackersのサポート内容 -->
+        <!-- trackersのサービスの -->
         <div class="block odd">
             <h3><span>サービスの流れ</span></h3>
             <div class="flex">
@@ -114,15 +114,15 @@
                     <img src="img/icon/merit1.svg" alt="" class="faceicon"><br>
                     <span>Q1</span>
                 </div>
-                <div class="quetion">
-                    <p>登録されているチューターが直近1年以内の取得者か否かの確認はどのように行なっているんですか？</p>
+                <div class="question">
+                    登録されているチューターが直近1年以内の取得者か否かの確認はどのように行なっているんですか？
                 </div>
                 <div class="face"></div>
             </div>
             <div class="flex answerside">
                 <div class="face"></div>
                 <div class="answer">
-                    <p>Trackersは、合格証明書の確認を徹底しています。合格証明書の確認が出来た方のみをチューターとして登録しております。</p>
+                    Trackersは、合格証明書の確認を徹底しています。合格証明書の確認が出来た方のみをチューターとして登録しております。
                 </div>
                 <div class="face">
                     <img src="img/icon/merit2.svg" alt="" class="faceicon"><br>
@@ -135,15 +135,15 @@
                     <img src="img/icon/merit1.svg" alt="" class="faceicon"><br>
                     <span>Q2</span>
                 </div>
-                <div class="quetion">
-                    <p>同じチューターへの相談は1回分のチケットを買えば、何回でも出来ますか？</p>
+                <div class="question">
+                    同じチューターへの相談は1回分のチケットを買えば、何回でも出来ますか？
                 </div>
                 <div class="face"></div>
             </div>
             <div class="flex answerside">
                 <div class="face"></div>
                 <div class="answer">
-                    <p>同じチューターへの相談に再度、相談したい場合は新たにチケットが1枚必要になります。</p>
+                    同じチューターへの相談に再度、相談したい場合は新たにチケットが1枚必要になります。
                 </div>
                 <div class="face">
                     <img src="img/icon/merit2.svg" alt="" class="faceicon"><br>
@@ -156,15 +156,15 @@
                     <img src="img/icon/merit1.svg" alt="" class="faceicon"><br>
                     <span>Q2</span>
                 </div>
-                <div class="quetion">
-                    <p>「skype」「Google Hangout」どちらもアカウントを持っていない場合はどうすれば良いですか？</p>
+                <div class="question">
+                    「skype」「Google Hangout」どちらもアカウントを持っていない場合はどうすれば良いですか？
                 </div>
                 <div class="face"></div>
             </div>
             <div class="flex answerside">
                 <div class="face"></div>
                 <div class="answer">
-                    <p>お手数をお掛けし申し訳ございませんが、どちらかのアカウント作成をお願い致します。どちらもアカウントは無料です。(2019年4月現在)</p>
+                    お手数をお掛けし申し訳ございませんが、どちらかのアカウント作成をお願い致します。どちらもアカウントは無料です。(2019年4月現在)
                 </div>
                 <div class="face">
                     <img src="img/icon/merit2.svg" alt="" class="faceicon"><br>
@@ -177,15 +177,15 @@
                     <img src="img/icon/merit1.svg" alt="" class="faceicon"><br>
                     <span>Q3</span>
                 </div>
-                <div class="quetion">
-                    <p>資格試験に合格したら、私もチューター登録は可能ですか？</p>
+                <div class="question">
+                    資格試験に合格したら、私もチューター登録は可能ですか？
                 </div>
                 <div class="face"></div>
             </div>
             <div class="flex answerside">
                 <div class="face"></div>
                 <div class="answer">
-                    <p>合格すれば、チューターとしてぜひ本サービスに登録下さい。あなたの勉強を支えてくれたチューターのように、今度はあなたが後輩達をサポートして頂けると嬉しいです。</p>
+                    合格すれば、チューターとしてぜひ本サービスに登録下さい。あなたの勉強を支えてくれたチューターのように、今度はあなたが後輩達をサポートして頂けると嬉しいです。
                 </div>
                 <div class="face">
                     <img src="img/icon/merit2.svg" alt="" class="faceicon"><br>
@@ -199,7 +199,7 @@
             <div class="registerForm">
                 <ul class="flex">
                     <a href="tuotor.php" class="tuo register"><li>チューター登録希望の方はこちらへ</li></a>
-                    <a href="s_signUp.php" class="stu register"><li>チューターを探したい方はこちらへ（5月リリース予定）</li></a>
+                    <a href="s_signUp.php" class="stu register"><li>チューターを探したい方はこちらへ<br>（5月リリース予定）</li></a>
                 </ul>
             </div>
         </div>
