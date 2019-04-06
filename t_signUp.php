@@ -33,8 +33,8 @@
         </div>
         <div class="itemList">
             <p>下記項目の入力をお願いします</p>
+            <form action="t_signUp_confirm.php" method="POST" name="signUp">
             <table class="table">
-                <form action="t_signUp_confirm.php" method="POST" name="signUp">
                 <tr>
                     <td class="item">資格名<span>*</span></td>
                     <td><input type="text" name="certification" class="text" placeholder="(例)宅建士"></td>
@@ -60,7 +60,7 @@
                     <td><select name="birthyear" id="birthyear" class="num"></select>年／<select name="birthmonth" id="birthmonth" class="num"></select>月</td>
                 </tr>
                 <tr>
-                    <td class="item">属性<span>*</span></td>
+                    <td class="item">職業<span>*</span></td>
                     <td><select name="status" id="status"></select></td>
                 </tr>
                 <tr>
