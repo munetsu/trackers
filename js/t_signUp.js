@@ -50,7 +50,7 @@ function birthmonth(){
 
 // 属性
 function status(){
-    let kindstatus = ['', '会社員', '役員', '学生', '主婦・主夫', 'フリーター・パート', 'その他'];
+    let kindstatus = ['選択してください', '会社員', '役員', '学生', '主婦・主夫', 'フリーター・パート', 'その他'];
     let view = '';
     for(let i=0;i<kindstatus.length;i++){
         view = '<option value="'+i+'">'+kindstatus[i]+'</option>';
@@ -60,7 +60,7 @@ function status(){
 
 // 学歴
 function academic(){
-    let kindacademic = ['', '大学院卒', '大学卒', '専門・高専卒', '高校卒', '中卒', '非回答'];
+    let kindacademic = ['選択してください', '大学院卒', '大学卒', '専門・高専卒', '高校卒', '中卒', '非回答'];
     let view = '';
     for(let i=0;i<kindacademic.length;i++){
         view = '<option value="'+i+'">'+kindacademic[i]+'</option>';
@@ -70,7 +70,7 @@ function academic(){
 
 // 勉強方法
 function howto(){
-    let kindhow = ['', '独学', '資格学校', '通信教育'];
+    let kindhow = ['選択してください', '独学', '資格学校', '通信教育'];
     let view = '';
     for(let i=0;i<kindhow.length;i++){
         view = '<option value="'+i+'">'+kindhow[i]+'</option>';
@@ -84,12 +84,19 @@ $(document).on('change', '#howto', function(){
     let value = $(this).val();
     if(value != 1){
         academiccheck = 1;
-        let view = `<div id="howtoSchool">学校・サービス名：<input type="text" name="schoolname"></div>`;
-        $(this).parent('p').append(view);
+        let view = `
+            <tr id="howtoSchool">
+                <td class="item">学校・サービス名</td>
+                <td><input type="text" name="schoolname" placeholder="(例)TEST学校"></td>
+            </tr>
+        `;
+        $('table').append(view);
     }else{
         academiccheck = 0;
     }
 })
+
+// let view = `<div id="howtoSchool">学校・サービス名：<input type="text" name="schoolname"></div>`;
 
 // 受験回数
 function howmany(){
@@ -121,7 +128,6 @@ $('.scrollArea').on('scroll', function(e){
     let id = $(this).attr('id');
     const elm = $('#'+id);
    
-    let maxheight = elm.height();
     let height = e.target.scrollHeight;
     let height2 = e.target.offsetHeight;
     
@@ -131,6 +137,7 @@ $('.scrollArea').on('scroll', function(e){
     // 最後になったら、チェックボックスを有効化
     if((height -(height2+scrollPosition) <0)){
         elm.parent().find('input').prop('disabled', false);
+        elm.parent().find('label').css('color', '#000');
     }
 });
 
@@ -165,21 +172,20 @@ function mainAppend(){
 }
 
 // メールアドレスのチェック
-$(document).on('blur', 'input[type="email"]', function(){
+$(document).on('change', 'input[type="email"]', function(){
     let value = $(this).val();
     let mailcheck = value.match(/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i);
     if(mailcheck == null){
-        error = 0;
-        $('#errormail').remove();
-        $(this).parent('p').append('<span id="errormail">メールアドレスの確認をお願いします</span>');
-    }else{
         error = 1;
-        $('#errormail').remove();
+        alert('メールの確認をお願いします');
+        return;
+    }else{
+        error = 0;
     }
 })
 
 // 電話番号のチェック
-$(document).on('blur', 'input[name="tel"]', function(){
+$(document).on('change', 'input[name="tel"]', function(){
     $('#telnumber').remove();
     let value = $(this).val();
     for(let i=0;i<value.length;i++){
@@ -188,7 +194,7 @@ $(document).on('blur', 'input[name="tel"]', function(){
     $(this).val(value)
     if(value.length != 11){
         error = 1;
-        $(this).parent('p').append('<span id="telnumber">番号を確認してください</span>');
+        alert('電話番号の確認をお願いします');
     }else{
         error = 0;
     }
@@ -278,7 +284,7 @@ function viewPrivacyPolicy(){
 function viewBtn(){
     let view = `
         <div id="confirmBtn">
-        <a href="" id="btn">確認画面</a>
+        <a href="" id="btn" class="btn">確認画面</a>
         </div>
     `;
     return view;
