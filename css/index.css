@@ -22,7 +22,6 @@ span {
     display:flex;
     justify-content:space-between;
     height: 10vh;
-    /* background-color: #e8dedf; */
 }
 
 .logo {
@@ -140,6 +139,7 @@ span {
 .three {
     width: 30vw;
     margin: 0 1vw;
+    text-align: center;
 }
 
 .icon {
@@ -246,21 +246,15 @@ td {
     text-align: center;
 }
 
-.quetion {
+.question {
     width: 60vw;
-    height: 6vh;
     margin: 1vh 1vw;
-    padding-top: 4vh;
+    padding-top: 3vh;
     padding-left: 1vw;
     color: #4b4b4b;
     background: #aac5de;
     border-right: solid 6px #5e83ef;
     border-radius: 1vw;
-}
-
-.quetion p {
-    margin: 0; 
-    padding: 0;
 }
 
 .faceicon {
@@ -269,9 +263,8 @@ td {
 
 .answer {
     width: 60vw;
-    height: 8vh;
     margin: 1vh 1vw;
-    padding-top: 4vh;
+    padding-top: 3vh;
     padding-left: 1vw;
     color: #4b4b4b;
     background: #aac5de;
@@ -293,6 +286,7 @@ td {
     text-align:center;
     padding: 5vh 2vw;
     font-weight: bold;
+    font-size: 2vw;
 }
 
 .stu {
@@ -301,6 +295,7 @@ td {
     text-align:center;
     padding: 5vh 2vw;
     font-weight: bold;
+    font-size: 2vw;
 }
 
 /* ------------------------------------- 
@@ -397,16 +392,150 @@ td {
         content:" Trackers";
     }
     
+    /* ------------------------------------- 
+    * サービス特徴
+    ------------------------------------- */
+    .block {
+        margin-top: 1vh;
+    }
+
+    h3 {
+        font-size: 4vh;
+        text-align: center;
+        padding-top: 5vh;
+    }
+
+    .flex{
+        display: block;
+    }
+
+    .three {
+        width: 90vw;
+        text-align: center;
+        margin-top: 3vh;
+    }
+
+    .title {
+        font-size:3vh;
+        margin-top: 3vw;
+    }
+
+    .icon {
+        width: 60vw;
+        margin-top: 1vw;
+    }
+
+    /* ------------------------------------- 
+    * サービスの流れ
+    ------------------------------------- */
+
+    .stepthree {
+        width: 90vw;
+        margin-top: 3vh;
+        text-align: center;
+    }
+
+    .step {
+        font-size: 3vh;
+        margin-bottom: 3vh;
+    }
 
 
+    /* ------------------------------------- 
+    * 料金
+    ------------------------------------- */
+    .feelist {
+        font-size: 2.5vh;
+    }
     
+    td {
+        font-size: 2vh;
+        height: 5vh;
+        padding-top: 3vh;
+        padding-bottom: 3vh;
+        border:solid 0.5vh #4b4b4b;
+        width: 33%;
+    }
+    
+    .feeadd {
+        font-size: 1.5vh;
+    }
 
-
-
-
-
-
-
+    /* ------------------------------------- 
+    * Q&A
+    ------------------------------------- */
+    .questionside {
+        width: 90vw;
+        margin-left: 5vw;
+        padding-left: 0;
+        display: flex;
+    }
+    
+    .answerside {
+        width: 90vw;
+        margin-right: 0;
+        margin-left: -7vw;
+        padding-right:5vw;
+        display: flex;
+    }
+    
+    .face {
+        width: 5vw;
+        margin: 1vh 1vw;
+        text-align: center;
+    }
+    
+    .question {
+        width: 90%;
+        margin: 1vh 0vw 0 3vw;
+        padding-top: 3vh;
+        padding-bottom: 3vh;
+        padding-left: 1vw;
+        color: #4b4b4b;
+        background: #aac5de;
+        border-right: solid 6px #5e83ef;
+        border-radius: 1vw;
+    }
+    
+    .faceicon {
+        width: 5vw;
+    }
+    
+    .answer {
+        width: 90%;
+        margin: 1vh 3vw 0 0;
+        padding-top: 3vh;
+        padding-bottom: 3vh;
+        padding-right: 1vw;
+        color: #4b4b4b;
+        background: #aac5de;
+        border-left: solid 6px #5e83ef;
+        border-radius: 1vw;
+    }
+    /* ------------------------------------- 
+    * 登録フォーム
+    ------------------------------------- */
+    .register {
+        display: inline-block;
+        width: 80vw;
+        padding: 1vh auto;
+        margin: 1vh 5vw;
+    }
+    
+    .tuo {
+        background-color: #2861d7;
+        color: #e8deef;
+        text-align:center;
+        font-weight: bold;
+    }
+    
+    .stu {
+        background-color: #d72835;
+        color: #e8deef;
+        text-align:center;
+        font-weight: bold;
+    }
+    
 
 
 
