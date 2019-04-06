@@ -27,14 +27,14 @@
                 <!-- トップ画像上のテキスト -->
                 <div class="topText">
                     <p class="topmessageHead">あなたの経験を聞きたい人がいる</p>
-                    <p class="topmessage">これから資格を受験する後輩のチューターとして働きませんか？</p>
+                    <p class="topmessage">合格体験・ノウハウを伝えるチューターサービス</p>
                 </div>
             </div>
         </div>
 
         <!-- 業務内容 -->
         <div class="workDetail">
-            <h3><span>業務内容</span><h3>
+            <h3><span>業務内容</span></h3>
             <div class="flex">
                 <div class="two">
                     <img src="img/icon/pencil.svg" class="icon"><br>
@@ -52,13 +52,13 @@
 
         <!-- チューター契約まで -->
         <div class="process">
-            <h3><span>登録からの流れ</span><h3>
+            <h3><span>登録からの流れ</span></h3>
             <div class="flex">
                 <div class="stepbox">
                     <h5 class="step"><span class="stepString">Step1</h5>
                     <p class="steptext">1.基本情報・テキスト登録<br>2.身分証・合格証明書送付</p>
                 </div>
-                <div>
+                <div class="yajirusi">
                     <img src="img/icon/yajirushi.svg" alt="" class="stepicon"><br>
                     <p class="comwork">確認・審査</p>
                 </div>
@@ -66,7 +66,7 @@
                     <h5 class="step"><span class="stepString">Step2</h5>
                     <p class="steptext">勉強記録登録</p>
                 </div>
-                <div>
+                <div class="yajirusi">
                     <img src="img/icon/yajirushi.svg" alt="" class="stepicon"><br>
                     <p class="comwork">評価・査定</p>
                 </div>
@@ -79,7 +79,7 @@
 
         <!-- 収入 -->
         <div class="salaryarea">
-            <h3><span>報酬</span><h3>
+            <h3><span>報酬</span></h3>
             <table class="salarytable">
                 <tr>
                     <td><span class="stepString">Step1</span></td>
@@ -93,7 +93,7 @@
                 </tr>
                 <tr>
                     <td><p class="howmuch">0円</p></td>
-                    <td><p class="howmuch">1,000円〜3,000円</p><span class="add">※内容によって前後します</span></td>
+                    <td><p class="howmuch">1,000〜3,000円</p><span class="add">※内容によって前後します</span></td>
                     <td><p class="howmuch">1,500円</p><span class="add">1回30分あたり</span></td>
                 </tr>
             </table>
@@ -102,7 +102,7 @@
 
         <!-- チューター登録条件 -->
         <div class="terms">
-            <h3><span>登録条件</span><h3>
+            <h3><span>登録条件</span></h3>
             <table class="termtable">
                 <tr>
                     <td class="titlelist">合格時期：</td>
@@ -110,7 +110,7 @@
                 </tr>
                 <tr>
                     <td class="titlelist">対象資格：</td>
-                    <td>宅建士／行政書士／簿記2級</td>
+                    <td>宅建士／行政書士／簿記2級 etc</td>
                 </tr>    
                 <tr>
                     <td class="titlelist">設備：</td>
@@ -120,7 +120,7 @@
             <p class="addterm">※上記対象資格以外にも受付はしております。</p>
         </div>
         <!-- 登録フォーム -->
-        <div>
+        <div class="registerarea">
             <h3><span>チューター登録</span><h3>
             <a href="t_signUp.php" class="register">こちらをクリックしてください</a>
         </div>
