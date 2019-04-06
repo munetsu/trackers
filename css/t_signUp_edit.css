@@ -1,0 +1,87 @@
+@charset "utf-8";
+body {
+    width: 90vw;
+    margin: 5vh 5vw;
+    background-color:#dee1e8;
+    font-size: 1.5vw;
+}
+
+/****************************************************
+** 確認フォーム
+****************************************************/
+p {
+    margin-bottom: 5vh;
+}
+
+tr {
+    height: 5vh;
+}
+
+.item {
+    padding-right: 1vw;
+}
+
+.num {
+    width: 5vw;
+}
+
+.btnarea {
+    width: 30vw;
+    margin-top: 5vh;
+
+}
+
+#btn {
+    padding: 2vh 3vw;
+    background-color: #2861d7;
+    text-decoration: none;
+    color: #e8deef;
+    font-weight: bold;
+}
+
+/* ------------------------------------- 
+* スマホ用
+------------------------------------- */
+@media screen and (max-width:480px){
+    body {
+        font-size: 2vh;
+    }
+
+    /****************************************************
+    ** 確認フォーム
+    ****************************************************/
+    p {
+        margin-bottom: 3vh;
+        line-height: 3vh;
+    }
+
+    input {
+        width: 25vw;
+    }
+
+    input[name=email]{
+        width: 40vw;
+    }
+
+    input[name=tel]{
+        width: 40vw;
+    }
+
+    .num {
+        width: 10vw;
+    }
+
+    .btnarea {
+        width: 90vw;
+        margin-top: 5vh;
+    }
+    
+    #btn {
+        padding: 2vh 40vw;
+        background-color: #2861d7;
+        text-decoration: none;
+        color: #e8deef;
+        font-weight: bold;
+    }
+    
+}
