@@ -103,12 +103,12 @@ if(bookLists.length == 10){
 
 // スマホアプリYes
 $(document).on('click', '#yes', function(){
-    window.location.href = 't_signUp3.php?id='+tuotor_id;
+    window.location.href = 't_signUp3.php';
 })
 
 // スマホアプリNo
 $(document).on('click', '#no', function(){
-    window.location.href = 't_mypage.php?id='+tuotor_id;
+    window.location.href = 't_mypage.php';
 })
 
 //////////////////////////////////////////////////
