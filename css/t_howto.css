@@ -133,3 +133,161 @@ input[type="text"]{
     border-right: solid 6px #e97780;
 }
 
+/* ------------------------------------- 
+* スマホ用
+------------------------------------- */
+@media screen and (max-width:480px){
+    body {
+        width: 100vw;
+        margin: 5vh 1vh;
+        background-color:#dee1e8;
+        font-size: 2vh;
+        line-height: 3vh;
+    }
+
+    .flex {
+        display: block;
+    }
+
+    /************************************************ 
+    * 月
+    ************************************************/
+
+    .month {
+        width: 10vw;
+        margin: 2vh 2vw;
+        background-color: #c4cee3;
+        border-bottom: solid 6px #adbfe6;
+        border-right: solid 6px #adbfe6;
+        text-align: center;
+    }
+
+    .monthText {
+        font-size: 0;
+    }
+
+    .monthText::before {
+        font-size: 1.75vh;
+        content:"月を選択してください\A（勉強方法が同じ場合は、該当月全て選択してください）";
+        white-space: pre;
+    }
+
+    .monthList, .monthList2{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .selected {
+        border: solid 6px #2861d7;
+    }
+
+    /************************************************ 
+    * 勉強時間
+    ************************************************/
+    .studytime {
+        margin-top: 8vh;
+    }
+
+    input[type="text"]{
+        width: 8vh;
+        margin-left: 0.5vh;
+        margin-bottom: 1vh;
+        text-align: right;
+        font-size: 14px;
+    }
+
+    .studytime ul li {
+        margin-bottom: 3vh;
+    }
+
+    .batsu {
+        width: 2vh;
+        height: 2vh;
+        margin: 0 1vw;
+    }
+
+    /************************************************ 
+    * テキストエリア
+    ************************************************/
+    .textarea {
+        margin-top: 8vh;
+    }
+
+    .book {
+        margin: 2vh 5vw 2vh 0;
+        background-color: #c4cee3;
+        border-bottom: solid 6px #adbfe6;
+        border-right: solid 6px #adbfe6;
+    }
+
+    .booktitle {
+        margin: 0;
+        padding: 3vh 3vw;
+        height: 8vh;
+        width: 90vw;
+    }
+
+    .book img {
+        width: 175px;
+        height: 250px;
+        margin: 0 25px;
+    }
+
+    .bookselect {
+        border: solid 6px #2861d7;
+    }
+
+    /************************************************ 
+    * 勉強法
+    ************************************************/
+    .howtoarea {
+        margin-top: 8vh;
+    }
+
+    #howtostudy {
+        width: 90vw;
+        margin: 5vh 2vw 0 2vw;
+        font-family: Arial, "YuGothic Medium","Yu Gothic Medium","游ゴシック Medium","游ゴシック体 Medium",YuGothic,"Yu Gothic","游ゴシック","游ゴシック体","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ",Meiryo,sans-serif;
+    }
+
+    .howtoarea a {
+        display: inline-block;
+        margin-left: 2vw;
+    }
+
+    /************************************************ 
+    * ボタンエリア
+    ************************************************/
+    .btnarea {
+        margin-top: 8vh;
+        width: 90vw;
+        display: flex;
+        margin-left: 5vw;
+    }
+
+    .btn {
+        padding: 2vh 2vw;
+        text-decoration: none;
+        font-weight: bold;
+        margin-right: 5vw;
+    }
+
+    #next {
+        background-color: #adbfe6;
+        border-bottom: solid 6px #779ce9;
+        border-right: solid 6px #779ce9;
+    }
+
+    #stop {
+        background-color: #c9e4a5;
+        border-bottom: solid 6px #b4e76e;
+        border-right: solid 6px #b4e76e;
+    }
+
+    #finish {
+        background-color: #e6adb1;
+        border-bottom: solid 6px #e97780;
+        border-right: solid 6px #e97780;
+    }
+
+}
