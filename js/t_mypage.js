@@ -43,18 +43,18 @@ function viewStep2(){
 // viewMain
 function viewMain(lists){
     let view = `
-        <div>
+        <div class="lists">
             <div class="area">
                 <p><a href="t_adjustmentlist.php" >日程調整中（生徒から日程打診あり）<a/></p>
-                <p>`+lists[0]+`件</p>
+                <p><span>`+lists[0]+`</span>件</p>
             </div>
             <div class="area">
                 <p><a href="t_resevationlist.php" >日程調整中（生徒からの日程連絡待ち）<a/></p>
-                <p>`+lists[1]+`件</p>
+                <p><span>`+lists[1]+`</span>件</p>
             </div>
             <div class="area">
                 <p><a href="t_donelist.php" >実施予定リスト<a/></p>
-                <p>`+lists[10]+`件</p>
+                <p><span>`+lists[10]+`</span>件</p>
             </div>
 
         </div>
