@@ -56,7 +56,7 @@
     <div>
         <p class="title">資格試験の勉強方法を登録してください</p>
         <div>
-            <p>月を選択してください（勉強方法が同じ場合は、該当月全て選択してください）</p>
+            <p class="monthText">月を選択してください（勉強方法が同じ場合は、該当月全て選択してください）</p>
             <ul class="monthList flex"></ul>
             <ul class="monthList2 flex"></ul>
         </div>
