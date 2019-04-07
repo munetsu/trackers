@@ -157,7 +157,20 @@ $(document).on('click', '.btn', function(){
     let holidaytime = $('input[name="holidaytime"]').val();
     let holiday = $('input[name="holiday"]').val();
 
-    console.log(howtoStudy);
+    // mypageを押した場合
+    if(select == 'mypage'){
+        if(step < 3){
+            alert('勉強法は必ず1月分は登録してください');
+            return;
+        }
+        if(!confirm('記載途中のものは破棄されますが、よろしいですか？')){
+            // キャンセルの場合
+            return;
+        }else{
+            window.location.href="/trackers/t_mypage.php";
+        }
+    }
+
     if(selectMonth.length == 0){
         alert('月が選択されていません');
         return;
@@ -209,7 +222,7 @@ $(document).on('click', '.btn', function(){
             // リロード
             location.reload();
         }else{
-            window.location.href="/trackers/t_mypage.php?id="+tuotor_id;
+            window.location.href="/trackers/t_mypage.php";
         }
     })
     .fail((data)=>{

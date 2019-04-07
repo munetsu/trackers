@@ -16,6 +16,9 @@
         exit();
     }
 
+    // ステップ取得
+    $step = $info['step'];
+
     // 勉強方法取得
     $howto = $info['howto'];
     
@@ -81,14 +84,17 @@
             <div id="next" class="btn">続けて登録</div>
             <div id="stop" class="btn">一時保存</div>
             <div id="finish" class="btn">登録完了</div>
+            <div id="mypage" class="btn">Mypageへ戻る</div>
         </div>
     </div>
-    <script>
+    
+</body>
+<script>
         let tuotor_id = <?php echo $id ?>;
         let howto = <?php echo $howto ?>;
         let monthly = <?php echo $month ?>;
         let bookLists = <?php echo $books ?>;
+        let step = <?php echo $step ?>;
     </script>
     <script src="js/t_howto.js"></script>
-</body>
 </html>
