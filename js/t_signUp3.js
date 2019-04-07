@@ -50,7 +50,7 @@ $('#btn').on('click', function(){
     // 配列登録
     newObject(app, count, smartphone, appName, appList);
     // テーブル追加
-    $('.appArea').append(viewApp(count, smartphone, appName));
+    $('tbody').append(viewApp(count, smartphone, appName));
     // カウント追加
     count++;
     console.log(appList);
@@ -88,6 +88,12 @@ function viewApp(count, smartphone, app){
 //////////////////////////////////////////////////
 $('#regBtn').on('click', function(e){
     e.preventDefault();
+    if(appList.length == 0){
+        if(!confirm('アプリが一つも登録されていませんが、よろしいですか？')){
+            // キャンセルの場合
+            return;
+        }
+    }
     $.ajax({
         type:'POST',
         url:'mvc/controller.php',

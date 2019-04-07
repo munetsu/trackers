@@ -1,0 +1,161 @@
+@charset "utf-8";
+body {
+    width: 90vw;
+    margin: 5vh 5vw;
+    background-color:#dee1e8;
+    font-size: 1.25vw;
+    line-height:1.5vw;
+}
+
+.search {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    display: flex;
+}
+
+select {
+    width: 10vw;
+    height: 4vh;
+    padding-left: 1vw;
+}
+
+#btn {
+    width: 10vw;
+    margin-left: 3vw;
+    padding: 0.5vw 3vw;
+    background-color: #2861d7;
+    text-decoration: none;
+    color: #e8deef;
+    font-weight: bold;
+}
+
+table {
+    width: 30vw;
+}
+
+tr {
+    height: 8vh;
+}
+
+th {
+    text-align: left;
+    margin-top: 1vh;
+}
+
+th, td {
+    width: 10vw;
+}
+
+#dele {
+    width: 5vw;
+    margin-left: 3vw;
+
+    padding: 0.5vw 1vw;
+    background-color: #9acd56;
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+}
+
+.register {
+    width: 30vw;
+    margin: 8vh 2vw;
+}
+
+#regBtn {
+    padding: 2vh 10vw;
+    background-color: #2861d7;
+    color: #e8deef;
+    font-weight: bold;
+}
+
+/* ------------------------------------- 
+* スマホ用
+------------------------------------- */
+@media screen and (max-width:480px){
+    body {
+        font-size: 2vh;
+        line-height: 2.5vh;
+    }
+
+    .text {
+        font-size: 0;
+    }
+
+    .text::before {
+        font-size: 2vh;
+        content:"ご利用されていたスマホアプリを登録してください\A(最大10個)";
+        white-space: pre;
+    }
+
+    .search {
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+        flex-direction: column;
+    }
+
+    select {
+        width: 40vw;
+        height: 4vh;
+        padding-left: 1vw;
+    }
+
+    span {
+        display:inline-block;
+        width: 20vw;
+    }
+
+    #btn {
+        display: inline-block;
+        width: 20vw;
+        margin-left: 3vw;
+        padding: 1vw 3vw;
+        background-color: #2861d7;
+        text-decoration: none;
+        color: #e8deef;
+        font-weight: bold;
+    }
+
+    table {
+        width: 80vw;
+    }
+    
+    tr {
+        height: 5vh;
+    }
+    
+    th {
+        text-align: left;
+        margin-top: 1vh;
+    }
+    
+    th, td {
+        width: 10vw;
+    }
+
+    #dele {
+        width: 20vw;
+        margin-left: 3vw;
+        padding: 0.5vw 1vw;
+        background-color: #9acd56;
+        text-decoration: none;
+        color: #333333;
+        font-weight: bold;
+    }
+
+    .register {
+        width: 50vw;
+        margin: 8vh 2vw;
+    }
+    
+    #regBtn {
+        padding: 2vh 20vw;
+        background-color: #2861d7;
+        color: #e8deef;
+        font-weight: bold;
+    }
+    
+
+
+
+}
