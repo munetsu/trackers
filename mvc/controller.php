@@ -138,7 +138,7 @@
                     $this->model->t_loginUpDate($table, $id);
     
                     // チューターMyPageへ
-                    header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/t_mypage.php?id='.$id);
+                    header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/t_mypage.php');
                     exit();
                 }else if($_POST['status'] == 2){
                     // 生徒側処理
@@ -154,7 +154,7 @@
                     $this->model->studentStep($id, $step);
 
                     // studentTopPageへ
-                    header('location: ../s_mypage.php?id='.$id);
+                    header('location: ../s_mypage.php');
                     exit();
 
                 }
@@ -351,7 +351,7 @@
                     return;
                 }
 
-                $count = 1;
+                $count = 0;
                 // データ数を確認
                 if(count($_POST) == 2){
                     // 書籍登録がないため、処理なし
@@ -362,14 +362,15 @@
                     $array = array();
                     
                     foreach($_POST['bookInfo'] as $book){
+                        $count++;
                         $array['title'.$count] = h($book['title']);
                         $array['imageUrl'.$count] = h($book['imageUrl']);
-                        $count++;
+                        $array['url'.$count] = h($book['url']);
                     }
                     // var_dump($array);
                     // exit();
                     // modelへ引き継ぎ
-                    $this->model->bookRegister($tuotor_id, $array);
+                    $this->model->bookRegister($tuotor_id, $array, $count);
                 }
                 // t_tuotorsのstep更新
                 $step = 2;

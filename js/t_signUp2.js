@@ -6,7 +6,8 @@ let count = 1;
 let bookInfo = {
     id:'',
     title:'',
-    imageUrl:''
+    imageUrl:'',
+    url:''
 }
 
 const bookLists = [];
@@ -48,38 +49,17 @@ $('input[name="amazon"]').on('blur', function(){
     }
 
     $('div[data-id='+count+']').append(
-        '<p data-id='+count+'>'+title+'</p><img src="img/icon/noimage.svg" data-id='+count+'/><button class="deleBtn" data-id='+count+'>削除</button>'
+        '<p data-id='+count+'>'+title+'</p><img src="img/icon/noimage.svg" data-id='+count+'/><br><button class="deleBtn" data-id='+count+'>削除</button>'
     );
     // 配列追加処理
-    newObject(bookInfo, count, title, 'img/icon/noimage.svg', bookLists);
+    newObject(bookInfo, count, title, 'img/icon/noimage.svg', url, bookLists);
 
     count++;
     // 表示領域の確立
     $('.flex').append(viewBook(count));
-    console.log(bookLists);
+    // console.log(bookLists);
+    $(this).val('');
 
-    // // 商品ページか確認
-    // if(string.length <= 5){
-    //     alert('商品リンクページを記載してください');
-    //     $(this).val('');
-    //     return;
-    // }
-
-    // // 書籍かどうか確認
-    // if(isbn.length != 10){
-    //     alert('書籍のリンクを記載してください');
-    //     $(this).val();
-    //     return;
-    // }
-
-    // let check = $.isNumeric(isbn);
-    // // kindle番か確認
-    // if(check == false){
-    //     if(!confirm('資格試験に関するテキストですか？')){
-    //         // いいえの場合
-    //         return;
-    //     }
-    // }
 })
 
 // GoogleBookAPI
@@ -93,8 +73,19 @@ $('input[name="google"]').on('blur', function(){
         return;
     }
 
+    // 検索中の場合
+    let status = $(this).attr('class');
+    if(status =- 'searching'){
+        alert('検索中です。少々お待ちください');
+        return;
+    }
+
+    // 二度の検索をさせないために
+    $(this).addClass('searching');
+
     // 書籍検索
     googleBookAPI(isbn, count);
+
 })
 
 // 書籍削除処理
@@ -128,12 +119,15 @@ function googleBookAPI(isbn, id){
 
     const isbnNum = 978+isbn;
     const url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbnNum;
-    console.log(url);
+    // console.log(url);
     
     $.getJSON(url, function(data) {
       if(!data.totalItems) {
         // 検索結果がなかった場合
         alert('対象書籍が見つかりませんでした');
+        $('input[name="google"]').val('');
+        // 重複検索条件を外す
+        $('input[name="google"]').removeClass('searching');
         return;
 
       } else {
@@ -141,25 +135,29 @@ function googleBookAPI(isbn, id){
 // 該当書籍が存在した場合、JSONから値を取得して入力項目のデータを取得する
 
         $('div[data-id='+id+']').append(
-            '<p data-id='+id+'>'+data.items[0].volumeInfo.title+'</p><img src=\"'+data.items[0].volumeInfo.imageLinks.smallThumbnail+ '\" data-id='+id+'/><button class="deleBtn" data-id='+id+'>削除</button>'
+            '<p data-id='+id+'>'+data.items[0].volumeInfo.title+'</p><img src=\"'+data.items[0].volumeInfo.imageLinks.smallThumbnail+ '\" data-id='+id+'/><br><button class="deleBtn" data-id='+id+'>削除</button>'
         );
         // 配列追加処理
-        newObject(bookInfo, id, data.items[0].volumeInfo.title, data.items[0].volumeInfo.imageLinks.smallThumbnail, bookLists);
+        newObject(bookInfo, id, data.items[0].volumeInfo.title, data.items[0].volumeInfo.imageLinks.smallThumbnail, url, bookLists);
         count++;
         // 表示領域の確立
         $('.flex').append(viewBook(count));
-        console.log(bookLists);
+        $('input[name="google"]').val('');
+        // 重複検索条件を外す
+        $('input[name="google"]').removeClass('searching');
+        // console.log(bookLists);
         };
     })
     
 };
 
 // オブジェクト処理
-function newObject(object, id, title, url, array){
+function newObject(object, id, title, imageurl, url, array){
     const newarray = Object.assign({},object);
         newarray.id = id;
         newarray.title = title;
-        newarray.imageUrl = url;
+        newarray.imageUrl = imageurl;
+        newarray.url = url
         array.push(newarray);
 }
 
@@ -209,6 +207,7 @@ function viewAlert(){
 //////////////////////////////////////////////////
 $('#regBtn').on('click', function(e){
     e.preventDefault();
+    // console.log(bookLists);
     $.ajax({
         type:'POST',
         url:'mvc/controller.php',
