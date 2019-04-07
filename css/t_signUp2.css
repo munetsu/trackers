@@ -1,0 +1,165 @@
+@charset "utf-8";
+body {
+    width: 90vw;
+    margin: 5vh 5vw;
+    background-color:#dee1e8;
+    font-size: 1.25vw;
+}
+
+/************************************************* 
+* テキストなど
+************************************************* */
+p {
+    line-height: 2vw;
+}
+
+.title {
+    margin-bottom: 3vh;
+}
+
+.search {
+    margin-bottom: 3vh;
+}
+
+a {
+    text-decoration: underline;
+    font-size: 1.3vw;
+}
+
+span {
+    font-size: 1.25vw;
+    margin-top: 1vh;
+}
+
+.isbn {
+    margin-bottom: 1vh;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.bookarea {
+    margin-right: 5vw;
+    margin-top: 2vh;
+    width: 30vw;
+}
+
+.bookarea img {
+    width: 130px;
+    height: 180px;
+}
+
+.bookarea p {
+    font-size: 1.5vw;
+    margin-bottom: 2vh;
+    font-weight: bold;
+}
+
+.bookarea button {
+    padding: 1vh 1vw;
+    border-style: none;
+    background-color: #adbfe6;
+}
+
+.regBtn {
+    width: 80vw;
+    margin: 8vh 10vw;
+}
+
+#regBtn {
+    padding: 2vh 35vw;
+    background-color: #2861d7;
+    color: #e8deef;
+    font-weight: bold;
+}
+
+/* ------------------------------------- 
+* スマホ用
+------------------------------------- */
+@media screen and (max-width:480px){
+    body {
+        font-size: 2vh;
+    }
+
+    /************************************************* 
+    * テキストなど
+    ************************************************* */
+    p {
+        line-height: 3vh;
+    }
+
+    .title {
+        font-size: 0;
+        margin-bottom: 3vw;
+    }
+
+    .title p {
+        display: none;
+    }
+
+    .title::before {
+        font-size: 2vh;
+        line-height: 3vh;
+        content: "利用していた市販テキストを登録してください\A(最大10冊まで)\Aシリーズの場合は、1冊だけの登録してください。";
+        white-space: pre;
+        word-wrap: break-word;
+    }
+
+    .search {
+        padding-top: 2vh;
+        margin-bottom: 1vh;
+    }
+
+    a {
+        text-decoration: underline;
+        font-size: 1.75vh;
+    }
+
+    span {
+        display:inline-block;
+        font-size: 1.75vh;
+        padding-top: 1vh;
+    }
+
+    .searchbook {
+        margin-top: 3vh;
+    }
+
+    .bookarea {
+        margin-right: 5vw;
+        margin-top: 2vh;
+    }
+
+    .bookarea img {
+        width: 130px;
+        height: 180px;
+    }
+
+    .bookarea p {
+        font-size: 1.75vh;
+        margin-bottom: 2vh;
+        font-weight: bold;
+    }
+
+    .bookarea button {
+        padding: 1vh 1vh;
+        border-style: none;
+        background-color: #adbfe6;
+    }
+
+    .regBtn {
+        width: 80vw;
+        margin: 8vh 8vw;
+    }
+
+    #regBtn {
+        padding: 2vh 35vw;
+        background-color: #2861d7;
+        color: #e8deef;
+        font-weight: bold;
+    }
+
+
+}
