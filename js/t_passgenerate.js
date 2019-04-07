@@ -16,7 +16,7 @@ $(document).on('click', '.describe', function(){
 })
 
 // パスワードのチェック
-$(document).on('blur', '.pass', function(){
+$(document).on('change', '.pass', function(){
     let pass = $(this).val();
     // 英数記号の8文字以上100字以内
     let passcheck = pass.match(/^(?=.*[0-9])(?=.*[A-Za-z])(?=.*[!\x22\#$%&@'()*+,-./_])[\w!\x22\#$%&@'()*+,-./]{8,64}$/);
@@ -31,7 +31,7 @@ $(document).on('blur', '.pass', function(){
 
 
 // メールアドレスのチェック
-$(document).on('blur', 'input[type="email"]', function(){
+$(document).on('change', 'input[type="email"]', function(){
     let value = $(this).val();
     let mailcheck = value.match(/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i);
     console.log(mailcheck);
@@ -42,7 +42,8 @@ $(document).on('blur', 'input[type="email"]', function(){
 })
 
 // 登録ボタン
-$(document).on('click', '#btn', function(){
+$(document).on('click', '.btn', function(e){
+    e.preventDefault();
     let email = $('input[name="email"]').val();
     // メールアドレスチェック
     if(email == null){
