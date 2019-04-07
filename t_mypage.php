@@ -18,11 +18,7 @@
     $step = $info['step'];
     // 登録状況によって振り分け
     if($step == 1){
-        header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/t_signUp2.php?id='.$id);
-        exit();
-    }else if($step == 3){
-        // 審査通過者の初業務
-        header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/t_howto.php?id='.$id);
+        header('location: http://'.$_SERVER["HTTP_HOST"].'/trackers/t_signUp2.php');
         exit();
     }
     

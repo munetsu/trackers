@@ -111,7 +111,7 @@ input[type="text"]{
 ************************************************/
 .btnarea {
     margin-top: 8vh;
-    width: 70vw;
+    width: 80vw;
 }
 
 .btn {
@@ -137,6 +137,12 @@ input[type="text"]{
     background-color: #e6adb1;
     border-bottom: solid 6px #e97780;
     border-right: solid 6px #e97780;
+}
+
+#mypage {
+    background-color: #e4cfa5;
+    border-bottom: solid 6px #e7c06e;
+    border-right: solid 6px #e7c06e;
 }
 
 /* ------------------------------------- 
@@ -272,10 +278,12 @@ input[type="text"]{
     }
 
     .btn {
-        padding: 2vh 2vw;
+        padding: 2vh 5vw;
         text-decoration: none;
         font-weight: bold;
         margin-right: 5vw;
+        width: 25vw;
+        margin-top: 5vh;
     }
 
     #next {
@@ -295,5 +303,12 @@ input[type="text"]{
         border-bottom: solid 6px #e97780;
         border-right: solid 6px #e97780;
     }
+
+    #mypage {
+        background-color: #e4cfa5;
+        border-bottom: solid 6px #e7c06e;
+        border-right: solid 6px #e7c06e;
+    }
+    
 
 }
