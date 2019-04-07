@@ -1,1 +1,51 @@
 @charset "utf-8";
+.lists {
+    display: flex;
+}
+
+.area {
+    width: 25vw;
+    height: 30vh;
+    margin: 8vh 2.5vw;
+    background-color:#2660d9;
+    text-align: center;
+    border-bottom: #a9c0e7 6px solid;
+    border-right: #a9c0e7 6px solid;
+}
+
+p {
+    margin-top: 5vh;
+}
+
+span {
+    font-size: 24px;
+    margin-right: 1vw;
+}
+
+a {
+    text-decoration: underline;
+    color: #eaeffb;
+}
+
+/* ------------------------------------- 
+* スマホ用
+------------------------------------- */
+@media screen and (max-width:480px){
+    .lists {
+        display: block;
+    }
+
+    .area {
+        width: 80vw;
+        height: 20vh;
+        margin: 4vh 10vw;
+        background-color:#2660d9;
+        text-align: center;
+        border-bottom: #a9c0e7 6px solid;
+        border-right: #a9c0e7 6px solid;
+    }
+
+    .area p {
+        padding-top: 1vh;
+    }
+}
