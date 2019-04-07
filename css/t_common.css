@@ -1,0 +1,214 @@
+@charset "utf-8";
+body {
+    background-color:#dee1e8;
+    font-size: 1.25vw;
+    line-height:1.5vw;
+}
+
+.flex {
+    margin-top: 10vh;
+    display: flex;
+}
+
+/******************************************** 
+* ヘッダー部分
+*********************************************/
+.topbar {
+    position: fixed;
+    top:0;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #667593;
+}
+
+.logout {
+    width: 10vw;
+    margin-top: 3.5vh;
+}
+
+.logout a {
+    padding: 0.5vw 1vw;
+    background-color: #9acd56;
+    text-decoration: none;
+    color: #333333;
+}
+
+#nav_toggle {
+    display: none;
+}
+
+/******************************************** 
+* サイド部分
+*********************************************/
+.sidebar {
+    left: 0;
+    width: 15vw;
+    border-right: #333333 solid 0.1vh;
+    height: 90vh;
+    background-color: #667593;
+}
+
+.sidebar li {
+    padding: 1.5vh 0;
+    border-bottom: #333333 solid 0.1vh;
+    margin-left: 1vw;
+}
+
+.sidebar li a {
+    color: white;
+}
+
+#nav_toggle{
+	display: none;
+}
+
+/******************************************** 
+* メイン部分
+*********************************************/
+.main {
+    overflow: auto;
+}
+
+/* ------------------------------------- 
+* スマホ用
+------------------------------------- */
+@media screen and (max-width:480px){
+    body {
+        background-color:#dee1e8;
+        font-size: 2vh;
+        line-height:3vh;
+    }
+    
+    .flex {
+        margin-top: 7vh;
+        display: block;
+    }
+
+    /******************************************** 
+    * ヘッダー部分
+    *********************************************/
+    .topbar {
+        position: fixed;
+        top:0;
+        height: 7vh;
+        display: block;
+        justify-content: space-around;
+        width: 100vw;
+        background-color: #667593;
+    }
+
+    .logoarea {
+        margin: 1vh 0vw 1vh 10vw;
+        width: 70vw;
+    }
+
+    .logo {
+        width: 70vw;
+        height: 5vh;
+    }
+
+    .logout {
+        display: none;
+    }
+
+    nav{
+		display: none;
+		position: fixed;
+		top:6vh;
+		width: 100vw;
+		background: #006598;
+        left: 0;
+        height: 90vh;
+	}
+	#nav_toggle nav ul{
+		display: block;
+		margin: 0 auto;
+        width: 90%;
+        border-bottom: 1px solid #fff;
+	}
+	#nav_toggle nav ul li{
+        margin: 0 auto;
+        height: 5vh;
+		text-align: center;
+        border-bottom: 1px solid #fff;
+	}
+	#nav_toggle nav ul li:last-child{
+		border: none;
+	}
+	#nav_toggle nav ul li a{
+        display: block; 
+        color: white;
+        margin: 1.5vh auto;
+	}
+
+    /*開閉ボタン*/
+	#nav_toggle{
+		display: block;
+		width: 40px;
+		height: 40px;
+		position: fixed;
+        top: 2vh;
+        left: 85vw;
+		z-index: 100;
+	}
+	#nav_toggle div {
+		position: relative;
+	}
+	#nav_toggle span{
+		display: block;
+		height: 3px;
+		background: #fff;
+		position:absolute;
+		width: 100%;
+		left: 0;
+		-webkit-transition: 0.5s ease-in-out;
+		-moz-transition: 0.5s ease-in-out;
+		transition: 0.5s ease-in-out;	
+	}
+	#nav_toggle span:nth-child(1){
+		top:0px;
+	}
+	#nav_toggle span:nth-child(2){
+		top:12px;
+	}
+	#nav_toggle span:nth-child(3){
+		top:24px;
+	}
+	
+	/*開閉ボタンopen時*/
+	.open #nav_toggle span:nth-child(1) {
+        top: 12px;
+        -webkit-transform: rotate(135deg);
+        -moz-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+    .open #nav_toggle span:nth-child(2) {
+        width: 0;
+        left: 50%;
+    }
+    .open #nav_toggle span:nth-child(3) {
+        top: 12px;
+        -webkit-transform: rotate(-135deg);
+        -moz-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+    }
+
+    /******************************************** 
+    * サイド部分
+    *********************************************/
+    .sidebar {
+        display: none;
+    }
+
+    
+
+
+
+
+    
+    
+
+    
+}
