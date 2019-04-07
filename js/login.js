@@ -1,4 +1,5 @@
-$(document).on('click', '#btn', function(){
+$(document).on('click', '.btn', function(e){
+    e.preventDefault();
     let email = $('input[name="email"]').val();
     let mailcheck = email.match(/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i);
     if(email == ''){

@@ -1,0 +1,73 @@
+@charset "utf-8";
+body {
+    width: 90vw;
+    background-color:#dee1e8;
+    font-size: 1.5vw;
+    margin: 0 5vw;
+}
+
+.flex {
+    display: flex;
+}
+
+.img {
+    width: 70%;
+}
+
+.picture {
+    width: 100%;
+}
+
+.login {
+    width: 30%;
+    padding: 8% 5%;
+}
+
+.title {
+    margin-top: 3vh;
+    margin-bottom: 1vh;
+}
+
+#btn {
+    width: 80%;
+    margin-top: 8vh;
+}
+
+.btn {
+    background-color: #2861d7;
+    text-decoration: none;
+    color: #e8deef;
+    font-weight: bold;
+    padding: 2vh 35%;
+}
+
+input {
+    height: 25px;
+    width: 250px;
+}
+
+/* ------------------------------------- 
+* スマホ用
+------------------------------------- */
+@media screen and (max-width:480px){
+    body {
+        font-size: 2vh;
+    }
+
+    .flex {
+        display: block;
+    }
+
+    .img {
+        display: none;
+    }
+
+    .login {
+        width: 90vw;
+        margin: 1vh 5vw;
+    }
+
+
+
+
+}
