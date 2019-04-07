@@ -76,6 +76,36 @@ span {
 }
 
 /* ------------------------------------- 
+* スマホアプリヒアリング
+------------------------------------- */
+#dialog {
+    margin: 10vh auto 0 auto;
+}
+
+.dialogBtn {
+    margin-top: 5vh;
+}
+
+#yes {
+    width: 10vw;
+    margin-right: 3vw;
+    padding: 2vh 3vw;
+    background-color: #2861d7;
+    text-decoration: none;
+    color: #e8deef;
+    font-weight: bold;
+}
+
+#no {
+    width: 10vw;
+    padding: 2vh 3vw;
+    background-color: #9acd56;
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+}
+
+/* ------------------------------------- 
 * スマホ用
 ------------------------------------- */
 @media screen and (max-width:480px){
@@ -161,5 +191,36 @@ span {
         font-weight: bold;
     }
 
+    /* ------------------------------------- 
+    * スマホアプリヒアリング
+    ------------------------------------- */
+    #dialog {
+        margin: 10vw auto 0 auto;
+        width: 80vw;
+    }
+
+    .dialogBtn {
+        margin-top: 5vh;
+        display:flex;
+    }
+
+    #yes {
+        width: 40vw;
+        margin-right: 5vw;
+        padding: 2vh 3vw;
+        background-color: #2861d7;
+        text-decoration: none;
+        color: #e8deef;
+        font-weight: bold;
+    }
+
+    #no {
+        width: 40vw;
+        padding: 2vh 3vw;
+        background-color: #9acd56;
+        text-decoration: none;
+        color: #333333;
+        font-weight: bold;
+    }
 
 }
