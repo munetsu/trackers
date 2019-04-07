@@ -188,15 +188,17 @@ function viewBook(m){
 // Yes/Noダイアログ
 function viewAlert(){
     let view = `
-        <div id="dialog" style="width: 30vw;
+        <div id="dialog" style="
                     margin: auto;
                     padding: 30px 20px;
                     text-align: center;
                     border: 1px solid #aaa;
                     box-shadow: 2px 2px 4px #888;">
             <p>スマホアプリは利用していましたか？</p>
-            <button id="yes">はい</button>
-            <button id="no">いいえ</button>
+            <div class="dialogBtn">
+                <button id="yes">はい</button>
+                <button id="no">いいえ</button>
+            </div>
         </div>
     `;
     return view;
@@ -225,8 +227,8 @@ $('#regBtn').on('click', function(e){
             }
         }else{
             console.log(data);
-            $('.textarea').empty();
-            $('.textarea').append(viewAlert());
+            $('.main').empty();
+            $('.main').append(viewAlert());
         }
     })
     .fail((data)=>{

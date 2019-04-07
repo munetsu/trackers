@@ -31,7 +31,7 @@
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-    <div>
+    <div class="main">
         <!-- textエリア -->
         <div class="textarea">
             <div>
