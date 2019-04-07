@@ -94,7 +94,7 @@ $(document).on('click', '.month', function(){
         // 数値変換
         month = parseInt(month, 10);
         checkArray(selectMonth, month);
-        // console.log(selectMonth);
+        console.log(selectMonth);
     }
 })
 
@@ -204,7 +204,7 @@ $(document).on('click', '.btn', function(){
         }
     })
     .done((data)=>{    
-        console.log(data);
+        // console.log(data);
         if(select == 'next'){
             // リロード
             location.reload();

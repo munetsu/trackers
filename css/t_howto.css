@@ -33,6 +33,12 @@ body {
     border: solid 6px #2861d7;
 }
 
+.gray {
+    background-color: black;
+    border-bottom: black;
+    border-right: black;
+}
+
 /************************************************ 
 * 勉強時間
 ************************************************/
