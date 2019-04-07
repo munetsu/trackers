@@ -33,7 +33,7 @@
         </div>
         <div class="itemList">
             <p>下記項目の入力をお願いします</p>
-            <form action="t_signUp_confirm.php" method="POST" name="signUp">
+            <form action="s_signUp_confirm.php" method="POST" name="signUp">
             <table class="table">
                 <tr>
                     <td class="item">資格名<span>*</span></td>
@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <td class="item">NAME<span>*</span></td>
-                    <td><input type="text" name="a_familyname" class="text" placeholder="(例)tanaka"><input type="text" name="a_firstname" class="text" placeholder="(例)tarou"></td>
+                    <td><input type="text" name="a_familyname" class="alpha" placeholder="(例)tanaka"><input type="text" name="a_firstname" class="alpha" placeholder="(例)tarou"></td>
                 </tr>
                 <tr>
                     <td class="item">E-mail<span>*</span></td>
@@ -53,7 +53,7 @@
                 </tr>
                 <tr>
                     <td class="item">電話番号(携帯)<span>*</span></td>
-                    <td><input type="text" name="tel" class="text" placeholder="(例)09011111111"></td>
+                    <td><input type="text" name="tel" class="tel" placeholder="(例)09011111111"></td>
                 </tr>
                 <tr>
                     <td class="item">生年月日<span>*</span></td>

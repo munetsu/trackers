@@ -1,0 +1,101 @@
+@charset "utf-8";
+body {
+    width: 90vw;
+    margin: 5vh 5vw;
+    background-color:#e8dedf;
+    font-size: 1.35vw;
+}
+
+/****************************************************
+** 確認フォーム
+****************************************************/
+p {
+    margin-bottom: 5vh;
+}
+
+tr {
+    height: 5vh;
+}
+
+.item {
+    padding-right: 1vw;
+}
+
+.num {
+    width: 5vw;
+}
+
+input {
+    font-size: 1.5vw;
+}
+
+input[name="birthyear"], input[name="birthmonth"]{
+    width: 5vw;
+}
+
+.btnarea {
+    width: 30vw;
+    margin-top: 5vh;
+
+}
+
+#btn {
+    padding: 2vh 3vw;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: #d72835;
+    color: #e8dedf;
+}
+
+/* ------------------------------------- 
+* スマホ用
+------------------------------------- */
+@media screen and (max-width:480px){
+    body {
+        font-size: 2vh;
+    }
+
+    /****************************************************
+    ** 確認フォーム
+    ****************************************************/
+    p {
+        margin-bottom: 3vh;
+        line-height: 3vh;
+    }
+
+    input {
+        width: 25vw;
+        margin-right: 3vw;
+        font-size: 2.25vh;
+    }
+
+    input[name=birthyear]{
+        width: 12vw;
+    }
+
+    input[name=birthmonth]{
+        width: 7vw;
+    }
+
+    input[name=email]{
+        width: 60vw;
+    }
+
+    input[name=tel]{
+        width: 50vw;
+    }
+
+    .num {
+        width: 10vw;
+    }
+
+    .btnarea {
+        width: 90vw;
+        margin-top: 5vh;
+    }
+    
+    #btn {
+        padding: 2vh 40vw;
+    }
+    
+}
