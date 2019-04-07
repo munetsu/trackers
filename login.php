@@ -22,27 +22,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>【Trackers】ログイン</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/login.css">
     <!-- jQuery本体-->
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
     <div>
-        <p>ログイン</p>
-        <form action="mvc/controller.php" method="POST" name="login">
-            <input type="hidden" name="action" value="login">
-            <input type="hidden" name="status" value=<?php echo $side ?>>
-            <div>
-                <p>メールアドレス</p>
-                <input type="text" name="email" size="30">
-            </div>
-            <div>
-                <p>パスワード</p>
-                <input type="password" name="password" size="30">
-            </div>
-        </form>
-        <div id="btn">ログイン</div>
+        <img src="img/logo.png" class="logo">
     </div>
-    <script src="js/login.js"></script>
+    <div class="flex">
+        <div class="img">
+            <img src="img/image.jpg" class="picture">
+        </div>
+        <div class="login">
+            <form action="mvc/controller.php" method="POST" name="login">
+                <input type="hidden" name="action" value="login">
+                <input type="hidden" name="status" value=<?php echo $side ?>>
+                <div>
+                    <p class="title">メールアドレス</p>
+                    <input type="text" name="email" size="30">
+                </div>
+                <div>
+                    <p class="title">パスワード</p>
+                    <input type="password" name="password" size="30">
+                </div>
+            </form>
+            <div id="btn">
+                <a href="" class="btn">ログイン</a>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="js/login.js"></script>
 </html>
