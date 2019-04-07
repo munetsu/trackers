@@ -60,11 +60,28 @@
                 <div>
                     <!-- 固定上段-->
                     <div class="topbar">
-                        <div>
-                            <a href="t_mypage.php?id="'.$id.'"><img src="img/logo.png"></a>
+                        <div class="logoarea">
+                            <a href="t_mypage.php"><img src="img/logo.png" class="logo"></a>
                         </div>
-                        <div>
+                        <div class="logout">
                             <a href="logout.php?status=tuotor">ログアウト</a>
+                        </div>
+                        <div id="nav_toggle">
+                            <div>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <nav>
+                                <ul>
+                                    <li><a href="t_adjustmentlist.php">日程調整中</a></li>
+                                    <li><a href="t_resevationlist.php">実施予定</a></li>
+                                    <li><a href="t_donelist.php" class="closed">過去実施（工事中）</a></li>
+                                    <li><a href="t_howtoedit.php" class="closed">勉強方法（工事中）</a></li>
+                                    <li><a href="t_pgofile.php" class="closed">プロフィール（工事中）</a></li>
+                                    <li><a href="logout.php?status=tuotor">ログアウト</a></li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                     <div class="flex">
@@ -73,9 +90,9 @@
                             <ul>
                                 <li><a href="t_adjustmentlist.php">日程調整中</a></li>
                                 <li><a href="t_resevationlist.php">実施予定</a></li>
-                                <li><a href="t_donelist.php">過去実施</a></li>
-                                <li><a href="t_howtoedit.php">勉強方法<a/></li>
-                                <li><a href="t_pgofile.php">プロフィール</a></li>
+                                <li><a href="t_donelist.php" class="closed">過去実施（工事中）</a></li>
+                                <li><a href="t_howtoedit.php" class="closed">勉強方法（工事中）</a></li>
+                                <li><a href="t_pgofile.php" class="closed">プロフィール（工事中）</a></li>
                             </ul>
                         </div>
                         <!-- メイン部分 -->
