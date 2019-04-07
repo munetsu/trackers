@@ -52,7 +52,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>【Trackers】日程調整</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/t_common.css">
     <!-- jQuery本体-->
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- jQuery UI -->
@@ -72,5 +75,6 @@
     let thisyear = <?php echo $year ?>;
     let thismonth = <?php echo $month ?>;
 </script>
+<script src="js/t_common.js"></script>
 <script src="js/t_adjustmentlist.js"></script>
 </html>
