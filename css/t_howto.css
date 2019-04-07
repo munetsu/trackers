@@ -1,0 +1,135 @@
+@charset "utf-8";
+body {
+    width: 90vw;
+    margin: 5vh 5vw;
+    background-color:#dee1e8;
+    font-size: 1.35vw;
+    line-height: 1.75vw;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.title {
+    font-weight: bold;
+}
+
+/************************************************ 
+* 月
+************************************************/
+
+.month {
+    width: 8vw;
+    margin: 1vw;
+    background-color: #c4cee3;
+    border-bottom: solid 6px #adbfe6;
+    border-right: solid 6px #adbfe6;
+    text-align: center;
+}
+
+.selected {
+    border: solid 6px #2861d7;
+}
+
+/************************************************ 
+* 勉強時間
+************************************************/
+.studytime {
+    margin-top: 8vh;
+}
+
+input[type="text"]{
+    width: 2vw;
+    margin-left: 0.5vw;
+    text-align: right;
+    font-size: 14px;
+}
+
+.studytime ul li {
+    margin-bottom: 3vh;
+}
+
+.batsu {
+    width: 2vh;
+    height: 2vh;
+    margin: 0 1vw;
+}
+
+/************************************************ 
+* テキストエリア
+************************************************/
+.textarea {
+    margin-top: 8vh;
+}
+
+.book {
+    margin: 5vh 5vw 5vh 0;
+    background-color: #c4cee3;
+    border-bottom: solid 6px #adbfe6;
+    border-right: solid 6px #adbfe6;
+}
+
+.booktitle {
+    margin: 2vh 0 0 2vw;
+    height: 15vh;
+    width: 30vw;
+}
+
+.book img {
+    width: 175px;
+    height: 250px;
+    margin: 0 25px;
+}
+
+.bookselect {
+    border: solid 6px #2861d7;
+}
+
+/************************************************ 
+* 勉強法
+************************************************/
+.howtoarea {
+    margin-top: 8vh;
+}
+
+#howtostudy {
+    width: 40vw;
+    margin-top: 5vh;
+    font-family: Arial, "YuGothic Medium","Yu Gothic Medium","游ゴシック Medium","游ゴシック体 Medium",YuGothic,"Yu Gothic","游ゴシック","游ゴシック体","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ",Meiryo,sans-serif;
+}
+
+/************************************************ 
+* ボタンエリア
+************************************************/
+.btnarea {
+    margin-top: 8vh;
+    width: 70vw;
+}
+
+.btn {
+    padding: 2vh 3vw;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 5vw;
+}
+
+#next {
+    background-color: #adbfe6;
+    border-bottom: solid 6px #779ce9;
+    border-right: solid 6px #779ce9;
+}
+
+#stop {
+    background-color: #c9e4a5;
+    border-bottom: solid 6px #b4e76e;
+    border-right: solid 6px #b4e76e;
+}
+
+#finish {
+    background-color: #e6adb1;
+    border-bottom: solid 6px #e97780;
+    border-right: solid 6px #e97780;
+}
+

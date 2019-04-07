@@ -10,7 +10,7 @@ const text = [];
 // カウント用
 let count = 0;
 
-console.log(bookLists);
+// console.log(bookLists);
 /////////////////////////////////////////////
 // 読み込み時に処理
 /////////////////////////////////////////////
@@ -76,18 +76,6 @@ function checkArray(array, data){
     }
 }
 
-// 登録テキスト数の確認
-// function bookListLength(){
-//     let bookListNum = 0;
-//     for(let i =1;i<11;i++){
-//         if(bookLists['title'+i] != null){
-//             bookListNum++;
-//         }
-//     }
-//     return bookListNum;
-// }
-
-
 //////////////////////////////////////////////////////////////////////
 //クリック・動的イベント
 //////////////////////////////////////////////////////////////////////
@@ -106,7 +94,7 @@ $(document).on('click', '.month', function(){
         // 数値変換
         month = parseInt(month, 10);
         checkArray(selectMonth, month);
-        console.log(selectMonth);
+        // console.log(selectMonth);
     }
 })
 
@@ -118,7 +106,20 @@ $(document).on('click', '.book', function(e){
 
     $(this).toggleClass('bookselect');
     checkArray(text, id);
-    console.log(text);
+    // console.log(text);
+})
+
+// 勉強時間のバリデーション
+$('input[type="text"]').on('change', function(){
+    let num = $(this).val();
+    if(num == ''){
+        return;
+    }
+    let check = num.match(/^\d+$/);
+    if(check == null){
+        alert('数字のみ入力可能です')
+        return;
+    }
 })
 
 //////////////////////////////////////////////////////////////////////
@@ -127,7 +128,7 @@ $(document).on('click', '.book', function(e){
 function viewtextList(num, booklists){
     let view = `
         <div class="book" data-id="`+booklists[num]['booklist_id']+`">
-            <p>`+booklists[num]['title']+`</p>
+            <p class="booktitle">`+booklists[num]['title']+`</p>
             `+booklists[num]['imageUrl']+`
         </div>
     `;
@@ -137,7 +138,7 @@ function viewtextList(num, booklists){
 function viewSchool(){
     let view = `
         <div class="book" data-id=0>
-            <p>学校・通信教材</p>
+            <p class="booktitle">学校・通信教材</p>
             <img src="img/school.png" class="bookimg">
         </div>
     `;
@@ -163,16 +164,16 @@ $(document).on('click', '.btn', function(){
     }else if(howtoStudy == ''){
         alert('勉強方法が記載されていません');
         return;
-    }else if(weektime == null){
+    }else if(weektime == ''){
         alert('平日の勉強時間が記載されていません');
         return;
-    }else if(weekday == null){
+    }else if(weekday == ''){
         alert('平日の日数が記載されていません');
         return;
-    }else if(holidaytime == null){
+    }else if(holidaytime == ''){
         alert('休日の勉強時間が記載されていません');
         return;
-    }else if(holiday == null){
+    }else if(holiday == ''){
         alert('休日の日数が記載されていません');
         return;
     }
