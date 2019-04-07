@@ -1,0 +1,61 @@
+@charset "utf-8";
+body {
+    width: 90vw;
+    margin: 5vh 5vw;
+    background-color:#dee1e8;
+    font-size: 1.5vw;
+}
+
+/***************************************************** 
+* 表示部分
+***************************************************** */
+.text {
+    margin-bottom: 3vh;
+}
+
+.title {
+    margin-top: 3vh;
+}
+
+input {
+    margin-top: 1vh;
+    margin-right: 1vw;
+}
+
+#btn {
+    margin-top: 10vh;
+    width: 30vw;
+    height: 8vh;
+}
+
+.btn {
+    background-color: #2861d7;
+    text-decoration: none;
+    color: #e8deef;
+    font-weight: bold;
+    padding: 2vh 13vw;
+}
+
+/* ------------------------------------- 
+* スマホ用
+------------------------------------- */
+@media screen and (max-width:480px){
+    body {
+        font-size: 2vh;
+    }
+
+    #btn {
+        margin-top: 10vh;
+        width: 80vw;
+        height: 5vh;
+    }
+    
+    .btn {
+        background-color: #2861d7;
+        text-decoration: none;
+        color: #e8deef;
+        font-weight: bold;
+        padding: 2vh 35vw;
+    }
+    
+}
