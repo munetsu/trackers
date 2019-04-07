@@ -27,7 +27,7 @@
         </div>
         <div>
             <p class="text">個人情報に関する取り扱いを最後までお読みください。</p>
-            <textarea name="" id="privacyPolicy" rows="10" style="width: 80vw" class="scrollArea">
+            <textarea id="privacyPolicy" rows="10" style="width: 80vw" class="scrollArea">
             </textarea><br>
             <label for="checkbox2"><input type="checkbox" value="10" class="checkpoint" id="checkbox2" disabled>個人情報取り扱いに同意する</label>
         </div>

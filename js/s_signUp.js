@@ -72,6 +72,7 @@ $('.scrollArea').on('scroll', function(e){
     // 最後になったら、チェックボックスを有効化
     if((height -(height2+scrollPosition) <0)){
         elm.parent().find('input').prop('disabled', false);
+        elm.parent().find('label').css('color', '#000');
     }
 });
 
@@ -234,7 +235,7 @@ function viewPrivacyPolicy(){
 function viewBtn(){
     let view = `
         <div id="confirmBtn">
-            <a href="" id="btn">確認画面</a>
+            <a href="" id="btn" class="btn">確認画面</a>
         </div>
     `;
     return view;
