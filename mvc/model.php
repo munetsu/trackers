@@ -375,32 +375,31 @@
         public function t_howtoRegister($tuotor_id, $monthlist, $array, $howto, $books){
             $datetime = Date("Y/m/d"); 
             $table = 't_howtos';
-            $column = '`tuotor_id`,
+            foreach($monthlist as $month){
+                $column = '`tuotor_id`,
                         `weektime`,
                         `weekday`,
                         `holidaytime`,
                         `holiday`,
                         `howto`,
-                        `Date`,';
-            $values = "'".$tuotor_id."'".",".
+                        `month`,';        
+                $values = "'".$tuotor_id."'".",".
                         "'".$array['weektime']."'".",".
                         "'".$array['weekday']."'".",".
                         "'".$array['holidaytime']."'".",".
                         "'".$array['holiday']."'".",".
                         "'".$howto."'".",".
-                        "'".$datetime."'".",";
-            $count = 1;
-            foreach($books as $book){
-                $column .= '`text'.$count.'`,';
-                $values .= "'".$book."'".",";
-                $count++;
-            }
-            $column .= '`month`';
-            foreach($monthlist as $month){
-                $values .= "'".$month."'";
+                        "'".$month."'".",";
+                $count = 1;
+                foreach($books as $book){
+                    $column .= '`text'.$count.'`,';
+                    $values .= "'".$book."'".",";
+                    $count++;
+                }
+                $column .= '`Date`';
+                $values .= "'".$datetime."'";
                 $this->db->insert($table, $column, $values);
             }
-            
         }
 
         // s_signUpのチューター登録処理
