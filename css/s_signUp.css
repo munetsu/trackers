@@ -66,6 +66,7 @@ select {
     height: 5vh;
     padding-left: 3vw;
     font-size: 1.25vw;
+    margin-top: 3vh;
 }
 
 .btn {

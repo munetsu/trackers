@@ -15,9 +15,7 @@ $(document).on('change', '.alpha', function(){
     let check = value.match(/^[a-zA-Z]+$/);
     if(check == null){
         alert('アルファベットでの入力をお願いします');
-        nameerror = 1;
-    }else{
-        nameerror = 0;
+        $(this).val('');
     }
 })
 

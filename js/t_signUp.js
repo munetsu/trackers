@@ -171,6 +171,18 @@ function mainAppend(){
     howmany();
 }
 
+// アルファベットチェック
+$(document).on('change', '.alpha', function(){
+    let value = $(this).val();
+    let name = $(this).attr('name');
+    let check = value.match(/^[a-zA-Z]+$/);
+    if(check == null){
+        alert('アルファベットでの入力をお願いします');
+        $(this).val('');
+        return;
+    }
+})
+
 // メールアドレスのチェック
 $(document).on('change', 'input[type="email"]', function(){
     let value = $(this).val();
@@ -185,7 +197,7 @@ $(document).on('change', 'input[type="email"]', function(){
 })
 
 // 電話番号のチェック
-$(document).on('change', 'input[name="tel"]', function(){
+$(document).on('change', '.tel', function(){
     $('#telnumber').remove();
     let value = $(this).val();
     for(let i=0;i<value.length;i++){

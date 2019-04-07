@@ -54,7 +54,7 @@
                 </tr>
                 <tr>
                     <td class="item">NAME</td>
-                    <td><input type="text" name="a_familyname" class="text" value=<?php echo $a_fa_name ?>><input type="text" name="a_firstname" class="text" value=<?php echo $a_f_name ?>></td>
+                    <td><input type="text" name="a_familyname" class="text alpha" value=<?php echo $a_fa_name ?>><input type="text" name="a_firstname" class="text alpha" value=<?php echo $a_f_name ?>></td>
                 </tr>
                 <tr>
                     <td class="item">E-mail</td>

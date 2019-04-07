@@ -94,6 +94,17 @@ sethowmany();
 ///////////////////////////////////////////
 // 関数（動的に実行）
 ///////////////////////////////////////////// 
+// アルファベットチェック
+$(document).on('change', '.alpha', function(){
+    let value = $(this).val();
+    let check = value.match(/^[a-zA-Z]+$/);
+    if(check == null){
+        alert('アルファベットでの入力をお願いします');
+        $(this).val('');
+        return;
+    }
+})
+
 // メールアドレスのチェック
 $(document).on('blur', 'input[name="email"]', function(){
     let value = $(this).val();

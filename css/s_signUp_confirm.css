@@ -1,0 +1,96 @@
+@charset "utf-8";
+body {
+    width: 90vw;
+    margin: 5vh 5vw;
+    background-color:#e8dedf;
+    font-size: 1.35vw;
+}
+/****************************************************
+** 確認フォーム
+****************************************************/
+p {
+    margin-bottom: 3vh;
+    line-height: 2vw;
+}
+
+tr {
+    height: 5vh;
+}
+
+.item {
+    padding-right: 1vw;
+}
+
+/****************************************************
+** ボタン
+****************************************************/
+.flex {
+    margin-top: 10vh;
+    display:flex;
+    width: 30vw;
+}
+
+.btnarea {
+    width: 40%;
+    padding-right: 10%;
+}
+
+.edit {
+    padding: 2vh 3vw;
+    background-color: #28d7ca;
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+}
+
+.regist {
+    padding: 2vh 3vw;
+    background-color: #d72835;
+    text-decoration: none;
+    color: #e8dedf;
+    font-weight: bold;
+}
+
+/* ------------------------------------- 
+* スマホ用
+------------------------------------- */
+@media screen and (max-width:480px){
+    body {
+        font-size: 2vh;
+    }
+
+    /****************************************************
+    ** 確認フォーム
+    ****************************************************/
+    p {
+        margin-bottom: 3vh;
+        line-height: 3vh;
+    }
+
+    .item {
+        padding-right: 3vw;
+    }
+
+    /****************************************************
+    ** ボタン
+    ****************************************************/
+    .flex {
+        margin-top: 5vh;
+        display:flex;
+        width: 80vw;
+    }
+    
+    .btnarea {
+        width: 40%;
+        padding-right: 10%;
+    }
+    
+    .edit {
+        padding: 2vh 10vw;
+    }
+    
+    .regist {
+        padding: 2vh 10vw;
+    }
+
+}

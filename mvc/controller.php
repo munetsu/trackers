@@ -78,7 +78,7 @@
                 // データ展開
                 $student_id = $_POST['student_id'];
                 $email = $_POST['email'];
-                
+
                 // idとメールアドレスの確認
                 $column = 'email';
                 $where = 'WHERE `student_id`='.$student_id;
@@ -91,6 +91,7 @@
                 // ログイン用データへ保存
                 $this->model->studentUpdate($password, $student_id);
 
+                
                 // loginへ
                 header('location: ../login.php?status=student');
 
@@ -482,8 +483,11 @@
                 if($res == null){
                     // student_id取得
                     $id = $this->model->s_studentsSelect($array, 'student_id');
+
+                    session_start();
+                    $_SESSION['student_id'] = $id['student_id'];
                     
-                    header('location: ../s_passgenerate.php?id='.$id['student_id']);
+                    header('location: ../s_passgenerate.php');
                     exit();
                 }else{
                     echo 'データ登録でエラー発生';

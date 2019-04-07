@@ -109,23 +109,8 @@ $(document).on('change', '.alpha', function(){
     let check = value.match(/^[a-zA-Z]+$/);
     if(check == null){
         alert('アルファベットでの入力をお願いします');
-        if(nameerror == 0){
-            $(this).parent('p').append('<span id="errorname">アルファベット入力をお願いします</span>');
-        }
-
-        if(name == 'a_familyname'){
-            nameerror = 10;
-        }else if(name == 'a_firstname'){
-            nameerror = 100;
-        }        
-    }else{
-        if(nameerror == 0){
-            $('#errorname').remove();
-        }else if(name == 'a_familyname'){
-            nameerror = (nameerror-10);
-        }else if(name == 'a_firstname'){
-            nameerror = (nameerror-100);
-        }
+        $(this).val('');
+        return;
     }
 })
 
@@ -144,7 +129,7 @@ $(document).on('change', 'input[type="email"]', function(){
 })
 
 // 電話番号のチェック
-$(document).on('change', 'input[name="tel"]', function(){
+$(document).on('change', '.tel', function(){
     $('#telnumber').remove();
     let value = $(this).val();
     for(let i=0;i<value.length;i++){

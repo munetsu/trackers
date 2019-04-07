@@ -40,7 +40,8 @@ $(document).on('change', 'input[type="email"]', function(){
 })
 
 // 登録ボタン
-$(document).on('click', '#btn', function(){
+$(document).on('click', '.btn', function(e){
+    e.preventDefault();
     let email = $('input[name="email"]').val();
     // メールアドレスチェック
     if(email == null || email == ''){

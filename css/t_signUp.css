@@ -124,6 +124,7 @@ input[type="text"], input[type="email"]{
         height: 5vh;
         padding-left: 3vw;
         font-size: 2vh;
+        margin-top: 3vh;
     }
 
     input[type="text"]{
