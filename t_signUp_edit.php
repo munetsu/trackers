@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/t_signUp_edit.css">
     <!-- jQuery本体-->
-    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
     <div>

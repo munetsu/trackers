@@ -52,7 +52,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <!-- jQuery本体-->
-    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
    <div>

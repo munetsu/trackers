@@ -75,6 +75,13 @@
         $month = json($month);
     }
 
+    // 登録資格リスト
+    $table = 'certifications';
+    $column = '*';
+    $where = '';
+    $certifications = $model->anyselectAll($table, $column, $where);
+    // JSON処理
+    $certifications = json($certifications);
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +95,7 @@
     <link rel="stylesheet" href="css/s_common.css">
     <link rel="stylesheet" href="css/s_tuotorDetail.css">
     <!-- jQuery本体-->
-    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
     <div>
@@ -170,6 +177,7 @@
     let tuotor_id = <?php echo $tuotor_id ?>;
     let monthly = <?php echo $month ?>;
     let student_id = <?php echo $student_id ?>;
+    let certifications = <?php echo $certifications ?>;
 </script>
 <script src="js/s_common.js"></script>
 <script src="js/s_tuotorDetail.js"></script>

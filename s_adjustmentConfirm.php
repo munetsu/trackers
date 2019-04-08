@@ -17,6 +17,14 @@
         exit();
     }
 
+    // 登録資格リスト
+    $table = 'certifications';
+    $column = '*';
+    $where = '';
+    $certifications = $model->anyselectAll($table, $column, $where);
+    // JSON処理
+    $certifications = json($certifications);
+
     // VIEW読み込み
     include('mvc/view.php');
     $view = new VIEW;
@@ -57,7 +65,7 @@
     <link rel="stylesheet" href="css/s_common.css">
     <link rel="stylesheet" href="css/s_adjustmentConfirm.css">
     <!-- jQuery本体-->
-    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
     <div><?php echo $views ?></div>
@@ -106,6 +114,7 @@
     let offerlist = <?php echo $array ?>;
     let consulid = <?php echo $consulid ?>;
     let sid = <?php echo $id ?>;
+    let certifications = <?php echo $certifications ?>;
 </script>
 <script src="js/s_common.js"></script>
 <script src="js/t_adjustmentConfirm.js"></script>

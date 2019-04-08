@@ -50,6 +50,14 @@
     include('mvc/view.php');
     $view = new VIEW;
     $views = $view->viewStudentTopbar($code['student_id'], $code['k_familyname'], $code['k_firstname']);
+
+    // 登録資格リスト
+    $table = 'certifications';
+    $column = '*';
+    $where = '';
+    $certifications = $model->anyselectAll($table, $column, $where);
+    // JSON処理
+    $certifications = json($certifications);
     
 ?>
 
@@ -65,7 +73,7 @@
     <link rel="stylesheet" href="css/s_common.css">
     <link rel="stylesheet" href="css/s_resevation_confirm.css">
     <!-- jQuery本体-->
-    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
     <div><?php echo $views ?></div>
@@ -134,6 +142,7 @@
     let array = <?php echo $array ?>;
     let sid = <?php echo $id ?>;
     let consulid = <?php echo $consul_id ?>;
+    let certifications = <?php echo $certifications ?>;
 </script>
 <script src="js/s_common.js"></script>
 <script src="js/s_resevation_confirm.js"></script>

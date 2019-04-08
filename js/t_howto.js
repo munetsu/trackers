@@ -168,6 +168,7 @@ $(document).on('click', '.btn', function(){
             return;
         }else{
             window.location.href="/trackers/t_mypage.php";
+            return;
         }
     }
 
