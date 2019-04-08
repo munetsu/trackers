@@ -78,7 +78,7 @@
                                     <li><a href="t_resevationlist.php">実施予定</a></li>
                                     <li><a href="t_donelist.php" class="closed">過去実施（工事中）</a></li>
                                     <li><a href="t_howto.php" class="closed">勉強方法</a></li>
-                                    <li><a href="t_pgofile.php" class="closed">プロフィール（工事中）</a></li>
+                                    <li><a href="t_profile.php" class="closed">プロフィール（工事中）</a></li>
                                     <li><a href="logout.php?status=tuotor">ログアウト</a></li>
                                 </ul>
                             </nav>
@@ -92,7 +92,7 @@
                                 <li><a href="t_resevationlist.php">実施予定</a></li>
                                 <li><a href="t_donelist.php" class="closed">過去実施（工事中）</a></li>
                                 <li><a href="t_howto.php" class="closed">勉強方法</a></li>
-                                <li><a href="t_pgofile.php" class="closed">プロフィール（工事中）</a></li>
+                                <li><a href="t_profile.php" class="closed">プロフィール（工事中）</a></li>
                             </ul>
                         </div>
                         <!-- メイン部分 -->

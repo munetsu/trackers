@@ -1,0 +1,286 @@
+@charset "utf-8";
+body {
+    width: 100vw;
+    background-color:#dee1e8;
+    font-size: 1.35vw;
+    line-height: 1.75vw;
+}
+
+.main {
+    display: flex;
+}
+
+/******************************************** 
+* 画面左側
+*********************************************/
+.datetable {
+    margin-top: 5vh;
+    margin-bottom: 8vh;
+}
+
+.datetable tr {
+    height: 5vh;
+    margin-bottom: 3vh;
+}
+
+.datetable th, td {
+    width: 10vw;
+    text-align: center;
+}
+
+.btnarea {
+    width: 50vw;
+    display: flex;
+
+}
+
+.tuotorarea {
+    background-color: #adbfe6;
+    border-bottom: solid 6px #779ce9;
+    border-right: solid 6px #779ce9;
+    padding: 3vh 5vw;
+    margin-right: 5vw;
+}
+
+.datearea {
+    background-color: #e6adb1;
+    border-bottom: solid 6px #e97780;
+    border-right: solid 6px #e97780;
+    padding: 3vh 5vw;
+}
+
+/******************************************** 
+* 画面右側
+*********************************************/
+.detail {
+    overflow: scroll;
+}
+
+.toparea {
+    display: flex;
+}
+
+.picture img {
+    width: 150px;
+    height: 150px;
+}
+
+.textarea {
+    margin-top: 5vh;
+    width: 30vw;
+}
+
+.textajax {
+    background-color: #e6adb1;
+    border-bottom: solid 6px #e97780;
+    border-right: solid 6px #e97780;
+    padding: 3vh 5vw;
+}
+
+.notext {
+    margin-top: 8vh;
+}
+
+/********************************************* 
+* 日程調整
+*********************************************/
+/* チェックボックスの大きさ */
+input[type=checkbox] {
+    transform: scale(1.5);
+    margin-right: 1vw;
+}
+
+select {
+    width: 10vw;
+    font-size: 1.5vw;
+}
+
+.answer {
+    margin-top: 5vh;
+    width: 50vw;
+}
+
+.answer p {
+    font-size: 1.5vw;
+    margin-bottom: 5vh;
+}
+
+.confirm, .edit {
+    background-color: #e6adb1;
+    border-bottom: solid 6px #e97780;
+    border-right: solid 6px #e97780;
+    padding: 3vh 5vw;
+}
+
+.resce {
+    margin-top: 5vh;
+}
+
+.resce select {
+    width: 7vw;
+}
+
+.resce div {
+    margin-bottom: 5vh;
+}
+
+.datepicker {
+    font-size: 1.5vw;
+}
+
+/* ------------------------------------- 
+* スマホ用
+------------------------------------- */
+@media screen and (max-width:480px){
+    body {
+        font-size: 2vh;
+        line-height: 3vh;
+    }
+    
+    .main {
+        display: block;
+    }
+
+    /******************************************** 
+    * 画面左側
+    *********************************************/
+    .datetable {
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+        width: 90vw;
+    }
+
+    .datetable tr {
+        height: 5vh;
+        margin-bottom: 3vh;
+    }
+
+    .datetable th, td {
+        width: 10vw;
+        text-align: center;
+    }
+
+    .btnarea {
+        width: 80vw;
+        display: flex;
+    }
+
+    .tuotorarea {
+        background-color: #adbfe6;
+        border-bottom: solid 6px #779ce9;
+        border-right: solid 6px #779ce9;
+        padding: 3vh 5vw;
+        margin-right: 5vw;
+        margin-left: 5vw;
+    }
+
+    .datearea {
+        background-color: #e6adb1;
+        border-bottom: solid 6px #e97780;
+        border-right: solid 6px #e97780;
+        padding: 3vh 5vw;
+    }
+
+    /******************************************** 
+    * 画面右側
+    *********************************************/
+    .detail {
+        overflow: scroll;
+        margin-top: 5vh;
+        margin-bottom: 10vh;
+    }
+
+    .toparea {
+        display: flex;
+    }
+
+    .picture img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .profile {
+        width: 60vw;
+    }
+
+    .profile table {
+        width: 100%;
+    }
+
+    .textarea {
+        margin-top: 3vh;
+        width: 80vw;
+    }
+
+    .textajax {
+        background-color: #e6adb1;
+        border-bottom: solid 6px #e97780;
+        border-right: solid 6px #e97780;
+        padding: 3vh 5vw;
+    }
+
+    .notext {
+        margin-top: 5vh;
+    }
+
+    /********************************************* 
+    * 日程調整
+    *********************************************/
+    /* チェックボックスの大きさ */
+    input[type=checkbox] {
+        transform: scale(1.5);
+        margin-right: 1vw;
+    }
+
+    .answer select {
+        width: 15vw;
+        font-size: 2vh;
+    }
+
+    .answer {
+        margin-top: 5vh;
+        width: 90vw;
+    }
+
+    .offer table {
+        width: 90vw;
+        font-size: 1.75vh;
+    }
+
+    .selectdate {
+        width: 10vw;
+    }
+
+    .answer p {
+        font-size: 2vh;
+        margin-bottom: 5vh;
+    }
+
+    .confirm, .edit {
+        background-color: #e6adb1;
+        border-bottom: solid 6px #e97780;
+        border-right: solid 6px #e97780;
+        padding: 3vh 30vw;
+    }
+
+    .resce {
+        margin-top: 5vh;
+    }
+
+    .resce select {
+        width: 15vw;
+        font-size: 1.5vh;
+    }
+
+    .resce div {
+        margin-bottom: 5vh;
+    }
+
+    .datepicker {
+        font-size: 2vh;
+    }
+
+
+
+
+}
