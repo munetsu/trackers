@@ -214,7 +214,7 @@ $('.consultation').on('click', function(e){
             alert('このチューターには依頼済みです。\n相談リストをご確認ください');
             return;
         }else{
-            window.location.href="s_resevation.php?consulid="+data+'&sid='+student_id;
+            window.location.href="s_resevation.php?consulid="+data;
         }
     })
     .fail((data)=>{

@@ -9,9 +9,9 @@ $(".datepicker").datepicker({
 });
 
 // 時間部分
-for(let i=0;i<=23;i++){
+for(let i=0;i<=22;i++){
     let view = '';
-    if(i == 12){
+    if(i == 18){
         view = '<option value='+i+' selected>'+i+'時</option>';        
     }else{
         view = '<option value='+i+'>'+i+'時</option>';
@@ -20,9 +20,11 @@ for(let i=0;i<=23;i++){
 };
 
 // 分部分
-for(let i=00;i<=59;i+=10){
+for(let i=0;i<=59;i+=10){
     let view = '';
-    if(i == 30){
+    if(i == 0){
+        view = '<option value="00" selected>00分</option>';        
+    }else if(i == 30){
         view = '<option value='+i+' selected>'+i+'分</option>';        
     }else{
         view = '<option value='+i+'>'+i+'分</option>';
