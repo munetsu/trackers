@@ -1,0 +1,151 @@
+@charset "utf-8";
+body {
+    width: 100vw;
+    font-size: 1.35vw;
+}
+
+/***************************************************
+* トップバー
+****************************************************/
+.topbar {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    z-index: 100;
+    background-color: #d72835;
+}
+
+.left {
+    display: flex;
+    width: 50vw;
+}
+
+.logoimg {
+    height: 10vh;
+}
+
+.search {
+    margin-left: 5vw;
+    margin-top: 4vh;
+}
+
+.search ul li {
+    background-color: #d72835;
+    height: 8vh;
+    padding: 4vh 0 0 1vw;;
+    width: 25vw;
+    border-bottom: solid 0.1px white;
+    text-decoration: none;
+}
+
+.search ul li a {
+    color: white;
+}
+
+.right {
+    width: 50vw;
+}
+
+.mypage {
+    display: flex;
+}
+
+.resevationlist {
+    display:inline-block;
+    margin: 4vh 2vw 0 2vw;
+}
+
+.logoutarea a {
+    display:inline-block;
+    padding: 1.5vh 2vw;
+    background-color: #adb6e8;
+    margin: 2vh 2vw 0 10vw;
+}
+
+.main {
+    position: relative;
+    top: 10vh;
+    overflow: scroll;
+    z-index: 10;
+    padding: 5vh 5vw;
+}
+
+/* ------------------------------------- 
+* スマホ用
+------------------------------------- */
+@media screen and (max-width:480px){
+    body {
+        font-size: 2vh;
+    }
+
+    /***************************************************
+    * トップバー
+    ****************************************************/
+    .topbar {
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        height: 10vh;
+        display: block;
+        justify-content: none;
+        background-color: #d72835;
+    }
+
+    .left {
+        display: block;
+        width: 100vw;
+    }
+
+    .logo {
+        margin: 0.5vh 11vw;
+    }
+
+    .logoimg {
+        height: 9vh;
+    }
+
+    .search {
+        display: none;
+    }
+
+    /* 一番下に持って行く */
+    .right {
+        position: fixed;
+        bottom: 0;
+        height: 10vh;
+        display: flex;
+        width: 100vw;
+    }
+
+    .logoutarea {
+        display: none;
+    }
+
+    .resevationlist {
+        width: 50vw;
+        height: 10vh;
+        margin: 0;
+        background-color: #e8dedf;
+    }
+
+    .resevationlist a {
+        display:inline-block;
+        background-color: #e8dedf;
+        position: fixed;
+        bottom: 4vh;
+        width: 50vw;
+        text-align: center;
+    }
+
+    .main {
+        position: relative;
+        top: 10vh;
+        overflow: scroll;
+        z-index: 0;
+        padding: 5vh 1vw;
+    }
+    
+}
