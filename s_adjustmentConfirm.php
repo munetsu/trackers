@@ -107,5 +107,6 @@
     let consulid = <?php echo $consulid ?>;
     let sid = <?php echo $id ?>;
 </script>
+<script src="js/s_common.js"></script>
 <script src="js/t_adjustmentConfirm.js"></script>
 </html>

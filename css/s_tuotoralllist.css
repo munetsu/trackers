@@ -1,0 +1,24 @@
+@charset "utf-8";
+body {
+    width: 100vw;
+    background-color:#dee1e8;
+    font-size: 1.35vw;
+    line-height: 1.75vw;
+}
+
+.main {
+    display: flex;
+    flex-wrap:wrap;
+}
+
+.card {
+    width: 25vw;
+    height: 400px;
+    margin-right: 2vw;
+    margin-bottom: 3vh;
+}
+
+.bookarea img {
+    width: 180px;
+    height: 250px;
+}

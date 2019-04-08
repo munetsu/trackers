@@ -68,5 +68,6 @@
     let sid = <?php echo $id ?>;
     let lists = <?php echo $lists ?>;
 </script>
+<script src="js/s_common.js"></script>
 <script src="js/s_matchConsulList.js"></script>
 </html>

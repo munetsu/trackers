@@ -100,5 +100,6 @@
 <script>
     let consul_id = <?php echo $consul_id ?>;
 </script>
+<script src="js/s_common.js"></script>
 <script src="js/s_resevation.js"></script>
 </html>

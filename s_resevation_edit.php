@@ -124,5 +124,6 @@
     let offerFinishtimeh = <?php echo $offerFinishtimeh ?>;
     let offerFinishtimem = <?php echo $offerFinishtimem ?>;
 </script>
+<script src="js/s_common.js"></script>
 <script src="js/s_resevation_edit.js"></script>
 </html>

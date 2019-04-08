@@ -135,5 +135,6 @@
     let sid = <?php echo $id ?>;
     let consulid = <?php echo $consul_id ?>;
 </script>
+<script src="js/s_common.js"></script>
 <script src="js/s_resevation_confirm.js"></script>
 </html>
