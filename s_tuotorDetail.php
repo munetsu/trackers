@@ -83,7 +83,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>【Trackers】チューター</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/s_common.css">
     <link rel="stylesheet" href="css/s_tuotorDetail.css">
     <!-- jQuery本体-->
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -95,47 +97,49 @@
         <!-- メイン -->
         <div class="main">
             <div class="profile">
-                <!-- 顔写真 -->
-                <div class="photo">
-                    <?php if($info['photo'] == null): ?>
-                        <img src="img/icon/feature1.svg" class="face">
-                    <?php else:?>
-                        <img src=<?php echo $info['photo'] ?> class="face">
-                    <?php endif; ?>                
-                </div>
-                <!-- プロフィール -->
-                <div class="profileText">
-                    <!-- 年齢計算 -->
-                    <?php if(($date - $info['birthmonth']) <0): ?>
-                            <?php $age = ($year - $info['birthyear'] -1) ?>
-                            <?php else: ?>
-                            <?php $age = ($year - $info['birthyear']) ?>
-                            <?php endif; ?>
-                    <table>
-                        <tr>
-                            <td>氏名：</td>
-                            <td><?php echo $info['k_familyname'] ?><?php echo $info['k_firstname'] ?>(<?php echo $age ?>)</td>
-                        </tr>
-                        <tr>
-                            <td>勉強法</td>
-                            <td><?php echo $howto[($info['howto']-1)]['howto_kind']?></td>
-                            <?php if($info['howto'] == 2): ?>
+                <div class="personal">
+                    <!-- 顔写真 -->
+                    <div class="photo">
+                        <?php if($info['photo'] == null): ?>
+                            <img src="img/icon/feature1.svg" class="face">
+                        <?php else:?>
+                            <img src=<?php echo $info['photo'] ?> class="face">
+                        <?php endif; ?>                
+                    </div>
+                    <!-- プロフィール -->
+                    <div class="profileText">
+                        <!-- 年齢計算 -->
+                        <?php if(($date - $info['birthmonth']) <0): ?>
+                                <?php $age = ($year - $info['birthyear'] -1) ?>
+                                <?php else: ?>
+                                <?php $age = ($year - $info['birthyear']) ?>
+                                <?php endif; ?>
+                        <table>
                             <tr>
-                                <td>学校名：</td>
-                                <td><?php echo $info['schoolname']?></td>
+                                <td>氏名：</td>
+                                <td><?php echo $info['k_familyname'] ?><?php echo $info['k_firstname'] ?>(<?php echo $age ?>)</td>
                             </tr>
-                            <?php elseif($info['howto'] == 3): ?>
                             <tr>
-                                <td>通信教材：</td>
-                                <td><?php echo $info['schoolname']?></td>
+                                <td>勉強法：</td>
+                                <td><?php echo $howto[($info['howto']-1)]['howto_kind']?></td>
+                                <?php if($info['howto'] == 2): ?>
+                                <tr>
+                                    <td>学校名：</td>
+                                    <td><?php echo $info['schoolname']?></td>
+                                </tr>
+                                <?php elseif($info['howto'] == 3): ?>
+                                <tr>
+                                    <td>通信教材：</td>
+                                    <td><?php echo $info['schoolname']?></td>
+                                </tr>
+                                <?php endif; ?>
                             </tr>
-                            <?php endif; ?>
-                        </tr>
-                        <tr>
-                            <td>職業：</td>
-                            <td><?php echo $status[($info['status']-1)]['status_kind'] ?></td>
-                        </tr>
-                    </table>
+                            <tr>
+                                <td>職業：</td>
+                                <td><?php echo $status[($info['status']-1)]['status_kind'] ?></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
                 <!-- 利用書籍 -->
                 <div class="text">
