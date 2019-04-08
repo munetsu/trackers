@@ -71,7 +71,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>【Trackers】</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/s_common.css">
+    <link rel="stylesheet" href="css/s_adjustmentlist.css">
     <!-- jQuery本体-->
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- jQuery UI -->

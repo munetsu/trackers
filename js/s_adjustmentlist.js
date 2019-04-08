@@ -62,8 +62,8 @@ function minute(){
 function viewlist(array, i){
     let view = `
         <div class="area">
-            <p>チューター：`+array[i][0]['k_familyname']+array[i][0]['k_firstname']+`</p>
-            <table>
+            <p class="tuotor">チューター：`+array[i][0]['k_familyname']+array[i][0]['k_firstname']+`</p>
+            <table class="datetable">
                 <tr>
                     <th>希望順</th>
                     <th>希望日時</th>
@@ -86,10 +86,10 @@ function viewlist(array, i){
                 </tr>
             </table>
             <div class="btnarea">
-                <div class="tuotor">
+                <div class="tuotorarea">
                 <a href="" class="tuotorBtn" data-tuotor=`+array[i]['tuotor_id']+`>チューター詳細</a>
                 </div>
-                <div class="date">
+                <div class="datearea">
                 <a href="" class="dateBtn" data-num=`+i+`>日程回答</a>
                 </div>
             </div>
@@ -104,40 +104,41 @@ function viewTuotorDetail(array){
         <div>
             <div class="toparea">
                 <div class="picture">
-                    <img src=`+array['picture']+`>
+                    <img src=`+array['photo']+`>
                 </div>
                 <div class="profile">
-                <table>
-                    <tr>
-                        <td>NAME</td>
-                        <td>`+array['a_familyname']+' '+array['a_firstname']+`</td>
-                    <tr>
-                    <tr>
-                        <td>名前</td>
-                        <td>`+array['k_familyname']+' '+array['k_firstname']+`</td>
-                    </tr>
-                    <tr>
-                        <td>年齢</td>
-                        <td>`+calculate(array['birthyear'], array['bitrhmonth'])+`歳</td>
-                    <tr>
-                    <tr>
-                        <td>職業</td>
-                        <td>`+statuslist[(array['status']-1)]['status_kind']+`</td>
-                    </tr>
-                    <tr>
-                        <td>学歴</td>
-                        <td>`+academiclist[(array['academic']-1)]['academy_kind']+`</td>
-                    </tr>
-                    <tr>
-                        <td>勉強法</td>
-                        <td>`+howtolist[(array['howto']-1)]['howto_kind']+`</td>
-                    </tr>
-                </table>
+                    <table>
+                        <tr>
+                            <td>NAME</td>
+                            <td>`+array['a_familyname']+' '+array['a_firstname']+`</td>
+                        <tr>
+                        <tr>
+                            <td>名前</td>
+                            <td>`+array['k_familyname']+' '+array['k_firstname']+`</td>
+                        </tr>
+                        <tr>
+                            <td>年齢</td>
+                            <td>`+calculate(array['birthyear'], array['bitrhmonth'])+`歳</td>
+                        <tr>
+                        <tr>
+                            <td>職業</td>
+                            <td>`+statuslist[(array['status']-1)]['status_kind']+`</td>
+                        </tr>
+                        <tr>
+                            <td>学歴</td>
+                            <td>`+academiclist[(array['academic']-1)]['academy_kind']+`</td>
+                        </tr>
+                        <tr>
+                            <td>勉強法</td>
+                            <td>`+howtolist[(array['howto']-1)]['howto_kind']+`</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
             <div class="textarea">
-            <a href="" class="textajax" data_tid=`+array['tuotor_id']+`>表示する</a>
+            <a href="" class="textajax" data_tid=`+array['tuotor_id']+`>利用テキスト表示</a>
             </div>
-        </div>    
+        </div>
     `;
     return view;
 }
@@ -150,10 +151,10 @@ function viewLists(array, i){
                 <p>都合がつく日程があればチェックをつけてください</p>
                 <table>
                     <tr>
-                        <th>日程選択</th>
-                        <th>希望順</th>
-                        <th>希望日時</th>
-                        <th>希望時間</th>
+                        <th class="selectdate">日程選択</th>
+                        <th class="offerth">希望順</th>
+                        <th class="offerth">希望日時</th>
+                        <th class="offerth">希望時間</th>
                     </tr>
                     <tr>
                         <td><input type="checkbox" data-id=`+array[i]['matchConsultation_id']+` name="select" value=`+array[i]['offerDate1']+` class="check"></td>
@@ -192,7 +193,9 @@ function dateConfrim(date, id){
     let view = `
         <p>日付：`+date+`</p>
         <p>開始時間：<select class="time" name="confirmhour"></select>：<select class="minute" name="confirmminute"></select>〜</p>
+        <div class="btnarea">
         <a href="" class="confirm" data-id=`+id+`>確定</a>
+        </div>
     `;
     return view;
 }
@@ -226,7 +229,7 @@ function rescedule(area){
             <select class="time" name="offerStarttimeh3"></select>：<select class="minute" name="offerStarttimem3"></select> 〜 <select class="time" name="offerFinishtimeh3"></select>：<select class="minute" name="offerFinishtimem3"></select>開始まで
         </div>
         </form>
-        <div>
+        <div class="btnarea">
         <a href="" class="edit" data-area=`+area+`>確認する</a>
         </div> 
     `;
@@ -262,6 +265,7 @@ $(document).on('click', '.tuotorBtn', function(e){
         }
         let tuotorInfo = $.parseJSON(data);
         // console.log(tuotorInfo);
+        $('.detail').empty();
         $('.detail').append(viewTuotorDetail(tuotorInfo));
     })
     .fail((data)=>{
@@ -274,7 +278,7 @@ $(document).on('click', '.textajax', function(e){
     e.preventDefault();
     let clicked = $(this).attr('class');
     if(clicked.match(/clicked/)){
-        $('.textarea').empty();
+        $('.notext').empty();
         $(this).removeClass('clicked');
         $(this).text('表示する');
         return;
@@ -295,7 +299,8 @@ $(document).on('click', '.textajax', function(e){
     .done((data)=>{
         let booklist = $.parseJSON(data);
         if(booklist.length == 0){
-            $('.textarea').append('<span>市販テキストの利用はありません</span>');
+            $('.notext').empty();
+            $('.textarea').append('<div class="notext"><span>市販テキストの利用はありません</span></div>');
         }else{
             for(let i=0;i<booklist.length;i++){
                 $('.textarea').append('<div class="amazon">'+booklist[i]['link']+'</div>');
@@ -331,7 +336,7 @@ $(document).on('click', 'input[name="select"]', function(){
     if(clicked.match(/clicked/)){
         $('.answer').empty();
         $('.rescedule').css('display', 'block');
-        $(this).removeClass('clicked');
+        $('.check').removeClass('clicked');
         return;
     }else{
         $('.rescedule').css('display','none');
@@ -342,10 +347,11 @@ $(document).on('click', 'input[name="select"]', function(){
         hour();
         // 分セット
         minute();
-    }
 
-    // チェックされているか確認
-    $(this).addClass('clicked');
+        $('.check').removeClass('clicked');
+        // チェックされているか確認
+        $(this).addClass('clicked');
+    }
 })
 
 
