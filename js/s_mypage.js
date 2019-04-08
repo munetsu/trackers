@@ -42,7 +42,7 @@ $('.search').hover(function(){
 // チューター個人をクリックした場合
 $(document).on('click', '.tuotor', function(){
     let tuotor_id = $(this).attr('data-id');
-    window.location.href="s_tuotorDetail.php?tid="+tuotor_id+"&sid="+student_id;
+    window.location.href="s_tuotorDetail.php?tid="+tuotor_id;
 })
 
 ///////////////////////////////////////////

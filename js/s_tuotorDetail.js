@@ -36,7 +36,7 @@ function viewHowtoBooks(howto){
             continue;
         }else{
             view += 
-            `<div>
+            `<div class="books">
                 <p>`+howto['title'+i]+`</p>
                 `+howto['imageUrl'+i]+`
            </div>`
@@ -173,7 +173,7 @@ $('.like').on('click', function(e){
         console.log(data);
         if(data == 'selected'){
             alert('「参考にするリスト」に追加済みです');
-            $(this).text('参考リスト追加済み');
+            $(this).text('参考リスト追加済');
             $(this).addClass('clicked');
         }else if(data == '' || data == 'NULL'){
             alert('「参考リスト」に追加しました');
