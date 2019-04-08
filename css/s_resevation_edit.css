@@ -1,0 +1,84 @@
+@charset "utf-8";
+body {
+    width: 100vw;
+    background-color:#dee1e8;
+    font-size: 1.35vw;
+    line-height: 1.75vw;
+}
+
+.datearea {
+    margin-top: 5vh;
+}
+
+.timearea {
+    margin-bottom: 5vh;
+}
+
+.datepicker {
+    font-size: 1.5vw;
+}
+
+select {
+    width: 7vw;
+    font-size: 1.5vw;
+    margin-top:1vh;
+}
+
+.btnarea {
+    background-color: #e6adb1;
+    border-bottom: solid 6px #e97780;
+    border-right: solid 6px #e97780;
+    width: 30vw;
+}
+
+.btn {
+    display: inline-block;
+    padding: 2vh 12vw;
+}
+
+/* ------------------------------------- 
+* スマホ用
+------------------------------------- */
+@media screen and (max-width:480px){
+    body {
+        width: 100vw;
+        background-color:#dee1e8;
+        font-size: 2vh;
+        line-height: 3vh;
+    }
+    
+    .datearea {
+        margin-top: 5vh;
+    }
+    
+    .timearea {
+        margin-bottom: 5vh;
+    }
+    
+    .datepicker {
+        font-size: 1.75vh;
+    }
+    
+    select {
+        width: 15vw;
+        font-size: 1.75vh;
+        margin-top:1vh;
+    }
+    
+    .btnarea {
+        background-color: #e6adb1;
+        border-bottom: solid 6px #e97780;
+        border-right: solid 6px #e97780;
+        width: 70vw;
+        margin-left: 3vw;
+    }
+    
+    .btn {
+        display: inline-block;
+        padding: 2vh 25vw;
+    }
+
+
+
+
+}
