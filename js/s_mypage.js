@@ -18,7 +18,7 @@ alertcheck;
 // 資格リスト
 function viewcertificationList(num, certifications){
     let view = `
-        <li data-certification="`+num+`">`+certifications+`</li>
+        <li data-certification="`+num+`"><a href="">`+certifications+`</a></li>
     `;
     $('.certificaionList').append(view);
 }
@@ -71,3 +71,7 @@ $(document).on('click','.alldescribe', function(e){
     let certificationid = $(this).attr('data-certification');
     window.location.href="s_tuotoralllist.php?certificationid="+certificationid;
 })
+
+///////////////////////////////////////////
+// スマホ用処理
+///////////////////////////////////////////

@@ -35,7 +35,7 @@
     $array = array();
     foreach($certifications as $certification){
         // 資格ごとのチューター取得
-        $where = 'WHERE `certification_id` ='."'".$certification['certification_id']."'".'LIMIT 5';
+        $where = 'WHERE `certification_id` ='."'".$certification['certification_id']."'".'LIMIT 3';
         $tuotors = $model->anyselectAll($table, $column, $where);
         // 登録チューターがいない場合
         if($tuotors == null){
@@ -122,7 +122,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>【Trackers】</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/s_common.css">
     <link rel="stylesheet" href="css/s_mypage.css">
     <!-- jQuery本体-->
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -137,7 +140,7 @@
             <?php foreach($array as $tuotor): ?>
             <div class="certificationArea">
                 <div class="textlist">
-                <p><?php echo $tuotor[0][0]['certification_kind'] ?></p>
+                <p class="certificationName"><?php echo $tuotor[0][0]['certification_kind'] ?></p>
                 <p><a href="" class="alldescribe" data-certification=<?php echo $tuotor[0][0]['certification_id']?>>すべてのチューターを表示>>></a></p>
                 </div>
                 <div class="tuotorArea">
@@ -162,8 +165,8 @@
                         </div>
                     <?php endforeach; ?>
                 </div>
-            <?php endforeach; ?>  
-        </div>
+            </div>
+        <?php endforeach; ?>  
     </div>
 </body>
 <script>

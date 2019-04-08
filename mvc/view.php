@@ -113,10 +113,10 @@
             <!-- left -->
             <div class="left">
                 <div class="logo">
-                    <a href="s_mypage.php"><img src="img/logo.png"></a>
+                    <a href="s_mypage.php"><img src="img/logo.png" class="logoimg"></a>
                 </div>
                 <div class="search">
-                    <p class="selectCertification">資格で絞り込む</p>
+                    <p class="selectCertification">資格で絞り込む▼</p>
                     <ul class="certificaionList"></ul>
                 </div>
             </div>
@@ -125,7 +125,7 @@
                 <div class="mypage">
                     <p class="resevationlist"><a href="s_matchConsullist.php">予約リスト</a></p>
                     <p class="resevationlist"><a href="s_adjustmentlist.php">日程調整中リスト</a></p>
-                    <p><a href="logout.php?status=student">ログアウト</a></p>
+                    <p class="logoutarea"><a href="logout.php?status=student">ログアウト</a></p>
                 </div>
             </div>
             </div>
