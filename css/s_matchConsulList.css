@@ -1,0 +1,33 @@
+@charset "utf-8";
+body {
+    width: 100vw;
+    background-color:#dee1e8;
+    font-size: 1.35vw;
+    line-height: 1.75vw;
+}
+
+.list {
+    margin-bottom: 8vh;
+}
+
+.tuotor {
+    text-decoration: underline;
+}
+
+
+
+/* ------------------------------------- 
+* スマホ用
+------------------------------------- */
+@media screen and (max-width:480px){
+    body {
+        font-size: 1.75vh;
+        line-height: 3vh;
+    }
+
+    .list {
+        margin-left: 3vw;
+    }
+    
+    
+}

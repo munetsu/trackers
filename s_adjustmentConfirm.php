@@ -51,12 +51,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>【Trackers】</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/s_common.css">
+    <link rel="stylesheet" href="css/s_adjustmentConfirm.css">
     <!-- jQuery本体-->
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-   <div>
+    <div><?php echo $views ?></div>
+   <div class="main">
        <p>下記日時でオファーしますか？</p>
        <table>
             <tr>
@@ -88,11 +93,13 @@
                <td><?php echo $_POST['offerFinishtimeh3'] ?>：<?php echo $_POST['offerFinishtimem3'] ?></td>
            </tr>
        </table>
-        <div>
-            <a href="" class="confirm">送信する</a>
-        </div>
-        <div>
-            <a href="s_adjustmentlist.php">戻る</a>
+       <div class="btnarea">
+            <div class="confirmarea">
+                <a href="" class="confirm">送信する</a>
+            </div>
+            <div class="backarea">
+                <a href="s_adjustmentlist.php" class="back">戻る</a>
+            </div>
         </div>
 </body>
 <script>
