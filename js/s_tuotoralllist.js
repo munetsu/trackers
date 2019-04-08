@@ -48,7 +48,7 @@ function viewMain(array, i){
                 <tr>
             </table>
             <div class="bookarea">
-                <p>利用書籍</p>
+                <p>【利用書籍】</p>
                 <p>`+array[i][0]['title']+`</p>
                 `+array[i][0]['imageUrl']+`
             </div>
