@@ -106,5 +106,6 @@
     let thisyear = <?php echo $year ?>;
     let thismonth = <?php echo $month ?>;
 </script>
+<script src="js/s_common.js"></script>
 <script src="js/s_adjustmentlist.js"></script>
 </html>

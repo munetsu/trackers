@@ -41,11 +41,9 @@ function viewMain(array, i){
         <div class="card">
             <table>
                 <tr>
-                    <td>名前</td>
                     <td>`+array[i]['k_familyname']+` `+array[i]['k_firstname']+`(`+calculate(array[i]['birthyear'], array[i]['birthmonth'])+`)</td>
                 </tr>
                 <tr>
-                    <td>勉強方法</td>
                     <td>`+howtolist[(array[i]['howto']-1)]['howto_kind']+`</td>
                 <tr>
             </table>

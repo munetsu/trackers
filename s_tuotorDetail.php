@@ -171,5 +171,6 @@
     let monthly = <?php echo $month ?>;
     let student_id = <?php echo $student_id ?>;
 </script>
+<script src="js/s_common.js"></script>
 <script src="js/s_tuotorDetail.js"></script>
 </html>
